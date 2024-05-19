@@ -178,14 +178,15 @@
              <option value="0" {{ $platinum->referral == 0 ? 'selected' : '' }}>No</option>
             </select>
 
-            <div id="referralFields" style="{{ $platinum->referral == 1 ? 'display: block;' : 'display: none;' }}">
-             <label for="referral-name">Referral Name:</label>
-              <input type="text" id="referral-name" name="referral_name" placeholder="Enter referral name" value="{{ $platinum->referral_name }}">
+            <div id="referralFields" style=" {{ $platinum->referral == 1 ? 'display: block;' : 'display: none;' }}">
+    <label for="referral-name">Referral Name:</label>
+    <input type="text" id="referral-name" name="referral_name" placeholder="Enter referral name" value="{{ $platinum->referral_name }}">
 
-              <label for="referral-batch">Referral Batch:</label>
-              <input type="text" id="referral-batch" name="referral_batch" placeholder="Enter referral batch" value="{{ $platinum->referral_batch }}">
-        </div>
-        
+    <label for="referral-batch">Referral Batch:</label>
+    <input type="text" id="referral-batch" name="referral_batch" placeholder="Enter referral batch" value="{{ $platinum->referral_batch }}">
+</div>
+
+
             <script>
                 function toggleReferralFields() {
                     var referralDropdown = document.getElementById("referral");

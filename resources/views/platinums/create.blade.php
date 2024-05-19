@@ -50,10 +50,26 @@
             cursor: pointer;
             margin-top: 30px;
             float:right;
+        }
 
             /* Button Styles */
-
+        .form-section button,
+        .form-section input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 30px;
+            float: right;
+            font-size: 16px;
         }
+        .form-section button:hover,
+        .form-section input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+            
 </style>
    
     <div class="py-12">
@@ -206,7 +222,7 @@
             </script>
 
             <div>
-                <input type="submit" value="Save a New Product">
+                <input type="submit" value="Save">
             </div>
         </div>
     </div>
