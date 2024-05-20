@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expertDomains', function (Blueprint $table) {
-            $table->bigIncrements('ED_ID');
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('platinums');
+        Schema::create('publication_reports', function (Blueprint $table) {
+            $table->bigIncrements('PR_ID');
+            $table->date('PR_Date');
+            $table->string('PR_Description');
             $table->unsignedBigInteger('M_mentorID');
             $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors');
-            $table->string('ED_Name');
-            $table->string('ED_Uni');
-            $table->string('ED_Email');
-            $table->string('ED_PhoneNum');
-            $table->string('ED_Research');
-            $table->string('ED_Paper');
+            $table->unsignedBigInteger('PB_ID');
+            $table->foreign('PB_ID')->references('PB_ID')->on('publications');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('expert_domains');
+        Schema::dropIfExists('publication_reports');
     }
 };

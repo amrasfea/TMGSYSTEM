@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reports', function (Blueprint $table) {
-            $table->bigIncrements('RP_ID');
-            $table->string('RP_Name');
-            $table->string('RP_Uni');
-            $table->string('RP_Email');
-            $table->string('RP_PhoneNum');
-            $table->string('RP_Research');
-            $table->string('RP_Paper');
+        Schema::create('crmps', function (Blueprint $table) {
+            $table->bigIncrements('C_ID');
+            $table->unsignedBigInteger('S_staffID');
+            $table->foreign('S_staffID')->references('S_staffID')->on('staff');
             $table->unsignedBigInteger('id');
             $table->foreign('id')->references('id')->on('platinums');
+            $table->unsignedBigInteger('FB_WeeklyFocusID');
+            $table->foreign('FB_WeeklyFocusID')->references('FB_WeeklyFocusID')->on('WeeklyFocusBlocks');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('crmps');
     }
 };

@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expertDomains', function (Blueprint $table) {
-            $table->bigIncrements('ED_ID');
+        Schema::create('WeeklyFocusBlocks', function (Blueprint $table) {
+            $table->bigIncrements('FB_WeeklyFocusID');
             $table->unsignedBigInteger('id');
             $table->foreign('id')->references('id')->on('platinums');
             $table->unsignedBigInteger('M_mentorID');
             $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors');
-            $table->string('ED_Name');
-            $table->string('ED_Uni');
-            $table->string('ED_Email');
-            $table->string('ED_PhoneNum');
-            $table->string('ED_Research');
-            $table->string('ED_Paper');
+            $table->string('FB_BlockType');
+            $table->string('FB_BlockDesc');
+            $table->date('FB_StartDate');
+            $table->date('FB_EndDate');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('expert_domains');
+        Schema::dropIfExists('weekly_focus_blocks');
     }
 };
