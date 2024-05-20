@@ -40,3 +40,17 @@ Route::post('/product', [ProductController::class, 'store'])->name('product.stor
 Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
 Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+
+Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation']);
+Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
+Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
+Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
+Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
+Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
+Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport']);
+Route::get('/SearchPlatinumExpDom',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
+Route::get('/SearchResearch',[ExpertDomainController::class, 'SearchResearchPublicationView']);
+Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
+Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPublicationView']);
+Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
+Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
