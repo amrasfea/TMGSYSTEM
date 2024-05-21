@@ -96,7 +96,7 @@
 
           <!-- User type selection -->
           <div class="mb-4">
-            <label for="userType" class="form-label">User Type</label>
+            <label for="roleType" class="form-label">User Type</label>
             <select class="form-select" id="userType" name="user_type">
               <option value="platinum">Platinum</option>
               <option value="staff">Staff</option>
@@ -130,6 +130,43 @@
 
 </body>
 </html>
+
+
+<?php
+
+use App\Livewire\Forms\LoginForm;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+
+
+$login = function () {
+    $this->validate();
+
+    $this->form->authenticate();
+
+    Session::regenerate();
+
+    $userRole=Auth::user()->roleType;
+
+    switch ($userRole) {
+      case 'platinum':
+          $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+          break;
+      case 'staff':
+          $this->redirectIntended(default: route('staff', absolute: false), navigate: true);
+          break;
+      case 'mentor':
+          $this->redirectIntended(default: route('mentor', absolute: false), navigate: true);
+          break;
+      default:
+          return redirect('/');
+  }
+
+
+
+};
+
+?>
 
 
 
