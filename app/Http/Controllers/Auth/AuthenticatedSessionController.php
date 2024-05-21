@@ -28,16 +28,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        switch ($request->userType) {
-            case 'platinum':
-                return redirect()->intended(route('platinum.dashboard'));
-            case 'staff':
-                return redirect()->intended(route('admin/dashboard'));
-            case 'mentor':
-                return redirect()->intended(route('mentor.dashboard'));
-            default:
-                return redirect()->intended(route('dashboard'));
-        }
+        return redirect()->intended(route('dashboard',absolute:false));
+
+   
     }
 
     /**
