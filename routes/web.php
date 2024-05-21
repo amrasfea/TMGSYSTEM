@@ -6,12 +6,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\RegistrationController;
 
-use App\Http\Controllers\ExpertDomainController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+require __DIR__.'/auth.php';
 
 
 Route::get('/dashboard', function () {
@@ -25,10 +26,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-
-
-Route::get('staff/dashboard', [HomeController::class, 'index']);
 
 //registration
 Route::get('/platinum', [RegistrationController::class, 'index'])->name('platinum.index');
