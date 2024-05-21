@@ -142,25 +142,14 @@
             position: relative;
         }
 
-        #sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
-            position: absolute;
-            top: 0;
-            left: 70px;
-            background-color: #FFDB58;
-            padding: 0;
-            min-width: 15rem;
+        .sidebar-item ul {
+            list-style-type: disc;
+            padding-left: 2rem;
             display: none;
-            z-index: 1;
-            /* Ensure dropdowns are clickable */
         }
 
-        #sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+        .sidebar-item:hover ul {
             display: block;
-            max-height: 15em;
-            width: 100%;
-            opacity: 1;
-            overflow-y: auto;
-            /* Allow scrolling within the dropdown */
         }
 
         #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
@@ -196,40 +185,33 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                    <a href="#" class="sidebar-link has-dropdown">
                         <i class="lni lni-protection"></i>
                         <span>Profile</span>
                     </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <a href="#" class="sidebar-link">My Profile</a>
+                            <ul class="sidebar-dropdown">
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                        My Profile
-                                    </a>
-                                    <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                        <li class="sidebar-item">
-                                            <a href="#" class="sidebar-link">Other Staff Profile</a>
-                                        </li>
-
-                                    </ul>
+                                    <a href="#" class="sidebar-link">Other Staff Profile</a>
                                 </li>
                             </ul>
-
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Personal</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Other Platinum Profile</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#expertDomainDropdown" aria-expanded="false" aria-controls="expertDomainDropdown">
+                    <a href="#" class="sidebar-link has-dropdown">
                         <i class="lni lni-agenda"></i>
                         <span>Expert Domain</span>
                     </a>
-                    <ul id="expertDomainDropdown" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">New Expert</a>
                         </li>
@@ -245,13 +227,12 @@
                     </ul>
                 </li>
 
-
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#publicationDropdown" aria-expanded="false" aria-controls="publicationDropdown">
+                    <a href="#" class="sidebar-link has-dropdown">
                         <i class="lni lni-layout"></i>
                         <span>Publication Data</span>
                     </a>
-                    <ul id="publicationDropdown" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">New Publication</a>
                         </li>
@@ -265,20 +246,17 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#progressDropdown" aria-expanded="false" aria-controls="progressDropdown">
+                    <a href="#" class="sidebar-link has-dropdown">
                         <i class="lni lni-popup"></i>
                         <span>Progress Monitoring</span>
                     </a>
-                    <ul id="progressDropdown" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
-
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#weeklyFocusDropdown" aria-expanded="false" aria-controls="weeklyFocusDropdown">
-                                Weekly Focus
-                            </a>
-                            <ul id="weeklyFocusDropdown" class="sidebar-dropdown list-unstyled collapse">
+                            <a href="#" class="sidebar-link">Weekly Focus</a>
+                            <ul class="sidebar-dropdown">
                                 <li class="sidebar-item">
                                     <a href="#" class="sidebar-link">Focus Block </a>
                                 </li>
@@ -288,7 +266,6 @@
                                 <li class="sidebar-item">
                                     <a href="#" class="sidebar-link">Admin Block</a>
                                 </li>
-
                                 <li class="sidebar-item">
                                     <a href="#" class="sidebar-link">Recovery Block</a>
                                 </li>
