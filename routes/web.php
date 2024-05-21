@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\RegistrationController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
