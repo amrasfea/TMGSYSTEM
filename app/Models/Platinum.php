@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Platinum extends Model
 {
+    public function staff() {
+        return $this->belongsTo(Staff::class, 'S_staffID');
+    }
+
+    public function users() {
+        return $this->belongsTo(User::class, 'id');
+    }
+
     use HasFactory;
 
     protected $fillable = [

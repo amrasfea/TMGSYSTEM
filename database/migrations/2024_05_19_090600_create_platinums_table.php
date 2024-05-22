@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('platinums', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('p_id');
             $table->string('registration_type');
             $table->string('title');
             $table->string('full_name');
@@ -33,8 +33,12 @@ return new class extends Migration
             $table->string('program');
             $table->integer('batch');
             $table->boolean('referral')->default(false);
-            $table->string('referral_name');
-            $table->string('referral_batch');
+            $table->string('referral_name')->nullable();
+            $table->string('referral_batch')->nullable();
+            $table->unsignedBigInteger('S_staffID');
+            $table->foreign('S_staffID')->references('S_staffID')->on('staff')->onDelete('cascade');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
