@@ -32,6 +32,7 @@ class RegistrationController extends Controller{
             'P_occupation' => 'required|string',
             'P_sponsorship' => 'required|string',
             'P_address' => 'required|string',
+            'P_email' => 'required|string',
             'P_phone' => 'required|string',
             'P_fb_name' => 'required|string',
             'P_program' => 'required|string',
@@ -43,7 +44,7 @@ class RegistrationController extends Controller{
 
         $newPlatinum = Platinum::create($data);
 
-        return redirect(route('platinum.index'));
+        return redirect(route('platinum.index'))->with('success', 'Platinum Registered Succesffully');
 
     }
 
@@ -67,6 +68,7 @@ class RegistrationController extends Controller{
             'P_occupation' => 'required|string',
             'P_sponsorship' => 'required|string',
             'P_address' => 'required|string',
+            'P_email' => 'required|string',
             'P_phone' => 'required|string',
             'P_fb_name' => 'required|string',
             'P_program' => 'required|string',
@@ -84,6 +86,6 @@ class RegistrationController extends Controller{
 
     public function destroy(Platinum $platinum){
         $platinum->delete();
-        return redirect(route('platinum.index'))->with('success', 'Product deleted Succesffully');
+        return redirect(route('platinum.index'))->with('success', 'Platinum deleted Succesffully');
     }
 }
