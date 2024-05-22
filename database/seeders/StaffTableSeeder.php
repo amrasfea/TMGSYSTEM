@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Staff;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class StaffTableSeeder extends Seeder
@@ -13,16 +13,20 @@ class StaffTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $users = User::whereIn('email', [
+            'amar31@gmail.com',
+        ])->get();
+
         $staff = [
             [
-                'id' => 4,
+                'id' => $users->where('email', 'amar31@gmail.com')->first()->id,
                 'S_position' => 'Manager',
                 'S_department' => 'Marketing',
             ],
-
         ];
-        foreach($staff as $key => $val){
-            Staff::create($val);
-         }
+
+        foreach ($staff as $data) {
+            Staff::create($data);
+        }
     }
 }

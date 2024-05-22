@@ -98,9 +98,9 @@
           <div class="mb-4">
             <label for="roleType" class="form-label">User Type</label>
             <select class="form-select" id="userType" name="user_type">
-              <option value="platinum">Platinum</option>
-              <option value="staff">Staff</option>
-              <option value="mentor">Mentor</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Staff">Staff</option>
+              <option value="Mentor">Mentor</option>
             </select>
           </div>
 

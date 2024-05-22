@@ -7,38 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Platinum extends Model
 {
-    public function staff() {
-        return $this->belongsTo(Staff::class, 'S_staffID');
-    }
-
-    public function users() {
-        return $this->belongsTo(User::class, 'id');
-    }
-
     use HasFactory;
 
     protected $fillable = [
-        'registration_type', 
-        'title', 
-        'full_name', 
-        'identity_card',
-         'gender', 
-         'religion',
-        'race', 
-        'citizenship', 
-        'edu_level', 
-        'edu_field', 
-        'edu_institute', 
-        'occupation',
-        'sponsorship', 
-        'address', 
-        'phone', 
-        'email', 
-        'fb_name', 
-        'program',
-         'batch',
-        'referral', 
-        'referral_name', 
-        'referral_batch'
+        'P_registration_type', 
+        'P_title', 
+        'P_full_name', 
+        'P_identity_card',
+        'P_gender', 
+        'P_religion',
+        'P_race', 
+        'P_citizenship', 
+        'P_edu_level', 
+        'P_edu_field', 
+        'P_edu_institute', 
+        'P_occupation',
+        'P_sponsorship', 
+        'P_address',
+        'P_email', 
+        'P_phone', 
+        'P_fb_name', 
+        'P_program',
+        'P_batch',
+        'P_referral', 
+        'P_referral_name', 
+        'P_referral_batch'
     ];
 }

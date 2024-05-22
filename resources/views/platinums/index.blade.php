@@ -99,17 +99,17 @@
             </tr>
             @foreach($platinums as $platinum )
                 <tr>
-                    <td>{{ $platinum->registration_type }}</td>
-                    <td>{{ $platinum->title }}</td>
-                    <td>{{ $platinum->full_name }}</td>
-                    <td>{{ $platinum->gender}}</td>
-                    <td>{{ $platinum->edu_level }}</td>
-                    <td>{{ $platinum->phone }}</td>
+                    <td>{{ $platinum->P_registration_type }}</td>
+                    <td>{{ $platinum->P_title }}</td>
+                    <td>{{ $platinum->P_full_name }}</td>
+                    <td>{{ $platinum->P_gender}}</td>
+                    <td>{{ $platinum->P_edu_level }}</td>
+                    <td>{{ $platinum->P_phone }}</td>
                     <td>
-                        <a href="{{route('platinum.edit', ['platinum' => $platinum]) }}" class="edit-link">Edit</a>
+                        <a href="{{route('platinum.edit', ['platinum' => $platinum])}}" class="edit-link">Edit</a>
                     </td>
                     <td>
-                        <form method="post" action="{{route('platinum.destroy', ['platinum' => $platinum])}}" class="delete-link">
+                        <form method="post" action="" class="delete-link">
                             @csrf
                             @method('delete')
                             <input type="submit" value="Delete" />
@@ -127,8 +127,4 @@
         </div>
     </div>
 </x-app-layout>
-
-
-
-
 

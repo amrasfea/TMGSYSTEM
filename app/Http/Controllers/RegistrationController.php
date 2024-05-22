@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Platinum;
 
-class RegistrationController extends Controller
-{
+class RegistrationController extends Controller{
+
     public function index(){
         $platinums = Platinum::all();
         return view('platinums.index', ['platinums' => $platinums]);
+        
     }
 
     public function create(){
@@ -18,72 +18,72 @@ class RegistrationController extends Controller
 
     public function store(Request $request){
         $data = $request->validate([
-            'registration_type' => 'required|string',
-            'title' => 'required|string',
-            'full_name' => 'required|string',
-            'identity_card' => 'required|string',
-            'gender' => 'required|string',
-            'religion' => 'required|string',
-            'race' => 'required|string',
-            'citizenship' => 'required|string',
-            'edu_level' => 'required|string',
-            'edu_field' => 'required|string',
-            'edu_institute' => 'required|string',
-            'occupation' => 'required|string',
-            'sponsorship' => 'required|string',
-            'address' => 'required|string',
-            'phone' => 'required|string',
-            'email' => 'required|string|email',
-            'fb_name' => 'required|string',
-            'program' => 'required|string',
-            'batch' => 'required|integer',
-            'referral' => 'required|boolean',
-            'referral_name' => 'nullable|string',
-            'referral_batch' => 'nullable|string',
+            'P_registration_type' => 'required|string',
+            'P_title' => 'required|string',
+            'P_full_name' => 'required|string',
+            'P_identity_card' => 'required|string',
+            'P_gender' => 'required|string',
+            'P_religion' => 'required|string',
+            'P_race' => 'required|string',
+            'P_citizenship' => 'required|string',
+            'P_edu_level' => 'required|string',
+            'P_edu_field' => 'required|string',
+            'P_edu_institute' => 'required|string',
+            'P_occupation' => 'required|string',
+            'P_sponsorship' => 'required|string',
+            'P_address' => 'required|string',
+            'P_phone' => 'required|string',
+            'P_fb_name' => 'required|string',
+            'P_program' => 'required|string',
+            'P_batch' => 'required|integer',
+            'P_referral' => 'required|boolean',
+            'P_referral_name' => 'nullable|string',
+            'P_referral_batch' => 'nullable|string',
         ]);
 
-         Platinum::create($data);
+        $newPlatinum = Platinum::create($data);
 
-         return redirect()->route('platinum.index')->with('success', 'New product saved successfully!');
+        return redirect(route('platinum.index'));
+
     }
 
     public function edit(Platinum $platinum){
         return view('platinums.edit', ['platinum' => $platinum]);
     }
 
-    public function update(Request $request, Platinum $platinum){
+    public function update(Platinum $platinum, Request $request){
         $data = $request->validate([
-            'registration_type' => 'required|string',
-            'title' => 'required|string',
-            'full_name' => 'required|string',
-            'identity_card' => 'required|string',
-            'gender' => 'required|string',
-            'religion' => 'required|string',
-            'race' => 'required|string',
-            'citizenship' => 'required|string',
-            'edu_level' => 'required|string',
-            'edu_field' => 'required|string',
-            'edu_institute' => 'required|string',
-            'occupation' => 'required|string',
-            'sponsorship' => 'required|string',
-            'address' => 'required|string',
-            'phone' => 'required|string',
-            'email' => 'required|string|email',
-            'fb_name' => 'required|string',
-            'program' => 'required|string',
-            'batch' => 'required|integer',
-            'referral' => 'required|boolean',
-            'referral_name' => 'nullable|string',
-            'referral_batch' => 'nullable|string',
+            'P_registration_type' => 'required|string',
+            'P_title' => 'required|string',
+            'P_full_name' => 'required|string',
+            'P_identity_card' => 'required|string',
+            'P_gender' => 'required|string',
+            'P_religion' => 'required|string',
+            'P_race' => 'required|string',
+            'P_citizenship' => 'required|string',
+            'P_edu_level' => 'required|string',
+            'P_edu_field' => 'required|string',
+            'P_edu_institute' => 'required|string',
+            'P_occupation' => 'required|string',
+            'P_sponsorship' => 'required|string',
+            'P_address' => 'required|string',
+            'P_phone' => 'required|string',
+            'P_fb_name' => 'required|string',
+            'P_program' => 'required|string',
+            'P_batch' => 'required|integer',
+            'P_referral' => 'required|boolean',
+            'P_referral_name' => 'nullable|string',
+            'P_referral_batch' => 'nullable|string',
         ]);
 
         $platinum->update($data);
 
-        return redirect(route('platinum.index'))->with('success', 'Platinum registration updated successfully.');
+        return redirect(route('platinum.index'))->with('success', 'Platinum Updated Succesffully');
+
     }
 
     public function destroy(Platinum $platinum){
         $platinum->delete();
-        return redirect(route('platinum.index'))->with('success', 'Platinum registration deleted successfully.');
+        return redirect(route('platinum.index'))->with('success', 'Product deleted Succesffully');
     }
 }

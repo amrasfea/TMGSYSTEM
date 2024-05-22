@@ -95,7 +95,7 @@
         <div class="form-section">
             <h2>Platinum Information</h2>
             <label for="registration-type">Type of registration:</label>
-            <select id="registration-type" name="registration_type">
+            <select id="registration-type" name="P_registration_type">
                 <option value="premier">Premier</option>
                 <option value="new">New</option>
                 <option value="upgrade">Upgrade (Premier)</option>
@@ -104,7 +104,7 @@
             </select>
 
             <label for="title">Title:</label>
-            <select id="title" name="title">
+            <select id="title" name="P_title">
                 <option value="Mr">Mr</option>
                 <option value="Miss">Miss</option>
                 <option value="Mrs">Mrs</option>
@@ -114,62 +114,62 @@
             </select>
 
             <label for="full-name">Full Name:</label>
-            <input type="text" id="full-name" name="full_name" placeholder="Enter your full name">
+            <input type="text" id="full-name" name="P_full_name" placeholder="Enter your full name">
 
             <label for="identity-card">Identity Card No.:</label>
-            <input type="text" id="identity-card" name="identity_card" placeholder="Enter your ID card number">
+            <input type="text" id="identity-card" name="P_identity_card" placeholder="Enter your ID card number">
 
             <label for="gender">Gender:</label>
-            <select id="gender" name="gender">
+            <select id="gender" name="P_gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
 
             <label for="religion">Religion:</label>
-            <input type="text" id="religion" name="religion" placeholder="Enter your religion">
+            <input type="text" id="religion" name="P_religion" placeholder="Enter your religion">
 
             <label for="race">Race:</label>
-            <input type="text" id="race" name="race" placeholder="Enter your race">
+            <input type="text" id="race" name="P_race" placeholder="Enter your race">
 
             <label for="citizenship">Citizenship:</label>
-            <input type="text" id="citizenship" name="citizenship" placeholder="Enter your citizenship">
+            <input type="text" id="P_citizenship" name="P_citizenship" placeholder="Enter your citizenship">
 
             <h2>Education Information</h2>
             <label for="eduLevel">Current Education Level:</label>
-            <input type="text" id="eduLevel" name="edu_level" placeholder="Enter your current education level">
+            <input type="text" id="eduLevel" name="P_edu_level" placeholder="Enter your current education level">
 
             <label for="eduField">Education Field:</label>
-            <input type="text" id="eduField" name="edu_field" placeholder="Enter your education field">
+            <input type="text" id="eduField" name="P_edu_field" placeholder="Enter your education field">
 
             <label for="eduInstitute">Educational Institute:</label>
-            <input type="text" id="eduInstitute" name="edu_institute" placeholder="Enter your educational institute">
+            <input type="text" id="eduInstitute" name="P_edu_institute" placeholder="Enter your educational institute">
 
             <label for="occupation">Occupation:</label>
-            <input type="text" id="occupation" name="occupation" placeholder="Enter your occupation">
+            <input type="text" id="occupation" name="P_occupation" placeholder="Enter your occupation">
 
             <label for="sponsorship">Study Sponsorship:</label>
-            <input type="text" id="sponsorship" name="sponsorship" placeholder="Enter your sponsorship">
+            <input type="text" id="sponsorship" name="P_sponsorship" placeholder="Enter your sponsorship">
         </div>
 
         <div class="form-section">
             <h2>Communication Information</h2>
 
             <label for="address">Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter your address">
+            <input type="text" id="address" name="P_address" placeholder="Enter your address">
 
             <label for="phone">Phone No:</label>
-            <input type="text" id="phone" name="phone" placeholder="e.g., 019-9336892">
+            <input type="text" id="phone" name="P_phone" placeholder="e.g., 019-9336892">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="e.g., amirasofea2@gmail.com">
+            <input type="email" id="email" name="P_email" placeholder="e.g., amirasofea2@gmail.com">
 
             <label for="fbName">Facebook Name:</label>
-            <input type="text" id="fbName" name="fb_name" placeholder="Enter your Facebook name">
+            <input type="text" id="fbName" name="P_fb_name" placeholder="Enter your Facebook name">
 
             <h2>Program Information</h2>
 
             <label for="program">Program:</label>
-            <select id="program" name="program">
+            <select id="program" name="P_program">
                 <option value="platinum_professorship">Platinum Professorship</option>
                 <option value="platinum_premier">Platinum Premier</option>
                 <option value="platinum_elite">Platinum Elite</option>
@@ -178,7 +178,7 @@
             </select>
 
             <label for="batch">Batch:</label>
-            <select id="batch" name="batch">
+            <select id="batch" name="P_batch">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -192,17 +192,17 @@
             </select>
 
             <label for="referral">Referral:</label>
-            <select id="referral" name="referral" onchange="toggleReferralFields()">
+            <select id="referral" name="P_referral" onchange="toggleReferralFields()">
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
 
             <div id="referralFields" style="display: none;">
                 <label for="referral-name">Referral Name:</label>
-                <input type="text" id="referral-name" name="referral_name" placeholder="Enter referral name">
+                <input type="text" id="referral-name" name="P_referral_name" placeholder="Enter referral name">
 
                 <label for="referral-batch">Referral Batch:</label>
-                <input type="text" id="referral-batch" name="referral_batch" placeholder="Enter referral batch">
+                <input type="text" id="referral-batch" name="P_referral_batch" placeholder="Enter referral batch">
             </div>
 
             <script>
@@ -234,6 +234,5 @@
         </div>
     </div>
 </x-app-layout>
-
 
 
