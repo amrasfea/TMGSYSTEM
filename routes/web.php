@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/EditProfile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/EditProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
 });
 
 require __DIR__.'/auth.php';
@@ -53,3 +56,4 @@ Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainVi
 Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPublicationView']);
 Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
 Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
+
