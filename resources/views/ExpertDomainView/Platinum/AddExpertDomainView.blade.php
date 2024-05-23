@@ -141,7 +141,7 @@
             <input type="text" id="phone" name="E_phone" placeholder="e.g., 019-9336892">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="E_email" placeholder="e.g., amirasofea2@gmail.com">
+            <input type="email" id="email" name="E_email" placeholder="e.g., fikrishahril47@gmail.com">
 
             <label for="fbName">Facebook Name:</label>
             <input type="text" id="fbName" name="E_fb_name" placeholder="Enter your Facebook name">

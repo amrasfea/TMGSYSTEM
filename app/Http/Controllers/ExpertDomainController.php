@@ -10,6 +10,23 @@ class ExpertDomainController extends Controller
         return view('ExpertDomainView.Platinum.AddExpertDomainView');
     }
 
+    public function store(Request $request){
+        $data = $request->validate([
+            'E_title' => 'required|string',
+            'E_full_name' => 'required|string',
+            'E_gender' => 'required|string',
+            'E_edu_level' => 'required|string',
+            'E_edu_field' => 'required|string',
+            'E_edu_institute' => 'required|string',
+            'E_occupation' => 'required|string',
+            'E_sponsorship' => 'required|string',
+            'E_address' => 'required|string',
+            'E_phone' => 'required|string',
+            'E_email' => 'required|string',
+            'E_fb_name' => 'required|string',
+        ]);
+    }
+
     public function AddResearchPublicationView() {
         return view('ExpertDomainView.Platinum.AddResearchPublicationView');
     }
