@@ -195,10 +195,10 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">New Registration</a>
+                            <a href="{{ route('platinum.create') }}" class="sidebar-link">New Registration</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">View Registration</a>
+                            <a href="{{ route('platinum.index') }}" class="sidebar-link">View Registration</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Registration Report</a>

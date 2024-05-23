@@ -35,6 +35,7 @@ Route::post('/platinum', [RegistrationController::class, 'store'])->name('platin
 Route::get('/platinum/{platinum}/edit', [RegistrationController::class, 'edit'])->name('platinum.edit');
 Route::put('/platinum/{platinum}/update', [RegistrationController::class, 'update'])->name('platinum.update');
 Route::delete('/platinum/{platinum}/destroy', [RegistrationController::class, 'destroy'])->name('platinum.destroy');
+Route::get('/platinum/{platinum}', [RegistrationController::class, 'show'])->name('platinum.show');
 
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');

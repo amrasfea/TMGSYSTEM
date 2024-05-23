@@ -88,4 +88,10 @@ class RegistrationController extends Controller{
         $platinum->delete();
         return redirect(route('platinum.index'))->with('success', 'Platinum deleted Succesffully');
     }
+
+    // Method for displaying a specific registration
+    public function show(Platinum $platinum)
+    {
+        return view('platinums.show', ['platinum' => $platinum]);
+    }
 }

@@ -1,4 +1,5 @@
-<x-app-layout>
+{{-- resources/views/platinums/index.blade.php --}}
+<x-staff-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Registration') }}
@@ -57,7 +58,7 @@
                         tr:hover {
                             background-color: #f1f1f1;
                         }
-                        .edit-link, .delete-link input[type="submit"] {
+                        .view-link, .edit-link, .delete-link input[type="submit"] {
                             text-decoration: none;
                             color: white;
                             background-color: #337ab7;
@@ -65,11 +66,11 @@
                             border-radius: 3px;
                             border: none;
                         }
+                        .view-link:hover, .edit-link:hover {
+                            background-color: #286090;
+                        }
                         .delete-link input[type="submit"] {
                             background-color: #d9534f;
-                        }
-                        .edit-link:hover {
-                            background-color: #286090;
                         }
                         .delete-link input[type="submit"]:hover {
                             background-color: #c9302c;
@@ -94,6 +95,7 @@
                             <th>Gender</th>
                             <th>Education Level</th>
                             <th>Phone Number</th>
+                            <th>View</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -105,6 +107,9 @@
                                 <td>{{ $platinum->P_gender }}</td>
                                 <td>{{ $platinum->P_edu_level }}</td>
                                 <td>{{ $platinum->P_phone }}</td>
+                                <td>
+                                    <a href="{{ route('platinum.show', ['platinum' => $platinum]) }}" class="view-link">View</a>
+                                </td>
                                 <td>
                                     <a href="{{ route('platinum.edit', ['platinum' => $platinum]) }}" class="edit-link">Edit</a>
                                 </td>
@@ -123,6 +128,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
-
+</x-staff-layout>
 
