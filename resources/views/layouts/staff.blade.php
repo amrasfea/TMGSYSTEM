@@ -17,7 +17,7 @@
         <div class="min-h-screen bg-gray-100">
             @include('layouts.topBar')
 
-            @include('layouts.platinum')
+            @include('layouts.staff-layout')
 
             <!-- Page Heading -->
             @if (isset($header))
