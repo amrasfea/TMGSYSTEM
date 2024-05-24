@@ -6,10 +6,23 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
+use App\Http\Controllers\ManageWeeklyFocusController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+
+// File: routes/web.php
+
+Route::middleware(['auth', 'role:Mentor'])->group(function () {
+    Route::get('/mentor/dashboard', [HomeController::class, 'MentorDashboard'])->name('mentor.dashboard');
+});
+
+Route::middleware(['auth', 'role:Staff'])->group(function () {
+    Route::get('/staff/dashboard', [HomeController::class, 'StaffDashboard'])->name('staff.dashboard');
 });
 
 

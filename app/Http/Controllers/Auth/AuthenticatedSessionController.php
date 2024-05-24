@@ -26,26 +26,6 @@ class AuthenticatedSessionController extends Controller
 
         ]);
 
-        $userType = $request ->role;
-        $user=null;
-        $loginAcc=null;
-
-        if ($userType === "Staff") {
-            $user = Staff::where('email', '=', $request->email)->first();
-
-            if($user) {
-                $loginAcc = User::where('S_staffID', '=', $user->id)->first();
-            }
-        }
-        elseif ($userType==="Mentor") {
-            $user= Mentor::where('M_mentorID', '=', $request->email)->first();
-
-            if($user) {
-                $loginAcc = User::where('M_mentorID', '=', $user->id)->first();
-            }
-        }
-
-
     }
 
 
@@ -63,7 +43,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard',absolute:false));
+        $url='';
+        if($request->user()->roleType==='Staff'){
+            $url='/staff/dashboard';
+        }
+        elseif($request->user()->roleType === 'Mentor') {
+            $url='/mentor/dashboard';
+        } 
+        elseif($request->user()->roleType === 'Platinum') {
+            $url='/dashboard';
+        }
+
+        return redirect()->intended($url);
 
    
     }
