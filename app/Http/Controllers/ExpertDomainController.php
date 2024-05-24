@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ExpertDomain;
 
 class ExpertDomainController extends Controller
 {
@@ -25,6 +26,9 @@ class ExpertDomainController extends Controller
             'E_email' => 'required|string',
             'E_fb_name' => 'required|string',
         ]);
+
+        $newExpertDomain = ExpertDomain::create($data);
+
     }
 
     public function AddResearchPublicationView() {
