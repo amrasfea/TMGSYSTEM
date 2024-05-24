@@ -58,3 +58,55 @@ Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPubl
 Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
 Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
 
+//WeeklyFocus
+Route::get('/WeeklyBlockView',[ManageWeeklyFocusController::class, 'WeeklyBlockView']);
+Route::get('/WeeklyFocusDateView',[ManageWeeklyFocusController::class, 'WeeklyfocusDateView']);
+Route::get('/WeeklyFocusInfoView',[ManageWeeklyFocusController::class, 'WeeklyFocusInfoView']);
+
+Route::get('/AllPlatinumWeeklyBlockView',[ManageWeeklyFocusController::class, 'AllPlatinumWeeklyBlockView']);
+Route::get('/AllPlatinumWeeklyFocusDateView',[ManageWeeklyFocusController::class, 'AllPlatinumWeeklyfocusDateView']);
+Route::get('/AllPlatinumWeeklyFocusInfoView',[ManageWeeklyFocusController::class, 'AllPlatinumWeeklyFocusInfoView']);
+
+Route::get('/PlatinumWeeklyBlockView',[ManageWeeklyFocusController::class, 'PlatinumWeeklyBlockView']);
+Route::get('/PlatinumWeeklyFocusDateView',[ManageWeeklyFocusController::class, 'PlatinumWeeklyfocusDateView']);
+Route::get('/PlatinumWeeklyFocusInfoView',[ManageWeeklyFocusController::class, 'PlatinumWeeklyFocusInfoView']);
+
+Route::get('/AdminBlockView',[ManageWeeklyFocusController::class, 'AdminBlockView']);
+Route::get('/FocusBlockView',[ManageWeeklyFocusController::class, 'BlockBlockView']);
+Route::get('/RecoveryBlockView',[ManageWeeklyFocusController::class, 'RecoveryBlockView']);
+Route::get('/SocialBlockView',[ManageWeeklyFocusController::class, 'SocialBlockView']);
+Route::get('/WeeklyFocusReport',[ManageWeeklyFocusController::class, 'GenerateWeeklyFocusReport']);
+
+//DTA
+Route::get('/CompletionDate',[ManageWeeklyFocusController::class, 'DraftCompletionDateView']);
+Route::get('/DaysToPrepare',[ManageWeeklyFocusController::class, 'DraftDaystoPrepareView']);
+Route::get('/DraftNumber',[ManageWeeklyFocusController::class, 'DraftNumView']);
+Route::get('/StartDate',[ManageWeeklyFocusController::class, 'DraftTotalPageView']);
+Route::get('/TotalPage',[ManageWeeklyFocusController::class, 'DraftTotalPageView']);
+Route::get('/ThesisTitle',[ManageWeeklyFocusController::class, 'ThesisTitleView']);
+
+Route::get('/AllPlatinumCompletionDate',[ManageWeeklyFocusController::class, 'AllPlatinumDraftCompletionDateView']);
+Route::get('/AllPlatinumDaysToPrepare',[ManageWeeklyFocusController::class, 'AllPlatinumDraftDaystoPrepareView']);
+Route::get('/AllPlatinumDraftNumber',[ManageWeeklyFocusController::class, 'AllPlatinumDraftNumView']);
+Route::get('/AllPlatinumStartDate',[ManageWeeklyFocusController::class, 'AllPlatinumDraftTotalPageView']);
+Route::get('/AllPlatinumTotalPage',[ManageWeeklyFocusController::class, 'AllPlatinumDraftTotalPageView']);
+Route::get('/AllPlatinumThesisTitle',[ManageWeeklyFocusController::class, 'AllPlatinumThesisTitleView']);
+
+Route::get('/PlatinumCompletionDate',[ManageWeeklyFocusController::class, 'PlatinumDraftCompletionDateView']);
+Route::get('/PlatinumDaysToPrepare',[ManageWeeklyFocusController::class, 'PlatinumDraftDaystoPrepareView']);
+Route::get('/PlatinumDraftNumber',[ManageWeeklyFocusController::class, 'PlatinumDraftNumView']);
+Route::get('/PlatinumStartDate',[ManageWeeklyFocusController::class, 'PlatinumDraftTotalPageView']);
+Route::get('/PlatinumTotalPage',[ManageWeeklyFocusController::class, 'PlatinumDraftTotalPageView']);
+Route::get('/PlatinumThesisTitle',[ManageWeeklyFocusController::class, 'PlatinumThesisTitleView']);
+
+Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesisPerformanceReport']);
+
+
+
+
+
+
+
+
+
+
