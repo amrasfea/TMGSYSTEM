@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Focus Block</title>
     <style>
-        body {
+  body {
             font-family: 'Arial', sans-serif;
             background: #f0f4f8;
             margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
+            overflow-y: auto;
         }
 
         .container {
@@ -21,12 +22,23 @@
             text-align: center;
             background: white;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
         }
 
         h1 {
             color: #333;
+            font-size: 2rem;
+        }
+
+        .sticky {
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+            padding: 20px 0;
         }
 
         .task-controls {
@@ -38,18 +50,21 @@
 
         .task-controls input {
             width: 70%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
         .task-controls button {
-            padding: 10px 20px;
+            padding: 10px 10px;
             background: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
 
         .task-controls button:hover {
@@ -61,19 +76,33 @@
         }
 
         .task-item, .weekly-task {
-            padding: 10px;
+            padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 10px;
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .task-item:hover, .weekly-task:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .task-item button, .weekly-task button {
             background: none;
             border: none;
+            color: #007BFF;
             cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .task-item button:hover, .weekly-task button:hover {
+            color: #0056b3;
         }
 
         .modal {
@@ -90,18 +119,68 @@
 
         .modal-content {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 15px;
             width: 400px;
             position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-content .close {
             position: absolute;
             top: 10px;
             right: 10px;
-            font-size: 20px;
+            font-size: 1.5rem;
             cursor: pointer;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .modal-content .close:hover {
+            color: #007BFF;
+        }
+
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-content label {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .modal-content input, .modal-content textarea, .modal-content button {
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .modal-content input:focus, .modal-content textarea:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .modal-content button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background: #0056b3;
         }
 
         .calendar {
@@ -140,6 +219,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
 
         .calendar-dates div:hover {
@@ -153,8 +233,8 @@
 
         .day-tasks {
             background: #e9ecef;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            border-radius: 10px;
             margin-top: 10px;
         }
 
@@ -170,10 +250,12 @@
             border: none;
             background: none;
             cursor: pointer;
+            transition: color 0.3s ease;
         }
 
         .task-detail button:hover {
             text-decoration: underline;
+            color: #0056b3;
         }
     </style>
 </head>
@@ -202,18 +284,17 @@
         <div class="task-controls">
             <input type="text" id="search" placeholder="Search tasks">
             <button id="add-task">Add Task</button>
-			<button id="delete-task">Delete Task</button>
         </div>
         <div id="task-list" class="task-list"></div>
         <h2>Weekly Tasks</h2>
         <div id="weekly-tasks" class="weekly-tasks">
-			<div id="sunday-tasks-list" class="day-tasks"></div>
-			<div id="monday-tasks-list" class="day-tasks"></div>
-			<div id="tuesday-tasks-list" class="day-tasks"></div>
-			<div id="wednesday-tasks-list" class="day-tasks"></div>
-			<div id="thursday-tasks-list" class="day-tasks"></div>
-			<div id="friday-tasks-list" class="day-tasks"></div>
-			<div id="saturday-tasks-list" class="day-tasks"></div>
+            <div id="sunday-tasks-list" class="day-tasks"></div>
+            <div id="monday-tasks-list" class="day-tasks"></div>
+            <div id="tuesday-tasks-list" class="day-tasks"></div>
+            <div id="wednesday-tasks-list" class="day-tasks"></div>
+            <div id="thursday-tasks-list" class="day-tasks"></div>
+            <div id="friday-tasks-list" class="day-tasks"></div>
+            <div id="saturday-tasks-list" class="day-tasks"></div>
         </div>
     </div>
 
@@ -317,27 +398,24 @@
                 });
             }
 
-	
-
-			function renderWeeklyTasks() {
-				Object.keys(weeklyTasks).forEach(key => {
-					weeklyTasks[key].innerHTML = '';
-					const dayTasks = tasks.filter(task => new Date(task.date).getDay() === parseInt(key));
-					dayTasks.forEach(task => {
-						const taskDetail = document.createElement('div');
-						taskDetail.className = 'task-detail';
-						taskDetail.innerHTML = `
-							<p><strong>${task.title}</strong> - ${task.details}</p>
-						`;
-						const deleteButton = document.createElement('button');
-						deleteButton.textContent = 'Delete';
-						deleteButton.onclick = () => deleteTask(task.id);
-						taskDetail.appendChild(deleteButton);
-						weeklyTasks[key].appendChild(taskDetail);
-					});
-				});
-			}
-
+            function renderWeeklyTasks() {
+                Object.keys(weeklyTasks).forEach(key => {
+                    weeklyTasks[key].innerHTML = '';
+                    const dayTasks = tasks.filter(task => new Date(task.date).getDay() === parseInt(key));
+                    dayTasks.forEach(task => {
+                        const taskDetail = document.createElement('div');
+                        taskDetail.className = 'task-detail';
+                        taskDetail.innerHTML = `
+                            <p><strong>${task.title}</strong> - ${task.details}</p>
+                        `;
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.onclick = () => deleteTask(task.id);
+                        taskDetail.appendChild(deleteButton);
+                        weeklyTasks[key].appendChild(taskDetail);
+                    });
+                });
+            }
 
             window.editTask = (id) => {
                 const task = tasks.find(task => task.id === id);
