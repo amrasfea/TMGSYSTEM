@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\ManageWeeklyFocusController;
+use App\Http\Controllers\RegistrationUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,8 +25,6 @@ Route::middleware(['auth', 'role:Mentor'])->group(function () {
 Route::middleware(['auth', 'role:Staff'])->group(function () {
     Route::get('/staff/dashboard', [HomeController::class, 'StaffDashboard'])->name('staff.dashboard');
 });
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 
@@ -50,12 +49,19 @@ Route::put('/platinum/{platinum}/update', [RegistrationController::class, 'updat
 Route::delete('/platinum/{platinum}/destroy', [RegistrationController::class, 'destroy'])->name('platinum.destroy');
 Route::get('/platinum/{platinum}', [RegistrationController::class, 'show'])->name('platinum.show');
 
-Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product.update');
-Route::delete('/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [RegistrationUser::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [RegistrationUser::class, 'update'])->name('users.update');
+    
+    Route::delete('/users/{user}', [RegistrationUser::class, 'destroy'])->name('users.destroy');
+    Route::get('/register', [RegistrationUser::class, 'create'])->name('register');
+    Route::post('/register', [RegistrationUser::class, 'store']);
+    Route::get('/users/{user}', [RegistrationUser::class, 'show'])->name('users.show');
+
+});
+
 
 Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation']);
 Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
