@@ -1,4 +1,6 @@
-<x-staff-layout>
+@extends('layouts.staff')
+
+@section('content')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Registration') }}
@@ -275,8 +277,4 @@
                             </x-primary-button>
                         </div>
                     </form>
-
-                  
-
-                        
-</x-staff-layout>
+@endsection

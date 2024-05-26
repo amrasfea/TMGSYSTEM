@@ -23,6 +23,16 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        @if(Auth::user()->roleType === 'Platinum')
+
+        <div>
+            <x-input-label for="P_identitiy_card" :value="__('Identity Card')" />
+            <x-text-input id="P_identity_card" name="P_identity_card" type="text" class="mt-1 block w-full" :value="old('P_identity_card', $user->P_identity_card)" required autofocus autocomplete="P_identity_card" />
+            <x-input-error class="mt-2" :messages="$errors->get('P_identity_card')" />
+        </div>
+  
+        @endif
+
 
         <div>
             <x-input-label for="email" :value="__('Email')" />

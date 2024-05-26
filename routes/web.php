@@ -8,15 +8,14 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\ManageWeeklyFocusController;
 use App\Http\Controllers\RegistrationUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\User; // Ensure this line is present
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
-// File: routes/web.php
 
 Route::middleware(['auth', 'role:Mentor'])->group(function () {
     Route::get('/mentor/dashboard', [HomeController::class, 'MentorDashboard'])->name('mentor.dashboard');
@@ -34,7 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/EditProfile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/EditProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 });
 
@@ -54,7 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
     Route::get('/users/{user}/edit', [RegistrationUser::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [RegistrationUser::class, 'update'])->name('users.update');
-    
     Route::delete('/users/{user}', [RegistrationUser::class, 'destroy'])->name('users.destroy');
     Route::get('/register', [RegistrationUser::class, 'create'])->name('register');
     Route::post('/register', [RegistrationUser::class, 'store']);

@@ -1,10 +1,14 @@
-<x-staff-layout>
+@extends('layouts.staff')
+
+@section('header')
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('List Registration') }}
     </h2>
 </x-slot>
+@endesection
 
+@section('content')
 <style>
     .success-message {
         background-color: #dff0d8;
@@ -98,5 +102,5 @@
     });
 </script>
 
-</x-staff-layout>
+@endsection
 

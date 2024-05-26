@@ -1,10 +1,14 @@
-<x-staff-layout>
+@extends('layouts.staff')
+
+@section('header')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('New Registration') }}
         </h2>
     </x-slot>
+@endsection
 
+@section('content')
     <style>
         /* Common styles */
         body {
@@ -81,8 +85,6 @@
                        <li>{{$error}}</li>
                       @endforeach
                       </ul>
-
-
                        @endif
                  </div>
 
@@ -253,30 +255,20 @@
                                     toggleReferralFields();
                                 </script>
 
-                                <div>
-                                    <input type="submit" value="Save">
+                                <div class="flex items-center justify-end mt-4">
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                                        {{ __('Already registered?') }}
+                                    </a>
+
+                                    <x-primary-button class="ms-4">
+                                        {{ __('Register') }}
+                                    </x-primary-button>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    
                 </div>
             </div>
         </div>
     </div>
-
-                        <div class="flex items-center justify-end mt-4">
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                                {{ __('Already registered?') }}
-                            </a>
-
-                            <x-primary-button class="ms-4">
-                                {{ __('Register') }}
-                            </x-primary-button>
-                        </div>
-                    </form>
-
-                  
-
-                        
-</x-staff-layout>
+@endsection
