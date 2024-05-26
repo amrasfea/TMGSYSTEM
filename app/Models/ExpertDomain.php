@@ -9,7 +9,12 @@ class ExpertDomain extends Model
 {
     use HasFactory;
 
+    public $timestamps=false;
+
+    protected $table = 'expertdomains';
+
     protected $fillable = [
+        //'name',
         'E_title',
         'E_full_name',
         'E_gender',

@@ -27,56 +27,45 @@ class ExpertDomainController extends Controller
             'E_fb_name' => 'required|string',
         ]);
 
-        $newExpertDomain = ExpertDomain::create($data);
+        ExpertDomain::create($data);
+
+        return redirect()->route('platinum.list')->with('success', 'Expert Domain Information added successfully!');
 
     }
 
-    public function AddResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.AddResearchPublicationView');
-    }
-
-    public function DeleteExpertDomainView() {
+    public function DeleteExpertDomainView(ExpertDomain $expertdomain) {
         return view('ExpertDomainView.Platinum.DeleteExpertDomainView');
     }
 
-    public function DeleteResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.DeleteResearchPublicationView');
-    }
-
-    public function DisplayExpertDomainDetailsView() {
-        return view('ExpertDomainView.Platinum.DisplayExpertDomainDetailsView');
-    }
-
-    public function DisplayResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.DisplayResearchPublicationView');
-    }
-
-    public function GenerateReport() {
-        return view('ExpertDomainView.Platinum.GenerateReport');
-    }
-
-    public function SearchPlatinumExpertDomainView() {
-        return view('ExpertDomainView.Platinum.SearchPlatinumExpertDomainView');
-    }
-
-    public function SearchResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.SearchResearchPublicationView');
-    }
-
-    public function UpdateExpertDomainView() {
+    public function UpdateExpertDomainView(ExpertDomain $expertdomain) {
         return view('ExpertDomainView.Platinum.UpdateExpertDomainView');
     }
 
-    public function UpdateResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.UpdateResearchPublicationView');
+    public function ListExpertDomainView(){
+        //$expertDomains = ExpertDomain::all();
+        return view('ExpertDomainView.Platinum.ListExpertDomainView');//, compact('expertDomains'));
     }
 
-    public function ViewPlatinumExpertDomain() {
-        return view('ExpertDomainView.Mentor.ViewPlatinumExpertDomain');
+    public function AddResearchPublicationView(){
+        return view('ExpertDomainView.Platinum.AddResearchPublicationView');
     }
 
-    public function MentorSearchPlatinumExpertDomainView() {
-        return view('ExpertDomainView.Mentor.MentorSearchPlatinumExpertDomainView');
+    public function GenerateReport(){
+        return view('ExpertDomainView.Platinum.GenerateReport');
     }
+
+    public function GenerateReportSubmit(Request $request)
+{
+    // Validate the request data
+    $data = $request->validate([
+        'report_type' => 'required|string',
+        'report_date' => 'required|date',
+    ]);
+
+    // Process the data and generate the report as needed
+    // For now, we'll just return the data to the view for demonstration
+
+    return view('ExpertDomainView.Platinum.ReportResult', compact('data'));
+}
 
 }

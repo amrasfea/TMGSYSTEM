@@ -55,8 +55,8 @@
             /* Button Styles */
         .form-section button,
         .form-section input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #FFDB58;
+            color: #000000;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
@@ -64,6 +64,7 @@
             margin-top: 30px;
             float: right;
             font-size: 16px;
+            font-weight: bold
         }
         .form-section button:hover,
         .form-section input[type="submit"]:hover {
@@ -158,7 +159,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-platinum-layout>
 
 
 

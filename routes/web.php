@@ -44,17 +44,19 @@ Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name(
 Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
 
-Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation']);
-Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
-Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
-Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
-Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
-Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
-Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport']);
-Route::get('/SearchPlatinumExpDom',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
-Route::get('/SearchResearch',[ExpertDomainController::class, 'SearchResearchPublicationView']);
-Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
-Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPublicationView']);
-Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
-Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
 
+//addexpert
+Route::get('/add-expert-domain', [ExpertDomainController::class, 'AddExpertDomainInformation'])->name('platinum.add');
+Route::post('/add-expert-domain', [ExpertDomainController::class, 'store'])->name('platinum.store');
+
+//listexpertdomain
+Route::get('/list-expert-domains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('platinum.list');
+
+//researchpublicationJADIIIIIIII
+Route::get('/research', function () {
+    return view('ExpertDomainView.Platinum.AddResearchPublicationView');
+});
+
+//generatereport
+Route::get('/generate-report', [ExpertDomainController::class, 'GenerateReport'])->name('generate.report');
+Route::post('/generate-report', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('generate.report.submit');
