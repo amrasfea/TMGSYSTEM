@@ -9,6 +9,13 @@ class Staff extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'S_staffID';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+    
     protected $fillable = [
        'S_position',
        'S_department'

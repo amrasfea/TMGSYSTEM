@@ -178,10 +178,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">My Profile</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Personal</a>
+                            <a href="{{ route('profile.show') }}" class="sidebar-link">My Profile</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Other Platinum Profile</a>

@@ -9,6 +9,13 @@ class Mentor extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'M_mentorID';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
     protected $fillable = [
         'M_phoneNum'
    

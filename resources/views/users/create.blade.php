@@ -1,14 +1,13 @@
-@extends('layouts.staff')
+<x-staff-layout>
 
-@section('header')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('New Registration') }}
         </h2>
     </x-slot>
-@endsection
 
-@section('content')
+
+
     <style>
         /* Common styles */
         body {
@@ -106,28 +105,6 @@
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
-                        <!-- Password -->
-                        <div class="mt-4">
-                            <x-input-label for="password" :value="__('Password')" />
-
-                            <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="mt-4">
-                            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                        </div>
                         <div class="form-container">
                             <div class="form-section">
                                 <h2>Platinum Information</h2>
@@ -271,4 +248,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-staff-layout>

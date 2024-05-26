@@ -18,7 +18,7 @@
     <div class="min-h-screen bg-gray-100">
           @include('layouts.topBar')
 
-          @include('layouts.platinum-layout')
+          @include('layouts.mentor-layout')
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -29,7 +29,7 @@
                  </header>
              @endif
 
-    <!-- Page Content -->
+        <!-- Page Content -->
              <main>
                  {{ $slot }}
              </main>

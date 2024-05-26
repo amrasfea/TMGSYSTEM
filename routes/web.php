@@ -30,6 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/EditProfile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/EditProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
