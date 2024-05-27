@@ -55,7 +55,8 @@ class User extends Authenticatable
         'P_batch',
         'P_referral', 
         'P_referral_name', 
-        'P_referral_batch'
+        'P_referral_batch',
+        'profile_photo_path'
     ];
 
     /**

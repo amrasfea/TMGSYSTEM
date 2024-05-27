@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -14,14 +15,11 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-
-     public function showProfile()
-    {   
-         $user = Auth::user();
-         return view('profile.show', compact('user'));
+    public function showProfile(): View
+    {
+        $user = Auth::user();
+        return view('profile.show', compact('user'));
     }
-
-    
 
     public function edit(Request $request): View
     {
@@ -37,6 +35,25 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $user->fill($request->validated());
+
+        // Handle profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            // Validate the file
+            $request->validate([
+                'profile_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            // Store the file and get the path
+            $path = $request->file('profile_photo')->store('profile_photos', 'public');
+
+            // Delete the old profile photo if it exists
+            if ($user->profile_photo_path) {
+                Storage::disk('public')->delete($user->profile_photo_path);
+            }
+
+            // Update the user's profile photo path
+            $user->profile_photo_path = $path;
+        }
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
@@ -59,6 +76,11 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
+
+        // Delete the profile photo if it exists
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+        }
 
         $user->delete();
 

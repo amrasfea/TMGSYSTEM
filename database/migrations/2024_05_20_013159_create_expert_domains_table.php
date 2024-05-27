@@ -17,8 +17,14 @@ return new class extends Migration
             $table->foreign('id')->references('id')->on('platinums');
             $table->unsignedBigInteger('M_mentorID');
             $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors');
+            $table->string('ED_Name');
+            $table->string('ED_Uni');
+            $table->string('ED_Email');
+            $table->string('ED_PhoneNum');
+            $table->string('ED_Research');
+            $table->string('ED_Paper');
             $table->string('E_title'); // Add this line
-            $table->string('E_full_name'); // Add this line
+
             // Add other columns as needed
             $table->timestamps();
         });

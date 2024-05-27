@@ -38,6 +38,7 @@ return new class extends Migration
             $table->boolean('P_referral')->default(false)->nullable();;
             $table->string('P_referral_name')->nullable();
             $table->string('P_referral_batch')->nullable();
+            $table->string('profile_photo_path')->nullable()->after('email');
             $table->rememberToken();
             $table->timestamps();
         });
