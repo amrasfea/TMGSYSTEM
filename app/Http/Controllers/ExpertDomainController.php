@@ -8,28 +8,36 @@ use App\Models\ExpertDomain;
 class ExpertDomainController extends Controller
 {
     public function AddExpertDomainInformation() {
+        
         return view('ExpertDomainView.Platinum.AddExpertDomainView');
     }
+    
 
     public function store(Request $request){
         $data = $request->validate([
+            //'ED_ID' => 'required|string',
+            //'id' => 'required|string',
+            //'M_mentorID' => 'required|string',
+            'ED_Name' => 'required|string',
+            'ED_Uni' => 'required|string',
+            'ED_Email' => 'required|string',
+            'ED_PhoneNum' => 'required|string',
+            'ED_Research' => 'required|string',
+            'ED_Paper' => 'required|string',
+            'ED_address' => 'required|string',
+            'ED_fbname' => 'required|string',
+            'ED_edu_level' => 'required|string',
+            'ED_edu_field' => 'required|string',
+            'ED_edu_institute' => 'required|string',
+            'ED_occupation' => 'required|string',
+            'ED_sponsorship' => 'required|string',
+            'ED_gender' => 'required|string',
             'E_title' => 'required|string',
-            'E_full_name' => 'required|string',
-            'E_gender' => 'required|string',
-            'E_edu_level' => 'required|string',
-            'E_edu_field' => 'required|string',
-            'E_edu_institute' => 'required|string',
-            'E_occupation' => 'required|string',
-            'E_sponsorship' => 'required|string',
-            'E_address' => 'required|string',
-            'E_phone' => 'required|string',
-            'E_email' => 'required|string',
-            'E_fb_name' => 'required|string',
         ]);
 
         ExpertDomain::create($data);
 
-        return redirect()->route('platinum.list')->with('success', 'Expert Domain Information added successfully!');
+        return redirect()->route('platinum.save')->with('success', 'Expert Domain Information added successfully!');
 
     }
 

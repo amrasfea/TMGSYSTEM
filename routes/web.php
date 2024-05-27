@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation']);
+Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation'])->name('platinum.save');
 Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
 Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
 Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
