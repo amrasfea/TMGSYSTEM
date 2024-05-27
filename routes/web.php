@@ -61,13 +61,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation'])->name('platinum.save');
+Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainView'])->name('platinum.save');
+Route::post('/ListExpert',[ExpertDomainController::class, 'store'])->name('platinum.store');
+Route::get('/ListExpert', [ExpertDomainController::class, 'ListExpertDomainView']) ->name('platinum.list');
 Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
 Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
 Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
 Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
 Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
-Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport']);
+Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
+Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
 Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
 
 //WeeklyFocus

@@ -7,12 +7,11 @@ use App\Models\ExpertDomain;
 
 class ExpertDomainController extends Controller
 {
-    public function AddExpertDomainInformation() {
+    public function AddExpertDomainView() {
         
         return view('ExpertDomainView.Platinum.AddExpertDomainView');
     }
     
-
     public function store(Request $request){
         $data = $request->validate([
             //'ED_ID' => 'required|string',
@@ -37,7 +36,7 @@ class ExpertDomainController extends Controller
 
         ExpertDomain::create($data);
 
-        return redirect()->route('platinum.save')->with('success', 'Expert Domain Information added successfully!');
+        return redirect()->route('platinum.list')->with('success', 'Expert Domain Information added successfully!');
 
     }
 
@@ -50,8 +49,8 @@ class ExpertDomainController extends Controller
     }
 
     public function ListExpertDomainView(){
-        //$expertDomains = ExpertDomain::all();
-        return view('ExpertDomainView.Platinum.ListExpertDomainView');//, compact('expertDomains'));
+        $expertDomains = ExpertDomain::all();
+        return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
     }
 
     public function AddResearchPublicationView(){

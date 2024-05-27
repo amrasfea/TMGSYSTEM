@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="POST" action="{{ route('generate.report.submit') }}">
+                    <form method="POST" action="{{ route('platinum.reportResult') }}">
                         @csrf
                         <div class="mb-4">
                             <label for="report_type" class="block text-gray-700 text-sm font-bold mb-2">Select Report Type:</label>
