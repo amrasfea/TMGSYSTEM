@@ -101,6 +101,19 @@ Route::get('/PlatinumThesisTitle',[ManageWeeklyFocusController::class, 'Platinum
 
 Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesisPerformanceReport']);
 
+//ManagePublication
+Route::get('ViewExpertDomainPublication',[ManagePublicationController::class,'ExpertDomainPublicationView']);
+Route::get('ViewPlatinumPublication',[ManagePublicationController::class,'PlatinumPublicationView']);
+Route::get('ViewPublicationReport',[ManagePublicationController::class,'PublicationReportView']);
+Route::get('ViewRegisteredPlatinum',[ManagePublicationController::class,'RegisteredPlatinumView']);
+Route::get('SearchForPlatinum',[ManagePublicationController::class,'SearchPlatinumVIew']);
+
+Route::get('AddPublication',[ManagePublicationController::class,'AddPublicationView']);
+Route::post('EditPublication',[ManagePublicationController::class,'EditPublicationView']);
+Route::get('ViewOwnPublication/{id}',[ManagePublicationController::class,'OwnPublicationView']);
+Route::post('SearchForPublication/{id}',[ManagePublicationController::class,'SearchPublicationView']);
+Route::get('ViewOtherPublication',[ManagePublicationController::class,'ViewOtherPublicationView']);
+
 
 
 
