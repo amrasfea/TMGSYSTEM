@@ -17,7 +17,6 @@ class ExpertDomain extends Model
         //'name',
         'E_title',
         'E_full_name',
-        'E_gender',
         'E_edu_level',
         'E_edu_field',
         'E_edu_institute',

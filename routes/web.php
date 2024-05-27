@@ -68,12 +68,7 @@ Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPubl
 Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
 Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
 Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport']);
-Route::get('/SearchPlatinumExpDom',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
-Route::get('/SearchResearch',[ExpertDomainController::class, 'SearchResearchPublicationView']);
 Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
-Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPublicationView']);
-Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
-Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
 
 //WeeklyFocus
 Route::get('/WeeklyBlockView',[ManageWeeklyFocusController::class, 'WeeklyBlockView']);
