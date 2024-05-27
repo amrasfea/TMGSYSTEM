@@ -14,12 +14,12 @@ class MentorTableSeeder extends Seeder
     public function run(): void
     {
         // Assuming the mentor user is 'Alia Nadhirah' created in DummyUsersSeeder
-        $user = User::where('email', 'alianadhirah@gmail.com')->first();
+        $user = User::where('email', 'fikrishahril47@gmail.com')->first();
 
         $mentor = [
             [
                 'id' => $user->id,
-                'M_phoneNum' => '01129406033',
+                'M_phoneNum' => '0187657900',
             ],
         ];
 

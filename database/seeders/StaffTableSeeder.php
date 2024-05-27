@@ -14,12 +14,12 @@ class StaffTableSeeder extends Seeder
     public function run(): void
     {
         $users = User::whereIn('email', [
-            'amar31@gmail.com',
+            'sofeaamira51@gmail.com',
         ])->get();
 
         $staff = [
             [
-                'id' => $users->where('email', 'amar31@gmail.com')->first()->id,
+                'id' => $users->where('email', 'sofeaamira51@gmail.com')->first()->id,
                 'S_position' => 'Manager',
                 'S_department' => 'Marketing',
             ],

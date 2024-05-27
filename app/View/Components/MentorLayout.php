@@ -21,6 +21,6 @@ class MentorLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.mentor');
+        return view('components.mentor-layout');
     }
 }

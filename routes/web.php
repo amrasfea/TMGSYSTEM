@@ -6,23 +6,34 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
+use App\Http\Controllers\ManageWeeklyFocusController;
+use App\Http\Controllers\RegistrationUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\User; // Ensure this line is present
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth', 'role:Mentor'])->group(function () {
+    Route::get('/mentor/dashboard', [HomeController::class, 'MentorDashboard'])->name('mentor.dashboard');
+});
 
+Route::middleware(['auth', 'role:Staff'])->group(function () {
+    Route::get('/staff/dashboard', [HomeController::class, 'StaffDashboard'])->name('staff.dashboard');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/EditProfile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/EditProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 });
 
@@ -37,26 +48,82 @@ Route::put('/platinum/{platinum}/update', [RegistrationController::class, 'updat
 Route::delete('/platinum/{platinum}/destroy', [RegistrationController::class, 'destroy'])->name('platinum.destroy');
 Route::get('/platinum/{platinum}', [RegistrationController::class, 'show'])->name('platinum.show');
 
-Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product.update');
-Route::delete('/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [RegistrationUser::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [RegistrationUser::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [RegistrationUser::class, 'destroy'])->name('users.destroy');
+    Route::get('/register', [RegistrationUser::class, 'create'])->name('register');
+    Route::post('/register', [RegistrationUser::class, 'store']);
+    Route::get('/users/{user}', [RegistrationUser::class, 'show'])->name('users.show');
 
-//addexpert
-Route::get('/add-expert-domain', [ExpertDomainController::class, 'AddExpertDomainInformation'])->name('platinum.add');
-Route::post('/add-expert-domain', [ExpertDomainController::class, 'store'])->name('platinum.store');
-
-//listexpertdomain
-Route::get('/list-expert-domains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('platinum.list');
-
-//researchpublicationJADIIIIIIII
-Route::get('/research', function () {
-    return view('ExpertDomainView.Platinum.AddResearchPublicationView');
 });
 
-//generatereport
-Route::get('/generate-report', [ExpertDomainController::class, 'GenerateReport'])->name('generate.report');
-Route::post('/generate-report', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('generate.report.submit');
+
+Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation']);
+Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
+Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
+Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
+Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
+Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
+Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport']);
+Route::get('/SearchPlatinumExpDom',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
+Route::get('/SearchResearch',[ExpertDomainController::class, 'SearchResearchPublicationView']);
+Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
+Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPublicationView']);
+Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
+Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
+
+//WeeklyFocus
+Route::get('/WeeklyBlockView',[ManageWeeklyFocusController::class, 'WeeklyBlockView']);
+Route::get('/WeeklyFocusDateView',[ManageWeeklyFocusController::class, 'WeeklyfocusDateView']);
+Route::get('/WeeklyFocusInfoView',[ManageWeeklyFocusController::class, 'WeeklyFocusInfoView']);
+
+Route::get('/AllPlatinumWeeklyBlockView',[ManageWeeklyFocusController::class, 'AllPlatinumWeeklyBlockView']);
+Route::get('/AllPlatinumWeeklyFocusDateView',[ManageWeeklyFocusController::class, 'AllPlatinumWeeklyfocusDateView']);
+Route::get('/AllPlatinumWeeklyFocusInfoView',[ManageWeeklyFocusController::class, 'AllPlatinumWeeklyFocusInfoView']);
+
+Route::get('/PlatinumWeeklyBlockView',[ManageWeeklyFocusController::class, 'PlatinumWeeklyBlockView']);
+Route::get('/PlatinumWeeklyFocusDateView',[ManageWeeklyFocusController::class, 'PlatinumWeeklyfocusDateView']);
+Route::get('/PlatinumWeeklyFocusInfoView',[ManageWeeklyFocusController::class, 'PlatinumWeeklyFocusInfoView']);
+
+Route::get('/AdminBlockView',[ManageWeeklyFocusController::class, 'AdminBlockView']);
+Route::get('/FocusBlockView',[ManageWeeklyFocusController::class, 'BlockBlockView']);
+Route::get('/RecoveryBlockView',[ManageWeeklyFocusController::class, 'RecoveryBlockView']);
+Route::get('/SocialBlockView',[ManageWeeklyFocusController::class, 'SocialBlockView']);
+Route::get('/WeeklyFocusReport',[ManageWeeklyFocusController::class, 'GenerateWeeklyFocusReport']);
+
+//DTA
+Route::get('/CompletionDate',[ManageWeeklyFocusController::class, 'DraftCompletionDateView']);
+Route::get('/DaysToPrepare',[ManageWeeklyFocusController::class, 'DraftDaystoPrepareView']);
+Route::get('/DraftNumber',[ManageWeeklyFocusController::class, 'DraftNumView']);
+Route::get('/StartDate',[ManageWeeklyFocusController::class, 'DraftTotalPageView']);
+Route::get('/TotalPage',[ManageWeeklyFocusController::class, 'DraftTotalPageView']);
+Route::get('/ThesisTitle',[ManageWeeklyFocusController::class, 'ThesisTitleView']);
+
+Route::get('/AllPlatinumCompletionDate',[ManageWeeklyFocusController::class, 'AllPlatinumDraftCompletionDateView']);
+Route::get('/AllPlatinumDaysToPrepare',[ManageWeeklyFocusController::class, 'AllPlatinumDraftDaystoPrepareView']);
+Route::get('/AllPlatinumDraftNumber',[ManageWeeklyFocusController::class, 'AllPlatinumDraftNumView']);
+Route::get('/AllPlatinumStartDate',[ManageWeeklyFocusController::class, 'AllPlatinumDraftTotalPageView']);
+Route::get('/AllPlatinumTotalPage',[ManageWeeklyFocusController::class, 'AllPlatinumDraftTotalPageView']);
+Route::get('/AllPlatinumThesisTitle',[ManageWeeklyFocusController::class, 'AllPlatinumThesisTitleView']);
+
+Route::get('/PlatinumCompletionDate',[ManageWeeklyFocusController::class, 'PlatinumDraftCompletionDateView']);
+Route::get('/PlatinumDaysToPrepare',[ManageWeeklyFocusController::class, 'PlatinumDraftDaystoPrepareView']);
+Route::get('/PlatinumDraftNumber',[ManageWeeklyFocusController::class, 'PlatinumDraftNumView']);
+Route::get('/PlatinumStartDate',[ManageWeeklyFocusController::class, 'PlatinumDraftTotalPageView']);
+Route::get('/PlatinumTotalPage',[ManageWeeklyFocusController::class, 'PlatinumDraftTotalPageView']);
+Route::get('/PlatinumThesisTitle',[ManageWeeklyFocusController::class, 'PlatinumThesisTitleView']);
+
+Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesisPerformanceReport']);
+
+
+
+
+
+
+
+
+
+
