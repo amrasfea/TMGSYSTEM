@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -37,6 +39,20 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $user->fill($request->validated());
+
+         // Handle profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            $profilePhoto = $request->file('profile_photo');
+            $profilePhotoPath = $profilePhoto->store('profile_photos', 'public');
+
+            // Delete the old profile photo if it exists
+            if ($user->profile_photo_path) {
+                Storage::disk('public')->delete($user->profile_photo_path);
+            }
+
+            // Save the new profile photo path
+            $user->profile_photo_path = $profilePhotoPath;
+        }
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;

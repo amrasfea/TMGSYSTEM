@@ -22,6 +22,10 @@ class StaffTableSeeder extends Seeder
                 'id' => $users->where('email', 'sofeaamira51@gmail.com')->first()->id,
                 'S_position' => 'Manager',
                 'S_department' => 'Marketing',
+                'S_phone' => '01129406033',
+                'S_address' => 'Pekan Pahang',
+                'S_skills' => 'Collaborative Research Platforms',
+                'S_workExperience' => 'Research Assistant, Project Coordinator'
             ],
         ];
 

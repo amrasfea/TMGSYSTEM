@@ -122,24 +122,16 @@
 
 </style>
 
-    <div class="container emp-profile">
-        <form method="post">
-            @csrf
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <img src="{{ $user->profile_photo_url }}" alt=""/>
-                        <div class="file btn btn-lg btn-primary">
-                            Change Photo
-                            <input type="file" name="file"/>
-                        </div>
-                    </div>
+<div class="container emp-profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="{{ Auth::user()->profile_photo_path ? asset('storage/' . Auth::user()->profile_photo_path) : 'default_profile_picture_url' }}" alt="Profile Photo"/>
                 </div>
+            </div>
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>{{ $user->name }}</h5>
-                        <h6>{{ $user->roleType }}</h6>
-                        <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -158,6 +150,7 @@
                 <div class="col-md-8 offset-md-4">
                     <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        @if ($user->roleType === 'Platinum')
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>User Id</label>
@@ -187,11 +180,144 @@
                                     <label>Phone</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{ $user->phone }}</p>
+                                    <p>{{ $user->P_phone }}</p>
                                 </div>
                             </div>
 
-                            @if ($user->roleType === 'Staff')
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Account Type</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_registration_type}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Identity Number</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_identity_card }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Education Level</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_edu_level }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Educational Field</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_edu_field }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Occupation</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_occupation }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Study Sponsorship</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_sponsorship }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_address }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone Number</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_phone }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Facebook Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_fb_name }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Program</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_program }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Batch</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_batch }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Referral</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_referral }}</p>
+                                </div>
+                            </div>
+
+                            @elseif ($user->roleType === 'Staff')
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->name }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->email }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->P_phone }}</p>
+                                </div>
+                            </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Position</label>

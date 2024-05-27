@@ -1,6 +1,5 @@
-@extends('layouts.staff')
 
-@section('content')
+<x-staff-layout>
     <div class="container mx-auto px-4">
         <div class="py-6">
             <h1 class="text-2xl font-bold">{{ __('User Details') }}</h1>
@@ -13,4 +12,4 @@
             </div>
         </div>
     </div>
-@endsections
+</x-staff-layout>

@@ -15,6 +15,10 @@ return new class extends Migration
             $table->bigIncrements('S_staffID');
             $table->string('S_position');
             $table->string('S_department');
+            $table->string('S_phone');
+            $table->string('S_address');
+            $table->string('S_skills');
+            $table->string('S_workExperience');
             $table->unsignedBigInteger('id');
             $table->foreign('id')->references('id')->on('users');
             $table->timestamps();

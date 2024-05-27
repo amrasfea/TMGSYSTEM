@@ -91,19 +91,6 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <!-- Name -->
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                        </div>
-
-                        <!-- Email Address -->
-                        <div class="mt-4">
-                            <x-input-label for="email" :value="__('Email')" />
-                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                        </div>
 
                         <div class="form-container">
                             <div class="form-section">
@@ -129,6 +116,20 @@
 
                                 <label for="identity-card">Identity Card No.:</label>
                                 <input type="text" id="identity-card" name="P_identity_card" placeholder="Enter your ID card number">
+
+                                <!-- Name -->
+                            <div>
+                            <x-input-label for="name" :value="__('Name')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" placeholder="Enter platinum name"/>
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="mt-4">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" placeholder="Enter email" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                             </div>
 
                                 <label for="gender">Gender:</label>
                                 <select id="gender" name="P_gender">

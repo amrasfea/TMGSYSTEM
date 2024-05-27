@@ -17,7 +17,11 @@ class Mentor extends Model
     }
 
     protected $fillable = [
-        'M_phoneNum'
+        'M_phoneNum',
+        'M_position',
+        'M_title',
+        'M_eduField',
+        'M_employementHistory'
    
     ];
 }

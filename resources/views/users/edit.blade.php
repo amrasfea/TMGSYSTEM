@@ -89,21 +89,6 @@
                         @csrf
                         @method('PUT')
 
-                        <!-- Name -->
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                        </div>
-
-                        <!-- Email Address -->
-                        <div class="mt-4">
-                            <x-input-label for="email" :value="__('Email')" />
-                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $user->email)" required autocomplete="username" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-    </div>
-     
-
                         <div class="form-container">
                             <div class="form-section">
                                 <h2>Platinum Information</h2>
@@ -125,6 +110,17 @@
                                     <option value="Dr" {{ old('P_title', $user->P_title) == 'Dr' ? 'selected' : '' }}>Dr</option>
                                     <option value="Prof" {{ old('P_title', $user->P_title) == 'Prof' ? 'selected' : '' }}>Prof</option>
                                 </select>
+
+                               
+                                <x-input-label for="name" :value="__('Name')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
+                            <div class="mt-4">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $user->email)" required autocomplete="username" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    </div>
 
                                 <label for="identity-card">Identity Card No.:</label>
                                 <input type="text" id="identity-card" name="P_identity_card" value="{{ old('P_identity_card', $user->P_identity_card) }}" placeholder="Enter your ID card number">

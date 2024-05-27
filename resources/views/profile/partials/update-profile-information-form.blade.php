@@ -25,10 +25,10 @@
 
         @if(Auth::user()->roleType === 'Platinum')
         <!-- Inside the form -->
-<div>
+    <div>
     <x-input-label for="profile_photo" :value="__('Profile Photo')" />
-    <input id="profile_photo" type="file" name="profile_photo" class="mt-1 block w-full">
-</div>
+    <input id="profile_photo" type="file" name="profile_photo_path" class="mt-1 block w-full">
+    </div>
 
 
     <div>

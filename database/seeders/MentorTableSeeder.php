@@ -20,6 +20,10 @@ class MentorTableSeeder extends Seeder
             [
                 'id' => $user->id,
                 'M_phoneNum' => '0187657900',
+                'M_position' => 'CEO',
+                'M_title' => 'Dr',
+                'M_eduField' => 'P.H.D Usuluddin(Al-Quran and Hadith) at University Malaya',
+                'M_employementHistory' => 'Educational Mentorship: Initiated a peer support program (SLEU UIA) during university, assisting students with learning support needs.'
             ],
         ];
 

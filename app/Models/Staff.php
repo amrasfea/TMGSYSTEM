@@ -18,6 +18,10 @@ class Staff extends Model
     
     protected $fillable = [
        'S_position',
-       'S_department'
+       'S_department',
+       'S_phone',
+       'S_address',
+       'S_skills',
+       'S_workExperience'
     ];
 }

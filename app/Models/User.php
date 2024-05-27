@@ -59,6 +59,8 @@ class User extends Authenticatable
         'profile_photo_path'
     ];
 
+    
+
     /**
      * The attributes that should be hidden for serialization.
      *
