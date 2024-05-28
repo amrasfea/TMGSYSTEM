@@ -7,76 +7,72 @@ use App\Models\ExpertDomain;
 
 class ExpertDomainController extends Controller
 {
-    public function AddExpertDomainInformation() {
+    public function AddExpertDomainView() {
+        
         return view('ExpertDomainView.Platinum.AddExpertDomainView');
     }
-
+    
     public function store(Request $request){
         $data = $request->validate([
+            //'ED_ID' => 'required|string',
+            //'id' => 'required|string',
+            //'M_mentorID' => 'required|string',
+            'ED_Name' => 'required|string',
+            'ED_Uni' => 'required|string',
+            'ED_Email' => 'required|string',
+            'ED_PhoneNum' => 'required|string',
+            'ED_Research' => 'required|string',
+            'ED_Paper' => 'required|string',
+            'ED_address' => 'required|string',
+            'ED_fbname' => 'required|string',
+            'ED_edu_level' => 'required|string',
+            'ED_edu_field' => 'required|string',
+            'ED_edu_institute' => 'required|string',
+            'ED_occupation' => 'required|string',
+            'ED_sponsorship' => 'required|string',
+            'ED_gender' => 'required|string',
             'E_title' => 'required|string',
-            'E_full_name' => 'required|string',
-            'E_gender' => 'required|string',
-            'E_edu_level' => 'required|string',
-            'E_edu_field' => 'required|string',
-            'E_edu_institute' => 'required|string',
-            'E_occupation' => 'required|string',
-            'E_sponsorship' => 'required|string',
-            'E_address' => 'required|string',
-            'E_phone' => 'required|string',
-            'E_email' => 'required|string',
-            'E_fb_name' => 'required|string',
         ]);
 
-        $newExpertDomain = ExpertDomain::create($data);
+        ExpertDomain::create($data);
+
+        return redirect()->route('platinum.list')->with('success', 'Expert Domain Information added successfully!');
 
     }
 
-    public function AddResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.AddResearchPublicationView');
-    }
-
-    public function DeleteExpertDomainView() {
+    public function DeleteExpertDomainView(ExpertDomain $expertdomain) {
         return view('ExpertDomainView.Platinum.DeleteExpertDomainView');
     }
 
-    public function DeleteResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.DeleteResearchPublicationView');
-    }
-
-    public function DisplayExpertDomainDetailsView() {
-        return view('ExpertDomainView.Platinum.DisplayExpertDomainDetailsView');
-    }
-
-    public function DisplayResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.DisplayResearchPublicationView');
-    }
-
-    public function GenerateReport() {
-        return view('ExpertDomainView.Platinum.GenerateReport');
-    }
-
-    public function SearchPlatinumExpertDomainView() {
-        return view('ExpertDomainView.Platinum.SearchPlatinumExpertDomainView');
-    }
-
-    public function SearchResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.SearchResearchPublicationView');
-    }
-
-    public function UpdateExpertDomainView() {
+    public function UpdateExpertDomainView(ExpertDomain $expertdomain) {
         return view('ExpertDomainView.Platinum.UpdateExpertDomainView');
     }
 
-    public function UpdateResearchPublicationView() {
-        return view('ExpertDomainView.Platinum.UpdateResearchPublicationView');
+    public function ListExpertDomainView(){
+        $expertDomains = ExpertDomain::all();
+        return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
     }
 
-    public function ViewPlatinumExpertDomain() {
-        return view('ExpertDomainView.Mentor.ViewPlatinumExpertDomain');
+    public function AddResearchPublicationView(){
+        return view('ExpertDomainView.Platinum.AddResearchPublicationView');
     }
 
-    public function MentorSearchPlatinumExpertDomainView() {
-        return view('ExpertDomainView.Mentor.MentorSearchPlatinumExpertDomainView');
+    public function GenerateReport(){
+        return view('ExpertDomainView.Platinum.GenerateReport');
     }
+
+    public function GenerateReportSubmit(Request $request)
+{
+    // Validate the request data
+    $data = $request->validate([
+        'report_type' => 'required|string',
+        'report_date' => 'required|date',
+    ]);
+
+    // Process the data and generate the report as needed
+    // For now, we'll just return the data to the view for demonstration
+
+    return view('ExpertDomainView.Platinum.ReportResult', compact('data'));
+}
 
 }

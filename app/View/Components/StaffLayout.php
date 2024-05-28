@@ -21,6 +21,6 @@ class StaffLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.staff');
+        return view('components.staff-layout');
     }
 }

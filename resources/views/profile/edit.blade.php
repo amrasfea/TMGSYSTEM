@@ -1,4 +1,17 @@
-<x-platinum-layout>
+<!-- resources/views/profile/edit.blade.php -->
+@php
+    $layout = 'platinum-layout'; // Default layout
+
+    if (Auth::user()->roleType === 'Staff') {
+        $layout = 'staff-layout';
+    } elseif (Auth::user()->roleType === 'Mentor') {
+        $layout = 'mentor-layout';
+    } elseif (Auth::user()->roleType === 'Platinum') {
+        $layout = 'platinum-layout';
+    }
+@endphp
+
+<x-dynamic-component :component="$layout">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Profile') }}
@@ -26,4 +39,5 @@
             </div>
         </div>
     </div>
-</x-platinum-layout>
+</x-dynamic-component>
+

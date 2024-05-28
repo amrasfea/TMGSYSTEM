@@ -14,12 +14,16 @@ class MentorTableSeeder extends Seeder
     public function run(): void
     {
         // Assuming the mentor user is 'Alia Nadhirah' created in DummyUsersSeeder
-        $user = User::where('email', 'alianadhirah@gmail.com')->first();
+        $user = User::where('email', 'fikrishahril47@gmail.com')->first();
 
         $mentor = [
             [
                 'id' => $user->id,
-                'M_phoneNum' => '01129406033',
+                'M_phoneNum' => '0187657900',
+                'M_position' => 'CEO',
+                'M_title' => 'Dr',
+                'M_eduField' => 'P.H.D Usuluddin(Al-Quran and Hadith) at University Malaya',
+                'M_employementHistory' => 'Educational Mentorship: Initiated a peer support program (SLEU UIA) during university, assisting students with learning support needs.'
             ],
         ];
 

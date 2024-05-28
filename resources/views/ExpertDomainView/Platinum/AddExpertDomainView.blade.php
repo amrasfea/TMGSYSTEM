@@ -55,8 +55,8 @@
             /* Button Styles */
         .form-section button,
         .form-section input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #FFDB58;
+            color: #000000;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
@@ -64,6 +64,7 @@
             margin-top: 30px;
             float: right;
             font-size: 16px;
+            font-weight: bold
         }
         .form-section button:hover,
         .form-section input[type="submit"]:hover {
@@ -106,45 +107,45 @@
             </select>
 
             <label for="full-name">Full Name:</label>
-            <input type="text" id="full-name" name="E_full_name" placeholder="Enter your full name">
+            <input type="text" id="full-name" name="ED_Name" placeholder="Enter your full name">
 
             <label for="gender">Gender:</label>
-            <select id="gender" name="E_gender">
+            <select id="gender" name="ED_gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
 
             <h2>Education Information</h2>
             <label for="eduLevel">Current Education Level:</label>
-            <input type="text" id="eduLevel" name="E_edu_level" placeholder="Enter your current education level">
+            <input type="text" id="eduLevel" name="ED_edu_level" placeholder="Enter your current education level">
 
             <label for="eduField">Education Field:</label>
-            <input type="text" id="eduField" name="E_edu_field" placeholder="Enter your education field">
+            <input type="text" id="eduField" name="ED_edu_field" placeholder="Enter your education field">
 
             <label for="eduInstitute">Educational Institute:</label>
-            <input type="text" id="eduInstitute" name="E_edu_institute" placeholder="Enter your educational institute">
+            <input type="text" id="eduInstitute" name="ED_uni" placeholder="Enter your educational institute">
 
             <label for="occupation">Occupation:</label>
-            <input type="text" id="occupation" name="E_occupation" placeholder="Enter your occupation">
+            <input type="text" id="occupation" name="ED_occupation" placeholder="Enter your occupation">
 
             <label for="sponsorship">Study Sponsorship:</label>
-            <input type="text" id="sponsorship" name="E_sponsorship" placeholder="Enter your sponsorship">
+            <input type="text" id="sponsorship" name="ED_sponsorship" placeholder="Enter your sponsorship">
         </div>
 
         <div class="form-section">
             <h2>Communication Information</h2>
 
             <label for="address">Address:</label>
-            <input type="text" id="address" name="E_address" placeholder="Enter your address">
+            <input type="text" id="address" name="ED_address" placeholder="Enter your address">
 
             <label for="phone">Phone No:</label>
-            <input type="text" id="phone" name="E_phone" placeholder="e.g., 019-9336892">
+            <input type="text" id="phone" name="ED_PhoneNum" placeholder="e.g., 019-9336892">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="E_email" placeholder="e.g., fikrishahril47@gmail.com">
+            <input type="email" id="email" name="ED_Email" placeholder="e.g., fikrishahril47@gmail.com">
 
             <label for="fbName">Facebook Name:</label>
-            <input type="text" id="fbName" name="E_fb_name" placeholder="Enter your Facebook name">
+            <input type="text" id="fbName" name="ED_fbname" placeholder="Enter your Facebook name">
 
             <div>
                 <input type="submit" value="Save">
@@ -158,7 +159,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-platinum-layout>
 
 
 

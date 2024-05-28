@@ -6,23 +6,34 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
+use App\Http\Controllers\ManageWeeklyFocusController;
+use App\Http\Controllers\RegistrationUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\User; // Ensure this line is present
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth', 'role:Mentor'])->group(function () {
+    Route::get('/mentor/dashboard', [HomeController::class, 'MentorDashboard'])->name('mentor.dashboard');
+});
 
+Route::middleware(['auth', 'role:Staff'])->group(function () {
+    Route::get('/staff/dashboard', [HomeController::class, 'StaffDashboard'])->name('staff.dashboard');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/EditProfile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/EditProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 });
 
@@ -37,26 +48,30 @@ Route::put('/platinum/{platinum}/update', [RegistrationController::class, 'updat
 Route::delete('/platinum/{platinum}/destroy', [RegistrationController::class, 'destroy'])->name('platinum.destroy');
 Route::get('/platinum/{platinum}', [RegistrationController::class, 'show'])->name('platinum.show');
 
-Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product.update');
-Route::delete('/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
 
-Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainInformation']);
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [RegistrationUser::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [RegistrationUser::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [RegistrationUser::class, 'destroy'])->name('users.destroy');
+    Route::get('/register', [RegistrationUser::class, 'create'])->name('register');
+    Route::post('/register', [RegistrationUser::class, 'store']);
+    Route::get('/users/{user}', [RegistrationUser::class, 'show'])->name('users.show');
+
+});
+
+
+Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainView'])->name('platinum.save');
+Route::post('/ListExpert',[ExpertDomainController::class, 'store'])->name('platinum.store');
+Route::get('/ListExpert', [ExpertDomainController::class, 'ListExpertDomainView']) ->name('platinum.list');
 Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
 Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
 Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
 Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
 Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
-Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport']);
-Route::get('/SearchPlatinumExpDom',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
-Route::get('/SearchResearch',[ExpertDomainController::class, 'SearchResearchPublicationView']);
+Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
+Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
 Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
-Route::get('/UpdateResearch',[ExpertDomainController::class, 'UpdateResearchPublicationView']);
-Route::get('/MentorSearch',[ExpertDomainController::class, 'SearchPlatinumExpertDomainView']);
-Route::get('/MentorView',[ExpertDomainController::class, 'ViewPlatinumExpertDomain']);
 
 //WeeklyFocus
 Route::get('/WeeklyBlockView',[ManageWeeklyFocusController::class, 'WeeklyBlockView']);

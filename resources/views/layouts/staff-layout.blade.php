@@ -178,10 +178,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">My Profile</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Personal</a>
+                            <a href="{{ route('profile.show') }}" class="sidebar-link">My Profile</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Other Platinum Profile</a>
@@ -195,10 +192,10 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="{{ route('platinum.create') }}" class="sidebar-link">New Registration</a>
+                            <a href="{{ route('register') }}" class="sidebar-link">New Registration</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('platinum.index') }}" class="sidebar-link">View Registration</a>
+                            <a href="{{ route('users.index') }}" class="sidebar-link">View Registration</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Registration Report</a>
