@@ -86,7 +86,7 @@
             <input type="file" id="file" name="file" required>
         </div>
         <div class="actions">
-            <button type="button" onclick="window.location='{{ route('platinum.ownPublications') }}'">Back</button>
+            <button type="button" onclick="window.location='{{ route('platinum.OwnPublicationView') }}'">Back</button>
             <button type="submit">Post</button>
         </div>
     </form>
