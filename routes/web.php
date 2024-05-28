@@ -24,10 +24,10 @@ Route::middleware(['auth', 'role:Mentor'])->group(function () {
 Route::middleware(['auth', 'role:Staff'])->group(function () {
     Route::get('/staff/dashboard', [HomeController::class, 'StaffDashboard'])->name('staff.dashboard');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
 
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'role:Platinum'])->group(function () {
+    Route::get('/platinum/dashboard', [HomeController::class, 'PlatinumDashboard'])->name('platinum.dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
