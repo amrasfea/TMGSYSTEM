@@ -21,7 +21,6 @@ class ProfileUpdateRequest extends FormRequest
         $commonRules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-            'profile_photo_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Profile photo validation
         ];
 
         $roleSpecificRules = $this->getRoleSpecificRules($roleType);
@@ -36,11 +35,20 @@ class ProfileUpdateRequest extends FormRequest
                 return [
                     'S_position' => ['required', 'string', 'max:255'],
                     'S_department' => ['required', 'string', 'max:255'],
+                    'S_phone' => ['required', 'string', 'max:15'],
+                    'S_address' => ['required', 'string', 'max:255'],
+                    'S_skills' => ['required', 'string', 'max:255'],
+                    'S_workExperience' => ['required', 'string', 'max:255'],
+
                 ];
 
             case 'Mentor':
                 return [
                     'M_phoneNum' => ['required', 'string', 'max:15'],
+                    'M_position' => ['required', 'string', 'max:255'],
+                    'M_title' => ['required', 'string', 'max:15'],
+                    'M_eduField' => ['required', 'string', 'max:255'],
+                    'M_employementHistory' => ['required', 'string', 'max:255'],
                 ];
 
             case 'Platinum':

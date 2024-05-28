@@ -1,4 +1,6 @@
 <section>
+
+
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
@@ -25,10 +27,6 @@
 
         @if(Auth::user()->roleType === 'Platinum')
         <!-- Inside the form -->
-    <div>
-    <x-input-label for="profile_photo" :value="__('Profile Photo')" />
-    <input id="profile_photo" type="file" name="profile_photo_path" class="mt-1 block w-full">
-    </div>
 
 
     <div>
@@ -132,10 +130,10 @@
         @elseif(Auth::user()->roleType === 'Staff')
 
         <!-- Inside the form -->
-<div>
-    <x-input-label for="profile_photo" :value="__('Profile Photo')" />
-    <input id="profile_photo" type="file" name="profile_photo" class="mt-1 block w-full">
-</div>
+        <div>
+            <x-input-label for="profile_photo_path" :value="__('Profile Photo')" />
+             <input id="profile_photo_path" type="file" name="profile_photo_path" class="mt-1 block w-full">
+        </div>
 
             <div>
                 <x-input-label for="S_position" :value="__('Position')" />
@@ -147,12 +145,64 @@
                 <x-text-input id="S_department" name="S_department" type="text" class="mt-1 block w-full" :value="old('S_department', $user->staff->S_department ?? '')" required autofocus autocomplete="S_department" />
                 <x-input-error class="mt-2" :messages="$errors->get('S_department')" />
             </div>
+
+            <div>
+                <x-input-label for="S_phone" :value="__('Phone Number')" />
+                <x-text-input id="S_phone" name="S_phone" type="text" class="mt-1 block w-full" :value="old('S_phone', $user->staff->S_phone ?? '')" required autofocus autocomplete="S_phone" />
+                <x-input-error class="mt-2" :messages="$errors->get('S_phone')" />
+            </div>
+
+            <div>
+                <x-input-label for="S_address" :value="__('Address')" />
+                <x-text-input id="S_skills" name="S_address" type="text" class="mt-1 block w-full" :value="old('S_address', $user->staff->S_address?? '')" required autofocus autocomplete="S_address" />
+                <x-input-error class="mt-2" :messages="$errors->get('S_address')" />
+            </div>
+
+            <div>
+                <x-input-label for="S_skills" :value="__('Skills And Expertise')" />
+                <x-text-input id="S_skills" name="S_skills" type="text" class="mt-1 block w-full" :value="old('S_skills', $user->staff->S_skills ?? '')" required autofocus autocomplete="S_skills" />
+                <x-input-error class="mt-2" :messages="$errors->get('S_skills')" />
+            </div>
+
+            <div>
+                <x-input-label for="S_workExperience" :value="__('Work Experiences')" />
+                <x-text-input id="S_workExperience" name="S_workExperience" type="text" class="mt-1 block w-full" :value="old('S_workExperience', $user->staff->S_workExperience ?? '')" required autofocus autocomplete="S_workExperience" />
+                <x-input-error class="mt-2" :messages="$errors->get('S_workExperience')" />
+            </div>
+
+            
         @elseif(Auth::user()->roleType === 'Mentor')
             <div>
                 <x-input-label for="M_phoneNum" :value="__('Phone Number')" />
                 <x-text-input id="M_phoneNum" name="M_phoneNum" type="text" class="mt-1 block w-full" :value="old('M_phoneNum', $user->mentor->M_phoneNum ?? '')" required autofocus autocomplete="M_phoneNum" />
                 <x-input-error class="mt-2" :messages="$errors->get('M_phoneNum')" />
             </div>
+
+            <div>
+                <x-input-label for="M_position" :value="__('Position')" />
+                <x-text-input id="M_position" name="M_position" type="text" class="mt-1 block w-full" :value="old('M_position', $user->mentor->M_position ?? '')" required autofocus autocomplete="M_position" />
+                <x-input-error class="mt-2" :messages="$errors->get('M_position')" />
+            </div>
+
+            <div>
+                <x-input-label for="M_title" :value="__('Title')" />
+                <x-text-input id="M_title" name="M_title" type="text" class="mt-1 block w-full" :value="old('M_title', $user->mentor->M_title ?? '')" required autofocus autocomplete="M_title" />
+                <x-input-error class="mt-2" :messages="$errors->get('M_title')" />
+            </div>
+
+            <div>
+                <x-input-label for="M_eduField" :value="__('Educational nformation')" />
+                <x-text-input id="M_eduField" name="M_eduField" type="text" class="mt-1 block w-full" :value="old('M_eduField', $user->mentor->M_eduField?? '')" required autofocus autocomplete="M_eduField" />
+                <x-input-error class="mt-2" :messages="$errors->get('M_eduField')" />
+            </div>
+
+            <div>
+                <x-input-label for="M_employementHistory" :value="__('Employment History')" />
+                <x-text-input id="M_employementHistory" name="M_employementHistory" type="text" class="mt-1 block w-full" :value="old('M_employementHistory', $user->mentor->M_employementHistory?? '')" required autofocus autocomplete="M_employementHistory" />
+                <x-input-error class="mt-2" :messages="$errors->get('M_employementHistory')" />
+            </div>
+
+            
         @endif
 
         <div>
@@ -182,15 +232,6 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
-            @endif
         </div>
     </form>
 </section>

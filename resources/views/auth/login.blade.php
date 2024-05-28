@@ -69,9 +69,8 @@
 
 <!-- Section: Design Block -->
 <section class="text-center text-lg-start">
-  <div class="card mx-auto mt-5" style="max-width: 700px;"> <!-- Increased max-width -->
+  <div class="card mx-auto mt-5" style="max-width: 700px;">
     <div class="card-body py-5 px-md-5">
-
       <div class="d-flex align-items-center mb-4">
         <img src="/image/kk.jpg" alt="Login Image" class="login-image">
         <form method="POST" action="{{ route('login') }}">
@@ -79,7 +78,7 @@
           <!-- Email input -->
           <div class="mb-4">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <input type="email" id="email" class="form-control" name="email" placeholder="Enter email" required autofocus autocomplete="off" />
             @error('email')
               <span class="mt-2 text-danger">{{ $message }}</span>
             @enderror
@@ -88,7 +87,7 @@
           <!-- Password input -->
           <div class="mb-4">
             <label for="password" class="form-label">Password</label>
-            <input type="password" id="password" class="form-control" name="password" required autocomplete="current-password" />
+            <input type="password" id="password" class="form-control" name="password" placeholder="Enter password" required autocomplete="off" />
             @error('password')
               <span class="mt-2 text-danger">{{ $message }}</span>
             @enderror
@@ -97,7 +96,7 @@
           <!-- User type selection -->
           <div class="mb-4">
             <label for="roleType" class="form-label">User Type</label>
-            <select class="form-select" id="userType" name="user_type">
+            <select class="form-select" id="roleType" name="roleType" required>
               <option value="Platinum">Platinum</option>
               <option value="Staff">Staff</option>
               <option value="Mentor">Mentor</option>
@@ -122,7 +121,6 @@
 
         </form>
       </div>
-
     </div>
   </div>
 </section>
@@ -131,42 +129,6 @@
 </body>
 </html>
 
-
-<?php
-
-use App\Livewire\Forms\LoginForm;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-
-
-$login = function () {
-    $this->validate();
-
-    $this->form->authenticate();
-
-    Session::regenerate();
-
-    $userRole=Auth::user()->roleType;
-
-    switch ($userRole) {
-      case 'platinum':
-          $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-          break;
-      case 'staff':
-          $this->redirectIntended(default: route('staff', absolute: false), navigate: true);
-          break;
-      case 'mentor':
-          $this->redirectIntended(default: route('mentor', absolute: false), navigate: true);
-          break;
-      default:
-          return redirect('/');
-  }
-
-
-
-};
-
-?>
 
 
 

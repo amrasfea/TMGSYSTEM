@@ -18,17 +18,17 @@ class User extends Authenticatable
      */
     public function staff()
     {
-        return $this->hasOne(Staff::class, 'id');
+        return $this->hasOne(Staff::class, 'id','id');
     }
 
     public function mentor()
     {
-        return $this->hasOne(Mentor::class, 'id');
+        return $this->hasOne(Mentor::class, 'id','id');
     }
 
     public function platinum()
     {
-        return $this->hasOne(Platinum::class, 'id');
+        return $this->hasOne(Platinum::class, 'id','id');
     }
     
     protected $fillable = [

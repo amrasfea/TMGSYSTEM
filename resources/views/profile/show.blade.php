@@ -119,10 +119,41 @@
     color: #0062cc;
 }
 
+.success-message {
+            color: green;
+            background-color: #e6ffed;
+            border: 1px solid #a6f4c5;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
 
 </style>
 
 <div class="container emp-profile">
+
+                    <div>
+                        @if(session()->has('success'))
+                            <div class="success-message">
+                                <p
+                    x-data="{ show: true }"
+                    x-show="show"
+                    x-transition
+                    x-init="setTimeout(() => show = false, 2000)"
+                    class="text-sm text-gray-600"
+                >{{ __('Profle Updated Successfully') }}</p>
+                            </div>
+                        @endif
+                    </div>
+
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -310,14 +341,6 @@
                                     <p>{{ $user->email }}</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Phone</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_phone }}</p>
-                                </div>
-                            </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Position</label>
@@ -334,7 +357,60 @@
                                         <p>{{ $user->staff->S_department }}</p>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone Number</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->staff->S_phone }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->staff->S_address}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Skills And Expertise</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->staff->S_skills }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Department</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->staff->S_workExperience }}</p>
+                                    </div>
+                                </div>
                             @elseif ($user->roleType === 'Mentor')
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->name }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->email }}</p>
+                                </div>
+                            </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Phone Number</label>
@@ -343,6 +419,49 @@
                                         <p>{{ $user->mentor->M_phoneNum }}</p>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Position</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->mentor->M_position }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Position</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->mentor->M_eduField }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Title</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->mentor->M_title}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Educational Information</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->mentor->M_eduField }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Career Highlighted</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $user->mentor->M_employementHistory }}</p>
+                                    </div>
+                                </div>
+
                             @elseif ($user->roleType === 'Platinum' && $user->platinum)
                                 <div class="row">
                                     <div class="col-md-6">

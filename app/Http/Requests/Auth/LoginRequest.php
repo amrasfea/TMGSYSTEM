@@ -29,6 +29,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'roleType' => ['required', 'string'],
         ];
     }
 
@@ -46,6 +47,15 @@ class LoginRequest extends FormRequest
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
+            ]);
+        }
+
+        // Validate user type
+        $user = Auth::user();
+        if ($user->roleType !== $this->input('roleType')) {
+            Auth::logout();
+            throw ValidationException::withMessages([
+                'roleType' => trans('auth.role_failed'),
             ]);
         }
 
@@ -82,4 +92,5 @@ class LoginRequest extends FormRequest
     {
         return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
     }
+
 }

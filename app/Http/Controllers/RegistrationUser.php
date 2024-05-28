@@ -171,6 +171,19 @@ class RegistrationUser extends Controller
             'P_referral_batch' => $request->P_referral_batch,
         ]);
 
+        if ($user->roleType === 'Platinum') {
+            $user->platinum()->updateOrCreate(
+                ['id' => $user->id],
+                [
+                    'P_supervisorName' => $request->P_supervisorName,
+                    'P_supervisorContact' => $request->P_supervisorContact,
+                    'P_Institution' => $request->P_Institution,
+                    'P_Department' => $request->P_Department,
+                    'P_Position' => $request->P_Position,
+                ]
+            );
+        }
+
         return redirect(route('users.index'))->with('success', 'User updated successfully.');
     }
 

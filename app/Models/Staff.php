@@ -13,7 +13,7 @@ class Staff extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'id','id');
     }
     
     protected $fillable = [
@@ -22,6 +22,9 @@ class Staff extends Model
        'S_phone',
        'S_address',
        'S_skills',
-       'S_workExperience'
+       'S_workExperience',
+       'id'
     ];
+
+    
 }
