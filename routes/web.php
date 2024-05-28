@@ -8,6 +8,8 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\ManageWeeklyFocusController;
 use App\Http\Controllers\RegistrationUser;
+use App\Http\Controllers\ManagePublicationController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\User; // Ensure this line is present
@@ -24,10 +26,10 @@ Route::middleware(['auth', 'role:Mentor'])->group(function () {
 Route::middleware(['auth', 'role:Staff'])->group(function () {
     Route::get('/staff/dashboard', [HomeController::class, 'StaffDashboard'])->name('staff.dashboard');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
 
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'role:Platinum'])->group(function () {
+    Route::get('/platinum/dashboard', [HomeController::class, 'PlatinumDashboard'])->name('platinum.dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');

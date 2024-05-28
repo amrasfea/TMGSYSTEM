@@ -249,4 +249,4 @@
                             </x-primary-button>
                         </div>
                     </form>
-                                </x-staff-layout>
+ </x-staff-layout>

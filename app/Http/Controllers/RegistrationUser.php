@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Platinum;
+
 
 class RegistrationUser extends Controller
 {
@@ -77,6 +79,7 @@ class RegistrationUser extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($password),
+            'roleType' => 'Platinum', 
             'P_registration_type' => $request->P_registration_type,
             'P_title' => $request->P_title,
             'P_identity_card' => $request->P_identity_card,
@@ -98,6 +101,15 @@ class RegistrationUser extends Controller
             'P_referral_name' => $request->P_referral_name,
             'P_referral_batch' => $request->P_referral_batch,
         ]);
+
+        $user->platinum()->create([
+            'P_supervisorName' => $request->P_supervisorName,
+            'P_supervisorContact' => $request->P_supervisorContact,
+            'P_Institution' => $request->P_Institution,
+            'P_Department' => $request->P_Department,
+            'P_Position' => $request->P_Position,
+        ]);
+    
 
         event(new Registered($user));
 
@@ -170,19 +182,6 @@ class RegistrationUser extends Controller
             'P_referral_name' => $request->P_referral_name,
             'P_referral_batch' => $request->P_referral_batch,
         ]);
-
-        if ($user->roleType === 'Platinum') {
-            $user->platinum()->updateOrCreate(
-                ['id' => $user->id],
-                [
-                    'P_supervisorName' => $request->P_supervisorName,
-                    'P_supervisorContact' => $request->P_supervisorContact,
-                    'P_Institution' => $request->P_Institution,
-                    'P_Department' => $request->P_Department,
-                    'P_Position' => $request->P_Position,
-                ]
-            );
-        }
 
         return redirect(route('users.index'))->with('success', 'User updated successfully.');
     }

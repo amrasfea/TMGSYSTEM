@@ -51,7 +51,7 @@ class AuthenticatedSessionController extends Controller
             $url='/mentor/dashboard';
         } 
         elseif($request->user()->roleType === 'Platinum') {
-            $url='/dashboard';
+            $url='platinum/dashboard';
         }
 
         return redirect()->intended($url);

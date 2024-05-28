@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function AdminDashboard(){
-        return view('dashboards.admin');
-    }
-
     public function StaffDashboard(){
         return view('dashboards.staff');
     }
