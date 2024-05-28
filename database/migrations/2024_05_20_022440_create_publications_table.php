@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('PB_Author');
             $table->string('PB_Uni');
             $table->string('PB_Course');
-            $table->string('PB_Keyword');
+            $table->integer('PB_Page');
+            $table->string('PB_Detail');
             $table->date('PB_Date');
+            $table->string('file_path')->nullable();
             $table->unsignedBigInteger('id');
             $table->foreign('id')->references('id')->on('platinums');
             $table->timestamps();
