@@ -8,6 +8,8 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\ManageWeeklyFocusController;
 use App\Http\Controllers\RegistrationUser;
+use App\Http\Controllers\ManagePublicationController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\User; // Ensure this line is present
