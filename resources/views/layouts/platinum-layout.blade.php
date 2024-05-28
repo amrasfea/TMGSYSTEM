@@ -226,14 +226,15 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">New Publication</a>
+                            <a href="#" class="sidebar-link">My Publication</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List Own Publications</a>
+                            <a href="#" class="sidebar-link">Platinum Publications</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List All Publications</a>
+                            <a href="#" class="sidebar-link">Search Publications</a>
                         </li>
+
                     </ul>
                 </li>
 
