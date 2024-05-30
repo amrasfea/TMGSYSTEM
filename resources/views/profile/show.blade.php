@@ -123,7 +123,7 @@ body {
     transition: opacity 2s ease-in-out;
 }
 
-}</style>
+</style>
 
 <div class="container emp-profile">
     <div>
