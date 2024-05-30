@@ -56,8 +56,6 @@ class ProfileUpdateRequest extends FormRequest
                 return [
                     'P_registration_type' => ['nullable', 'string', 'max:255'],
                     'P_title' => ['nullable', 'string', 'max:255'],
-                    'P_identity_card' => ['nullable', 'string', 'max:255'],
-                    'P_gender' => ['nullable', 'string', 'max:255'],
                     'P_religion' => ['nullable', 'string', 'max:255'],
                     'P_race' => ['nullable', 'string', 'max:255'],
                     'P_citizenship' => ['nullable', 'string', 'max:255'],
@@ -71,9 +69,7 @@ class ProfileUpdateRequest extends FormRequest
                     'P_fb_name' => ['nullable', 'string', 'max:255'],
                     'P_program' => ['nullable', 'string', 'max:255'],
                     'P_batch' => ['nullable', 'integer'],
-                    'P_referral' => ['nullable', 'boolean'],
-                    'P_referral_name' => ['nullable', 'string', 'max:255'],
-                    'P_referral_batch' => ['nullable', 'string', 'max:255'],
+                   
                 ];
         }
     }

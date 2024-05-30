@@ -88,12 +88,10 @@ class ProfileController extends Controller
                 break;
 
             case 'Platinum':
-                $platinum = $user->platinum;
+                $platinum = $user;
                 $platinum->update([
                     'P_registration_type' => $validated['P_registration_type'],
                     'P_title' => $validated['P_title'],
-                    'P_identity_card' => $validated['P_identity_card'],
-                    'P_gender' => $validated['P_gender'],
                     'P_religion' => $validated['P_religion'],
                     'P_race' => $validated['P_race'],
                     'P_citizenship' => $validated['P_citizenship'],
@@ -107,9 +105,6 @@ class ProfileController extends Controller
                     'P_fb_name' => $validated['P_fb_name'],
                     'P_program' => $validated['P_program'],
                     'P_batch' => $validated['P_batch'],
-                    'P_referral' => $validated['P_referral'],
-                    'P_referral_name' => $validated['P_referral_name'],
-                    'P_referral_batch' => $validated['P_referral_batch'],
                 ]);
                 break;
         }
