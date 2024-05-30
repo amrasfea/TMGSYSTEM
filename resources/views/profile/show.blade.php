@@ -28,7 +28,6 @@ body {
     font-family: Arial, sans-serif;
     color: #333;
 }
-
 .emp-profile {
     padding: 3%;
     margin-top: 3%;
@@ -37,36 +36,20 @@ body {
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.profile-img {
-    text-align: center;
-}
-
-.profile-img img {
-    width: 70%;
-    height: auto;
-    border-radius: 50%;
-    border: 2px solid #00c6ff;
-    margin-bottom: 20px;
-}
-
 .profile-head {
     text-align: center;
     margin-bottom: 20px;
 }
-
 .profile-head h5 {
     color: #333;
     font-size: 24px;
     font-weight: 600;
 }
-
 .profile-head h6 {
     color: #0062cc;
     font-size: 16px;
     font-weight: 400;
 }
-
 .profile-edit-btn {
     border: none;
     border-radius: 1.5rem;
@@ -78,68 +61,56 @@ body {
     cursor: pointer;
     margin-bottom: 20px;
 }
-
 .profile-head .nav-tabs {
     margin-bottom: 5%;
 }
-
 .profile-head .nav-tabs .nav-link {
     font-weight: 600;
     border: none;
     color: #0062cc;
 }
-
 .profile-head .nav-tabs .nav-link.active {
     border: none;
     border-bottom: 2px solid #0062cc;
     color: #333;
 }
-
 .profile-work {
     padding: 20%;
     margin-top: -15%;
     background: #f8f9fa;
     border-radius: 0.5rem;
 }
-
 .profile-work p {
     font-size: 12px;
     color: #818182;
     font-weight: 600;
     margin-top: 10%;
 }
-
 .profile-work a {
     text-decoration: none;
     color: #495057;
     font-weight: 600;
     font-size: 14px;
 }
-
 .profile-work ul {
     list-style: none;
     padding: 0;
 }
-
 .profile-tab {
     margin-top: 10px;
 }
-
 .profile-tab label {
     font-weight: 600;
     color: #0062cc;
     margin-right: 10px;
 }
-
 .profile-tab p {
     font-weight: 600;
     color: #333;
 }
-
 .row {
     margin-bottom: 10px;
 }
-
 .success-message {
     color: green;
     background-color: #e6ffed;
@@ -152,10 +123,7 @@ body {
     transition: opacity 2s ease-in-out;
 }
 
-.hidden {
-    opacity: 0;
-}
-</style>
+}</style>
 
 <div class="container emp-profile">
     <div>
