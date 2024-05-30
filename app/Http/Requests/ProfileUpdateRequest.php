@@ -69,6 +69,11 @@ class ProfileUpdateRequest extends FormRequest
                     'P_fb_name' => ['nullable', 'string', 'max:255'],
                     'P_program' => ['nullable', 'string', 'max:255'],
                     'P_batch' => ['nullable', 'integer'],
+                    'P_supervisorName' => ['nullable', 'string', 'max:255'],
+                    'P_supervisorContact' => ['nullable', 'string', 'max:15'],
+                    'P_Institution' => ['nullable', 'string', 'max:255'],
+                    'P_Department' => ['nullable', 'string', 'max:255'],
+                    'P_Position' => ['nullable', 'string', 'max:255'],
                    
                 ];
         }

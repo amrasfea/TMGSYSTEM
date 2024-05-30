@@ -141,6 +141,36 @@
         <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
     </div>
 
+    <div>
+        <x-input-label for="P_supervisorName" :value="__('Supervisor Name')" />
+        <x-text-input id="P_supervisorName" name="P_supervisorName" type="text" class="mt-1 block w-full" :value="old('P_supervisorName', $user->platinum->P_supervisorName ?? '')" required autofocus autocomplete="P_supervisorName" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_supervisorContact" :value="__('Supervisor Contact')" />
+        <x-text-input id="P_supervisorContact" name="P_supervisorContact" type="number" class="mt-1 block w-full" :value="old('P_supervisorContact', $user->platinum->P_supervisorContact ?? '')" required autofocus autocomplete="P_supervisorContact" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_Institution" :value="__('Supervisor Institution')" />
+        <x-text-input id="P_Institution" name="P_Institution" type="text" class="mt-1 block w-full" :value="old('P_Institution', $user->platinum->P_Institution ?? '')" required autofocus autocomplete="P_Institution" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_Department" :value="__('Supervisor Department')" />
+        <x-text-input id="P_Department" name="P_Department" type="text" class="mt-1 block w-full" :value="old('P_Department', $user->platinum->P_Department ?? '')" required autofocus autocomplete="P_Department" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_Department')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_Position" :value="__('Supervisor Position')" />
+        <x-text-input id="P_Position" name="P_Position" type="text" class="mt-1 block w-full" :value="old('P_Position', $user->platinum->P_Position ?? '')" required autofocus autocomplete="P_Position" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_Position')" />
+    </div>
+
  
         @elseif(Auth::user()->roleType === 'Staff')
 
@@ -184,6 +214,8 @@
                 <x-text-input id="S_workExperience" name="S_workExperience" type="text" class="mt-1 block w-full" :value="old('S_workExperience', $user->staff->S_workExperience ?? '')" required autofocus autocomplete="S_workExperience" />
                 <x-input-error class="mt-2" :messages="$errors->get('S_workExperience')" />
             </div>
+
+            
 
             
         @elseif(Auth::user()->roleType === 'Mentor')

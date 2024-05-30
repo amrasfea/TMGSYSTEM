@@ -105,7 +105,22 @@ class ProfileController extends Controller
                     'P_fb_name' => $validated['P_fb_name'],
                     'P_program' => $validated['P_program'],
                     'P_batch' => $validated['P_batch'],
+                   
                 ]);
+
+                case 'Platinum':
+                    $platinum = $user->platinum;
+                    if (!$platinum) {
+                        $platinum = new \App\Models\Platinum(['id' => $user->id]);
+                        $platinum->save();
+                    }
+                    $platinum->update([
+                        'P_supervisorName' => $validated['P_supervisorName'],
+                        'P_supervisorContact' => $validated['P_supervisorContact'],
+                        'P_Institution' => $validated['P_Institution'],
+                        'P_Department' => $validated['P_Department'],
+                        'P_Position' => $validated['P_Position'],
+                    ]);
                 break;
         }
 

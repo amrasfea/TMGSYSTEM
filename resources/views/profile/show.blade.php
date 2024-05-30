@@ -148,9 +148,6 @@ body {
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                    </li>
                 </ul>
             </div>
             <div class="col-md-2">
@@ -164,7 +161,7 @@ body {
             <div class="tab-content profile-tab" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 @if ($user->roleType === 'Platinum')
-                    <!-- About Section -->
+                <!-- About Section -->
                     <div class="row">
                         <div class="col-md-6">
                             <label>User Id</label>
@@ -296,6 +293,42 @@ body {
                                 </div>
                                 <div class="col-md-6">
                                     <p>{{ $user->P_referral }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Supervisor Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_supervisorName }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Supervisor Contact</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_supervisorContact }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Institution</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_Institution }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Department</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_Department }}</p>
                                 </div>
                             </div>
 
