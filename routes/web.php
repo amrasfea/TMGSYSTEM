@@ -119,17 +119,16 @@ Route::get('/PlatinumThesisTitle',[ManageWeeklyFocusController::class, 'Platinum
 Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesisPerformanceReport']);
 
 //ManagePublication
-Route::get('ViewExpertDomainPublication',[ManagePublicationController::class,'ExpertDomainPublicationView']);
-Route::get('ViewPlatinumPublication',[ManagePublicationController::class,'PlatinumPublicationView']);
-Route::get('ViewPublicationReport',[ManagePublicationController::class,'PublicationReportView']);
-Route::get('ViewRegisteredPlatinum',[ManagePublicationController::class,'RegisteredPlatinumView']);
-Route::get('SearchForPlatinum',[ManagePublicationController::class,'SearchPlatinumVIew']);
+Route::middleware('auth')->group(function () {
+    Route::get('AddPublication', [ManagePublicationController::class, 'AddPublicationView'])->name('publications.add');
+    Route::post('StorePublication', [ManagePublicationController::class, 'store'])->name('storePublication');
+    Route::get('ViewOwnPublication', [ManagePublicationController::class, 'OwnPublicationView'])->name('publications.own');
+    Route::get('EditPublication/{id}', [ManagePublicationController::class, 'EditPublicationView'])->name('publications.edit');
+    Route::post('UpdatePublication/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
+    Route::delete('DeletePublication/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.delete');
+    Route::get('ViewOtherPublication', [ManagePublicationController::class, 'ViewOtherPublicationView'])->name('publications.viewOthers');
+});
 
-Route::get('AddPublication',[ManagePublicationController::class,'AddPublicationView']);
-Route::post('EditPublication',[ManagePublicationController::class,'EditPublicationView']);
-Route::get('ViewOwnPublication/{id}',[ManagePublicationController::class,'OwnPublicationView']);
-Route::post('SearchForPublication/{id}',[ManagePublicationController::class,'SearchPublicationView']);
-Route::get('ViewOtherPublication',[ManagePublicationController::class,'ViewOtherPublicationView']);
 
 
 
