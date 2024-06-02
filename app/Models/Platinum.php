@@ -1,5 +1,6 @@
 <?php
 
+// In app/Models/Platinum.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,13 +10,6 @@ class Platinum extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'P_platinumID';
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id','id');
-    }
-
     protected $fillable = [
         'P_supervisorName',
         'P_supervisorContact',
@@ -23,6 +17,10 @@ class Platinum extends Model
         'P_Department',
         'P_Position',
         'id'
-   
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

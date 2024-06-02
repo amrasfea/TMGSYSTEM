@@ -22,263 +22,236 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-  <style>
-    body{
+<style>
+body {
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    font-family: Arial, sans-serif;
+    color: #333;
 }
-.emp-profile{
+.emp-profile {
     padding: 3%;
     margin-top: 3%;
     margin-bottom: 3%;
     border-radius: 0.5rem;
     background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.profile-img{
+.profile-head {
     text-align: center;
+    margin-bottom: 20px;
 }
-.profile-img img{
-    width: 70%;
-    height: 100%;
-}
-.profile-img .file {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
-    border: none;
-    border-radius: 0;
-    font-size: 15px;
-    background: #212529b8;
-}
-.profile-img .file input {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 0;
-}
-.profile-head h5{
+.profile-head h5 {
     color: #333;
+    font-size: 24px;
+    font-weight: 600;
 }
-.profile-head h6{
+.profile-head h6 {
     color: #0062cc;
+    font-size: 16px;
+    font-weight: 400;
 }
-.profile-edit-btn{
+.profile-edit-btn {
     border: none;
     border-radius: 1.5rem;
-    width: 70%;
-    padding: 2%;
+    width: 100%;
+    padding: 10px;
     font-weight: 600;
-    color: #6c757d;
+    color: #fff;
+    background-color: #0062cc;
     cursor: pointer;
+    margin-bottom: 20px;
 }
-.proile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
+.profile-head .nav-tabs {
+    margin-bottom: 5%;
 }
-.proile-rating span{
-    color: #495057;
-    font-size: 15px;
+.profile-head .nav-tabs .nav-link {
     font-weight: 600;
-}
-.profile-head .nav-tabs{
-    margin-bottom:5%;
-}
-.profile-head .nav-tabs .nav-link{
-    font-weight:600;
     border: none;
+    color: #0062cc;
 }
-.profile-head .nav-tabs .nav-link.active{
+.profile-head .nav-tabs .nav-link.active {
     border: none;
-    border-bottom:2px solid #0062cc;
+    border-bottom: 2px solid #0062cc;
+    color: #333;
 }
-.profile-work{
-    padding: 14%;
+.profile-work {
+    padding: 20%;
     margin-top: -15%;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
 }
-.profile-work p{
+.profile-work p {
     font-size: 12px;
     color: #818182;
     font-weight: 600;
     margin-top: 10%;
 }
-.profile-work a{
+.profile-work a {
     text-decoration: none;
     color: #495057;
     font-weight: 600;
     font-size: 14px;
 }
-.profile-work ul{
+.profile-work ul {
     list-style: none;
+    padding: 0;
 }
-.profile-tab label{
-    font-weight: 600;
+.profile-tab {
+    margin-top: 10px;
 }
-.profile-tab p{
+.profile-tab label {
     font-weight: 600;
     color: #0062cc;
+    margin-right: 10px;
 }
-
+.profile-tab p {
+    font-weight: 600;
+    color: #333;
+}
+.row {
+    margin-bottom: 10px;
+}
 .success-message {
-            color: green;
-            background-color: #e6ffed;
-            border: 1px solid #a6f4c5;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-            transition: opacity 2s ease-in-out;
-        }
-
-        .hidden {
-            opacity: 0;
-        }
-
+    color: green;
+    background-color: #e6ffed;
+    border: 1px solid #a6f4c5;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    transition: opacity 2s ease-in-out;
+}
 
 </style>
 
 <div class="container emp-profile">
-
-                    <div>
-                        @if(session()->has('success'))
-                            <div class="success-message">
-                                <p
+    <div>
+        @if(session()->has('success'))
+            <div class="success-message">
+                <p
                     x-data="{ show: true }"
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Profle Updated Successfully') }}</p>
-                            </div>
-                        @endif
-                    </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="{{ Auth::user()->profile_photo_path ? asset('storage/' . Auth::user()->profile_photo_path) : 'default_profile_picture_url' }}" alt="Profile Photo"/>
-                </div>
+                >{{ __('Profile Updated Successfully') }}</p>
             </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
-                        <h5>{{ $user->name }}</h5>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                        <a href="{{ route('profile.edit') }}" class="profile-edit-btn" name="btnAddMore">Edit Profile</a>
-                    </div>
+        @endif
+    </div>
+
+    <div class="row" style="width: 100%;">
+        <div class="col-md-12">
+            <div class="profile-head">
+                <h5>{{ $user->name }}</h5>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                    </li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-md-8 offset-md-4">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        @if ($user->roleType === 'Platinum')
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>User Id</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->id }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Name</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->name }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->email }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Phone</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_phone }}</p>
-                                </div>
-                            </div>
+            <div class="col-md-2">
+                <a href="{{ route('profile.edit') }}" class="profile-edit-btn" name="btnAddMore">Edit Profile</a>
+            </div>
+        </div>
+    </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Account Type</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_registration_type}}</p>
-                                </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                @if ($user->roleType === 'Platinum')
+                <!-- About Section -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>User Id</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $user->id }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $user->name }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $user->email }}</p>
+                        </div>
+                    </div>
+                  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Identity Number</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_identity_card }}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_phone }}</p>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Education Level</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_edu_level }}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Account Type</label>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Educational Field</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_edu_field }}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_registration_type}}</p>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Occupation</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_occupation }}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Identity Number</label>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Study Sponsorship</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_sponsorship }}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_identity_card }}</p>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Address</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>{{ $user->P_address }}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Education Level</label>
                             </div>
-
-                            <div class="row">
+                            <div class="col-md-6">
+                                <p>{{ $user->P_edu_level }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Educational Field</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_edu_field }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Occupation</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_occupation }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Study Sponsorship</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_sponsorship }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ $user->P_address }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
                                 <div class="col-md-6">
                                     <label>Phone Number</label>
                                 </div>
@@ -286,7 +259,7 @@
                                     <p>{{ $user->P_phone }}</p>
                                 </div>
                             </div>
-
+                        
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Facebook Name</label>
@@ -320,6 +293,42 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p>{{ $user->P_referral }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Supervisor Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_supervisorName }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Supervisor Contact</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_supervisorContact }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Institution</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_Institution }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Department</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{ $user->platinum->P_Department }}</p>
                                 </div>
                             </div>
 
@@ -623,3 +632,6 @@
         </form>           
     </div>
 </x-dynamic-component>
+
+                           
+                         

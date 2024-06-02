@@ -1,6 +1,4 @@
 <section>
-
-
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
@@ -36,17 +34,29 @@
     </div>
 
     <div>
-        <x-input-label for="P_registration_type" :value="__('Registration Type')" />
-        <x-text-input id="P_registration_type" name="P_registration_type" type="text" class="mt-1 block w-full" :value="old('P_registration_type', $user->P_registration_type ?? '')" required autofocus autocomplete="P_registration_type" />
-        <x-input-error class="mt-2" :messages="$errors->get('P_registration_type')" />
-    </div>
+    <x-input-label for="P_registration_type" :value="__('Registration Type')" />
+    <select id="P_registration_type" name="P_registration_type" class="mt-1 block w-full" required>
+        <option value="premier" {{ old('P_registration_type', $user->P_registration_type ?? '') == 'premier' ? 'selected' : '' }}>Premier</option>
+        <option value="new" {{ old('P_registration_type', $user->P_registration_type ?? '') == 'new' ? 'selected' : '' }}>New</option>
+        <option value="upgrade" {{ old('P_registration_type', $user->P_registration_type ?? '') == 'upgrade' ? 'selected' : '' }}>Upgrade (Premier)</option>
+        <option value="downgrade" {{ old('P_registration_type', $user->P_registration_type ?? '') == 'downgrade' ? 'selected' : '' }}>Downgrade (Elite)</option>
+        <option value="ala_carte" {{ old('P_registration_type', $user->P_registration_type ?? '') == 'ala_carte' ? 'selected' : '' }}>Ala Carte</option>
+    </select>
+    <x-input-error class="mt-2" :messages="$errors->get('P_registration_type')" />
+</div>
 
     <div>
-        <x-input-label for="P_title" :value="__('Title')" />
-        <x-text-input id="P_title" name="P_title" type="text" class="mt-1 block w-full" :value="old('P_title', $user->P_title ?? '')" required autofocus autocomplete="P_title" />
-        <x-input-error class="mt-2" :messages="$errors->get('P_title')" />
-    </div>
-
+    <x-input-label for="P_title" :value="__('Title')" />
+    <select id="P_title" name="P_title" class="mt-1 block w-full" required>
+        <option value="Mr" {{ old('P_title', $user->P_title ?? '') == 'Mr' ? 'selected' : '' }}>Mr</option>
+        <option value="Miss" {{ old('P_title', $user->P_title ?? '') == 'Miss' ? 'selected' : '' }}>Miss</option>
+        <option value="Mrs" {{ old('P_title', $user->P_title ?? '') == 'Mrs' ? 'selected' : '' }}>Mrs</option>
+        <option value="Ms" {{ old('P_title', $user->P_title ?? '') == 'Ms' ? 'selected' : '' }}>Ms</option>
+        <option value="Dr" {{ old('P_title', $user->P_title ?? '') == 'Dr' ? 'selected' : '' }}>Dr</option>
+        <option value="Prof" {{ old('P_title', $user->P_title ?? '') == 'Prof' ? 'selected' : '' }}>Prof</option>
+    </select>
+    <x-input-error class="mt-2" :messages="$errors->get('P_title')" />
+</div>
 
     <div>
         <x-input-label for="P_religion" :value="__('Religion')" />
@@ -115,15 +125,50 @@
     </div>
 
     <div>
-        <x-input-label for="P_program" :value="__('Program')" />
-        <x-text-input id="P_program" name="P_program" type="text" class="mt-1 block w-full" :value="old('P_program', $user->P_program ?? '')" required autofocus autocomplete="P_program" />
-        <x-input-error class="mt-2" :messages="$errors->get('P_program')" />
-    </div>
+    <x-input-label for="P_program" :value="__('Program')" />
+    <select id="P_program" name="P_program" class="mt-1 block w-full" required>
+        <option value="platinum_professorship" {{ old('P_program', $user->P_program ?? '') == 'platinum_professorship' ? 'selected' : '' }}>Platinum Professorship</option>
+        <option value="platinum_premier" {{ old('P_program', $user->P_program ?? '') == 'platinum_premier' ? 'selected' : '' }}>Platinum Premier</option>
+        <option value="premier" {{ old('P_program', $user->P_program ?? '') == 'premier' ? 'selected' : '' }}>Premier</option>
+        <option value="elite" {{ old('P_program', $user->P_program ?? '') == 'elite' ? 'selected' : '' }}>Elite</option>
+    </select>
+    <x-input-error class="mt-2" :messages="$errors->get('P_program')" />
+</div>
 
     <div>
         <x-input-label for="P_batch" :value="__('Batch')" />
         <x-text-input id="P_batch" name="P_batch" type="number" class="mt-1 block w-full" :value="old('P_batch', $user->P_batch ?? '')" required autofocus autocomplete="P_batch" />
         <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_supervisorName" :value="__('Supervisor Name')" />
+        <x-text-input id="P_supervisorName" name="P_supervisorName" type="text" class="mt-1 block w-full" :value="old('P_supervisorName', $user->platinum->P_supervisorName ?? '')" required autofocus autocomplete="P_supervisorName" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_supervisorContact" :value="__('Supervisor Contact')" />
+        <x-text-input id="P_supervisorContact" name="P_supervisorContact" type="number" class="mt-1 block w-full" :value="old('P_supervisorContact', $user->platinum->P_supervisorContact ?? '')" required autofocus autocomplete="P_supervisorContact" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_Institution" :value="__('Supervisor Institution')" />
+        <x-text-input id="P_Institution" name="P_Institution" type="text" class="mt-1 block w-full" :value="old('P_Institution', $user->platinum->P_Institution ?? '')" required autofocus autocomplete="P_Institution" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_batch')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_Department" :value="__('Supervisor Department')" />
+        <x-text-input id="P_Department" name="P_Department" type="text" class="mt-1 block w-full" :value="old('P_Department', $user->platinum->P_Department ?? '')" required autofocus autocomplete="P_Department" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_Department')" />
+    </div>
+
+    <div>
+        <x-input-label for="P_Position" :value="__('Supervisor Position')" />
+        <x-text-input id="P_Position" name="P_Position" type="text" class="mt-1 block w-full" :value="old('P_Position', $user->platinum->P_Position ?? '')" required autofocus autocomplete="P_Position" />
+        <x-input-error class="mt-2" :messages="$errors->get('P_Position')" />
     </div>
 
  
@@ -169,6 +214,8 @@
                 <x-text-input id="S_workExperience" name="S_workExperience" type="text" class="mt-1 block w-full" :value="old('S_workExperience', $user->staff->S_workExperience ?? '')" required autofocus autocomplete="S_workExperience" />
                 <x-input-error class="mt-2" :messages="$errors->get('S_workExperience')" />
             </div>
+
+            
 
             
         @elseif(Auth::user()->roleType === 'Mentor')
