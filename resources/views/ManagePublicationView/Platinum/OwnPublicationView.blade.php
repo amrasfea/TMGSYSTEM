@@ -6,48 +6,90 @@
     <title>My Publications</title>
     <style>
         .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
         }
-        .publication {
-            border: 1px solid #ccc;
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px;
-            margin-bottom: 10px;
+            background-color: #343a40;
+            color: #ffffff;
         }
-        .publication-title {
-            font-size: 18px;
+
+        .top-bar .dashboard-link {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .publications {
+            margin-top: 20px;
+        }
+
+        .publication {
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .publication .title {
             font-weight: bold;
         }
-        .publication-date {
-            font-size: 14px;
-            color: #666;
+
+        .publication .date {
+            font-size: 0.9em;
+            color: #6c757d;
         }
-        .actions {
+
+        .publication .edit-btn {
+            display: inline-block;
             margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .add-publication-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-
-@include('components.topBar')
-
-<div class="container">
-    <h1>My Publications</h1>
-    @if(session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
-    @foreach($publications as $publication)
-        <div class="publication">
-            <div class="publication-title">{{ $publication->PB_Title }}</div>
-            <div class="publication-date">Published on: {{ $publication->PB_Date }}</div>
-            <div class="actions">
-                <a href="{{ route('platinum.editPublication', $publication->PB_ID) }}">Edit</a>
-            </div>
+    <div class="container">
+        <div class="top-bar">
+            <a href="/dashboard" class="dashboard-link">Dashboard</a>
+            <span>{{ Auth::user()->name }}</span>
         </div>
-    @endforeach
-    <div class="actions">
-        <a href="{{ route('platinum.createPublication') }}">Add Publication</a>
-    </div>
-</div>
+        <h2>My Publications</h2>
 
+        <div class="publications">
+            @foreach($publications as $publication)
+                <div class="publication">
+                    <div class="title">{{ $publication->PB_Title }}</div>
+                    <div class="date">{{ $publication->PB_Date }}</div>
+                    <a href="{{ route('publications.edit', $publication->PB_ID) }}" class="edit-btn">Edit</a>
+                </div>
+            @endforeach
+
+            @if($publications->isEmpty())
+                <p>No publications found.</p>
+            @endif
+        </div>
+
+        <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
+    </div>
 </body>
 </html>

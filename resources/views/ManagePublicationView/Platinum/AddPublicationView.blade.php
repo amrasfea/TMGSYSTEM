@@ -3,99 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Publication</title>
+    <title>My Publications</title>
     <style>
         .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 15px;
+
+        .publication {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
-        .form-group label {
+
+        .publication:last-child {
+            border-bottom: none;
+        }
+
+        .btn {
             display: block;
-            margin-bottom: 5px;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
         }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .form-group input[type="file"] {
-            border: 1px solid #ccc;
-            padding: 5px;
-        }
-        .actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        .actions button {
-            padding: 10px 20px;
-            cursor: pointer;
+
+        .btn-edit {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #ffc107;
+            color: white;
+            text-decoration: none;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+    @include('components.topBar')
 
-@include('components.topBar')
+    <div class="container">
+        <h2>My Publications</h2>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-<div class="container">
-    <h1>Add Publication</h1>
+        @forelse($publications as $publication)
+            <div class="publication">
+                <h3>{{ $publication->PB_Title }}</h3>
+                <p>{{ $publication->PB_Date }}</p>
+                <a href="{{ route('publications.edit', $publication->id) }}" class="btn-edit">Edit</a>
+            </div>
+        @empty
+            <p>No publications found.</p>
+        @endforelse
 
-    <form action="{{ route('platinum.storePublication') }}" method="POST" enctype="multipart/form-data" class="form-container">
-        @csrf
-        <div class="form-group">
-            <label for="type-of-publication">Type of Publication *</label>
-            <select id="type-of-publication" name="type-of-publication" required>
-                <option value="thesis">Thesis</option>
-                <option value="dissertation">Dissertation</option>
-                <option value="journal">Journal</option>
-                <option value="conference">Conference Paper</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="title">Title *</label>
-            <input type="text" id="title" name="title" required>
-        </div>
-        <div class="form-group">
-            <label for="author">Author *</label>
-            <input type="text" id="author" name="author" required>
-        </div>
-        <div class="form-group">
-            <label for="university">University *</label>
-            <input type="text" id="university" name="university" required>
-        </div>
-        <div class="form-group">
-            <label for="field">Field *</label>
-            <input type="text" id="field" name="field" required>
-        </div>
-        <div class="form-group">
-            <label for="keyword">Keyword *</label>
-            <input type="text" id="keyword" name="keyword" required>
-        </div>
-        <div class="form-group">
-            <label for="date-of-published">Date of Published *</label>
-            <input type="date" id="date-of-published" name="date-of-published" required>
-        </div>
-        <div class="form-group">
-            <label for="file">Upload Document *</label>
-            <input type="file" id="file" name="file" required>
-        </div>
-        <div class="actions">
-            <button type="button" onclick="window.location='{{ route('platinum.OwnPublicationView') }}'">Back</button>
-            <button type="submit">Post</button>
-        </div>
-    </form>
-</div>
-
+        <a href="{{ route('publications.create') }}" class="btn">Add Publication</a>
+    </div>
 </body>
 </html>
-
-
-
-    
-

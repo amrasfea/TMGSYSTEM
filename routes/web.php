@@ -126,13 +126,15 @@ Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesi
 
 //ManagePublication
 Route::middleware(['auth'])->group(function () {
-    Route::get('/publications', [ManagePublicationController::class, 'index'])->name('platinum.OwnPublicationView');
-    Route::get('/publications/create', [ManagePublicationController::class, 'create'])->name('platinum.AddPublicationView');
-    Route::post('/publications', [ManagePublicationController::class, 'store'])->name('platinum.storePublication');
-    Route::get('/publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('platinum.EditPublicationView');
-    Route::put('/publications/{id}', [ManagePublicationController::class, 'update'])->name('platinum.updatePublication');
-    Route::delete('/publications/{id}', [ManagePublicationController::class, 'destroy'])->name('platinum.deletePublication');
+    Route::get('/publications', [ManagePublicationController::class, 'index'])->name('publications.index');
+    Route::get('/publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
+    Route::post('/publications', [ManagePublicationController::class, 'store'])->name('publications.store');
+    Route::get('/publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('publications.edit');
+    Route::put('/publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
+    Route::delete('/publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
+    Route::get('/publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
 });
+
 
 
 

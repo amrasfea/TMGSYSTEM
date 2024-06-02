@@ -33,7 +33,8 @@ class ManagePublicationController extends Controller
             'author' => 'required|string|max:255',
             'university' => 'required|string|max:255',
             'field' => 'required|string|max:255',
-            'keyword' => 'required|string|max:255',
+            'page-number' => 'required|integer',
+            'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
             'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ]);
@@ -46,13 +47,14 @@ class ManagePublicationController extends Controller
             'PB_Author' => $request->input('author'),
             'PB_Uni' => $request->input('university'),
             'PB_Course' => $request->input('field'),
-            'PB_Keyword' => $request->input('keyword'),
+            'PB_Page' => $request->input('page-number'),
+            'PB_Detail' => $request->input('detail'),
             'PB_Date' => $request->input('date-of-published'),
             'file_path' => $filePath,
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('platinum.ownPublications')->with('success', 'Publication added successfully.');
+        return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
     }
 
     public function edit($id)
@@ -69,9 +71,10 @@ class ManagePublicationController extends Controller
             'author' => 'required|string|max:255',
             'university' => 'required|string|max:255',
             'field' => 'required|string|max:255',
-            'keyword' => 'required|string|max:255',
+            'page-number' => 'required|integer',
+            'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'sometimes|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
         $publication = Publication::findOrFail($id);
@@ -88,12 +91,13 @@ class ManagePublicationController extends Controller
             'PB_Author' => $request->input('author'),
             'PB_Uni' => $request->input('university'),
             'PB_Course' => $request->input('field'),
-            'PB_Keyword' => $request->input('keyword'),
+            'PB_Page' => $request->input('page-number'),
+            'PB_Detail' => $request->input('detail'),
             'PB_Date' => $request->input('date-of-published'),
             'file_path' => $filePath,
         ]);
 
-        return redirect()->route('platinum.ownPublications')->with('success', 'Publication updated successfully.');
+        return redirect()->route('publications.index')->with('success', 'Publication updated successfully.');
     }
 
     public function destroy($id)
@@ -102,6 +106,12 @@ class ManagePublicationController extends Controller
         Storage::delete($publication->file_path);
         $publication->delete();
 
-        return redirect()->route('platinum.ownPublications')->with('success', 'Publication deleted successfully.');
+        return redirect()->route('publications.index')->with('success', 'Publication deleted successfully.');
+    }
+
+    public function show($id)
+    {
+        $publication = Publication::findOrFail($id);
+        return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication'));
     }
 }
