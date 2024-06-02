@@ -148,6 +148,10 @@ body {
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="{{ route('profile.list') }}" role="tab" aria-controls="home" aria-selected="true">View Other Profile</a>
+
+                    </li>
                 </ul>
             </div>
             <div class="col-md-2">

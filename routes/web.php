@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/EditProfile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/EditProfile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Route to list all profiles (restricted by role)
+    Route::get('/profiles', [ProfileController::class, 'listProfiles'])->name('profile.list');
+
+    // Route to view a specific profile by ID
+    Route::get('/profiles/{id}', [ProfileController::class, 'viewProfile'])->name('profile.view');
+
 });
 
 require __DIR__.'/auth.php';

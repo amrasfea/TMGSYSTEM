@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -88,8 +89,8 @@ class ProfileController extends Controller
                 break;
 
             case 'Platinum':
-                $platinum = $user;
-                $platinum->update([
+                // Update main user fields for Platinum role
+                $user->update([
                     'P_registration_type' => $validated['P_registration_type'],
                     'P_title' => $validated['P_title'],
                     'P_religion' => $validated['P_religion'],
@@ -105,26 +106,25 @@ class ProfileController extends Controller
                     'P_fb_name' => $validated['P_fb_name'],
                     'P_program' => $validated['P_program'],
                     'P_batch' => $validated['P_batch'],
-                   
                 ]);
 
-                case 'Platinum':
-                    $platinum = $user->platinum;
-                    if (!$platinum) {
-                        $platinum = new \App\Models\Platinum(['id' => $user->id]);
-                        $platinum->save();
-                    }
-                    $platinum->update([
-                        'P_supervisorName' => $validated['P_supervisorName'],
-                        'P_supervisorContact' => $validated['P_supervisorContact'],
-                        'P_Institution' => $validated['P_Institution'],
-                        'P_Department' => $validated['P_Department'],
-                        'P_Position' => $validated['P_Position'],
-                    ]);
+                // Ensure related Platinum model exists and update fields
+                $platinum = $user->platinum;
+                if (!$platinum) {
+                    $platinum = new \App\Models\Platinum(['id' => $user->id]);
+                    $platinum->save();
+                }
+                $platinum->update([
+                    'P_supervisorName' => $validated['P_supervisorName'],
+                    'P_supervisorContact' => $validated['P_supervisorContact'],
+                    'P_Institution' => $validated['P_Institution'],
+                    'P_Department' => $validated['P_Department'],
+                    'P_Position' => $validated['P_Position'],
+                ]);
                 break;
         }
 
-        return Redirect::route('profile.show')->with('success', 'profile updated successfully');
+        return Redirect::route('profile.show')->with('success', 'Profile updated successfully');
     }
 
     /**
@@ -147,4 +147,26 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function listProfiles(): View
+    {
+        $currentUser = Auth::user();
+        
+        if ($currentUser->roleType === 'Platinum') {
+            $users = User::where('roleType', 'Platinum')->get();
+        } else {
+            $users = User::all();
+        }
+    
+        return view('profile.list', compact('users'));
+    }
+
+    public function viewProfile($id): View
+   {
+    $profileUser = User::findOrFail($id);
+
+    return view('profile.view', compact('profileUser'));
+   }
+    
 }
+
