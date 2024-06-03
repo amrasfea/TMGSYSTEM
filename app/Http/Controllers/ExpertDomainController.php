@@ -36,7 +36,7 @@ class ExpertDomainController extends Controller
 
         ExpertDomain::create($data);
 
-        return redirect()->route('platinum.list')->with('success', 'Expert Domain Information added successfully!');
+        return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information added successfully!');
 
     }
 

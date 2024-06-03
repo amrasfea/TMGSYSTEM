@@ -92,11 +92,11 @@
                     @foreach ($expertDomains as $index => $expertDomain)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $expertDomain->name }}</td>
+                            <td>{{ $expertDomain->ED_name }}</td>
                             <td><a class="view-link" href="#">View</a></td>
-                            <td><a class="edit-link" href="{{ route('expertDomains.edit', $expertDomain->id) }}">Update</a></td>
+                            <td><a class="edit-link" href="{{ route('expertDomains.edit', $expertDomain->ED_ID) }}">Update</a></td>
                             <td>
-                                <form class="delete-link" action="{{ route('expertDomains.destroy', $expertDomain->id) }}" method="POST">
+                                <form class="delete-link" action="{{ route('expertDomains.destroy', $expertDomain->ED_ID) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" value="Delete">

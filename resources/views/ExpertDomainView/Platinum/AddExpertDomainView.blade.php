@@ -88,7 +88,7 @@
 
         @endif
     </div>
-    <form method="post" action="{{ route('platinum.store') }}">
+    <form method="post" action="{{ route('expertDomains.store') }}">
     @csrf
     @method('post')
 
