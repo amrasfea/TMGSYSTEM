@@ -27,7 +27,7 @@ class ExpertDomainController extends Controller
             'ED_fbname' => 'required|string',
             'ED_edu_level' => 'required|string',
             'ED_edu_field' => 'required|string',
-            'ED_edu_institute' => 'required|string',
+            // 'ED_edu_institute' => 'required|string',
             'ED_occupation' => 'required|string',
             'ED_sponsorship' => 'required|string',
             'ED_gender' => 'required|string',
@@ -56,6 +56,41 @@ class ExpertDomainController extends Controller
     public function AddResearchPublicationView(){
         return view('ExpertDomainView.Platinum.AddResearchPublicationView');
     }
+
+    public function storeResearchPublication(Request $request){
+        $data = $request->validate([
+            'R_title' => 'required|string',
+            'PB_Type' => 'required|string',
+            'PB_Title' => 'required|string',
+            'PB_Author' => 'required|string',
+            'PB_Uni' => 'required|string',
+            'PB_Course' => 'required|string',
+            'PB_Page' => 'required|integer',
+            'PB_Detail' => 'required|string',
+            'PB_Date' => 'required|date',
+        ]);
+            // Save Research data
+            $research = new Research();
+            $research->id = Auth::id();
+            $research->R_title = $data['R_title'];
+            $research->save();
+
+            // Save Publication data
+            $publication = new Publication();
+            $publication->ED_ID = Auth::id(); // Adjust this as needed
+            $publication->PB_Type = $data['PB_Type'];
+            $publication->PB_Title = $data['PB_Title'];
+            $publication->PB_Author = $data['PB_Author'];
+            $publication->PB_Uni = $data['PB_Uni'];
+            $publication->PB_Course = $data['PB_Course'];
+            $publication->PB_Page = $data['PB_Page'];
+            $publication->PB_Detail = $data['PB_Detail'];
+            $publication->PB_Date = $data['PB_Date'];
+            $publication->id = Auth::id();
+            $publication->save();
+
+        return redirect()->route('expertDomains.list')->with('success', 'Research and Publication added successfully!');
+    } 
 
     public function GenerateReport(){
         return view('ExpertDomainView.Platinum.GenerateReport');

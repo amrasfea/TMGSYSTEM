@@ -73,10 +73,13 @@ Route::post('/expertDomains/store', [ExpertDomainController::class, 'store'])->n
 Route::get('/expertDomains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');
 Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit');
 Route::delete('/expertDomains/{id}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');
+Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
+
 // Route::get('/AddExpert',[ExpertDomainController::class, 'AddExpertDomainView'])->name('platinum.save');
 // Route::post('/ListExpert',[ExpertDomainController::class, 'store'])->name('platinum.store');
 // Route::get('/ListExpert', [ExpertDomainController::class, 'ListExpertDomainView']) ->name('platinum.list');
-Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
+// Route::get('/AddResearch',[ExpertDomainController::class, 'AddResearchPublicationView']);
 Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
 Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
 Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
