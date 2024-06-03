@@ -16,7 +16,17 @@
     </x-slot>
 
     <div class="container" style="max-width: 900px; margin: 20px auto; padding: 20px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-       
+        
+        <!-- Search Form -->
+        <form method="GET" action="{{ route('profile.list') }}" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by name or email" value="{{ request()->query('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
         <table class="table table-striped">
             <thead>
                 <tr>

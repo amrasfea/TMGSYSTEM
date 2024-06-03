@@ -150,16 +150,26 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function listProfiles(): View
+    public function listProfiles(Request $request): View
     {
         $currentUser = Auth::user();
-        
-        if ($currentUser->roleType === 'Platinum') {
-            $users = User::where('roleType', 'Platinum')->get();
-        } else {
-            $users = User::all();
+        $search = $request->input('search');
+
+        $query = User::query();
+
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%")
+                      ->orWhere('email', 'LIKE', "%{$search}%");
+            });
         }
-    
+
+        if ($currentUser->roleType === 'Platinum') {
+            $query->where('roleType', 'Platinum');
+        }
+
+        $users = $query->get();
+
         return view('profile.list', compact('users'));
     }
 
