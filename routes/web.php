@@ -9,6 +9,8 @@ use App\Http\Controllers\ExpertDomainController;
 use App\Http\Controllers\ManageWeeklyFocusController;
 use App\Http\Controllers\RegistrationUser;
 use App\Http\Controllers\ManagePublicationController;
+use App\Http\Controllers\ReportController;
+
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/register', [RegistrationUser::class, 'store']);
     Route::get('/users/{user}', [RegistrationUser::class, 'show'])->name('users.show');
 
+    Route::get('/report', [ReportController::class, 'report'])->name('users.report');
 });
 
 Route::get('/expertDomains/add', [ExpertDomainController::class, 'AddExpertDomainView'])->name('expertDomains.add');
