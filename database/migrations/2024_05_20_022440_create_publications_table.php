@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('PB_Detail');
             $table->date('PB_Date');
             $table->string('file_path')->nullable();
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('platinums');
+            $table->unsignedBigInteger('P_platinumID');
+            $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums');
             $table->timestamps();
         });
     }

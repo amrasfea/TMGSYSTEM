@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('research', function (Blueprint $table) {
             $table->bigIncrements('R_researchID');
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('platinums');
+            $table->unsignedBigInteger('P_platinumID');
+            $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums');
             $table->string('R_title');
             $table->timestamps();
         });

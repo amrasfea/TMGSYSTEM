@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('expertDomains', function (Blueprint $table) {
             $table->bigIncrements('ED_ID');
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('platinums');
+            $table->unsignedBigInteger('p_platinumID');
+            $table->foreign('p_platinumID')->references('p_platinumID')->on('platinums');
             $table->unsignedBigInteger('M_mentorID');
             $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors');
             $table->string('ED_Name');

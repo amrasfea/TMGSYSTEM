@@ -12,13 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('draft_thesis_performances', function (Blueprint $table) {
-            $table->bigIncrements('FB_RBlockID');
-            $table->unsignedBigInteger('FB_WeeklyFocusID');
-            $table->foreign('FB_WeeklyFocusID')->references('FB_WeeklyFocusID')->on('WeeklyFocusBlocks');
-            $table->date('FB_StartDate');
-            $table->date('FB_EndDate');
-            $table->string('FB_BlockItem');
-            $table->string('FB_BlockDetail');
+            $table->bigIncrements('DTP_DraftNum');
+            $table->unsignedBigInteger('C_ID');
+            $table->foreign('C_ID')->references('C_ID')->on('crmps');
+            $table->unsignedBigInteger('M_mentorID');
+            $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors');
+            $table->date('DTP_StartDate');
+            $table->date('DTP_CompletionDate');
+            $table->integer('DTP_PagesNum');
+            $table->string('DTP_DDCgroup');
+            $table->integer('DTP_PrepareDays');
+            $table->integer('DTP_TotalPages');
             $table->timestamps();
         });
     }

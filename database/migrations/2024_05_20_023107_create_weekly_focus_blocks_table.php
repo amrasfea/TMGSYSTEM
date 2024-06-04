@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('WeeklyFocusBlocks', function (Blueprint $table) {
             $table->bigIncrements('FB_WeeklyFocusID');
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('platinums');
+            $table->unsignedBigInteger('P_platinumID');
+            $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums');
             $table->unsignedBigInteger('M_mentorID');
             $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors');
             $table->string('FB_BlockType');

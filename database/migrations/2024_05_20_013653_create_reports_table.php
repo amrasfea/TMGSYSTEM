@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('RP_PhoneNum');
             $table->string('RP_Research');
             $table->string('RP_Paper');
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('platinums');
+            $table->unsignedBigInteger('P_platinumID');
+            $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums');
         });
     }
 
