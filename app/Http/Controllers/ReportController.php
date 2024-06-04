@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+
 
 class ReportController extends Controller
 {
@@ -39,7 +40,9 @@ class ReportController extends Controller
 
         $users = $query->get();
 
-        $pdf = PDF::loadView('pdf.report', compact('users'));
+     
+        $pdf = FacadePDF::loadView('pdf.report', compact('users'));
+
 
         return $pdf->download('report.pdf');
     }

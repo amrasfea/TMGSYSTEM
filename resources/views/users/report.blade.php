@@ -38,7 +38,7 @@
                     <form method="GET" action="{{ route('users.report.pdf') }}" class="mb-4 flex">
                         <input type="hidden" name="batch" value="{{ request('batch') }}">
                         <input type="hidden" name="university" value="{{ request('university') }}">
-                        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Generate PDF</button>
+                        <button type="submit" class="btn btn-primary">Generate PDF</button>
                     </form>
 
                     <table class="min-w-full bg-white rounded-lg overflow-hidden">
