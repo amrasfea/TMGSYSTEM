@@ -181,7 +181,7 @@
                             <a href="{{ route('profile.show') }}" class="sidebar-link">My Profile</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Other Platinum Profile</a>
+                            <a href="{{ route('profile.list') }}" class="sidebar-link">Other Platinum Profile</a>
                         </li>
                     </ul>
                 </li>
@@ -197,11 +197,16 @@
                         <li class="sidebar-item">
                             <a href="{{ route('users.index') }}" class="sidebar-link">View Registration</a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Registration Report</a>
-                        </li>
+                        
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                     <a href="{{ route('users.report') }}" class="sidebar-link">
+                          <i class="lni lni-bar-chart"></i>
+                           <span> Registration Reports</span>
+                     </a>
+                </li>
+
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link has-dropdown">
                         <i class="lni lni-stats-up"></i>
@@ -230,12 +235,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item">
-                     <a href="{{ route('users.report') }}" class="sidebar-link">
-                          <i class="lni lni-bar-chart"></i>
-                           <span>Reports</span>
-                     </a>
-                </li>
+              
 
             </ul>
             <div class="sidebar-footer">

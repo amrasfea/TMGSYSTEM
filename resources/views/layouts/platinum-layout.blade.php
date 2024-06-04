@@ -194,7 +194,7 @@
                             <a href="{{ route('profile.show') }}" class="sidebar-link">My Profile</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Other Platinum Profile</a>
+                            <a href="{{ route('profile.list') }}" class="sidebar-link">Other Platinum Profile</a>
                         </li>
                     </ul>
                 </li>
