@@ -230,6 +230,12 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link has-dropdown">
+                    <i class="lni lni-bar-chart"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <a href="#" class="sidebar-link">
@@ -251,3 +257,5 @@
 
 </body>
 </html>
+
+

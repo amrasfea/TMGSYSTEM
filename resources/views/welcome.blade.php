@@ -16,12 +16,12 @@
         /* Custom CSS */
         body {
             font-family: 'Figtree', sans-serif;
-            background: whitesmoke; /* Soft blue-gray background */
+            background: whitesmoke;
             color: #333;
         }
 
         header {
-            background: #FFE280; /* Blue color */
+            background: #FFE280;
             color: black;
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
         }
 
         header .text-lg {
@@ -78,7 +77,7 @@
         main .welcome-text h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #0e2238; /* Blue color */
+            color: #0e2238;
         }
 
         main .welcome-text p {
@@ -86,12 +85,8 @@
             color: #555;
         }
 
-        main .picture {
-            margin-bottom: 2rem;
-        }
-
         footer {
-            background-color: #FFE280; /* Blue color */
+            background-color: #FFE280;
             color: black;
             padding: 1rem 0;
             text-align: center;
@@ -150,7 +145,6 @@
                             <a href="{{ route('login') }}" class="hover:text-gray-300" style="color: #0e2238;">
                                 Log in
                             </a>
-                           
                         @endauth
                     @endif
                 </nav>
@@ -159,7 +153,6 @@
 
         <!-- Main Content -->
         <main class="flex-grow container mx-auto px-4 py-6">
-            
             <div class="welcome-text">
                 <h1 class="text-3xl font-bold mb-4">Welcome to the Thesis Management System</h1>
                 <p class="text-lg mb-6">
@@ -177,4 +170,5 @@
     </div>
 </body>
 </html>
+
 
