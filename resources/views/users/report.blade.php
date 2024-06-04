@@ -28,19 +28,17 @@
                     @endif
                 </div>
 
-                <div class="container mx-auto px-4">
-                    <div class="flex justify-between items-center mb-4">
-                        <h1 class="text-2xl font-bold">{{ __('Users') }}</h1>
-                        <a href="{{ route('register') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            {{ __('Generate Report') }}
-                        </a>
-                    </div>
-
                     <!-- Search Form -->
                     <form method="GET" action="{{ route('users.report') }}" class="mb-4 flex">
                         <input type="text" name="batch" placeholder="Batch" class="border rounded py-2 px-4 mr-2" value="{{ request('batch') }}">
                         <input type="text" name="university" placeholder="University" class="border rounded py-2 px-4 mr-2" value="{{ request('university') }}">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+                    </form>
+
+                    <form method="GET" action="{{ route('users.report.pdf') }}" class="mb-4 flex">
+                        <input type="hidden" name="batch" value="{{ request('batch') }}">
+                        <input type="hidden" name="university" value="{{ request('university') }}">
+                        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Generate PDF</button>
                     </form>
 
                     <table class="min-w-full bg-white rounded-lg overflow-hidden">

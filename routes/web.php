@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}', [RegistrationUser::class, 'show'])->name('users.show');
 
     Route::get('/report', [ReportController::class, 'report'])->name('users.report');
+    Route::get('/users/report/pdf', [ReportController::class, 'generatePdf'])->name('users.report.pdf');
 });
 
 Route::get('/expertDomains/add', [ExpertDomainController::class, 'AddExpertDomainView'])->name('expertDomains.add');
