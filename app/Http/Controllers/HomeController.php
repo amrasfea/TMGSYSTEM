@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function StaffDashboard(){
-        return view('dashboards.staff');
+        return view('dashboards.staff', ['title' => 'Staff Dashboard']);
     }
 
     public function MentorDashboard(){
