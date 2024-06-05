@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpertDomain;
+use App\Models\Research; 
+use App\Models\Publication;
+use App\Models\Platinum; 
+use Illuminate\Support\Facades\Auth;
 
 class ExpertDomainController extends Controller
 {
@@ -69,9 +73,16 @@ class ExpertDomainController extends Controller
             'PB_Detail' => 'required|string',
             'PB_Date' => 'required|date',
         ]);
+
+        $userId = Auth::id();
+
+    // Check if the user has a corresponding platinums record
+    if (!Platinum::where('id', $userId)->exists()) {
+        return redirect()->route('expertDomains.list')->with('error', 'User does not have a corresponding Platinum record.');
+    }
             // Save Research data
             $research = new Research();
-            $research->id = Auth::id();
+            $research->id = $userId;
             $research->R_title = $data['R_title'];
             $research->save();
 

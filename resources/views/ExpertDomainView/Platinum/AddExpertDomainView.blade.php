@@ -123,7 +123,7 @@
             <input type="text" id="eduField" name="ED_edu_field" placeholder="Enter your education field">
 
             <label for="eduInstitute">Educational Institute:</label>
-            <input type="text" id="eduInstitute" name="ED_uni" placeholder="Enter your educational institute">
+            <input type="text" id="eduInstitute" name="ED_Uni" placeholder="Enter your educational institute">
 
             <label for="occupation">Occupation:</label>
             <input type="text" id="occupation" name="ED_occupation" placeholder="Enter your occupation">
