@@ -79,16 +79,12 @@ Route::middleware('auth')->group(function(){
     Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit');
     Route::delete('/expertDomains/{id}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');
     Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
     Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
     Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
     Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
-
+    
 });
-Route::get('/DeleteExpert',[ExpertDomainController::class, 'DeleteExpertDomainView']);
-Route::get('/DeleteResearch',[ExpertDomainController::class, 'DeleteResearchPublicationView']);
-Route::get('/DisplayExpertDetails',[ExpertDomainController::class, 'DisplayExpertDomainDetailsView']);
-Route::get('/DisplayResearch',[ExpertDomainController::class, 'DisplayResearchPublicationView']);
-// Route::get('/UpdateExpert',[ExpertDomainController::class, 'UpdateExpertDomainView']);
 
 //WeeklyFocus
 Route::get('/WeeklyBlockView',[ManageWeeklyFocusController::class, 'WeeklyBlockView']);
