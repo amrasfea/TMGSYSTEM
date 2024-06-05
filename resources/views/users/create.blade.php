@@ -138,23 +138,74 @@
                                 </select>
 
                                 <label for="religion">Religion:</label>
-                                <input type="text" id="religion" name="P_religion" placeholder="Enter your religion">
+<select id="religion" name="P_religion">
+    <option value="" disabled selected>Select your religion</option>
+    <option value="Islam">Islam</option>
+    <option value="Buddhism">Buddhism</option>
+    <option value="Christianity">Christianity</option>
+    <option value="Hinduism">Hinduism</option>
+    <option value="Confucianism">Confucianism</option>
+    <option value="Taoism">Taoism</option>
+    <option value="Other">Other</option>
+</select>
 
-                                <label for="race">Race:</label>
-                                <input type="text" id="race" name="P_race" placeholder="Enter your race">
+<label for="race">Race:</label>
+<select id="race" name="P_race">
+    <option value="" disabled selected>Select your race</option>
+    <option value="Malay">Malay</option>
+    <option value="Chinese">Chinese</option>
+    <option value="Indian">Indian</option>
+    <option value="Other">Other</option>
+</select>
 
-                                <label for="citizenship">Citizenship:</label>
-                                <input type="text" id="P_citizenship" name="P_citizenship" placeholder="Enter your citizenship">
+<label for="citizenship">Citizenship:</label>
+<select id="P_citizenship" name="P_citizenship">
+    <option value="" disabled selected>Select your citizenship</option>
+    <option value="Malaysian">Malaysian</option>
+    <option value="Non-Malaysian">Non-Malaysian</option>
+    <option value="Other">Other</option>
+</select>
+
 
                                 <h2>Education Information</h2>
                                 <label for="eduLevel">Current Education Level:</label>
-                                <input type="text" id="eduLevel" name="P_edu_level" placeholder="Enter your current education level">
+<select id="eduLevel" name="P_edu_level">
+    <option value="" disabled selected>Select your current education level</option>
+    <option value="Bachelor's Degree">Bachelor's Degree</option>
+    <option value="Master's Degree">Master's Degree</option>
+    <option value="PhD">PhD</option>
+    <option value="Other">Other</option>
+</select>
 
                                 <label for="eduField">Education Field:</label>
                                 <input type="text" id="eduField" name="P_edu_field" placeholder="Enter your education field">
 
                                 <label for="eduInstitute">Educational Institute:</label>
-                                <input type="text" id="eduInstitute" name="P_edu_institute" placeholder="Enter your educational institute">
+<select id="eduInstitute" name="P_edu_institute">
+    <option value="" disabled selected>Select your educational institute</option>
+    <option value="University of Malaya">University of Malaya (UM)</option>
+    <option value="Universiti Kebangsaan Malaysia">Universiti Kebangsaan Malaysia (UKM)</option>
+    <option value="Universiti Sains Malaysia">Universiti Sains Malaysia (USM)</option>
+    <option value="Universiti Putra Malaysia">Universiti Putra Malaysia (UPM)</option>
+    <option value="Universiti Teknologi Malaysia">Universiti Teknologi Malaysia (UTM)</option>
+    <option value="Universiti Teknologi MARA">Universiti Teknologi MARA (UiTM)</option>
+    <option value="Universiti Utara Malaysia">Universiti Utara Malaysia (UUM)</option>
+    <option value="Universiti Malaysia Sabah">Universiti Malaysia Sabah (UMS)</option>
+    <option value="Universiti Malaysia Pahang">Universiti Malaysia Pahang (UMP)</option>
+    <option value="Universiti Pendidikan Sultan Idris">Universiti Pendidikan Sultan Idris (UPSI)</option>
+    <option value="Universiti Islam Antarabangsa Malaysia">Universiti Islam Antarabangsa Malaysia (UIAM)</option>
+    <option value="Universiti Islam Sains Islam Malaysia">Universiti Sains Islam Malaysia (USIM)</option>
+    <option value="Universiti Tun Hussein Onn Malaysia">Universiti Tun Hussein Onn Malaysia (UTHM)</option>
+    <option value="Universiti Teknikal Malaysia Melaka">Universiti Teknikal Malaysia Melaka (UTEM)</option>
+    <option value="Universiti Sultan Zaina Abidin">Universiti Sultan Zainal Abidin (UniSZA)</option>
+    <option value="Universiti Malayia Perlis">Universiti Malaysia Perlis (UniMAP)</option>
+    <option value="Universiti Malaysia Kelantan">Universiti Malaysia Kelantan (UMK)</option>
+    <option value="Universiti Pertahanan Nasional Malaysia">Universiti Pertahanan Nasional Malaysia (UPNM)</option>
+    <option value="Universiti Malaysia Sarawak">Universiti Malaysia Sarawak (UNIMAS)</option>
+    <option value="Universiti Malaysia Terengganu">Universiti Malaysia Terengganu (UMT)</option>
+
+    <option value="Other">Other</option>
+</select>
 
                                 <label for="occupation">Occupation:</label>
                                 <input type="text" id="occupation" name="P_occupation" placeholder="Enter your occupation">

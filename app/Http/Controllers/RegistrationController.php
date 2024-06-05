@@ -80,8 +80,7 @@ class RegistrationController extends Controller{
 
         $platinum->update($data);
 
-        return redirect(route('platinum.index'))->with('success', 'Platinum Updated Succesffully');
-
+        return redirect(route('platinum.index'))->with('success', 'Platinum Updated Succesffully'); 
     }
 
     public function destroy(Platinum $platinum){

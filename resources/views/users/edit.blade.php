@@ -120,7 +120,7 @@
                             <x-input-label for="email" :value="__('Email')" />
                             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $user->email)" required autocomplete="username" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-    </div>
+                            </div>
 
                                 <label for="identity-card">Identity Card No.:</label>
                                 <input type="text" id="identity-card" name="P_identity_card" value="{{ old('P_identity_card', $user->P_identity_card) }}" placeholder="Enter your ID card number">
@@ -132,23 +132,72 @@
                                 </select>
 
                                 <label for="religion">Religion:</label>
-                                <input type="text" id="religion" name="P_religion" value="{{ old('P_religion', $user->P_religion) }}" placeholder="Enter your religion">
+                                <select id="religion" name="P_religion">
+                                    <option value="" disabled>Select your religion</option>
+                                    <option value="Islam" {{ old('P_religion', $user->P_religion) == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                    <option value="Buddhism" {{ old('P_religion', $user->P_religion) == 'Buddhism' ? 'selected' : '' }}>Buddhism</option>
+                                    <option value="Christianity" {{ old('P_religion', $user->P_religion) == 'Christianity' ? 'selected' : '' }}>Christianity</option>
+                                    <option value="Hinduism" {{ old('P_religion', $user->P_religion) == 'Hinduism' ? 'selected' : '' }}>Hinduism</option>
+                                    <option value="Confucianism" {{ old('P_religion', $user->P_religion) == 'Confucianism' ? 'selected' : '' }}>Confucianism</option>
+                                    <option value="Taoism" {{ old('P_religion', $user->P_religion) == 'Taoism' ? 'selected' : '' }}>Taoism</option>
+                                    <option value="Other" {{ old('P_religion', $user->P_religion) == 'Other' ? 'selected' : '' }}>Other</option>
+                                </select>
 
                                 <label for="race">Race:</label>
-                                <input type="text" id="race" name="P_race" value="{{ old('P_race', $user->P_race) }}" placeholder="Enter your race">
+                                <select id="race" name="P_race">
+                                    <option value="" disabled>Select your race</option>
+                                    <option value="Malay" {{ old('P_race', $user->P_race) == 'Malay' ? 'selected' : '' }}>Malay</option>
+                                    <option value="Chinese" {{ old('P_race', $user->P_race) == 'Chinese' ? 'selected' : '' }}>Chinese</option>
+                                    <option value="Indian" {{ old('P_race', $user->P_race) == 'Indian' ? 'selected' : '' }}>Indian</option>
+                                    <option value="Other" {{ old('P_race', $user->P_race) == 'Other' ? 'selected' : '' }}>Other</option>
+                                </select>
 
                                 <label for="citizenship">Citizenship:</label>
-                                <input type="text" id="P_citizenship" name="P_citizenship" value="{{ old('P_citizenship', $user->P_citizenship) }}" placeholder="Enter your citizenship">
+                                <select id="P_citizenship" name="P_citizenship">
+                                    <option value="" disabled>Select your citizenship</option>
+                                    <option value="Malaysian" {{ old('P_citizenship', $user->P_citizenship) == 'Malaysian' ? 'selected' : '' }}>Malaysian</option>
+                                    <option value="Non-Malaysian" {{ old('P_citizenship', $user->P_citizenship) == 'Non-Malaysian' ? 'selected' : '' }}>Non-Malaysian</option>
+                                </select>
 
-                                <h2>Education Information</h2>
+                                
+                                <h2 style="margin-top: 20px;">Education Information</h2>
                                 <label for="eduLevel">Current Education Level:</label>
-                                <input type="text" id="eduLevel" name="P_edu_level" value="{{ old('P_edu_level', $user->P_edu_level) }}" placeholder="Enter your current education level">
+                                <select id="eduInstitute" name="P_edu_level">
+                                    <option value="Bachelor's Degree" {{ old('P_edu_level', $user->P_edu_level) == "Bachelor's Degree" ? 'selected' : '' }}>Bachelor's Degree</option>
+                                    <option value="Master's Degree" {{ old('P_edu_level', $user->P_edu_level) == "Master's Degree" ? 'selected' : '' }}>Master's Degree</option>
+                                    <option value="Master's Degree" {{ old('P_edu_level', $user->P_edu_level) == "PHD" ? 'selected' : '' }}>PHD</option>
+                                    <option value="Other" {{ old('P_edu_level', $user->P_edu_level) == 'Other' ? 'selected' : '' }}>Other</option>
+                                    </select>
 
                                 <label for="eduField">Education Field:</label>
                                 <input type="text" id="eduField" name="P_edu_field" value="{{ old('P_edu_field', $user->P_edu_field) }}" placeholder="Enter your education field">
 
                                 <label for="eduInstitute">Educational Institute:</label>
-                                <input type="text" id="eduInstitute" name="P_edu_institute" value="{{ old('P_edu_institute', $user->P_edu_institute) }}" placeholder="Enter your educational institute">
+    <select id="eduInstitute" name="P_edu_institute">
+    <option value="" disabled selected>Select your educational institute</option>
+    <option value="University of Malaya" {{ old('P_edu_institute', $user->P_edu_institute) == "University of Malaya" ? 'selected' : '' }}>University of Malaya (UM)</option>
+    <option value="Universiti Kebangsaan Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Kebangsaan Malaysia" ? 'selected' : '' }}>Universiti Kebangsaan Malaysia (UKM)</option>
+    <option value="Universiti Sains Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Sains Malaysia" ? 'selected' : '' }}>Universiti Sains Malaysia (USM)</option>
+    <option value="Universiti Putra Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Putra Malaysia" ? 'selected' : '' }}>Universiti Putra Malaysia (UPM)</option>
+    <option value="Universiti Teknologi Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Teknologi Malaysia" ? 'selected' : '' }}>Universiti Teknologi Malaysia (UTM)</option>
+    <option value="Universiti Teknologi MARA" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Teknologi MARA" ? 'selected' : '' }}>Universiti Teknologi MARA (UiTM)</option>
+    <option value="Universiti Utara Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Utara Malaysia" ? 'selected' : '' }}>Universiti Utara Malaysia (UUM)</option>
+    <option value="Universiti Malaysia Sabah" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Malaysia Sabah" ? 'selected' : '' }}>Universiti Malaysia Sabah (UMS)</option>
+    <option value="Universiti Malaysia Pahang" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Malaysia Pahang" ? 'selected' : '' }}>Universiti Malaysia Pahang (UMP)</option>
+    <option value="Universiti Pendidikan Sultan Idris" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Pendidikan Sultan Idris" ? 'selected' : '' }}>Universiti Pendidikan Sultan Idris (UPSI)</option>
+    <option value="Universiti Islam Antarabangsa Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Islam Antarabangsa Malaysia" ? 'selected' : '' }}>Universiti Islam Antarabangsa Malaysia (UIAM)</option>
+    <option value="Universiti Sains Islam Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Sains Islam Malaysia" ? 'selected' : '' }}>Universiti Sains Islam Malaysia (USIM)</option>
+    <option value="Universiti Tun Hussein Onn Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Tun Hussein Onn Malaysia" ? 'selected' : '' }}>Universiti Tun Hussein Onn Malaysia (UTHM)</option>
+    <option value="Universiti Teknikal Malaysia Melaka" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Teknikal Malaysia Melaka" ? 'selected' : '' }}>Universiti Teknikal Malaysia Melaka (UTEM)</option>
+    <option value="Universiti Sultan Zainal Abidin" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Sultan Zainal Abidin" ? 'selected' : '' }}>Universiti Sultan Zainal Abidin (UniSZA)</option>
+    <option value="Universiti Malaysia Perlis" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Malaysia Perlis" ? 'selected' : '' }}>Universiti Malaysia Perlis (UniMAP)</option>
+    <option value="Universiti Malaysia Kelantan" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Malaysia Kelantan" ? 'selected' : '' }}>Universiti Malaysia Kelantan (UMK)</option>
+    <option value="Universiti Pertahanan Nasional Malaysia" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Pertahanan Nasional Malaysia" ? 'selected' : '' }}>Universiti Pertahanan Nasional Malaysia (UPNM)</option>
+    <option value="Universiti Malaysia Sarawak" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Malaysia Sarawak" ? 'selected' : '' }}>Universiti Malaysia Sarawak (UNIMAS)</option>
+    <option value="Universiti Malaysia Terengganu" {{ old('P_edu_institute', $user->P_edu_institute) == "Universiti Malaysia Terengganu" ? 'selected' : '' }}>Universiti Malaysia Terengganu (UMT)</option>
+    <option value="Other" {{ old('P_edu_institute', $user->P_edu_institute) == "Other" ? 'selected' : '' }}>Other</option>
+    </select>
+ 
 
                                 <label for="occupation">Occupation:</label>
                                 <input type="text" id="occupation" name="P_occupation" value="{{ old('P_occupation', $user->P_occupation) }}" placeholder="Enter your occupation">
@@ -172,7 +221,7 @@
                                 <label for="fbName">Facebook Name:</label>
                                 <input type="text" id="fbName" name="P_fb_name" value="{{ old('P_fb_name', $user->P_fb_name) }}" placeholder="Enter your Facebook name">
 
-                                <h2>Program Information</h2>
+                                <h2 style="margin-top: 10px;">Program Information</h2>
 
                                 <label for="program">Program:</label>
                                 <select id="program" name="P_program">
