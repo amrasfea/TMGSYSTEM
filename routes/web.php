@@ -131,7 +131,7 @@ Route::delete('/publications/{id}', [ManagePublicationController::class, 'destro
 Route::get('/publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
 Route::get('/publications/platinum', [ManagePublicationController::class, 'viewOtherPublications'])->name('publications.platinum');
 Route::get('/publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
-}
+});
 
 
 
