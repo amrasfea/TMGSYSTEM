@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ExpertDomain;
 use App\Models\Research; 
 use App\Models\Publication;
-use App\Models\Platinum; 
+use App\Models\Platinum;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ExpertDomainController extends Controller
@@ -16,33 +17,48 @@ class ExpertDomainController extends Controller
         return view('ExpertDomainView.Platinum.AddExpertDomainView');
     }
     
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        // Validate the incoming request data
         $data = $request->validate([
-            //'ED_ID' => 'required|string',
-            //'id' => 'required|string',
-            //'M_mentorID' => 'required|string',
             'ED_Name' => 'required|string',
             'ED_Uni' => 'required|string',
             'ED_Email' => 'required|string',
             'ED_PhoneNum' => 'required|string',
-            'ED_Research' => 'required|string',
-            'ED_Paper' => 'required|string',
             'ED_address' => 'required|string',
             'ED_fbname' => 'required|string',
             'ED_edu_level' => 'required|string',
             'ED_edu_field' => 'required|string',
-            // 'ED_edu_institute' => 'required|string',
             'ED_occupation' => 'required|string',
             'ED_sponsorship' => 'required|string',
             'ED_gender' => 'required|string',
             'E_title' => 'required|string',
         ]);
 
+        // Get the currently logged-in user
+        $loggedInUser = Auth::user();
+
+        // Fetch the user by email
+        $user = User::where('email', $loggedInUser->email)->first();
+
+        if ($user) {
+            // Set p_platinumID to the user's ID
+            $data['p_platinumID'] = $user->id;
+        } else {
+            // Handle the case where the user is not found
+            return redirect()->back()->withErrors(['ED_Email' => 'User with this email not found.']);
+        }
+
+        // Automatically set M_mentorID to 1
+        $data['M_mentorID'] = '1';
+
+        // Create the new ExpertDomain entry
         ExpertDomain::create($data);
 
+        // Redirect to the list route with a success message
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information added successfully!');
-
     }
+
 
     public function DeleteExpertDomainView(ExpertDomain $expertdomain) {
         return view('ExpertDomainView.Platinum.DeleteExpertDomainView');

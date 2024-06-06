@@ -1,78 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Publications</title>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+@extends('layouts.platinum-layout')
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+@section('title', 'Add Publication')
 
-        .publication {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .publication:last-child {
-            border-bottom: none;
-        }
-
-        .btn {
-            display: block;
-            width: 150px;
-            margin: 20px auto;
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-        }
-
-        .btn-edit {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 4px;
-            background-color: #ffc107;
-            color: white;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    @include('components.topBar')
-
-    <div class="container">
-        <h2>My Publications</h2>
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @forelse($publications as $publication)
-            <div class="publication">
-                <h3>{{ $publication->PB_Title }}</h3>
-                <p>{{ $publication->PB_Date }}</p>
-                <a href="{{ route('publications.edit', $publication->id) }}" class="btn-edit">Edit</a>
-            </div>
-        @empty
-            <p>No publications found.</p>
-        @endforelse
-
-        <a href="{{ route('publications.create') }}" class="btn">Add Publication</a>
-    </div>
-</body>
-</html>
+@section('content')
+<div class="container">
+    <h2>Add Publication</h2>
+    <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group mb-3">
+            <label for="PB_Type" class="form-label">Type of Publication</label>
+            <select class="form-control" id="PB_Type" name="PB_Type" required>
+                <option value="">Select Type</option>
+                <option value="Journal">Journal</option>
+                <option value="Conference">Conference</option>
+                <option value="Book">Book</option>
+                <option value="Thesis">Thesis</option>
+                <option value="Report">Report</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_Title" class="form-label">Publication Title</label>
+            <input type="text" class="form-control" id="PB_Title" name="PB_Title" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_Author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="PB_Author" name="PB_Author" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_Uni" class="form-label">University</label>
+            <input type="text" class="form-control" id="PB_Uni" name="PB_Uni" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_Course" class="form-label">Field/Course</label>
+            <input type="text" class="form-control" id="PB_Course" name="PB_Course" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_Keyword" class="form-label">Description</label>
+            <input type="text" class="form-control" id="PB_Keyword" name="PB_Keyword" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_Date" class="form-label">Date of Publish</label>
+            <input type="date" class="form-control" id="PB_Date" name="PB_Date" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="PB_File" class="form-label">Upload File</label>
+            <input type="file" class="form-control" id="PB_File" name="PB_File" accept=".pdf,.doc,.docx">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Publication</button>
+        <a href="{{ route('publications.index') }}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+@endsection

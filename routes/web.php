@@ -121,6 +121,7 @@ Route::get('/PlatinumThesisTitle',[ManageWeeklyFocusController::class, 'Platinum
 Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesisPerformanceReport']);
 
 //ManagePublication
+
 Route::get('/publications', [ManagePublicationController::class, 'index'])->name('publications.index');
 Route::get('/publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
 Route::post('/publications', [ManagePublicationController::class, 'store'])->name('publications.store');
