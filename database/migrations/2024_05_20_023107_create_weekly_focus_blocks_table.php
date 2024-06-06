@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('WeeklyFocusBlocks', function (Blueprint $table) {
+        Schema::create('weekly_focus_blocks', function (Blueprint $table) {
             $table->bigIncrements('FB_WeeklyFocusID');
             $table->unsignedBigInteger('P_platinumID');
             $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums');
