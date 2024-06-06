@@ -93,7 +93,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $expertDomain->ED_Name }}</td>
-                            <td><a class="view-link" href="#">View</a></td>
+                            <td><a class="view-link" href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}">View</a></td>
                             <td><a class="edit-link" href="{{ route('expertDomains.edit', $expertDomain->ED_ID) }}">Update</a></td>
                             <td>
                                 <form class="delete-link" action="{{ route('expertDomains.destroy', $expertDomain->ED_ID) }}" method="POST">

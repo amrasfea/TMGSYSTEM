@@ -105,6 +105,13 @@ class ExpertDomainController extends Controller
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information updated successfully!');
     }
 
+    public function view($id)
+    {
+        $expertDomain = ExpertDomain::findOrFail($id);
+        return view('ExpertDomainView.Platinum.DisplayExpertDomainDetailsView', compact('expertDomain'));
+    }
+
+
     public function ListExpertDomainView(){
         $expertDomains = ExpertDomain::all();
         return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
