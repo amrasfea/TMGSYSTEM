@@ -68,8 +68,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/expertDomains/add', [ExpertDomainController::class, 'AddExpertDomainView'])->name('expertDomains.add');
     Route::post('/expertDomains/store', [ExpertDomainController::class, 'store'])->name('expertDomains.store');
     Route::get('/expertDomains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');
-    Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit');
-    Route::delete('/expertDomains/{id}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');
+    Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit'); // This is the GET route
+    Route::put('/expertDomains/update/{id}', [ExpertDomainController::class, 'update'])->name('expertDomains.update'); // This is the PUT route
+    Route::delete('/expertDomains/{ED_ID}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');
     Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
     Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
     Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
