@@ -10,12 +10,10 @@
     }
 @endphp
 
-<title>Profile</title>
-
 <x-dynamic-component :component="$layout">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Profile') }}
+            {{ __('Profile') }}
         </h2>
     </x-slot>
 
@@ -156,6 +154,7 @@
                     </ul>
                 </div>
                 <div class="col-md-2">
+                    
                     <a href="{{ route('profile.edit') }}" class="profile-edit-btn" name="btnAddMore">Edit Profile</a>
                 </div>
             </div>

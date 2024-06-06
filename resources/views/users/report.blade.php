@@ -34,7 +34,7 @@
     }
 
     .form-button {
-        background-color: #3182ce; /* bg-blue-500 */
+        background-color: #0062cc; /* bg-blue-500 */
         color: #fff; /* text-white */
         cursor: pointer;
     }
