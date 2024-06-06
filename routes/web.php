@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'role:Staff')->group(function () {
     Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
     Route::get('/users/{user}/edit', [RegistrationUser::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [RegistrationUser::class, 'update'])->name('users.update');
