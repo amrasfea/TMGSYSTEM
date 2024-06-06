@@ -60,8 +60,16 @@ class ExpertDomainController extends Controller
     }
 
 
-    public function DeleteExpertDomainView(ExpertDomain $expertdomain) {
-        return view('ExpertDomainView.Platinum.DeleteExpertDomainView');
+    public function destroy($ED_ID)
+    {
+        // Find the ExpertDomain record by ED_ID
+        $expertDomain = ExpertDomain::findOrFail($ED_ID);
+
+        // Delete the record
+        $expertDomain->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information deleted successfully!');
     }
 
     public function UpdateExpertDomainView(ExpertDomain $expertdomain) {

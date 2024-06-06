@@ -13,6 +13,8 @@ class ExpertDomain extends Model
 
     protected $table = 'expertdomains';
 
+    protected $primaryKey = 'ED_ID';
+
     protected $fillable = [
         'ED_ID',
         'id',

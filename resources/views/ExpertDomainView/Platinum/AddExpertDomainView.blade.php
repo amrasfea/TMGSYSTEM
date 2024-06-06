@@ -55,8 +55,8 @@
             /* Button Styles */
         .form-section button,
         .form-section input[type="submit"] {
-            background-color: #FFDB58;
-            color: #000000;
+            background-color: #0062cc;
+            color: #ffffff;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
