@@ -64,6 +64,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                         </li>
+                        @if ($profileUser->roleType === 'Platinum')
+            <li class="nav-item">
+                <a class="nav-link" id="expert-tab" href="{{ route('expert.show', $profileUser->id) }}" role="tab" aria-controls="expert" aria-selected="false">Expert</a>
+            </li>
+            @endif
                     </ul>
                 </div>
                 <div class="tab-content profile-tab" id="myTabContent">

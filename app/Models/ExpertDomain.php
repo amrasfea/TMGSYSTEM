@@ -13,6 +13,8 @@ class ExpertDomain extends Model
 
     protected $table = 'expertdomains';
 
+    protected $primaryKey = 'ED_ID';
+
     protected $fillable = [
         'ED_ID',
         'id',
@@ -33,4 +35,14 @@ class ExpertDomain extends Model
         'p_platinumID'
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function mentor()
+    {
+        return $this->belongsTo(Mentor::class, 'M_mentorID');
+    }
 }

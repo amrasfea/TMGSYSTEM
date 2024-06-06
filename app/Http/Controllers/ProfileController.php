@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\ExpertDomain;
 
 class ProfileController extends Controller
 {
@@ -179,6 +180,17 @@ class ProfileController extends Controller
 
     return view('profile.view', compact('profileUser'));
    }
+
+   public function show($id)
+    {
+        $expert = ExpertDomain::where('p_platinumID', $id)->first();
+        // Handle case where expert domain does not exist
+        if (!$expert) {
+            abort(404, 'Expert domain not found');
+        }
+
+        return view('profile.showExpert', compact('expert'));
+    }
     
 }
 

@@ -167,7 +167,7 @@
 </select>
 
 
-                                <h2>Education Information</h2>
+                                <h2 style="margin-top: 30px;">Education Information</h2>
                                 <label for="eduLevel">Current Education Level:</label>
 <select id="eduLevel" name="P_edu_level">
     <option value="" disabled selected>Select your current education level</option>
