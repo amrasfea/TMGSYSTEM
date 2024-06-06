@@ -73,18 +73,22 @@
         </div>
         <h2>My Publications</h2>
 
-        <div class="publications">
-            @forelse($publications as $publication)
-                <div class="publication">
-                    <div class="title">{{ $publication->PB_Title }}</div>
-                    <div class="date">{{ $publication->PB_Date }}</div>
-                    <a href="{{ route('publications.edit', $publication->id) }}" class="edit-btn">Edit</a>
-                </div>
-            @empty
-                <p>No publications found.</p>
-            @endforelse
-        </div>
+        @if(Auth::check() && Auth::user()->roleType === 'Platinum')
+            <div class="publications">
+                @forelse($publications as $publication)
+                    <div class="publication">
+                        <div class="title">{{ $publication->PB_Title }}</div>
+                        <div class="date">{{ $publication->PB_Date }}</div>
+                        <a href="{{ route('publications.edit', $publication->id) }}" class="edit-btn">Edit</a>
+                    </div>
+                @empty
+                    <p>No publications found.</p>
+                @endforelse
+            </div>
 
-        <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
+            <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
+        @else
+            <p>Please <a href="{{ route('login') }}">log in</a> to view your publications.</p>
+        @endif
     </div>
 </x-platinum-layout>
