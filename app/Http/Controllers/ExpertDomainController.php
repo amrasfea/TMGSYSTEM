@@ -59,7 +59,6 @@ class ExpertDomainController extends Controller
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information added successfully!');
     }
 
-
     public function destroy($ED_ID)
     {
         // Find the ExpertDomain record by ED_ID
@@ -72,9 +71,46 @@ class ExpertDomainController extends Controller
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information deleted successfully!');
     }
 
-    public function UpdateExpertDomainView(ExpertDomain $expertdomain) {
-        return view('ExpertDomainView.Platinum.UpdateExpertDomainView');
+    public function UpdateExpertDomainView($ED_ID)
+    {
+        $expertDomain = ExpertDomain::findOrFail($ED_ID);
+        return view('ExpertDomainView.Platinum.UpdateExpertDomainView', compact('expertDomain'));
     }
+
+    public function update(Request $request, $ED_ID)
+    {
+        // Validate the incoming request data
+        $data = $request->validate([
+            'ED_Name' => 'required|string',
+            'ED_Uni' => 'required|string',
+            'ED_Email' => 'required|string',
+            'ED_PhoneNum' => 'required|string',
+            'ED_address' => 'required|string',
+            'ED_fbname' => 'required|string',
+            'ED_edu_level' => 'required|string',
+            'ED_edu_field' => 'required|string',
+            'ED_occupation' => 'required|string',
+            'ED_sponsorship' => 'required|string',
+            'ED_gender' => 'required|string',
+            'E_title' => 'required|string',
+        ]);
+
+        // Find the ExpertDomain record by ED_ID
+        $expertDomain = ExpertDomain::findOrFail($ED_ID);
+
+        // Update the record with the new data
+        $expertDomain->update($data);
+
+        // Redirect to the list route with a success message
+        return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information updated successfully!');
+    }
+
+    public function view($id)
+    {
+        $expertDomain = ExpertDomain::findOrFail($id);
+        return view('ExpertDomainView.Platinum.DisplayExpertDomainDetailsView', compact('expertDomain'));
+    }
+
 
     public function ListExpertDomainView(){
         $expertDomains = ExpertDomain::all();
