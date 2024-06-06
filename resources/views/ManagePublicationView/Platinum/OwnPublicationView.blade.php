@@ -95,3 +95,4 @@
     </div>
 </body>
 </html>
+</x-platinum-layout>
