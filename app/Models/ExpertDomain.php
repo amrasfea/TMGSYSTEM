@@ -35,4 +35,14 @@ class ExpertDomain extends Model
         'p_platinumID'
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function mentor()
+    {
+        return $this->belongsTo(Mentor::class, 'M_mentorID');
+    }
 }

@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     // Route to view a specific profile by ID
     Route::get('/profiles/{id}', [ProfileController::class, 'viewProfile'])->name('profile.view');
 
+    Route::get('/expert/{id}', [ProfileController::class, 'show'])->name('expert.show');
 });
 
 require __DIR__.'/auth.php';
