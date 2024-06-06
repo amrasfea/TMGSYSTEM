@@ -1,3 +1,5 @@
+<x-platinum-layout>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
