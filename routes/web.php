@@ -10,6 +10,7 @@ use App\Http\Controllers\ManageWeeklyFocusController;
 use App\Http\Controllers\RegistrationUser;
 use App\Http\Controllers\ManagePublicationController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ManageDraftThesisPerformanceController;
 
 
 use Illuminate\Support\Facades\Auth;
