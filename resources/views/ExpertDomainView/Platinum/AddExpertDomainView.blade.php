@@ -148,7 +148,7 @@
             <input type="text" id="fbName" name="ED_fbname" placeholder="Enter your Facebook name">
 
             <div>
-                <input type="submit" value="Save">
+                <input type="submit" value="ADD">
             </div>
         </div>
     </div>
