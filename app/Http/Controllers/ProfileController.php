@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -174,23 +175,21 @@ class ProfileController extends Controller
         return view('profile.list', compact('users'));
     }
 
-    public function viewProfile($id): View
-   {
+    // ProfileController.php
+
+    public function viewProfile($id)
+{
     $profileUser = User::findOrFail($id);
-
     return view('profile.view', compact('profileUser'));
-   }
+}
 
-   public function show($id)
-    {
-        $expert = ExpertDomain::where('p_platinumID', $id)->first();
-        // Handle case where expert domain does not exist
-        if (!$expert) {
-            abort(404, 'Expert domain not found');
-        }
+public function viewExpert($id)
+{
+    $profileUser = User::findOrFail($id);
+    $expert = DB::table('expertDomains')->where('p_platinumID', $id)->first();
+    return view('profile.view', compact('profileUser', 'expert'));
+}
 
-        return view('profile.showExpert', compact('expert'));
-    }
     
 }
 
