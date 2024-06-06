@@ -49,15 +49,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-//registration
-Route::get('/platinum', [RegistrationController::class, 'index'])->name('platinum.index');
-Route::get('/platinum/create', [RegistrationController::class, 'create'])->name('platinum.create');
-Route::post('/platinum', [RegistrationController::class, 'store'])->name('platinum.store');
-Route::get('/platinum/{platinum}/edit', [RegistrationController::class, 'edit'])->name('platinum.edit');
-Route::put('/platinum/{platinum}/update', [RegistrationController::class, 'update'])->name('platinum.update');
-Route::delete('/platinum/{platinum}/destroy', [RegistrationController::class, 'destroy'])->name('platinum.destroy');
-Route::get('/platinum/{platinum}', [RegistrationController::class, 'show'])->name('platinum.show');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
