@@ -71,7 +71,7 @@
     <div class="container">
         <div class="top-bar">
             <a href="/dashboard" class="dashboard-link">Dashboard</a>
-            <span>{{ Auth::user()->name }}</span>
+            <span>{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
         </div>
         <h2>My Publications</h2>
 
@@ -80,7 +80,7 @@
                 <div class="publication">
                     <div class="title">{{ $publication->PB_Title }}</div>
                     <div class="date">{{ $publication->PB_Date }}</div>
-                    <a href="{{ route('publications.edit', $publication->PB_ID) }}" class="edit-btn">Edit</a>
+                    <a href="{{ route('publications.edit', $publication->id) }}" class="edit-btn">Edit</a>
                 </div>
             @endforeach
 
