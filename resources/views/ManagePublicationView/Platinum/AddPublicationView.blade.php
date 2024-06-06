@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-    @include('components.topBar')
+   
 
     <div class="container">
         <h2>My Publications</h2>
