@@ -121,6 +121,7 @@ Route::get('/PlatinumThesisTitle',[ManageWeeklyFocusController::class, 'Platinum
 Route::get('/DTAReport',[ManageWeeklyFocusController::class, 'GenerateDraftThesisPerformanceReport']);
 
 //ManagePublication
+Route::middleware('auth')->group(function(){
 Route::get('/publications', [ManagePublicationController::class, 'index'])->name('publications.index');
 Route::get('/publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
 Route::post('/publications', [ManagePublicationController::class, 'store'])->name('publications.store');
@@ -130,7 +131,7 @@ Route::delete('/publications/{id}', [ManagePublicationController::class, 'destro
 Route::get('/publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
 Route::get('/publications/platinum', [ManagePublicationController::class, 'viewOtherPublications'])->name('publications.platinum');
 Route::get('/publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
-
+}
 
 
 
