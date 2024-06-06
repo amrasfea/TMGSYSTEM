@@ -59,7 +59,7 @@
             height: 100vh;
             z-index: 1000;
             transition: all 0.25s ease-in-out;
-            background-color:#2E8B57;
+            background-color:#259BCB;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
