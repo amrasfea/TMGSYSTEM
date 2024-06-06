@@ -92,7 +92,7 @@
                     @foreach ($expertDomains as $index => $expertDomain)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $expertDomain->ED_name }}</td>
+                            <td>{{ $expertDomain->ED_Name }}</td>
                             <td><a class="view-link" href="#">View</a></td>
                             <td><a class="edit-link" href="{{ route('expertDomains.edit', $expertDomain->ED_ID) }}">Update</a></td>
                             <td>
