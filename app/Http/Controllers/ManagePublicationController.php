@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ManagePublicationController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // Remove the middleware constructor
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
-        $publications = Publication::where('user_id', Auth::id())->get();
+        $publications = Publication::all(); // Fetch all publications
         return view('ManagePublicationView.Platinum.OwnPublicationView', compact('publications'));
     }
 
@@ -51,7 +52,7 @@ class ManagePublicationController extends Controller
             'PB_Detail' => $request->input('detail'),
             'PB_Date' => $request->input('date-of-published'),
             'file_path' => $filePath,
-            'user_id' => Auth::id(),
+            // 'user_id' => Auth::id(), // Remove user_id for now
         ]);
 
         return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
@@ -113,5 +114,25 @@ class ManagePublicationController extends Controller
     {
         $publication = Publication::findOrFail($id);
         return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication'));
+    }
+
+    public function viewOtherPublications()
+    {
+        $publications = Publication::all();
+        return view('ManagePublicationView.Platinum.ViewOtherPublicationView', compact('publications'));
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $publications = Publication::where('PB_Title', 'LIKE', '%' . $searchTerm . '%')
+                                    ->orWhere('PB_Keyword', 'LIKE', '%' . $searchTerm . '%')
+                                    ->get();
+
+        if ($publications->isEmpty()) {
+            return view('ManagePublicationView.Platinum.SearchPublicationView')->with('error', 'No publications found.');
+        } else {
+            return view('ManagePublicationView.Platinum.SearchPublicationView', compact('publications'));
+        }
     }
 }
