@@ -12,6 +12,7 @@ class WeeklyFocusBlock extends Model
     protected $table = 'weekly_focus_blocks';
 
     protected $fillable = [
+        'FB_WeeklyFocusID',
         'P_platinumID',
         'M_mentorID',
         'FB_BlockType',

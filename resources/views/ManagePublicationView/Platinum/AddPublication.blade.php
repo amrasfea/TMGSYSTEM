@@ -72,9 +72,8 @@
                         </ul>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('publications.store') }}" enctype="multipart/form-data">
+                    <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
                         <div class="form-container">
                             <div class="form-section">
                                 <h2>Publication Information</h2>
@@ -101,8 +100,11 @@
                                 <label for="PB_Course">Field/Course</label>
                                 <input type="text" id="PB_Course" name="field" required>
 
-                                <label for="PB_Keyword">Description</label>
-                                <input type="text" id="PB_Keyword" name="keyword" required>
+                                <label for="PB_Detail">Description</label>
+                                <input type="text" id="PB_Detail" name="detail" required>
+
+                                <label for="PB_Page">Page Number</label>
+                                <input type="text" id="PB_Page" name="page-number" required>
 
                                 <label for="PB_Date">Date of Publish</label>
                                 <input type="date" id="PB_Date" name="date-of-published" required>
@@ -115,8 +117,8 @@
                             <div class="form-section">
                                 <h2>Upload Document</h2>
 
-                                <label for="PB_File">Upload File</label>
-                                <input type="file" id="PB_File" name="file" accept=".pdf,.doc,.docx" required>
+                                <label for="file_path">Upload File</label>
+                                <input type="file" id="file_path" name="file" accept=".pdf,.doc,.docx" required>
                             </div>
                         </div>
                     </form>
