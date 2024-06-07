@@ -85,6 +85,7 @@
                             <th>Name</th>
                             <th>View</th>
                             <th>Update</th>
+                            <th>Add Research and Publication</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -95,6 +96,7 @@
                             <td>{{ $expertDomain->ED_Name }}</td>
                             <td><a class="view-link" href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}">View</a></td>
                             <td><a class="edit-link" href="{{ route('expertDomains.edit', $expertDomain->ED_ID) }}">Update</a></td>
+                            <td><a class="edit-link" href="{{ route('researchPublications.add', $expertDomain->ED_ID) }}">Add</a></td>
                             <td>
                                 <form class="delete-link" action="{{ route('expertDomains.destroy', $expertDomain->ED_ID) }}" method="POST">
                                     @csrf
