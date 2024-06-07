@@ -104,7 +104,7 @@
                                 <input type="text" id="PB_Page" name="PB_Page" required>
 
                                 <label for="PB_Date">Date of Publish</label>
-                                <input type="PB_Date" id="PB_Date" name="PB_Date" required>
+                                <input type="date" id="PB_Date" name="PB_Date" required>
 
                                 <div>
                                     <input type="submit" value="Add Publication">
@@ -114,7 +114,7 @@
                             <div class="form-section">
                                 <h2>Upload Document</h2>
                                 <label for="file_path">Upload File</label>
-                                <input type="file_path" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
+                                <input type="file" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
                             </div>
                         </div>
                     </form>
