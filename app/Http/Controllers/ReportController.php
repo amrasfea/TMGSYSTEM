@@ -23,7 +23,7 @@ class ReportController extends Controller
 
         $users = $query->paginate(10);
 
-        return view('users.report', compact('users'));
+        return view('pdf.reportForm', compact('users'));
     }
 
     public function generatePdf(Request $request)
