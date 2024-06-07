@@ -1,4 +1,5 @@
-@extends('layouts.platinum-layout')
+<x-platinum-layout>
+
 
 @section('title', 'My Publications')
 
@@ -73,3 +74,4 @@
         <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
     </div>
 @endsection
+</x-platinum-layout>
