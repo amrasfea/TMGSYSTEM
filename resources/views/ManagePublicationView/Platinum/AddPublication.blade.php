@@ -6,10 +6,59 @@
     </x-slot>
 
     <style>
-        /* Add your styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            width: 48%;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="date"],
+        select,
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-section button,
+        .form-section input[type="submit"] {
+            background-color: #0062cc;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 30px;
+            float: right;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .form-section button:hover,
+        .form-section input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
     </style>
 
-    <div class="py-12">
+<div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
@@ -74,4 +123,3 @@
         </div>
     </div>
 </x-platinum-layout>
-
