@@ -117,6 +117,7 @@ Route::get('/CRMPReportDTA',[ManageDraftThesisPerformanceController::class, 'CRM
 
 
 //ManagePublication
+Route::middleware('auth')->group(function(){
 Route::get('publications', [ManagePublicationController::class, 'index'])->name('publications.index');
 Route::get('publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
 Route::post('publications', [ManagePublicationController::class, 'store'])->name('publications.store');
@@ -125,7 +126,7 @@ Route::put('publications/{id}', [ManagePublicationController::class, 'update'])-
 Route::delete('publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
 Route::get('publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
 Route::get('publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
-
+});
 
 
 
