@@ -1,7 +1,7 @@
 <x-platinum-layout>
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('List of Expert Domains') }}
+            {{ __('List of My Expert Domains') }}
         </h2>
     </x-slot>
 
@@ -76,7 +76,7 @@
                     }
                 </style>
 
-                <h1>List of Expert Domains</h1>
+                <h1>List of My Expert Domains</h1>
 
                 <table>
                     <thead>
