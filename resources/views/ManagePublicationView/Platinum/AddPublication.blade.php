@@ -72,8 +72,9 @@
                         </ul>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('publications.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('publications.store') }}">
                         @csrf
+                        @method('post')
 
                         <div class="form-container">
                             <div class="form-section">
@@ -118,8 +119,8 @@
                             <div class="form-section">
                                 <h2>Upload Document</h2>
 
-                                <label for="PB_File">Upload File</label>
-                                <input type="file" id="PB_File" name="file" accept=".pdf,.doc,.docx" required>
+                                <label for="file_path">Upload File</label>
+                                <input type="file" id="file_path" name="file" accept=".pdf,.doc,.docx" required>
                             </div>
                         </div>
                     </form>
