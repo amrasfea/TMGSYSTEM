@@ -101,10 +101,10 @@
                                 <input type="text" id="PB_Course" name="field" required>
 
                                 <label for="PB_Detail">Description</label>
-                                <input type="text" id="PB_Detail" name="description" required>
+                                <input type="text" id="PB_Detail" name="detail" required>
 
                                 <label for="PB_Page">Page Number</label>
-                                <input type="text" id="PB_Page" name="pagenumber" required>
+                                <input type="text" id="PB_Page" name="page-number" required>
 
                                 <label for="PB_Date">Date of Publish</label>
                                 <input type="date" id="PB_Date" name="date-of-published" required>

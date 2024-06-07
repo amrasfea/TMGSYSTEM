@@ -12,7 +12,7 @@ class ManagePublicationController extends Controller
 {
     public function __construct()
     {
-        
+        // You can add middleware here if needed
     }
 
     public function index()
