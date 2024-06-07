@@ -1,4 +1,4 @@
-@extends('layouts.platinum-layout')
+<x-platinum-layout>
 
 @section('title', 'Add Publication')
 
@@ -51,3 +51,4 @@
     </form>
 </div>
 @endsection
+</x-platinum-layout>
