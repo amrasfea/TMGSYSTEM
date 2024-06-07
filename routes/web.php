@@ -90,20 +90,20 @@ Route::middleware('auth')->group(function(){
 
 Route::middleware('auth')->group(function() {
     // Routes related to weekly focus selection
-    Route::get('/weekly-focus-selection', [WeeklyFocusController::class, 'showWeeklyFocusSelectionForm'])->name('weeklyFocusSelectionForm');
-    Route::post('/weekly-focus-selection', [WeeklyFocusController::class, 'processWeeklyFocusSelection'])->name('processWeeklyFocusSelection');
+    Route::get('/weekly-focus-selection', [ManageWeeklyFocusController::class, 'showWeeklyFocusSelectionForm'])->name('weeklyFocusSelectionForm');
+    Route::post('/weekly-focus-selection', [ManageWeeklyFocusController::class, 'processWeeklyFocusSelection'])->name('processWeeklyFocusSelection');
 
     // Other existing routes...
-    Route::get('/focus-block-view', [WeeklyFocusController::class, 'focusBlockView'])->name('focusBlockView');
-    Route::get('/admin-block-view', [WeeklyFocusController::class, 'adminBlockView'])->name('adminBlockView');
-    Route::get('/recovery-block-view', [WeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
-    Route::get('/social-block-view', [WeeklyFocusController::class, 'socialBlockView'])->name('socialBlockView');
-    Route::get('/weekly-focus-view', [WeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView');
-    Route::get('/platinum-weekly-focus-report', [WeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinumWeeklyFocusReport');
-    Route::get('/all-weekly-focus-view', [WeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView');
-    Route::get('/mentor-weekly-focus-report', [WeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentorWeeklyFocusReport');
-    Route::get('/platinum-weekly-focus-view', [WeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView');
-    Route::get('/crmp-weekly-focus-report', [WeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmpWeeklyFocusReport');
+    Route::get('/focus-block-view', [ManageWeeklyFocusController::class, 'focusBlockView'])->name('focusBlockView');
+    Route::get('/admin-block-view', [ManageWeeklyFocusController::class, 'adminBlockView'])->name('adminBlockView');
+    Route::get('/recovery-block-view', [ManageWeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
+    Route::get('/social-block-view', [ManageWeeklyFocusController::class, 'socialBlockView'])->name('socialBlockView');
+    Route::get('/weekly-focus-view', [ManageWeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView');
+    Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinumWeeklyFocusReport');
+    Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView');
+    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentorWeeklyFocusReport');
+    Route::get('/platinum-weekly-focus-view', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView');
+    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmpWeeklyFocusReport');
 });
 
 
