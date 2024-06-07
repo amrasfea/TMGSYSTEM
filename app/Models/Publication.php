@@ -26,6 +26,6 @@ class Publication extends Model
         'file_path',
     ];
 
-    // Define relationships if necessary
+    protected $table='publications';
 }
 

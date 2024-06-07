@@ -117,7 +117,7 @@
                                 <h2>Upload Document</h2>
 
                                 <label for="file">Upload File</label>
-                                <input type="file" id="file" name="file" required>
+                                <input type="file" id="file" name="file">
                             </div>
                         </div>
                     </form>

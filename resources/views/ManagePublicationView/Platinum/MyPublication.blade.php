@@ -56,11 +56,7 @@
     </style>
 
     <div class="container">
-        <h2>My Publications</h2>
 
-        @if($publications->isEmpty())
-            <p>No publications found.</p>
-        @else
             <table class="publications-table">
                 <thead>
                     <tr>
@@ -85,7 +81,7 @@
                     @endforeach
                 </tbody>
             </table>
-        @endif
+
 
         <a href="{{ route('publications.create') }}" class="add-publication-btn">Add New Publication</a>
     </div>
