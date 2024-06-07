@@ -79,10 +79,7 @@ class ManagePublicationController extends Controller
                 Log::error('File upload error: ' . $e->getMessage());
                 return redirect()->back()->with('error', 'File upload failed.');
             }
-        } else {
-            Log::error('File not found in request');
-            return redirect()->back()->with('error', 'File upload failed.');
-        }
+        } 
     }
 
     public function show($id)
