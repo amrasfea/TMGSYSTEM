@@ -76,7 +76,7 @@
                     }
                 </style>
 
-                <h1>List of Your Expert Domains</h1>
+                <h1>List of All Expert Domains</h1>
 
                 <table>
                     <thead>
