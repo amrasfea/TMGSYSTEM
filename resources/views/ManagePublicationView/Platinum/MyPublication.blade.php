@@ -57,8 +57,7 @@
 
 
     <div class="container">
-        <h2>My Publications</h2>
-
+        
         <div class="publications">
             @forelse($publications as $publication)
                 <div class="publication">
