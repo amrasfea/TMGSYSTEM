@@ -1,94 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Publication</title>
-    <style>
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+<x-platinum-layout>
 
-        h2 {
-            text-align: center;
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Publication') }}
+        </h2>
+    </x-slot>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
-
-        .form-group {
-            margin-bottom: 15px;
+        .form-section {
+            width: 48%;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
-
-        .form-label {
+        .form-section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="date"],
+        select,
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-section button,
+        .form-section input[type="submit"] {
+            background-color: #0062cc;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 30px;
+            float: right;
+            font-size: 16px;
             font-weight: bold;
         }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ced4da;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
+        .form-section button:hover,
+        .form-section input[type="submit"]:hover {
+            background-color: #0056b3;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Edit Publication</h2>
-        <form action="{{ route('publications.update', $publication->PB_ID) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
 
-            <div class="form-group mb-3">
-                <label for="PB_Type" class="form-label">Type of Publication</label>
-                <select class="form-control" id="PB_Type" name="PB_Type" required>
-                    <option value="">Select Type</option>
-                    <option value="Journal" {{ $publication->PB_Type == 'Journal' ? 'selected' : '' }}>Journal</option>
-                    <option value="Conference" {{ $publication->PB_Type == 'Conference' ? 'selected' : '' }}>Conference</option>
-                    <option value="Book" {{ $publication->PB_Type == 'Book' ? 'selected' : '' }}>Book</option>
-                    <option value="Thesis" {{ $publication->PB_Type == 'Thesis' ? 'selected' : '' }}>Thesis</option>
-                    <option value="Report" {{ $publication->PB_Type == 'Report' ? 'selected' : '' }}>Report</option>
-                </select>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <div>
+                        @if($errors->any())
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                    <form method="post" action="{{ route('publications.update', $publication->id) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-container">
+                            <div class="form-section">
+                                <h2>Publication Information</h2>
+
+                                <label for="PB_Type">Type of Publication</label>
+                                <select id="PB_Type" name="type-of-publication">
+                                    <option value="">Select Type</option>
+                                    <option value="Journal" {{ $publication->PB_Type == 'Journal' ? 'selected' : '' }}>Journal</option>
+                                    <option value="Conference" {{ $publication->PB_Type == 'Conference' ? 'selected' : '' }}>Conference</option>
+                                    <option value="Book" {{ $publication->PB_Type == 'Book' ? 'selected' : '' }}>Book</option>
+                                    <option value="Thesis" {{ $publication->PB_Type == 'Thesis' ? 'selected' : '' }}>Thesis</option>
+                                    <option value="Report" {{ $publication->PB_Type == 'Report' ? 'selected' : '' }}>Report</option>
+                                </select>
+
+                                <label for="PB_Title">Publication Title</label>
+                                <input type="text" id="PB_Title" name="title" value="{{ $publication->PB_Title }}" required>
+
+                                <label for="PB_Author">Author</label>
+                                <input type="text" id="PB_Author" name="author" value="{{ $publication->PB_Author }}" required>
+
+                                <label for="PB_Uni">University</label>
+                                <input type="text" id="PB_Uni" name="university" value="{{ $publication->PB_Uni }}" required>
+
+                                <label for="PB_Course">Field/Course</label>
+                                <input type="text" id="PB_Course" name="field" value="{{ $publication->PB_Course }}" required>
+
+                                <label for="PB_Detail">Description</label>
+                                <input type="text" id="PB_Detail" name="description" value="{{ $publication->PB_Detail }}" required>
+
+                                <label for="PB_Page">Page Number</label>
+                                <input type="text" id="PB_Page" name="pagenumber" value="{{ $publication->PB_Page }}" required>
+
+                                <label for="PB_Date">Date of Publish</label>
+                                <input type="date" id="PB_Date" name="date-of-published" value="{{ $publication->PB_Date }}" required>
+
+                                <div>
+                                    <input type="submit" value="Update Publication">
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h2>Upload Document</h2>
+
+                                <label for="PB_File">Upload File</label>
+                                <input type="file" id="PB_File" name="file" accept=".pdf,.doc,.docx">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group mb-3">
-                <label for="PB_Title" class="form-label">Publication Title</label>
-                <input type="text" class="form-control" id="PB_Title" name="PB_Title" value="{{ $publication->PB_Title }}" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="PB_Author" class="form-label">Author</label>
-                <input type="text" class="form-control" id="PB_Author" name="PB_Author" value="{{ $publication->PB_Author }}" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="PB_Uni" class="form-label">University</label>
-                <input type="text" class="form-control" id="PB_Uni" name="PB_Uni" value="{{ $publication->PB_Uni }}" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="PB_Course" class="form-label">Field/Course</label>
-                <input type="text" class="form-control" id="PB_Course" name="PB_Course" value="{{ $publication->PB_Course }}" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="PB_Keyword" class="form-label">Description</label>
-                <input type="text" class="form-control" id="PB_Keyword" name="PB_Keyword" value="{{ $publication->PB_Keyword }}" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="PB_Date" class="form-label">Date of Publish</label>
-                <input type="date" class="form-control" id="PB_Date" name="PB_Date" value="{{ $publication->PB_Date }}" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="PB_File" class="form-label">Upload File</label>
-                <input type="file" class="form-control" id="PB_File" name="PB_File" accept=".pdf,.doc,.docx">
-            </div>
-            <button type="submit" class="btn btn-primary">Update Publication</button>
-        </form>
+        </div>
     </div>
-</body>
-</html>
+</x-platinum-layout>
+
