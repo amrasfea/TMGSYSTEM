@@ -219,7 +219,7 @@
                             <a href="{{ route('expertDomains.list') }}" class="sidebar-link">List Own Expert</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List All Expert</a>
+                            <a href="{{ route('expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('platinum.report') }}" class="sidebar-link">Report</a>
