@@ -72,10 +72,8 @@
                         </ul>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('publications.store') }}">
+                    <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('post')
-
                         <div class="form-container">
                             <div class="form-section">
                                 <h2>Publication Information</h2>
