@@ -5,12 +5,6 @@
         </h2>
     </x-slot>
 
-
-
-
-
-
-@section('styles')
     <style>
         .container {
             max-width: 800px;
@@ -60,9 +54,8 @@
             text-align: center;
         }
     </style>
-@endsection
 
-@section('content')
+
     <div class="container">
         <h2>My Publications</h2>
 
@@ -80,5 +73,5 @@
 
         <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
     </div>
-@endsection
+
 </x-platinum-layout>
