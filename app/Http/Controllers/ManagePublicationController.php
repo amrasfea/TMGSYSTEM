@@ -7,6 +7,7 @@ use App\Models\Platinum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ManagePublicationController extends Controller
 {
