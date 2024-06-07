@@ -13,7 +13,7 @@ class ManagePublicationController extends Controller
 {
     public function __construct()
     {
-        // Constructor can be used for middleware if needed
+        // Middleware for authentication can be added here
     }
 
     public function index()
@@ -155,3 +155,4 @@ class ManagePublicationController extends Controller
         return view('ManagePublicationView.Platinum.SearchPublication', compact('publications'));
     }
 }
+

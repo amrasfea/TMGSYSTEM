@@ -12,7 +12,6 @@
             padding: 20px;
         }
 
-
         .publications {
             margin-top: 20px;
         }
@@ -55,9 +54,7 @@
         }
     </style>
 
-
     <div class="container">
-        
         <div class="publications">
             @forelse($publications as $publication)
                 <div class="publication">
@@ -72,5 +69,4 @@
 
         <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
     </div>
-
 </x-platinum-layout>
