@@ -85,13 +85,13 @@ class ManagePublicationController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit($PB_ID)
     {
-        $publication = Publication::findOrFail($id);
+        $publication = Publication::where('PB_ID', $PB_ID)->firstOrFail();
         return view('ManagePublicationView.Platinum.EditPublication', compact('publication'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $PB_ID)
     {
         $request->validate([
             'type-of-publication' => 'required|string|max:255',
@@ -105,7 +105,7 @@ class ManagePublicationController extends Controller
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
-        $publication = Publication::findOrFail($id);
+        $publication = Publication::where('PB_ID', $PB_ID)->firstOrFail();
         $filePath = $publication->file_path;
 
         if ($request->hasFile('file')) {
@@ -130,18 +130,18 @@ class ManagePublicationController extends Controller
         return redirect()->route('publications.index')->with('success', 'Publication updated successfully.');
     }
 
-    public function destroy($id)
+    public function destroy($PB_ID)
     {
-        $publication = Publication::findOrFail($id);
+        $publication = Publication::where('PB_ID', $PB_ID)->firstOrFail();
         Storage::delete($publication->file_path);
         $publication->delete();
 
         return redirect()->route('publications.index')->with('success', 'Publication deleted successfully.');
     }
 
-    public function show($id)
+    public function show($PB_ID)
     {
-        $publication = Publication::findOrFail($id);
+        $publication = Publication::where('PB_ID', $PB_ID)->firstOrFail();
         return view('ManagePublicationView.Platinum.ViewPublication', compact('publication'));
     }
 
@@ -155,4 +155,3 @@ class ManagePublicationController extends Controller
         return view('ManagePublicationView.Platinum.SearchPublication', compact('publications'));
     }
 }
-

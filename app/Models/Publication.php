@@ -9,6 +9,8 @@ class Publication extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'PB_ID';
+
     protected $fillable = [
         'PB_Type',
         'PB_Title',
