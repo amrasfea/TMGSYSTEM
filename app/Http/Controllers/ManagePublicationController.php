@@ -41,12 +41,8 @@ class ManagePublicationController extends Controller
             'file' => 'required|file|mimes:pdf,doc,docx|max:10240',
         ]);
 
-        if ($request->hasFile('file')){
-            $file = $request->file('file');
-            $path=$file->store('public/documents');
-
-            $publication_data['file'] = $path;
-        }
+        $filePath = $request->file('file')->store('publications');
+        $platinum = Platinum::where('id', Auth::id())->first();
 
         if (!$platinum) {
             return redirect()->back()->with('error', 'Platinum record not found.');
