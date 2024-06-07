@@ -24,9 +24,10 @@ class Publication extends Model
 
     public function platinum()
     {
-        return $this->belongsTo(Platinum::class, 'P_platinumID', 'P_platinumID');
+        return $this->belongsTo(Platinum::class, 'P_platinumID');
     }
 }
+
 
      
 

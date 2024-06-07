@@ -1,5 +1,4 @@
 <x-platinum-layout>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Add Publication') }}
@@ -78,8 +77,8 @@
                             <div class="form-section">
                                 <h2>Publication Information</h2>
 
-                                <label for="PB_Type">Type of Publication</label>
-                                <select id="PB_Type" name="type-of-publication">
+                                <label for="type-of-publication">Type of Publication</label>
+                                <select id="type-of-publication" name="type-of-publication">
                                     <option value="">Select Type</option>
                                     <option value="Journal">Journal</option>
                                     <option value="Conference">Conference</option>
@@ -88,26 +87,26 @@
                                     <option value="Report">Report</option>
                                 </select>
 
-                                <label for="PB_Title">Publication Title</label>
-                                <input type="text" id="PB_Title" name="title" required>
+                                <label for="title">Publication Title</label>
+                                <input type="text" id="title" name="title" required>
 
-                                <label for="PB_Author">Author</label>
-                                <input type="text" id="PB_Author" name="author" required>
+                                <label for="author">Author</label>
+                                <input type="text" id="author" name="author" required>
 
-                                <label for="PB_Uni">University</label>
-                                <input type="text" id="PB_Uni" name="university" required>
+                                <label for="university">University</label>
+                                <input type="text" id="university" name="university" required>
 
-                                <label for="PB_Course">Field/Course</label>
-                                <input type="text" id="PB_Course" name="field" required>
+                                <label for="field">Field/Course</label>
+                                <input type="text" id="field" name="field" required>
 
-                                <label for="PB_Detail">Description</label>
-                                <input type="text" id="PB_Detail" name="detail" required>
+                                <label for="detail">Description</label>
+                                <input type="text" id="detail" name="detail" required>
 
-                                <label for="PB_Page">Page Number</label>
-                                <input type="text" id="PB_Page" name="page-number" required>
+                                <label for="page-number">Page Number</label>
+                                <input type="text" id="page-number" name="page-number" required>
 
-                                <label for="PB_Date">Date of Publish</label>
-                                <input type="date" id="PB_Date" name="date-of-published" required>
+                                <label for="date-of-published">Date of Publish</label>
+                                <input type="date" id="date-of-published" name="date-of-published" required>
 
                                 <div>
                                     <input type="submit" value="Add Publication">
@@ -117,8 +116,8 @@
                             <div class="form-section">
                                 <h2>Upload Document</h2>
 
-                                <label for="file_path">Upload File</label>
-                                <input type="file" id="file_path" name="file" accept=".pdf,.doc,.docx" required>
+                                <label for="file">Upload File</label>
+                                <input type="file" id="file" name="file" required>
                             </div>
                         </div>
                     </form>
@@ -127,3 +126,4 @@
         </div>
     </div>
 </x-platinum-layout>
+

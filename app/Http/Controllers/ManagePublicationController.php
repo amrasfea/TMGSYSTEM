@@ -13,7 +13,7 @@ class ManagePublicationController extends Controller
 {
     public function __construct()
     {
-        // You can add middleware here if needed
+        $this->middleware('auth');
     }
 
     public function index()
@@ -52,7 +52,7 @@ class ManagePublicationController extends Controller
             Log::info('File is present');
 
             try {
-                // Store the file
+                // Store the file on the public disk
                 $filePath = $request->file('file')->store('publications', 'public');
                 
                 // Log the file path
@@ -97,12 +97,53 @@ class ManagePublicationController extends Controller
         }
     }
 
-    
+    public function edit($id)
+    {
+        $publication = Publication::findOrFail($id);
+        return view('ManagePublicationView.Platinum.EditPublication', compact('publication'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'type-of-publication' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'university' => 'required|string|max:255',
+            'field' => 'required|string|max:255',
+            'page-number' => 'required|integer',
+            'detail' => 'required|string|max:255',
+            'date-of-published' => 'required|date',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+        ]);
+
+        $publication = Publication::findOrFail($id);
+        $filePath = $publication->file_path;
+
+        if ($request->hasFile('file')) {
+            Storage::disk('public')->delete($filePath);
+            $filePath = $request->file('file')->store('publications', 'public');
+        }
+
+        $publication->update([
+            'PB_Type' => $request->input('type-of-publication'),
+            'PB_Title' => $request->input('title'),
+            'PB_Author' => $request->input('author'),
+            'PB_Uni' => $request->input('university'),
+            'PB_Course' => $request->input('field'),
+            'PB_Page' => $request->input('page-number'),
+            'PB_Detail' => $request->input('detail'),
+            'PB_Date' => $request->input('date-of-published'),
+            'file_path' => $filePath,
+        ]);
+
+        return redirect()->route('publications.index')->with('success', 'Publication updated successfully.');
+    }
 
     public function destroy($id)
     {
         $publication = Publication::findOrFail($id);
-        Storage::delete($publication->file_path);
+        Storage::disk('public')->delete($publication->file_path);
         $publication->delete();
 
         return redirect()->route('publications.index')->with('success', 'Publication deleted successfully.');
