@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('P_platinumID');
             $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums');
             $table->unsignedBigInteger('FB_WeeklyFocusID');
-            $table->foreign('FB_WeeklyFocusID')->references('FB_WeeklyFocusID')->on('WeeklyFocusBlocks');
+            $table->foreign('FB_WeeklyFocusID')->references('FB_WeeklyFocusID')->on('weekly_focus_blocks');
             $table->timestamps();
         });
     }
