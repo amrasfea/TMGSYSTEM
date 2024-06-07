@@ -54,6 +54,8 @@
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             @foreach ($users as $user)
+                            @if ($user->roleType === 'Platinum')
+                            
                                 <tr>
                                     <td class="py-2 px-4">{{ $user->name }}</td>
                                     <td class="py-2 px-4">{{ $user->email }}</td>
@@ -69,6 +71,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
