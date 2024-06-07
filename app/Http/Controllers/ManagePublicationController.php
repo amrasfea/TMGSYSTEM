@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publication;
+use App\Models\Platinum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -10,28 +11,28 @@ use Illuminate\Support\Facades\Log;
 
 class ManagePublicationController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $publications = Publication::orderBy('PB_ID','desc');
-        return view('ManagePublicationView.Platinum.MyPublication', compact('publications'));
+        // Constructor can be used for middleware if needed
     }
 
-    /**
-     * Show the form for creating new publication
-     */
+    public function index()
+    {
+        $platinum = Platinum::where('id', Auth::id())->first();
+        $publications = $platinum ? $platinum->publications : [];
+        return view('ManagePublicationView.Platinum.MyPublication', compact('publications'));
+    }
 
     public function create()
     {
         return view('ManagePublicationView.Platinum.AddPublication');
     }
 
-    /**
-     * Store a newly created resource in storage
-     */
-
     public function store(Request $request)
     {
-        $publication_data = $request->validate([
+        Log::info('Store method called');
+
+        $request->validate([
             'type-of-publication' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
@@ -40,33 +41,46 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
-        /**
-         * Hande file upload
-         */
-
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filePath = $file->store('public/documents'); // store the file and get the path
+            Log::info('File is present');
 
-            $publication_data= new Publication([
-                'P_platinumID' => Auth::id(),
-                'PB_Type' => $request->input('type-of-publication'),
-                'PB_Title' => $request->input('title'),
-                'PB_Author' => $request->input('author'),
-                'PB_Uni' => $request->input('university'),
-                'PB_Course' => $request->input('field'),
-                'PB_Page' => $request->input('page-number'),
-                'PB_Detail' => $request->input('detail'),
-                'PB_Date' => $request->input('date-of-published'),
-                'file_path' => $filePath,
-            ]);
-            $publication_data->save();
+            try {
+                $file = $request->file('file');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->storeAs('publications', $fileName, 'public');
 
-            return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
+                Log::info('File stored at: ' . $filePath);
+
+                $platinum = Platinum::where('id', Auth::id())->first();
+
+                if (!$platinum) {
+                    Log::error('Platinum record not found');
+                    return redirect()->back()->with('error', 'Platinum record not found.');
+                }
+
+                Publication::create([
+                    'PB_Type' => $request->input('type-of-publication'),
+                    'PB_Title' => $request->input('title'),
+                    'PB_Author' => $request->input('author'),
+                    'PB_Uni' => $request->input('university'),
+                    'PB_Course' => $request->input('field'),
+                    'PB_Page' => $request->input('page-number'),
+                    'PB_Detail' => $request->input('detail'),
+                    'PB_Date' => $request->input('date-of-published'),
+                    'file_path' => $filePath,
+                    'P_platinumID' => $platinum->P_platinumID,
+                ]);
+
+                return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
+            } catch (\Exception $e) {
+                Log::error('File upload error: ' . $e->getMessage());
+                return redirect()->back()->with('error', 'File upload failed.');
+            }
         } else {
+            Log::error('File not found in request');
             return redirect()->back()->with('error', 'File upload failed.');
         }
     }
@@ -94,16 +108,17 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf|max:10240',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
-        $publication_data = Publication::findOrFail($id);
-        $filePath = $publication_data->file_path;
+        $publication = Publication::findOrFail($id);
+        $filePath = $publication->file_path;
 
         if ($request->hasFile('file')) {
             Storage::delete($filePath);
             $file = $request->file('file');
-            $filePath = $file->store('public/documents');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('publications', $fileName, 'public');
         }
 
         $publication->update([
@@ -123,9 +138,9 @@ class ManagePublicationController extends Controller
 
     public function destroy($id)
     {
-        $publication_data = Publication::findOrFail($id);
-        Storage::delete($publication_data->file_path);
-        $publication_data->delete();
+        $publication = Publication::findOrFail($id);
+        Storage::delete($publication->file_path);
+        $publication->delete();
 
         return redirect()->route('publications.index')->with('success', 'Publication deleted successfully.');
     }
@@ -133,10 +148,12 @@ class ManagePublicationController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $publications_data = Publication::where('PB_Title', 'like', "%{$query}%")
+        $publications = Publication::where('PB_Title', 'like', "%{$query}%")
                             ->orWhere('PB_Detail', 'like', "%{$query}%")
                             ->get();
 
         return view('ManagePublicationView.Platinum.SearchPublication', compact('publications'));
     }
+
 }
+
