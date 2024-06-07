@@ -75,8 +75,8 @@
                             <div class="form-section">
                                 <h2>Publication Information</h2>
 
-                                <label for="type-of-publication">Type of Publication</label>
-                                <select id="type-of-publication" name="type-of-publication" required>
+                                <label for="PB_Type">Type of Publication</label>
+                                <select id="PB_Type" name="PB_Type" required>
                                     <option value="">Select Type</option>
                                     <option value="Journal">Journal</option>
                                     <option value="Conference">Conference</option>
@@ -85,26 +85,26 @@
                                     <option value="Report">Report</option>
                                 </select>
 
-                                <label for="title">Publication Title</label>
-                                <input type="text" id="title" name="title" required>
+                                <label for="PB_Title">Publication Title</label>
+                                <input type="text" id="PB_Title" name="PB_Title" required>
 
-                                <label for="author">Author</label>
-                                <input type="text" id="author" name="author" required>
+                                <label for="PB_Author">Author</label>
+                                <input type="text" id="PB_Author" name="PB_Author" required>
 
-                                <label for="university">University</label>
-                                <input type="text" id="university" name="university" required>
+                                <label for="PB_Uni">University</label>
+                                <input type="text" id="PB_Uni" name="PB_Uni" required>
 
-                                <label for="field">Field/Course</label>
-                                <input type="text" id="field" name="field" required>
+                                <label for="PB_Course">Field/Course</label>
+                                <input type="text" id="PB_Course" name="PB_Course" required>
 
-                                <label for="detail">Description</label>
-                                <input type="text" id="detail" name="detail" required>
+                                <label for="PB_Detail">Description</label>
+                                <input type="text" id="PB_Detail" name="PB_Detail" required>
 
-                                <label for="page-number">Page Number</label>
-                                <input type="text" id="page-number" name="page-number" required>
+                                <label for="PB_Page">Page Number</label>
+                                <input type="text" id="PB_Page" name="PB_Page" required>
 
-                                <label for="date-of-published">Date of Publish</label>
-                                <input type="date" id="date-of-published" name="date-of-published" required>
+                                <label for="PB_Date">Date of Publish</label>
+                                <input type="PB_Date" id="PB_Date" name="PB_Date" required>
 
                                 <div>
                                     <input type="submit" value="Add Publication">
@@ -113,8 +113,8 @@
 
                             <div class="form-section">
                                 <h2>Upload Document</h2>
-                                <label for="file">Upload File</label>
-                                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx" required>
+                                <label for="file_path">Upload File</label>
+                                <input type="file_path" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
                             </div>
                         </div>
                     </form>
