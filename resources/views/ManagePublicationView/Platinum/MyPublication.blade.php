@@ -10,19 +10,6 @@
             padding: 20px;
         }
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #343a40;
-            color: #ffffff;
-        }
-
-        .top-bar .dashboard-link {
-            color: #ffffff;
-            text-decoration: none;
-        }
 
         .publications {
             margin-top: 20px;
@@ -68,8 +55,6 @@
 @endsection
 
 @section('content')
-    @include('components.topBar') <!-- Including the top bar -->
-
     <div class="container">
         <h2>My Publications</h2>
 
