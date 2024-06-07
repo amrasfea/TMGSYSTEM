@@ -9,21 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ManagePublicationController extends Controller
 {
-    // Remove the middleware constructor
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        
+    }
 
     public function index()
     {
-        $publications = Publication::all(); // Fetch all publications
-        return view('ManagePublicationView.Platinum.OwnPublicationView', compact('publications'));
+        $publications = Publication::where('user_id', Auth::id())->get();
+        return view('ManagePublicationView.Platinum.MyPublication', compact('publications'));
     }
 
     public function create()
     {
-        return view('ManagePublicationView.Platinum.AddPublicationView');
+        return view('ManagePublicationView.Platinum.AddPublication');
     }
 
     public function store(Request $request)
@@ -52,7 +51,7 @@ class ManagePublicationController extends Controller
             'PB_Detail' => $request->input('detail'),
             'PB_Date' => $request->input('date-of-published'),
             'file_path' => $filePath,
-            // 'user_id' => Auth::id(), // Remove user_id for now
+            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
@@ -61,7 +60,7 @@ class ManagePublicationController extends Controller
     public function edit($id)
     {
         $publication = Publication::findOrFail($id);
-        return view('ManagePublicationView.Platinum.EditPublicationView', compact('publication'));
+        return view('ManagePublicationView.Platinum.EditPublication', compact('publication'));
     }
 
     public function update(Request $request, $id)
@@ -113,26 +112,16 @@ class ManagePublicationController extends Controller
     public function show($id)
     {
         $publication = Publication::findOrFail($id);
-        return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication'));
-    }
-
-    public function viewOtherPublications()
-    {
-        $publications = Publication::all();
-        return view('ManagePublicationView.Platinum.ViewOtherPublicationView', compact('publications'));
+        return view('ManagePublicationView.Platinum.ViewPublication', compact('publication'));
     }
 
     public function search(Request $request)
     {
-        $searchTerm = $request->input('search');
-        $publications = Publication::where('PB_Title', 'LIKE', '%' . $searchTerm . '%')
-                                    ->orWhere('PB_Keyword', 'LIKE', '%' . $searchTerm . '%')
-                                    ->get();
+        $query = $request->input('query');
+        $publications = Publication::where('PB_Title', 'like', "%{$query}%")
+                            ->orWhere('PB_Detail', 'like', "%{$query}%")
+                            ->get();
 
-        if ($publications->isEmpty()) {
-            return view('ManagePublicationView.Platinum.SearchPublicationView')->with('error', 'No publications found.');
-        } else {
-            return view('ManagePublicationView.Platinum.SearchPublicationView', compact('publications'));
-        }
+        return view('ManagePublicationView.Platinum.SearchPublication', compact('publications'));
     }
 }

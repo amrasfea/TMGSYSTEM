@@ -66,16 +66,21 @@ Route::middleware('auth', 'role:Staff')->group(function () {
 });
 
 Route::middleware('auth')->group(function(){
-    Route::get('/expertDomains/add', [ExpertDomainController::class, 'AddExpertDomainView'])->name('expertDomains.add');
+    Route::get('/expertDomains/add', [ExpertDomainController::class, 'AddExpertDomainView'])->name('expertDomains.add');//add expert
     Route::post('/expertDomains/store', [ExpertDomainController::class, 'store'])->name('expertDomains.store');
-    Route::get('/expertDomains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');
+
+    Route::get('/expertDomains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');//list own expert
+    Route::get('/AllexpertDomains', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//list own expert
     Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit'); // This is the GET route
     Route::put('/expertDomains/update/{id}', [ExpertDomainController::class, 'update'])->name('expertDomains.update'); // This is the PUT route
-    Route::delete('/expertDomains/{ED_ID}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');
-    Route::get('/expertDomains/view/{id}', [ExpertDomainController::class, 'view'])->name('expertDomains.view');
+
+    Route::delete('/expertDomains/{ED_ID}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');//delete expert
+
+    Route::get('/expertDomains/view/{id}', [ExpertDomainController::class, 'view'])->name('expertDomains.view');//list details
     Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
     Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
     Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
+
     Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
     Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
     
@@ -112,17 +117,14 @@ Route::get('/CRMPReportDTA',[ManageDraftThesisPerformanceController::class, 'CRM
 
 
 //ManagePublication
-
-Route::get('/publications', [ManagePublicationController::class, 'index'])->name('publications.index');
-Route::get('/publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
-Route::post('/publications', [ManagePublicationController::class, 'store'])->name('publications.store');
-Route::get('/publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('publications.edit');
-Route::put('/publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
-Route::delete('/publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
-Route::get('/publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
-Route::get('/publications/platinum', [ManagePublicationController::class, 'viewOtherPublications'])->name('publications.platinum');
-Route::get('/publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
-
+Route::get('publications', [ManagePublicationController::class, 'index'])->name('publications.index');
+Route::get('publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
+Route::post('publications', [ManagePublicationController::class, 'store'])->name('publications.store');
+Route::get('publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('publications.edit');
+Route::put('publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
+Route::delete('publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
+Route::get('publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
+Route::get('publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
 
 
 

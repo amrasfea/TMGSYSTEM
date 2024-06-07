@@ -1,5 +1,10 @@
 <x-platinum-layout>
     <x-slot name="title">My Publications</x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('My Publications') }}
+        </h2>
+    </x-slot>
 
     <x-slot name="styles">
         <style>
@@ -73,22 +78,18 @@
         </div>
         <h2>My Publications</h2>
 
-        @if(Auth::check() && Auth::user()->roleType === 'Platinum')
-            <div class="publications">
-                @forelse($publications as $publication)
-                    <div class="publication">
-                        <div class="title">{{ $publication->PB_Title }}</div>
-                        <div class="date">{{ $publication->PB_Date }}</div>
-                        <a href="{{ route('publications.edit', $publication->id) }}" class="edit-btn">Edit</a>
-                    </div>
-                @empty
-                    <p>No publications found.</p>
-                @endforelse
-            </div>
+        <div class="publications">
+            @forelse($publications as $publication)
+                <div class="publication">
+                    <div class="title">{{ $publication->PB_Title }}</div>
+                    <div class="date">{{ $publication->PB_Date }}</div>
+                    <a href="{{ route('publications.edit', $publication->id) }}" class="edit-btn">Edit</a>
+                </div>
+            @empty
+                <p>No publications found.</p>
+            @endforelse
+        </div>
 
-            <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
-        @else
-            <p>Please <a href="{{ route('login') }}">log in</a> to view your publications.</p>
-        @endif
+        <a href="{{ route('publications.create') }}" class="add-publication-btn">Add Publication</a>
     </div>
 </x-platinum-layout>

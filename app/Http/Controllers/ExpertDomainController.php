@@ -114,7 +114,14 @@ class ExpertDomainController extends Controller
 
     public function ListExpertDomainView(){
         $expertDomains = ExpertDomain::all();
+        $userId = Auth::id(); // Get the currently authenticated user's ID
+        $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)->get(); // Filter expert domains by user ID
         return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
+    }
+
+    public function ListAllExpertDomainView(){
+        $expertDomains = ExpertDomain::all();
+        return view('ExpertDomainView.Platinum.ListAllExpertDomainView', compact('expertDomains'));
     }
 
     public function AddResearchPublicationView(){

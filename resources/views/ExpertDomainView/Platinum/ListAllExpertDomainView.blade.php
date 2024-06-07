@@ -1,7 +1,7 @@
 <x-platinum-layout>
-<x-slot name="header">
+    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('List of Expert Domains') }}
+            {{ __('List of All Expert Domains') }}
         </h2>
     </x-slot>
 
@@ -76,7 +76,7 @@
                     }
                 </style>
 
-                <h1>List of Expert Domains</h1>
+                <h1>List of Your Expert Domains</h1>
 
                 <table>
                     <thead>
@@ -84,28 +84,20 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>View</th>
-                            <th>Update</th>
-                            <th>Add Research and Publication</th>
-                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($expertDomains as $index => $expertDomain)
+                    @forelse ($expertDomains as $index => $expertDomain)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $expertDomain->ED_Name }}</td>
                             <td><a class="view-link" href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}">View</a></td>
-                            <td><a class="edit-link" href="{{ route('expertDomains.edit', $expertDomain->ED_ID) }}">Update</a></td>
-                            <td><a class="edit-link" href="{{ route('researchPublications.add', $expertDomain->ED_ID) }}">Add</a></td>
-                            <td>
-                                <form class="delete-link" action="{{ route('expertDomains.destroy', $expertDomain->ED_ID) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" value="Delete">
-                                </form>
-                            </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5">No Expert Domains found.</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
 
