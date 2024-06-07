@@ -29,7 +29,7 @@ class ManagePublicationController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $publication_data = $request->validate([
             'type-of-publication' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
@@ -38,11 +38,15 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:10240',
         ]);
 
-        $filePath = $request->file('file')->store('publications');
-        $platinum = Platinum::where('id', Auth::id())->first();
+        if ($request->hasFile('file')){
+            $file = $request->file('file');
+            $path=$file->store('public/documents');
+
+            $publication_data['file'] = $path;
+        }
 
         if (!$platinum) {
             return redirect()->back()->with('error', 'Platinum record not found.');
@@ -81,7 +85,7 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
         ]);
 
         $publication = Publication::findOrFail($id);
