@@ -240,10 +240,10 @@
                             <a href="{{ route('publications.index') }}" class="sidebar-link">My Publication</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('publications.platinum') }}" class="sidebar-link">Platinum Publications</a>
+                            <a href="#" class="sidebar-link">Platinum Publications</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('publications.search') }}" class="sidebar-link">Search Publications</a>
+                            <a href="#" class="sidebar-link">Search Publications</a>
                         </li>
 
                     </ul>
