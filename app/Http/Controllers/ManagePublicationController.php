@@ -40,25 +40,25 @@ class ManagePublicationController extends Controller
     {
         
         $publication_data = $request->validate([
-            'type-of-publication' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'university' => 'required|string|max:255',
-            'field' => 'required|string|max:255',
-            'page-number' => 'required|integer',
-            'detail' => 'required|string|max:255',
-            'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:10240',
+            'PB_Type' => 'required|string|max:255',
+            'PB_Title' => 'required|string|max:255',
+            'PB_Author' => 'required|string|max:255',
+            'PB_Uni' => 'required|string|max:255',
+            'PB_Course' => 'required|string|max:255',
+            'PB_Page' => 'required|integer',
+            'PB_Detail' => 'required|string|max:255',
+            'PB_Date' => 'required|date',
+            'file_path' => 'required|file|mimes:pdf,doc,docx|max:10240',
         ]);
 
         // Handle file upload
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
+        if ($request->hasFile('file_path')) {
+            $file = $request->file('file_path');
             $path = $file->store('public/documents'); // Store the file and get the path
 
             // Save the path to the database
-                $publication_data['file'] = $path;
+                $publication_data['file_path'] = $path;
         }
         
          Publication::create($publication_data);
@@ -85,25 +85,25 @@ class ManagePublicationController extends Controller
     public function update(Request $request, $PB_ID)
     {
         $publication_data = $request->validate([
-            'type-of-publication' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'university' => 'required|string|max:255',
-            'field' => 'required|string|max:255',
-            'page-number' => 'required|integer',
-            'detail' => 'required|string|max:255',
-            'date-of-published' => 'required|date',
-            'file' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
+            'PB_Type' => 'required|string|max:255',
+            'PB_Title' => 'required|string|max:255',
+            'PB_Author' => 'required|string|max:255',
+            'PB_Uni' => 'required|string|max:255',
+            'PB_Course' => 'required|string|max:255',
+            'PB_Page' => 'required|integer',
+            'PB_Detail' => 'required|string|max:255',
+            'PB_Date' => 'required|date',
+            'file_path' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
         ]);
 
         // Handle file upload
-        if ($request->hasFile('file')) 
+        if ($request->hasFile('file_path')) 
         {
-            $file = $request->file('file');
+            $file = $request->file('file_path');
             $path = $file->store('public/documents'); // Store the file and get the path
 
             // Save the path to the database
-            $publication_data['file'] = $path;
+            $publication_data['file_path'] = $path;
         }
 
         Publication::where('PB_ID', $PB_ID)->update($publication_data);

@@ -21,13 +21,10 @@ class Publication extends Model
         'PB_Detail',
         'PB_Date',
         'file_path',
-        'P_platinumID',
     ];
 
-    public function platinum()
-    {
-        return $this->belongsTo(Platinum::class, 'P_platinumID');
-    }
+    protected $table='publications';
+
 }
 
 
