@@ -119,10 +119,19 @@ class ExpertDomainController extends Controller
         return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
     }
 
-    public function ListAllExpertDomainView(){
-        $expertDomains = ExpertDomain::all();
+    public function ListAllExpertDomainView(Request $request){
+        $query = $request->input('search');
+    
+        if ($query) {
+            // Search the expert domains by name
+            $expertDomains = ExpertDomain::where('ED_Name', 'LIKE', '%' . $query . '%')->get();
+        } else {
+            // If no search query, get all expert domains
+            $expertDomains = ExpertDomain::all();
+        }
         return view('ExpertDomainView.Platinum.ListAllExpertDomainView', compact('expertDomains'));
     }
+
 
     public function AddResearchPublicationView(){
         return view('ExpertDomainView.Platinum.AddResearchPublicationView');
