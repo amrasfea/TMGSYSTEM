@@ -70,7 +70,11 @@ Route::middleware('auth')->group(function(){
     Route::post('/expertDomains/store', [ExpertDomainController::class, 'store'])->name('expertDomains.store');
 
     Route::get('/expertDomains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');//list own expert
-    Route::get('/AllexpertDomains', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//list own expert
+    Route::get('/expert-domains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');//search funtion for own expert domain
+
+    Route::get('/AllexpertDomains', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//list All expert
+    Route::get('/expert-domains/all', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//search funtion for all expert domain
+
     Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit'); // This is the GET route
     Route::put('/expertDomains/update/{id}', [ExpertDomainController::class, 'update'])->name('expertDomains.update'); // This is the PUT route
 
