@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <th>File</th>
-                    <td><a href="{{ url('storage/' . $publication->file_path) }}" target="_blank">View File</a></td>
+                    <td><a href="{{ url('storage/' . $publication->file_path) }}" target="_blank" class="text-green-600 hover:text-green-900 ml-2">View File</a></td>
                 </tr>
             </tbody>
         </table>

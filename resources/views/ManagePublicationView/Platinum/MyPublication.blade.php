@@ -47,7 +47,6 @@
                     <th>No.</th>
                     <th>Type</th>
                     <th>Title</th>
-                    <th>File</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -57,7 +56,6 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $publication->PB_Type }}</td>
                         <td>{{ $publication->PB_Title }}</td>
-                        <td><a href="{{ url('storage/' . $publication->file_path) }}" target="_blank">View File</a></td>
                         <td>
                             <a href="{{ route('publications.edit', $publication->PB_ID) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
                             <a href="#" class="text-red-600 hover:text-red-900 ml-2" onclick="confirmDelete({{ $publication->PB_ID }})">{{ __('Delete') }}</a>
