@@ -1,4 +1,4 @@
-<x-platinum-layout>
+<x-mentor-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Publication Details') }}
@@ -82,7 +82,6 @@
             </tbody>
         </table>
 
-        <a href="{{ route('publications.viewAll') }}" class="back-btn">Back</a>
+        <a href="{{ route('mentor.viewPlatinumPublications', $publication->P_platinumID) }}" class="back-btn">Back</a>
     </div>
-</x-platinum-layout>
-
+</x-mentor-layout>

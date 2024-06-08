@@ -27,5 +27,11 @@ class Publication extends Model
     ];
 
     protected $table='publications';
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'P_platinumID', 'id');
+}
+
 }
 

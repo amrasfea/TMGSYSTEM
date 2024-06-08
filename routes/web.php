@@ -144,6 +144,16 @@ Route::middleware('auth')->group(function(){
     Route::get('/view-publications', [ManagePublicationController::class, 'viewPublications'])->name('publications.viewAll');
 });
 
+Route::middleware('auth', 'role:Mentor')->group(function () {
+    Route::get('/viewPlatinumList', [ManagePublicationController::class, 'viewPlatinumList'])->name('mentor.viewPlatinumList');
+    Route::get('/mentor/platinum/{platinumId}/publications', [ManagePublicationController::class, 'viewPlatinumPublications'])->name('mentor.viewPlatinumPublications');
+    Route::get('/mentor/publications/{publicationId}/details', [ManagePublicationController::class, 'viewPublicationDetails'])->name('mentor.viewPublicationDetails');
+});
+
+
+
+
+
 
 
 

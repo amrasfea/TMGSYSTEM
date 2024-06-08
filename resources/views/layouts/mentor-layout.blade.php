@@ -213,13 +213,13 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List of Platinum</a>
+                            <a href="{{ route('mentor.viewPlatinumList') }}" class="sidebar-link">List of Platinum</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Publication Report</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List All Publications</a>
+                            <a href="{{ route('mentor.find') }}" class="sidebar-link">Search Platinum Publications</a>
                         </li>
                     </ul>
                 </li>
