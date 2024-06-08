@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 class ManagePublicationController extends Controller
 {
@@ -28,7 +27,7 @@ class ManagePublicationController extends Controller
     // Store a new publication in the database
     public function store(Request $request)
     {
-        Log::info('Store method called');
+        
 
         // Validate the incoming request data
         $request->validate([
@@ -45,14 +44,10 @@ class ManagePublicationController extends Controller
 
         // Handle file upload
         if ($request->hasFile('file')) {
-            Log::info('File is present');
-
-            try {
                 $file = $request->file('file');
                 $fileName = time() . '_' . $file->getClientOriginalName();
                 $filePath = $file->storeAs('publications', $fileName, 'public');
 
-                Log::info('File stored at: ' . $filePath);
 
                 // Create a new publication record in the database
                 Publication::create([
@@ -69,12 +64,8 @@ class ManagePublicationController extends Controller
                 ]);
 
                 return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
-            } catch (\Exception $e) {
-                Log::error('File upload error: ' . $e->getMessage());
-                return redirect()->back()->with('error', 'File upload failed.');
-            }
+            } 
         } 
-    }
 
     // Display all publications (for admin or general view)
     public function viewPublications()  
@@ -154,7 +145,6 @@ class ManagePublicationController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        Log::info('Search query: ' . $query);
         $publications = Publication::where('PB_Title', 'like', "%{$query}%")
                         ->orWhere('PB_Detail', 'like', "%{$query}%")
                         ->get();

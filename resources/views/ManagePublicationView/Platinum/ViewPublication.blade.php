@@ -34,6 +34,7 @@
             <thead>
                 <tr>
                     <th>No.</th>
+                    <th>User ID</th>
                     <th>Type</th>
                     <th>Title</th>
                     <th>Author</th>
@@ -47,6 +48,7 @@
                 @foreach($publications as $index => $publication)
                     <tr>
                         <td>{{ $index + 1 }}</td>
+                        <td>{{ $publication->user->id }}</td>
                         <td>{{ $publication->PB_Type }}</td>
                         <td>{{ $publication->PB_Title }}</td>
                         <td>{{ $publication->PB_Author }}</td>
@@ -62,3 +64,4 @@
         </table>
     </div>
 </x-platinum-layout>
+

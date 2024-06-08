@@ -24,8 +24,7 @@ class CreatePublicationsTable extends Migration
             $table->string('file_path')->nullable();
             $table->timestamps();
             
-            $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums')->onDelete('cascade');
-            // Add foreign keys for Mentor_ID and ED_ID as necessary
+            $table->foreign('P_platinumID')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
