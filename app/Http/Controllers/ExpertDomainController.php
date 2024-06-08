@@ -112,10 +112,18 @@ class ExpertDomainController extends Controller
     }
 
 
-    public function ListExpertDomainView(){
-        $expertDomains = ExpertDomain::all();
+    public function ListExpertDomainView(Request $request){
         $userId = Auth::id(); // Get the currently authenticated user's ID
-        $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)->get(); // Filter expert domains by user ID
+        $query = $request->input('search');
+        if ($query) {
+            // Search the expert domains by name for the current user
+            $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)
+                                         ->where('ED_Name', 'LIKE', '%' . $query . '%')
+                                         ->get();
+        } else {
+            // If no search query, get all expert domains for the current user
+            $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)->get();
+        }
         return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
     }
 
