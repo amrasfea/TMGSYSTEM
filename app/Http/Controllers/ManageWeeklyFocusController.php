@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WeeklyFocusBlock; // Import the WeeklyFocusBlock model
 
-class WeeklyFocusController extends Controller
+class ManageWeeklyFocusController extends Controller
 {
     public function focusBlockView()
     {
