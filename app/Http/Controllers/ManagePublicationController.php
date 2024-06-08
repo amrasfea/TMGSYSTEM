@@ -36,7 +36,7 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:1048576',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:10485760',
         ]);
 
         if ($request->hasFile('file')) {
@@ -93,7 +93,7 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'nullable|file|mimes:pdf,doc,docx|max:1048576',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:10485760',
         ]);
 
         $publication = Publication::findOrFail($id);
