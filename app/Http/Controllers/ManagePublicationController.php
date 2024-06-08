@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publication;
+use App\Models\Platinum;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +36,7 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:10240',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:1048576',
         ]);
 
         if ($request->hasFile('file')) {
@@ -91,7 +93,7 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:1048576',
         ]);
 
         $publication = Publication::findOrFail($id);
