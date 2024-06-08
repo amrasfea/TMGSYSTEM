@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/expertDomains/view/{id}', [ExpertDomainController::class, 'view'])->name('expertDomains.view');//list details
     Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    Route::get('/AddResearchPublication/{id}', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
     Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
     Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
 

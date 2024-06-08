@@ -1,7 +1,7 @@
 <x-platinum-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Add Research and Publication') }}
+            {{ __('Add Research and Publication for ') }} {{ $expertDomain->ED_Name }}
         </h2>
     </x-slot>
 
@@ -138,7 +138,6 @@
                                     <option value="Universiti Pertahanan Nasional Malaysia">Universiti Pertahanan Nasional Malaysia (UPNM)</option>
                                     <option value="Universiti Malaysia Sarawak">Universiti Malaysia Sarawak (UNIMAS)</option>
                                     <option value="Universiti Malaysia Terengganu">Universiti Malaysia Terengganu (UMT)</option>
-
                                     <option value="Other">Other</option>
                                 </select>
 
