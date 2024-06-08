@@ -159,11 +159,6 @@
                         </tbody>
                     </table> -->
 
-<!-- <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900"> -->
-
                 <div>
                     @if(session()->has('success'))
                         <div class="success-message">
@@ -175,7 +170,7 @@
                 <div class="container mx-auto px-4">
                     <div class="flex justify-between items-center mb-4">
                         <h1 class="text-2xl font-bold">{{ __('Users') }}</h1>
-                        <a href="{{ route('researchPublications.add', $expertDomain->ED_ID) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('expertDomains.add') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             {{ __('Add New Registration') }}
                         </a>
                     </div>
@@ -204,6 +199,7 @@
                                     <td class="py-2 px-4">{{ $expertDomain->ED_Email }}</td>
                                     <td class="py-2 px-4">{{ $expertDomain->ED_PhoneNum }}</td> 
                                     <td class="py-2 px-4">
+                                        <a href="{{ route('researchPublications.add', $expertDomain->ED_ID) }}" class="text-yellow-600 hover:text-yellow-300">{{ __('Add Research') }}</a>
                                         <a href="{{ route('expertDomains.edit', $expertDomain->ED_ID) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
                                         <a href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
                                         <form action="{{ route('expertDomains.destroy', $expertDomain->ED_ID) }}" method="POST" class="inline delete-form">
