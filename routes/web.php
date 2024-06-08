@@ -81,10 +81,15 @@ Route::middleware('auth')->group(function(){
     Route::delete('/expertDomains/{ED_ID}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');//delete expert
 
     Route::get('/expertDomains/view/{id}', [ExpertDomainController::class, 'view'])->name('expertDomains.view');//list details
-    Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
-    Route::get('/AddResearchPublication/{id}', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
-    Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
-    Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
+    // Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    
+    Route::get('/AddResearchPublication/{ED_ID}', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    Route::post('/storeResearchPublication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
+    Route::get('/researchPublications/display/{ED_ID}', [ExpertDomainController::class, 'displayResearchPublication'])->name('researchPublications.display');
+    Route::get('/researchPublications/edit/{ED_ID}/{id}', [ExpertDomainController::class, 'editResearchPublication'])->name('researchPublications.edit');
+    Route::post('/researchPublications/update/{ED_ID}/{id}', [ExpertDomainController::class, 'updateResearchPublication'])->name('researchPublications.update');
+    Route::delete('/researchPublications/destroy/{ED_ID}/{id}', [ExpertDomainController::class, 'destroyResearchPublication'])->name('researchPublications.destroy');
+    Route::get('/researchPublications/view/{id}', [ExpertDomainController::class, 'ListResearchPublication'])->name('researchPublications.view');
 
     Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
     Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
@@ -94,27 +99,31 @@ Route::middleware('auth')->group(function(){
 //WeeklyFocus
 
 Route::middleware('auth')->group(function() {
-    // Routes related to weekly focus selection
     Route::get('/weekly-focus-selection', [ManageWeeklyFocusController::class, 'showWeeklyFocusSelectionForm'])->name('weeklyFocusSelectionForm');
     Route::post('/weekly-focus-selection', [ManageWeeklyFocusController::class, 'processWeeklyFocusSelection'])->name('processWeeklyFocusSelection');
 
-    // Other existing routes...
     Route::get('/focus-block-view', [ManageWeeklyFocusController::class, 'focusBlockView'])->name('focusBlockView');
     Route::get('/admin-block-view', [ManageWeeklyFocusController::class, 'adminBlockView'])->name('adminBlockView');
     Route::get('/recovery-block-view', [ManageWeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
     Route::get('/social-block-view', [ManageWeeklyFocusController::class, 'socialBlockView'])->name('socialBlockView');
+
     Route::get('/weekly-focus-view', [ManageWeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView');
-    Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinumWeeklyFocusReport');
+    Route::get('/weekly-focus-view/{id}/edit', [ManageWeeklyFocusController::class, 'edit'])->name('weeklyFocus.edit');
+    Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'deleteWeeklyFocus'])->name('weeklyFocus.delete');
+    Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'create'])->name('weeklyFocus.add');
+
+    Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
     Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView');
-    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentorWeeklyFocusReport');
+    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentor.Report');
     Route::get('/platinum-weekly-focus-view', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView');
-    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmpWeeklyFocusReport');
+    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmp.Report');
 });
+
 
 
 //DTA
 Route::middleware('auth')->group(function() {
-    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('DTAView.index');
+    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView'])->name('DTAView.index');
     Route::delete('/DTAView/{id}/delete', [ManageDraftThesisPerformanceController::class, 'destroy'])->name('DTAView.delete');
     Route::get('/DTAView/{id}/create', [ManageDraftThesisPerformanceController::class, 'create'])->name('DTAView.create');
     Route::post('/DTAView/{id}/store', [ManageDraftThesisPerformanceController::class, 'store'])->name('DTAView.store');

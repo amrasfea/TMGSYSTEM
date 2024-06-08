@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Publication extends Model
 {
     use HasFactory;
-
     protected $primaryKey = 'PB_ID';
 
     protected $fillable = [
@@ -33,5 +32,14 @@ class Publication extends Model
     return $this->belongsTo(User::class, 'P_platinumID', 'id');
 }
 
+    public function research()
+    {
+        return $this->belongsTo(Research::class, 'R_researchID', 'R_researchID');
+    }
+
+    public function expertDomain()
+    {
+        return $this->belongsTo(ExpertDomain::class, 'ED_ID');
+    }
 }
 

@@ -9,57 +9,66 @@ class ManageWeeklyFocusController extends Controller
 {
     public function focusBlockView()
     {
-        return view('focusBlockView');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.FocusBlockView', compact('data'));
     }
 
     public function adminBlockView()
     {
-        return view('adminBlockView');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.AdminBlockView', compact('data'));
     }
 
     public function recoveryBlockView()
     {
-        return view('recoveryBlockView');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.RecoveryBlockView', compact('data'));
     }
 
     public function socialBlockView()
     {
-        return view('socialBlockView');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.SocialBlockView', compact('data'));
     }
 
     public function weeklyFocusView()
     {
-        return view('weekly-focus-view');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.Platinum.weeklyFocusView', compact('data'));
     }
 
     public function platinumWeeklyFocusReport()
     {
-        return view('platinumWeeklyFocusReport');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.Platinum.platinumWeeklyFocusReport', compact('data'));
     }
 
     public function allWeeklyFocusView()
     {
-        return view('allWeeklyFocusView');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.Mentor.allWeeklyFocusView', compact('data'));
     }
 
     public function mentorWeeklyFocusReport()
     {
-        return view('mentorWeeklyFocusReport');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.Mentor.mentorWeeklyFocusReport', compact('data'));
     }
 
     public function platinumWeeklyFocusView()
     {
-        return view('platinumWeeklyFocusView');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.CRMP.platinumWeeklyFocusView', compact('data'));
     }
 
     public function crmpWeeklyFocusReport()
     {
-        return view('crmpWeeklyFocusReport');
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.CRMP.crmpWeeklyFocusReport', compact('data'));
     }
 
     public function storeWeeklyFocus(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'P_platinumID' => 'required|exists:platinums,P_platinumID',
             'M_mentorID' => 'required|exists:mentors,M_mentorID',
@@ -69,7 +78,6 @@ class ManageWeeklyFocusController extends Controller
             'FB_EndDate' => 'required|date|after:FB_StartDate',
         ]);
 
-        // Create a new WeeklyFocusBlock instance and save it to the database
         $weeklyFocusBlock = WeeklyFocusBlock::create([
             'P_platinumID' => $request->P_platinumID,
             'M_mentorID' => $request->M_mentorID,
@@ -79,13 +87,11 @@ class ManageWeeklyFocusController extends Controller
             'FB_EndDate' => $request->FB_EndDate,
         ]);
 
-        // Optionally, you can return a response indicating success or failure
         return response()->json(['message' => 'Weekly focus saved successfully', 'data' => $weeklyFocusBlock], 201);
     }
 
     public function updateWeeklyFocus($id, Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'P_platinumID' => 'required|exists:platinums,P_platinumID',
             'M_mentorID' => 'required|exists:mentors,M_mentorID',
@@ -95,10 +101,8 @@ class ManageWeeklyFocusController extends Controller
             'FB_EndDate' => 'required|date|after:FB_StartDate',
         ]);
 
-        // Retrieve the weekly focus block from the database
         $weeklyFocusBlock = WeeklyFocusBlock::findOrFail($id);
 
-        // Update the attributes of the retrieved weekly focus block
         $weeklyFocusBlock->update([
             'P_platinumID' => $request->P_platinumID,
             'M_mentorID' => $request->M_mentorID,
@@ -108,19 +112,24 @@ class ManageWeeklyFocusController extends Controller
             'FB_EndDate' => $request->FB_EndDate,
         ]);
 
-        // Optionally, you can return a response indicating success or failure
         return redirect()->route('weeklyFocusView')->with('success', 'Weekly focus updated successfully');
     }
 
     public function deleteWeeklyFocus($id)
     {
-        // Retrieve the weekly focus block from the database
         $weeklyFocusBlock = WeeklyFocusBlock::findOrFail($id);
-
-        // Delete the retrieved weekly focus block
         $weeklyFocusBlock->delete();
-
-        // Optionally, you can return a response indicating success or failure
         return redirect()->route('weeklyFocusView')->with('success', 'Weekly focus deleted successfully');
+    }
+
+    public function edit($id)
+    {
+        $weeklyFocus = WeeklyFocusBlock::findOrFail($id);
+        return view('ManageWeeklyFocusView.Platinum.edit', compact('weeklyFocus'));
+    }
+
+    public function create()
+    {
+        return view('ManageWeeklyFocusView.Platinum.create');
     }
 }
