@@ -70,11 +70,12 @@ class ManagePublicationController extends Controller
         } 
     }
 
-    public function viewAll()
+    public function viewPublications()  
     {
         $publications = Publication::all();
         return view('ManagePublicationView.Platinum.ViewPublication', compact('publications'));
     }
+
 
     public function show($id)
     {
@@ -138,11 +139,14 @@ class ManagePublicationController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
-        $publications = Publication::where('PB_Title', 'like', "%{$query}%")
-                            ->orWhere('PB_Detail', 'like', "%{$query}%")
-                            ->get();
+       $query = $request->input('query');
+       Log::info('Search query: ' . $query);
+       $publications = Publication::where('PB_Title', 'like', "%{$query}%")
+                        ->orWhere('PB_Detail', 'like', "%{$query}%")
+                        ->get();
+        return view('ManagePublicationView.Platinum.SearchPublication', compact('publications', 'query'));
+   }
 
-        return view('ManagePublicationView.Platinum.SearchPublication', compact('publications'));
-    }
+
+   
 }

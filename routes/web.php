@@ -111,12 +111,6 @@ Route::middleware('auth')->group(function() {
 });
 
 
-
-
-
-    
-
-
 //DTA
 Route::middleware('auth')->group(function() {
     Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView']);
@@ -131,9 +125,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/CRMPReportDTA', [ManageDraftThesisPerformanceController::class, 'CRMPReportDTA']);
 });
 
-
-
-
 //ManagePublication
 Route::middleware('auth')->group(function(){
     Route::get('publications', [ManagePublicationController::class, 'index'])->name('publications.index');
@@ -143,9 +134,8 @@ Route::middleware('auth')->group(function(){
     Route::get('publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('publications.edit');
     Route::put('publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
     Route::delete('publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
-    Route::get('publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
-    Route::get('/publications/view', [ManagePublicationController::class, 'viewAll'])->name('publications.viewAll');
-
+    Route::get('/search', [ManagePublicationController::class, 'search'])->name('publications.search');
+    Route::get('/view-publications', [ManagePublicationController::class, 'viewPublications'])->name('publications.viewAll');
 });
 
 
