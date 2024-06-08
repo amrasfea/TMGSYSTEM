@@ -70,7 +70,11 @@ Route::middleware('auth')->group(function(){
     Route::post('/expertDomains/store', [ExpertDomainController::class, 'store'])->name('expertDomains.store');
 
     Route::get('/expertDomains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');//list own expert
-    Route::get('/AllexpertDomains', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//list own expert
+    Route::get('/expert-domains', [ExpertDomainController::class, 'ListExpertDomainView'])->name('expertDomains.list');//search funtion for own expert domain
+
+    Route::get('/AllexpertDomains', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//list All expert
+    Route::get('/expert-domains/all', [ExpertDomainController::class, 'ListAllExpertDomainView'])->name('expertDomains.listAll');//search funtion for all expert domain
+
     Route::get('/expertDomains/edit/{id}', [ExpertDomainController::class, 'UpdateExpertDomainView'])->name('expertDomains.edit'); // This is the GET route
     Route::put('/expertDomains/update/{id}', [ExpertDomainController::class, 'update'])->name('expertDomains.update'); // This is the PUT route
 
@@ -78,6 +82,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/expertDomains/view/{id}', [ExpertDomainController::class, 'view'])->name('expertDomains.view');//list details
     Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    Route::get('/AddResearchPublication/{id}', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
     Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
     Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
 
@@ -109,31 +114,34 @@ Route::middleware('auth')->group(function() {
 
 //DTA
 Route::middleware('auth')->group(function() {
-    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView']);
-    Route::delete('/deleteAction/{id}', [ManageDraftThesisPerformanceController::class, 'deleteAction'])->name('deleteAction');
-    Route::post('/addAction', [ManageDraftThesisPerformanceController::class, 'addAction'])->name('addAction');
-    Route::post('/editAction/{id}', [ManageDraftThesisPerformanceController::class, 'editAction'])->name('editAction'); // Add this line for editAction
+    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('DTAView.index');
+    Route::delete('/DTAView/{id}/delete', [ManageDraftThesisPerformanceController::class, 'destroy'])->name('DTAView.delete');
+    Route::get('/DTAView/{id}/create', [ManageDraftThesisPerformanceController::class, 'create'])->name('DTAView.create');
+    Route::post('/DTAView/{id}/store', [ManageDraftThesisPerformanceController::class, 'store'])->name('DTAView.store');
+    Route::get('/DTAView/{id}/edit', [ManageDraftThesisPerformanceController::class, 'edit'])->name('DTAView.edit');
+    Route::put('/DTAView/{id}', [ManageDraftThesisPerformanceController::class, 'update'])->name('DTAView.update');
 
     Route::get('/PlatinumReportDTA', [ManageDraftThesisPerformanceController::class, 'PlatinumReportDTA']);
-    Route::get('/AllDTAView', [ManageDraftThesisPerformanceController::class, 'AllDTAView']);
+    Route::get('/AllDTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('AllDTAView.index');
     Route::get('/MentorReportDTA', [ManageDraftThesisPerformanceController::class, 'MentorReportDTA']);
-    Route::get('/PlatinumDTAView', [ManageDraftThesisPerformanceController::class, 'PlatinumDTAView']);
+    Route::get('/PlatinumDTAView', [ManageDraftThesisPerformanceController::class, 'show'])->name('PlatinumDTAView.show');
     Route::get('/CRMPReportDTA', [ManageDraftThesisPerformanceController::class, 'CRMPReportDTA']);
+    Route::resource('draft-thesis-performances', 'App\Http\Controllers\ManageDraftThesisPerformanceController');
 });
-
 
 
 
 //ManagePublication
 Route::middleware('auth')->group(function(){
-Route::get('publications', [ManagePublicationController::class, 'index'])->name('publications.index');
-Route::get('publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
-Route::post('publications', [ManagePublicationController::class, 'store'])->name('publications.store');
-Route::get('publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('publications.edit');
-Route::put('publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
-Route::delete('publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
-Route::get('publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
-Route::get('publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
+    Route::get('publications', [ManagePublicationController::class, 'index'])->name('publications.index');
+    Route::get('publications/create', [ManagePublicationController::class, 'create'])->name('publications.create');
+    Route::post('publications', [ManagePublicationController::class, 'store'])->name('publications.store');
+    Route::get('publications/{id}', [ManagePublicationController::class, 'show'])->name('publications.show');
+    Route::get('publications/{id}/edit', [ManagePublicationController::class, 'edit'])->name('publications.edit');
+    Route::put('publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
+    Route::delete('publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
+    Route::get('/search', [ManagePublicationController::class, 'search'])->name('publications.search');
+    Route::get('/view-publications', [ManagePublicationController::class, 'viewPublications'])->name('publications.viewAll');
 });
 
 

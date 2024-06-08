@@ -1,69 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $publication->PB_Title }}</title>
+<x-platinum-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Publication Details') }}
+        </h2>
+    </x-slot>
+
     <style>
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .header {
-            text-align: center;
+        .publication-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .publication-table th, .publication-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .publication-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: inline-block;
             margin-bottom: 20px;
         }
-
-        .abstract, .description {
-            margin-top: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .btn-back {
-            margin-top: 20px;
-            display: block;
-            text-align: center;
-        }
     </style>
-</head>
-<body>
+
     <div class="container">
-        <div class="header">
-            <h2>{{ $publication->PB_Title }}</h2>
-            <p>Published on {{ $publication->PB_Date }}</p>
-            <p>Author: {{ $publication->PB_Author }}</p>
-        </div>
-        <div class="abstract">
-            <h3>Abstract</h3>
-            <p>{{ $publication->PB_Course }}</p>
-        </div>
-        <div class="description">
-            <h3>Description</h3>
-            <p>{{ $publication->PB_Detail }}</p>
-        </div>
-        <div class="files">
-            @if ($publication->file_path)
-                <a class="btn" href="{{ asset('storage/' . $publication->file_path) }}" target="_blank">Download full-text PDF</a>
-            @endif
-        </div>
-        <div class="btn-back">
-            <a class="btn" href="{{ route('publications.index') }}">Back</a>
-        </div>
+        <table class="publication-table">
+            <tbody>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ $publication->PB_Type }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ $publication->PB_Title }}</td>
+                </tr>
+                <tr>
+                    <th>Author</th>
+                    <td>{{ $publication->PB_Author }}</td>
+                </tr>
+                <tr>
+                    <th>University</th>
+                    <td>{{ $publication->PB_Uni }}</td>
+                </tr>
+                <tr>
+                    <th>Field/Course</th>
+                    <td>{{ $publication->PB_Course }}</td>
+                </tr>
+                <tr>
+                    <th>Page Number</th>
+                    <td>{{ $publication->PB_Page }}</td>
+                </tr>
+                <tr>
+                    <th>Date of Publish</th>
+                    <td>{{ $publication->PB_Date }}</td>
+                </tr>
+                <tr>
+                    <th>Detail</th>
+                    <td>{{ $publication->PB_Detail }}</td>
+                </tr>
+                <tr>
+                    <th>File</th>
+                    <td><a href="{{ url('storage/' . $publication->file_path) }}" target="_blank">View File</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ route('publications.index') }}" class="back-btn">Back</a>
     </div>
-</body>
-</html>
+</x-platinum-layout>
 

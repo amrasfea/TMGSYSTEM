@@ -9,7 +9,12 @@ class Publication extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'PB_ID';
+
     protected $fillable = [
+        'P_platinumID',
+        'Mentor_ID',
+        'ED_ID',
         'PB_Type',
         'PB_Title',
         'PB_Author',
@@ -19,14 +24,8 @@ class Publication extends Model
         'PB_Detail',
         'PB_Date',
         'file_path',
-        'P_platinumID',
     ];
 
-    public function platinum()
-    {
-        return $this->belongsTo(Platinum::class, 'P_platinumID', 'P_platinumID');
-    }
+    protected $table='publications';
 }
-
-     
 

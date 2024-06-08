@@ -1,7 +1,7 @@
 <x-platinum-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Add Research and Publication') }}
+            {{ __('Add Research and Publication for ') }} {{ $expertDomain->ED_Name }}
         </h2>
     </x-slot>
 
@@ -35,6 +35,7 @@
         input[type="tel"],
         input[type="email"],
         input[type="date"],
+        input[type="number"],
         select {
             width: calc(100% - 20px);
             padding: 10px;
@@ -45,13 +46,14 @@
         }
         .form-section button,
         .form-section input[type="submit"] {
-            background-color: #FFDB58;
-            color: #000;
+            background-color: #0062cc;
+            color: #ffffff;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 30px;
+            float: right;
             font-size: 16px;
             font-weight: bold;
         }
@@ -63,6 +65,10 @@
         .error-messages {
             color: red;
             margin-bottom: 20px;
+        }
+        .form-container .submit-button-container {
+            text-align: right;
+            margin-top: 20px;
         }
     </style>
 
@@ -94,7 +100,14 @@
                                 <h2>Publication Information</h2>
 
                                 <label for="publication-type">Publication Type:</label>
-                                <input type="text" id="publication-type" name="PB_Type" placeholder="Enter the publication type" aria-label="Publication Type" value="{{ old('PB_Type') }}">
+                                <select id="publication-type" name="PB_Type"> 
+                                    <option value="">Select Type</option>
+                                    <option value="Journal">Journal</option>
+                                    <option value="Conference">Conference</option>
+                                    <option value="Book">Book</option>
+                                    <option value="Thesis">Thesis</option>
+                                    <option value="Report">Report</option>
+                                </select>
 
                                 <label for="publication-title">Publication Title:</label>
                                 <input type="text" id="publication-title" name="PB_Title" placeholder="Enter the publication title" aria-label="Publication Title" value="{{ old('PB_Title') }}">
@@ -103,10 +116,30 @@
                                 <input type="text" id="publication-author" name="PB_Author" placeholder="Enter the author's name" aria-label="Author" value="{{ old('PB_Author') }}">
 
                                 <label for="publication-uni">University:</label>
-                                <input type="text" id="publication-uni" name="PB_Uni" placeholder="Enter the university" aria-label="University" value="{{ old('PB_Uni') }}">
-
-                                <label for="publication-course">Course:</label>
-                                <input type="text" id="publication-course" name="PB_Course" placeholder="Enter the course" aria-label="Course" value="{{ old('PB_Course') }}">
+                                <select id="publication-uni" name="PB_Uni">
+                                    <option value="" disabled selected>Select your educational institute</option>
+                                    <option value="University of Malaya">University of Malaya (UM)</option>
+                                    <option value="Universiti Kebangsaan Malaysia">Universiti Kebangsaan Malaysia (UKM)</option>
+                                    <option value="Universiti Sains Malaysia">Universiti Sains Malaysia (USM)</option>
+                                    <option value="Universiti Putra Malaysia">Universiti Putra Malaysia (UPM)</option>
+                                    <option value="Universiti Teknologi Malaysia">Universiti Teknologi Malaysia (UTM)</option>
+                                    <option value="Universiti Teknologi MARA">Universiti Teknologi MARA (UiTM)</option>
+                                    <option value="Universiti Utara Malaysia">Universiti Utara Malaysia (UUM)</option>
+                                    <option value="Universiti Malaysia Sabah">Universiti Malaysia Sabah (UMS)</option>
+                                    <option value="Universiti Malaysia Pahang">Universiti Malaysia Pahang (UMP)</option>
+                                    <option value="Universiti Pendidikan Sultan Idris">Universiti Pendidikan Sultan Idris (UPSI)</option>
+                                    <option value="Universiti Islam Antarabangsa Malaysia">Universiti Islam Antarabangsa Malaysia (UIAM)</option>
+                                    <option value="Universiti Islam Sains Islam Malaysia">Universiti Sains Islam Malaysia (USIM)</option>
+                                    <option value="Universiti Tun Hussein Onn Malaysia">Universiti Tun Hussein Onn Malaysia (UTHM)</option>
+                                    <option value="Universiti Teknikal Malaysia Melaka">Universiti Teknikal Malaysia Melaka (UTEM)</option>
+                                    <option value="Universiti Sultan Zaina Abidin">Universiti Sultan Zainal Abidin (UniSZA)</option>
+                                    <option value="Universiti Malayia Perlis">Universiti Malaysia Perlis (UniMAP)</option>
+                                    <option value="Universiti Malaysia Kelantan">Universiti Malaysia Kelantan (UMK)</option>
+                                    <option value="Universiti Pertahanan Nasional Malaysia">Universiti Pertahanan Nasional Malaysia (UPNM)</option>
+                                    <option value="Universiti Malaysia Sarawak">Universiti Malaysia Sarawak (UNIMAS)</option>
+                                    <option value="Universiti Malaysia Terengganu">Universiti Malaysia Terengganu (UMT)</option>
+                                    <option value="Other">Other</option>
+                                </select>
 
                                 <label for="publication-page">Page:</label>
                                 <input type="number" id="publication-page" name="PB_Page" placeholder="Enter the page number" aria-label="Page Number" value="{{ old('PB_Page') }}">
@@ -114,12 +147,12 @@
                                 <label for="publication-detail">Detail:</label>
                                 <input type="text" id="publication-detail" name="PB_Detail" placeholder="Enter the publication details" aria-label="Publication Details" value="{{ old('PB_Detail') }}">
 
-                                <label for="publication-date">Date:</label>
+                                <label for="publication-date">Date of Publication:</label>
                                 <input type="date" id="publication-date" name="PB_Date" aria-label="Publication Date" value="{{ old('PB_Date') }}">
                             </div>
 
-                            <div>
-                                <input type="submit" value="Save">
+                            <div class="submit-button-container">
+                                <input type="submit" value="ADD">
                             </div>
                         </div>
                     </form>

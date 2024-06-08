@@ -222,9 +222,6 @@
                             <a href="{{ route('expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Research and Publication</a>
-                        </li>
-                        <li class="sidebar-item">
                             <a href="{{ route('platinum.report') }}" class="sidebar-link">Report</a>
                         </li>
                     </ul>
@@ -240,10 +237,10 @@
                             <a href="{{ route('publications.index') }}" class="sidebar-link">My Publication</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Platinum Publications</a>
+                            <a href="{{ route('publications.viewAll') }}" class="sidebar-link">Platinum Publications</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Search Publications</a>
+                            <a href="{{ route('publications.search') }}" class="sidebar-link">Search Publications</a>
                         </li>
 
                     </ul>
@@ -256,7 +253,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Draft Thesis Performance</a>
+                            <a href="{{ route('DTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Weekly Focus</a>

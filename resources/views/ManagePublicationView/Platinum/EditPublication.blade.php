@@ -1,8 +1,7 @@
 <x-platinum-layout>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Publication Information') }}
+            {{ __('Edit Publication') }}
         </h2>
     </x-slot>
 
@@ -57,6 +56,15 @@
         .form-section input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .cancel-btn {
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
     </style>
 
     <div class="py-12">
@@ -72,16 +80,15 @@
                         </ul>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('publications.update', $publication->id) }}" enctype="multipart/form-data">
+                    <form action="{{ route('publications.update', $publication->PB_ID) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-
                         <div class="form-container">
                             <div class="form-section">
                                 <h2>Publication Information</h2>
 
-                                <label for="PB_Type">Type of Publication</label>
-                                <select id="PB_Type" name="type-of-publication">
+                                <label for="type-of-publication">Type of Publication</label>
+                                <select id="type-of-publication" name="type-of-publication">
                                     <option value="">Select Type</option>
                                     <option value="Journal" {{ $publication->PB_Type == 'Journal' ? 'selected' : '' }}>Journal</option>
                                     <option value="Conference" {{ $publication->PB_Type == 'Conference' ? 'selected' : '' }}>Conference</option>
@@ -90,37 +97,39 @@
                                     <option value="Report" {{ $publication->PB_Type == 'Report' ? 'selected' : '' }}>Report</option>
                                 </select>
 
-                                <label for="PB_Title">Publication Title</label>
-                                <input type="text" id="PB_Title" name="title" value="{{ $publication->PB_Title }}" required>
+                                <label for="title">Publication Title</label>
+                                <input type="text" id="title" name="title" value="{{ $publication->PB_Title }}" required>
 
-                                <label for="PB_Author">Author</label>
-                                <input type="text" id="PB_Author" name="author" value="{{ $publication->PB_Author }}" required>
+                                <label for="author">Author</label>
+                                <input type="text" id="author" name="author" value="{{ $publication->PB_Author }}" required>
 
-                                <label for="PB_Uni">University</label>
-                                <input type="text" id="PB_Uni" name="university" value="{{ $publication->PB_Uni }}" required>
+                                <label for="university">University</label>
+                                <input type="text" id="university" name="university" value="{{ $publication->PB_Uni }}" required>
 
-                                <label for="PB_Course">Field/Course</label>
-                                <input type="text" id="PB_Course" name="field" value="{{ $publication->PB_Course }}" required>
+                                <label for="field">Field/Course</label>
+                                <input type="text" id="field" name="field" value="{{ $publication->PB_Course }}" required>
 
-                                <label for="PB_Detail">Description</label>
-                                <input type="text" id="PB_Detail" name="description" value="{{ $publication->PB_Detail }}" required>
+                                <label for="detail">Description</label>
+                                <input type="text" id="detail" name="detail" value="{{ $publication->PB_Detail }}" required>
 
-                                <label for="PB_Page">Page Number</label>
-                                <input type="text" id="PB_Page" name="pagenumber" value="{{ $publication->PB_Page }}" required>
+                                <label for="page-number">Page Number</label>
+                                <input type="text" id="page-number" name="page-number" value="{{ $publication->PB_Page }}" required>
 
-                                <label for="PB_Date">Date of Publish</label>
-                                <input type="date" id="PB_Date" name="date-of-published" value="{{ $publication->PB_Date }}" required>
+                                <label for="date-of-published">Date of Publish</label>
+                                <input type="date" id="date-of-published" name="date-of-published" value="{{ $publication->PB_Date }}" required>
 
                                 <div>
-                                    <input type="submit" value="Update Publication">
+                                    <input type="submit" value="Save">
+                                    <a href="{{ route('publications.show', $publication->PB_ID) }}" class="cancel-btn">Cancel</a>
                                 </div>
                             </div>
 
                             <div class="form-section">
                                 <h2>Upload Document</h2>
 
-                                <label for="PB_File">Upload File</label>
-                                <input type="file" id="PB_File" name="file" accept=".pdf,.doc,.docx">
+                                <label for="file">Upload File</label>
+                                <input type="file" id="file" name="file">
+                                <p>Current File: <a href="{{ url('storage/' . $publication->file_path }}" target="_blank">View File</a></p>
                             </div>
                         </div>
                     </form>
@@ -129,4 +138,3 @@
         </div>
     </div>
 </x-platinum-layout>
-

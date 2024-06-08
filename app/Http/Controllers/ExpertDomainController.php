@@ -112,20 +112,48 @@ class ExpertDomainController extends Controller
     }
 
 
-    public function ListExpertDomainView(){
-        $expertDomains = ExpertDomain::all();
+    public function ListExpertDomainView(Request $request){
         $userId = Auth::id(); // Get the currently authenticated user's ID
-        $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)->get(); // Filter expert domains by user ID
+        $query = $request->input('search');
+        
+        if ($query) {
+            // Search the expert domains by name for the current user
+            $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)
+                                         ->where('ED_Name', 'LIKE', '%' . $query . '%')
+                                         ->get();
+        } else {
+            // If no search query, get all expert domains for the current user
+            $expertDomains = ExpertDomain::where('p_PlatinumID', $userId)->get();
+        }
+    
         return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
     }
-
-    public function ListAllExpertDomainView(){
-        $expertDomains = ExpertDomain::all();
+    
+    public function ListAllExpertDomainView(Request $request){
+        $query = $request->input('search');
+        
+        if ($query) {
+            // Search the expert domains by name
+            $expertDomains = ExpertDomain::where('ED_Name', 'LIKE', '%' . $query . '%')->get();
+        } else {
+            // If no search query, get all expert domains
+            $expertDomains = ExpertDomain::all();
+        }
+    
         return view('ExpertDomainView.Platinum.ListAllExpertDomainView', compact('expertDomains'));
     }
+    
 
-    public function AddResearchPublicationView(){
-        return view('ExpertDomainView.Platinum.AddResearchPublicationView');
+
+    public function AddResearchPublicationView($id)
+    {
+        $expertDomain = ExpertDomain::find($id);
+
+        if (!$expertDomain) {
+            return redirect()->route('expertDomains.list')->with('error', 'User not found.');
+        }
+
+        return view('ExpertDomainView.Platinum.AddResearchPublicationView', compact('expertDomain'));
     }
 
     public function storeResearchPublication(Request $request){
@@ -135,7 +163,7 @@ class ExpertDomainController extends Controller
             'PB_Title' => 'required|string',
             'PB_Author' => 'required|string',
             'PB_Uni' => 'required|string',
-            'PB_Course' => 'required|string',
+            // 'PB_Course' => 'nullable|string',
             'PB_Page' => 'required|integer',
             'PB_Detail' => 'required|string',
             'PB_Date' => 'required|date',
@@ -160,15 +188,31 @@ class ExpertDomainController extends Controller
             $publication->PB_Title = $data['PB_Title'];
             $publication->PB_Author = $data['PB_Author'];
             $publication->PB_Uni = $data['PB_Uni'];
-            $publication->PB_Course = $data['PB_Course'];
+            // $publication->PB_Course = $data['PB_Course'];
             $publication->PB_Page = $data['PB_Page'];
             $publication->PB_Detail = $data['PB_Detail'];
             $publication->PB_Date = $data['PB_Date'];
             $publication->id = Auth::id();
             $publication->save();
 
-        return redirect()->route('expertDomains.list')->with('success', 'Research and Publication added successfully!');
+        return redirect()->route('researchPublications.display')->with('success', 'Research and Publication added successfully!');
     } 
+
+    public function DisplayResearchPublicationView()
+    {
+        $userId = Auth::id();
+        
+        // Fetch the research and publication details for the logged-in user
+        $research = Research::where('P_platinumID', $userId)->first();
+        $publication = Publication::where('P_platinumID', $userId)->first();
+
+        if (!$research || !$publication) {
+            return redirect()->route('expertDomains.list')->with('error', 'No research and publication details found.');
+        }
+
+        return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('research', 'publication'));
+    }
+
 
     public function GenerateReport(){
         return view('ExpertDomainView.Platinum.GenerateReport');

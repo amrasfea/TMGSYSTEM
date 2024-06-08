@@ -123,7 +123,31 @@
             <input type="text" id="eduField" name="ED_edu_field" placeholder="Enter your education field">
 
             <label for="eduInstitute">Educational Institute:</label>
-            <input type="text" id="eduInstitute" name="ED_Uni" placeholder="Enter your educational institute">
+            <select id="eduInstitute" name="ED_Uni">
+                                    <option value="" disabled selected>Select your educational institute</option>
+                                    <option value="University of Malaya">University of Malaya (UM)</option>
+                                    <option value="Universiti Kebangsaan Malaysia">Universiti Kebangsaan Malaysia (UKM)</option>
+                                    <option value="Universiti Sains Malaysia">Universiti Sains Malaysia (USM)</option>
+                                    <option value="Universiti Putra Malaysia">Universiti Putra Malaysia (UPM)</option>
+                                    <option value="Universiti Teknologi Malaysia">Universiti Teknologi Malaysia (UTM)</option>
+                                    <option value="Universiti Teknologi MARA">Universiti Teknologi MARA (UiTM)</option>
+                                    <option value="Universiti Utara Malaysia">Universiti Utara Malaysia (UUM)</option>
+                                    <option value="Universiti Malaysia Sabah">Universiti Malaysia Sabah (UMS)</option>
+                                    <option value="Universiti Malaysia Pahang">Universiti Malaysia Pahang (UMP)</option>
+                                    <option value="Universiti Pendidikan Sultan Idris">Universiti Pendidikan Sultan Idris (UPSI)</option>
+                                    <option value="Universiti Islam Antarabangsa Malaysia">Universiti Islam Antarabangsa Malaysia (UIAM)</option>
+                                    <option value="Universiti Islam Sains Islam Malaysia">Universiti Sains Islam Malaysia (USIM)</option>
+                                    <option value="Universiti Tun Hussein Onn Malaysia">Universiti Tun Hussein Onn Malaysia (UTHM)</option>
+                                    <option value="Universiti Teknikal Malaysia Melaka">Universiti Teknikal Malaysia Melaka (UTEM)</option>
+                                    <option value="Universiti Sultan Zaina Abidin">Universiti Sultan Zainal Abidin (UniSZA)</option>
+                                    <option value="Universiti Malayia Perlis">Universiti Malaysia Perlis (UniMAP)</option>
+                                    <option value="Universiti Malaysia Kelantan">Universiti Malaysia Kelantan (UMK)</option>
+                                    <option value="Universiti Pertahanan Nasional Malaysia">Universiti Pertahanan Nasional Malaysia (UPNM)</option>
+                                    <option value="Universiti Malaysia Sarawak">Universiti Malaysia Sarawak (UNIMAS)</option>
+                                    <option value="Universiti Malaysia Terengganu">Universiti Malaysia Terengganu (UMT)</option>
+
+                                    <option value="Other">Other</option>
+                                </select>
 
             <label for="occupation">Occupation:</label>
             <input type="text" id="occupation" name="ED_occupation" placeholder="Enter your occupation">

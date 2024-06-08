@@ -43,47 +43,56 @@
                         border-collapse: collapse;
                         margin-bottom: 20px;
                     }
-                    th, td {
+                    /* th, td {
                         border: 1px solid #ddd;
                         padding: 8px;
                         text-align: left;
-                    }
-                    th {
+                    } */
+                    /* th {
                         background-color: #f2f2f2;
-                    }
-                    tr:nth-child(even) {
+                    } */
+                    /* tr:nth-child(even) {
                         background-color: #f9f9f9;
-                    }
-                    tr:hover {
+                    } */
+                    /* tr:hover {
                         background-color: #f1f1f1;
+                    } */
+
+                    .yellow-row {
+                    background-color: #FFDB58; /* Light yellow color */
                     }
-                    .view-link, .edit-link, .delete-link input[type="submit"] {
+
+                    /* .view-link, .edit-link, .delete-link input[type="submit"] {
                         text-decoration: none;
                         color: white;
                         background-color: #337ab7;
                         padding: 5px 10px;
                         border-radius: 3px;
                         border: none;
-                    }
-                    .view-link:hover, .edit-link:hover {
+                    } */
+                    /* .view-link:hover, .edit-link:hover {
                         background-color: #286090;
-                    }
-                    .delete-link input[type="submit"] {
-                        background-color: #d9534f;
-                    }
-                    .delete-link input[type="submit"]:hover {
-                        background-color: #c9302c;
-                    }
+                    } */
                 </style>
 
-                <h1>List of Your Expert Domains</h1>
+                <!-- Search Form  -->
+                <!-- <form method="GET" action="{{ route('expertDomains.listAll') }}" class="mb-4">
+                        <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+                    </form> -->
 
-                <table>
+                @if(session('success'))
+                    <div class="success-message">
+                        {{ session('success') }}
+                    </div>
+                @endif 
+
+                <!-- <table>
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>View</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,7 +100,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $expertDomain->ED_Name }}</td>
-                            <td><a class="view-link" href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}">View</a></td>
+                            <td><a href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
                         </tr>
                     @empty
                         <tr>
@@ -99,6 +108,42 @@
                         </tr>
                     @endforelse
                     </tbody>
-                </table>
+                </table> -->
+                <div class="container mx-auto px-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h1 class="text-2xl font-bold">{{ __('Users') }}</h1>
+                    </div>
+
+                    <!-- Search Form -->
+                    <form method="GET" action="{{ route('expertDomains.listAll') }}" class="mb-4">
+                        <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+                    </form>
+
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-800 text-white">
+                            <tr class="yellow-row">
+                                <th class="py-2 px-4">{{ __('No') }}</th>
+                                <th class="py-2 px-4">{{ __('Name') }}</th>
+                                <th class="py-2 px-4">{{ __('Email') }}</th>
+                                <th class="py-2 px-4">{{ __('Phone Number') }}</th>
+                                <th class="py-2 px-4">{{ __('Actions') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            @foreach ($expertDomains as $index => $expertDomain)                             
+                                <tr>
+                                <td class="py-2 px-4">{{ $index + 1 }}</td>
+                                    <td class="py-2 px-4">{{ $expertDomain->ED_Name }}</td> 
+                                    <td class="py-2 px-4">{{ $expertDomain->ED_Email }}</td>
+                                    <td class="py-2 px-4">{{ $expertDomain->ED_PhoneNum }}</td> 
+                                    <td class="py-2 px-4">
+                                    <a href="{{ route('expertDomains.view', $expertDomain->ED_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
 </x-platinum-layout>
