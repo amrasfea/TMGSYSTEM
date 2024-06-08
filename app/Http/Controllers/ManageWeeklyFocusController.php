@@ -27,10 +27,12 @@ class ManageWeeklyFocusController extends Controller
         return view('socialBlockView');
     }
 
-    public function weeklyFocusView()
-    {
-        return view('weekly-focus-view');
-    }
+   // Add this method
+   public function weeklyFocusView()
+   {
+       $data = WeeklyFocusView::all();
+       return view('ManageWeeklyFocusView.Platinum.weeklyFocusView', compact('data'));
+   }
 
     public function platinumWeeklyFocusReport()
     {

@@ -57,35 +57,26 @@ class ManageDraftThesisPerformanceController extends Controller
         return redirect()->back()->with('success', 'Record edited successfully');
     }
 
-    public function PlatinumReportDTA()
-    {
-        $data = DraftThesisPerformance::where('DTP_DDCgroup', 'Platinum')->get();
-        return view('platinum_report_dta', compact('data'));
-    }
+   // Add this method
+   public function PlatinumReportDTA()
+   {
+       $data = DraftThesisPerformance::all();
+       return view('ManageDraftThesisPerformanceView.Platinum.PlatinumReportDTA', compact('data'));
+   }
 
-    public function AllDTAView()
-    {
-        $data = DraftThesisPerformance::all();
-        return view('all_dta_view', compact('data'));
-    }
-
-    public function MentorReportDTA()
-    {
-        $data = DraftThesisPerformance::with('mentor')->get(); // Assuming a relationship 'mentor' is defined in the model
-        return view('mentor_report_dta', compact('data'));
-    }
-
-    public function PlatinumDTAView()
-    {
-        $data = DraftThesisPerformance::where('DTP_DDCgroup', 'Platinum')->get();
-        return view('platinum_dta_view', compact('data'));
-    }
-
+    // Add this method
     public function CRMPReportDTA()
     {
-        $data = DraftThesisPerformance::with('crmps')->get(); // Assuming a relationship 'crmps' is defined in the model
-        return view('crmp_report_dta', compact('data'));
+        $data = DraftThesisPerformance::all();
+        return view('ManageDraftThesisPerformanceView.CRMP.CRMPReportDTA', compact('data'));
     }
+
+      // Add this method
+      public function AllDTAView()
+      {
+          $data = DraftThesisPerformance::all();
+          return view('ManageDraftThesisPerformanceView.Mentor.AllDTAView', compact('data'));
+      }
 
       // Add this method
       public function DTAView()
@@ -93,4 +84,39 @@ class ManageDraftThesisPerformanceController extends Controller
           $data = DraftThesisPerformance::all();
           return view('ManageDraftThesisPerformanceView.Platinum.DTAView', compact('data'));
       }
+
+         // Add this method
+         public function PlatinumDTAView()
+         {
+             $data = DraftThesisPerformance::all();
+             return view('ManageDraftThesisPerformanceView.CRMP.PlatinumDTAView', compact('data'));
+         }
+
+      public function destroyAction($id)
+{
+    try {
+        // Attempt to find the record
+        $record = DraftThesisPerformance::find($id);
+
+        // Check if the record exists
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found');
+        }
+
+        // Check for authorization (optional)
+        // if (!auth()->user()->can('delete', $record)) {
+        //     return redirect()->back()->with('error', 'Unauthorized');
+        // }
+
+        // Attempt to delete the record
+        $record->delete();
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    } catch (\Exception $e) {
+        // Handle any errors that occur during the delete operation
+        return redirect()->back()->with('error', 'An error occurred while deleting the record');
+    }
+}
+
 }

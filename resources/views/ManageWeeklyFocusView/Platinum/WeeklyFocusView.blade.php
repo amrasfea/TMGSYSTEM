@@ -1,5 +1,12 @@
-<main>
-    <h1 id="main_title" style="text-align: center;">Weekly Focus</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeeklyFocus</title>
+</head>
+<body>
+<h1 id="main_title" style="text-align: center;">Weekly Focus</h1>
     <div class="view-container">
         <h2>Focus Blocks</h2>
         <table class="table table-hover table-bordered table-striped">
@@ -38,18 +45,20 @@
                             <button type="button" class="btn btn-warning" onclick="openEditModal({{ $focus->id }})">Edit</button>
 
                             <!-- Delete button -->
-                            <form action="{{ route('weeklyFocusView.destroy', $focus->id) }}" method="POST">
+                            <form action="{{ route('weeklyFocus.delete', $focus->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
 
                             <!-- Add button -->
-                            <a href="{{ route('weeklyFocusView.create') }}" class="btn btn-primary">Add</a>
+                            <a href="{{ route('weeklyFocus.add', $focus->id) }}" class="btn btn-primary">Add</a>
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-</main>
+</body>
+</html>

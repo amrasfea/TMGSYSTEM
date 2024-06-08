@@ -108,12 +108,19 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin-block-view', [ManageWeeklyFocusController::class, 'adminBlockView'])->name('adminBlockView');
     Route::get('/recovery-block-view', [ManageWeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
     Route::get('/social-block-view', [ManageWeeklyFocusController::class, 'socialBlockView'])->name('socialBlockView');
+
     Route::get('/weekly-focus-view', [ManageWeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView');
-    Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinumWeeklyFocusReport');
+    Route::get('/weekly-focus-view/{id}/edit', [ManageWeeklyFocusController::class, 'edit'])->name('weeklyFocus.edit');
+    Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'destroy'])->name('weeklyFocus.delete');
+    Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'add'])->name('weeklyFocus.add');
+
+
+
+    Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
     Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView');
-    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentorWeeklyFocusReport');
+    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentor.Report');
     Route::get('/platinum-weekly-focus-view', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView');
-    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmpWeeklyFocusReport');
+    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmp.Report');
 });
 
 
