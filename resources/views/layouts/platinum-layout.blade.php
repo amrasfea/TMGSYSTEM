@@ -253,7 +253,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Draft Thesis Performance</a>
+                            <a href="{{ route('DTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Weekly Focus</a>

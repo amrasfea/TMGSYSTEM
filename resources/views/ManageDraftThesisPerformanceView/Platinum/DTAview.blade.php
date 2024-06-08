@@ -3,271 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Draft Thesis Performance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-wEmeIV1mKuiNp12sBd0KSBl+8Ywi+65KwgdZ+3ztD4INtq+Pp3HBpLZ9/9PI3xH+" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
     <style>
         body {
             background-color: #f8f9fa;
         }
-        
         .container {
-            margin-top: 50px;
+            max-width: 1200px;
+            margin-top: 20px;
         }
-        
-        .table {
-            background-color: yellow;
-            border-color: yellow;
+        .btn-group {
+            margin-bottom: 20px;
         }
-        
-        .table th,
-        .table td {
-            border-color: #dee2e6;
-        }
-        
-        .table-hover tbody tr:hover {
-            background-color: #fff3cd;
-        }
-        
-        .view-table-header {
-            background-color: #ffc107;
+        .table th {
+            background-color: #FFD700;
             color: white;
         }
-        
-        .btn-group .btn {
+        .modal-header {
             background-color: #007bff;
-            border-color: #007bff;
-            color: #fff;
-            width: 80px; /* Set a fixed width for all buttons */
-            margin-right: 5px; /* Add space between buttons */
-            text-align: center;
+            color: white;
         }
-
-        .btn-group .btn:last-child {
-            margin-right: 0; /* Remove margin from the last button */
+        .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
         }
-        
-        .btn-group .btn:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        .form-group label {
+            font-weight: bold;
         }
-        
-        .btn-group .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-        
-        .btn-group .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
-        }
-        
-        .btn-group .btn-warning {
-            background-color: #ffc107;
-            border-color: #ffc107;
-            color: #212529;
-        }
-        
-        .btn-group .btn-warning:hover {
-            background-color: #e0a800;
-            border-color: #d39e00;
-            color: #212529;
-        }
-        
-        .btn-group .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        
-        .btn-group .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        .form-group input {
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-   <!-- Button group at the top right of the table -->
-<div class="d-flex justify-content-end mb-3">
-    <div class="btn-group">
-        <!-- Add button -->
-        <button type="button" class="btn btn-primary" onclick="openAddModal()">Add</button>
-        <!-- Edit button -->
-        <button type="button" class="btn btn-primary" onclick="openEditModal()">Edit</button>
-        <!-- Delete button -->
-        <button type="button" class="btn btn-danger" onclick="deleteAction()">Delete</button>
-    </div>
-</div>
-
-    <table class="table table-hover table-bordered table-striped">
-        <thead>
-            <tr class="view-table-header">
-                <th style="text-align: center;">Number</th>
-                <th style="text-align: center;">Title</th>
-                <th style="text-align: center;">Start Date</th>
-                <th style="text-align: center;">End Date</th>
-                <th style="text-align: center;">Days to Prepare</th>
-                <th style="text-align: center;">Total Page</th>
-                <th style="text-align: center;">Completion Date</th>
-                <th style="text-align: center;">DDC Group</th>
-                <th style="text-align: center;">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Loop through data using Blade syntax -->
-            @foreach ($data as $item)
-            <tr>
-                <td>{{ $item->number }}</td>
-                <td>{{ $item->title }}</td>
-                <td>{{ $item->start_date }}</td>
-                <td>{{ $item->end_date }}</td>
-                <td>{{ $item->days_to_prepare }}</td>
-                <td>{{ $item->total_page }}</td>
-                <td>{{ $item->completion_date }}</td>
-                <td>{{ $item->ddc_group }}</td>
-                <td style="text-align: center;">
-                    <div class="btn-group">
-                        <!-- Row-specific Edit button -->
-                        <button type="button" class="btn btn-primary" onclick="openEditModal({{ $item->id }})">Edit</button>
-        
-                        <!-- Row-specific Delete button -->
-                        <form action="{{ route('deleteAction', $item->id) }}" method="POST" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-        
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
-<!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Add Record</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+@section('content')
+    <div class="container">
+        <!-- Button group at the top right of the table -->
+        <div class="text-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
+                <button type="button" class="btn btn-secondary" onclick="openEditModal()">Edit</button>
+                <button type="button" class="btn btn-danger" onclick="deleteAction()">Delete</button>
             </div>
-            <div class="modal-body">
-                <form id="addForm" method="POST" action="{{ route('addAction') }}">
-                    @csrf
-                    <!-- Form fields for add record -->
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="start_date" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" id="start_date" name="start_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="end_date" class="form-label">End Date</label>
-                        <input type="date" class="form-control" id="end_date" name="end_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="days_to_prepare" class="form-label">Days to Prepare</label>
-                        <input type="number" class="form-control" id="days_to_prepare" name="days_to_prepare" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="total_page" class="form-label">Total Page</label>
-                        <input type="number" class="form-control" id="total_page" name="total_page" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="completion_date" class="form-label">Completion Date</label>
-                        <input type="date" class="form-control" id="completion_date" name="completion_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ddc_group" class="form-label">DDC Group</label>
-                        <input type="text" class="form-control" id="ddc_group" name="ddc_group" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+        </div>
+
+        <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Title</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Days to Prepare</th>
+                    <th>Total Page</th>
+                    <th>Completion Date</th>
+                    <th>DDC Group</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data as $item)
+                <tr id="item-{{ $item->id }}">
+                    <td>{{ $item->number }}</td>
+                    <td>{{ $item->title }}</td>
+                    <td>{{ $item->start_date }}</td>
+                    <td>{{ $item->end_date }}</td>
+                    <td>{{ $item->days_to_prepare }}</td>
+                    <td>{{ $item->total_page }}</td>
+                    <td>{{ $item->completion_date }}</td>
+                    <td>{{ $item->ddc_group }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" onclick="openEditModal({{ $item->id }})">Edit</button>
+                            <form action="{{ route('deleteAction', $item->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="addModalLabel">Add Record</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm">
+                        @csrf
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" id="start_date" name="start_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">End Date:</label>
+                            <input type="date" id="end_date" name="end_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="days_to_prepare">Days to Prepare:</label>
+                            <input type="number" id="days_to_prepare" name="days_to_prepare" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="total_page">Total Page:</label>
+                            <input type="number" id="total_page" name="total_page" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="completion_date">Completion Date:</label>
+                            <input type="date" id="completion_date" name="completion_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ddc_group">DDC Group:</label>
+                            <input type="text" id="ddc_group" name="ddc_group" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Record</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editForm" method="POST" action="">
-                    @csrf
-                    @method('PUT')
-                    <!-- Form fields for edit record -->
-                    <div class="mb-3">
-                        <label for="edit_title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="edit_title" name="title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_start_date" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" id="edit_start_date" name="start_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_end_date" class="form-label">End Date</label>
-                        <input type="date" class="form-control" id="edit_end_date" name="end_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_days_to_prepare" class="form-label">Days to Prepare</label>
-                        <input type="number" class="form-control" id="edit_days_to_prepare" name="days_to_prepare" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_total_page" class="form-label">Total Page</label>
-                        <input type="number" class="form-control" id="edit_total_page" name="total_page" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_completion_date" class="form-label">Completion Date</label>
-                        <input type="date" class="form-control" id="edit_completion_date" name="completion_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_ddc_group" class="form-label">DDC Group</label>
-                        <input type="text" class="form-control" id="edit_ddc_group" name="ddc_group" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="editModalLabel">Edit Record</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="edit_title">Title:</label>
+                            <input type="text" id="edit_title" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_start_date">Start Date:</label>
+                            <input type="date" id="edit_start_date" name="start_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_end_date">End Date:</label>
+                            <input type="date" id="edit_end_date" name="end_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_days_to_prepare">Days to Prepare:</label>
+                            <input type="number" id="edit_days_to_prepare" name="days_to_prepare" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_total_page">Total Page:</label>
+                            <input type="number" id="edit_total_page" name="total_page" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_completion_date">Completion Date:</label>
+                            <input type="date" id="edit_completion_date" name="completion_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_ddc_group">DDC Group:</label>
+                            <input type="text" id="edit_ddc_group" name="ddc_group" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-wEmeIV1mKuiNp12sBd0KSBl+8Ywi+65KwgdZ+3ztD4INtq+Pp3HBpLZ9/9PI3xH+" crossorigin="anonymous"></script>
-<script>
-    function openEditModal(id) {
-        fetch(`/getRecord/${id}`)
+    @section('scripts')
+    <script>
+        // Function to populate edit modal fields with data
+        function openEditModal(id) {
+            fetch(`/api/draft-thesis-performance/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('edit_id').value = data.id;
+                    document.getElementById('edit_title').value = data.title;
+                    document.getElementById('edit_start_date').value = data.start_date;
+                    document.getElementById('edit_end_date').value = data.end_date;
+                    document.getElementById('edit_days_to_prepare').value = data.days_to_prepare;
+                    document.getElementById('edit_total_page').value = data.total_page;
+                    document.getElementById('edit_completion_date').value = data.completion_date;
+                    document.getElementById('edit_ddc_group').value = data.ddc_group;
+                });
+            $('#editModal').modal('show');
+        }
+
+        // Function to handle form submission for adding a new record
+        document.getElementById('addForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Collect form data
+            let formData = new FormData(this);
+            // Send AJAX request to add the record
+            fetch('{{ route("addAction") }}', {
+                method: 'POST',
+                body: formData
+            })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('edit_title').value = data.title;
-                document.getElementById('edit_start_date').value = data.start_date;
-                document.getElementById('edit_end_date').value = data.end_date;
-                document.getElementById('edit_days_to_prepare').value = data.days_to_prepare;
-                document.getElementById('edit_total_page').value = data.total_page;
-                document.getElementById('edit_completion_date').value = data.completion_date;
-                document.getElementById('edit_ddc_group').value = data.ddc_group;
-                document.getElementById('editForm').action = `/editAction/${id}`;
-                var editModal = new bootstrap.Modal(document.getElementById('editModal'));
-                editModal.show();
-            });
-    }
+                // If data is successfully added, update the table
+                if(data.success) {
+                    let newRow = `<tr id="item-${data.id}">
+                                    <td>${data.number}</td>
+                                    <td>${data.title}</td>
+                                    <td>${data.start_date}</td>
+                                    <td>${data.end_date}</td>
+                                    <td>${data.days_to_prepare}</td>
+                                    <td>${data.total_page}</td>
+                                    <td>${data.completion_date}</td>
+                                    <td>${data.ddc_group}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary" onclick="openEditModal(${data.id})">Edit</button>
+                                            <button type="button" class="btn btn-danger" onclick="deleteAction(${data.id})">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>`;
+                    document.querySelector('#dataTable tbody').insertAdjacentHTML('beforeend', newRow);
+                    // Close the modal after successful addition
+                    $('#addModal').modal('hide');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
 
-    // Function to open the add modal
-    function openAddModal() {
-        var addModal = new bootstrap.Modal(document.getElementById('addModal'));
-        addModal.show();
-    }
-</script>
+        // Function to handle form submission for editing a record
+        document.getElementById('editForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Collect form data
+            let formData = new FormData(this);
+            let id = formData.get('id');
+            // Send AJAX request to update the record
+            fetch(`/api/draft-thesis-performance/${id}`, {
+                method: 'PUT',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // If data is successfully updated, update the corresponding row in the table
+                if(data.success) {
+                    let row = document.getElementById(`item-${data.id}`);
+                    row.innerHTML = `<td>${data.number}</td>
+                                    <td>${data.title}</td>
+                                    <td>${data.start_date}</td>
+                                    <td>${data.end_date}</td>
+                                    <td>${data.days_to_prepare}</td>
+                                    <td>${data.total_page}</td>
+                                    <td>${data.completion_date}</td>
+                                    <td>${data.ddc_group}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary" onclick="openEditModal(${data.id})">Edit</button>
+                                            <button type="button" class="btn btn-danger" onclick="deleteAction(${data.id})">Delete</button>
+                                        </div>
+                                    </td>`;
+                    // Close the modal after successful update
+                    $('#editModal').modal('hide');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Function to handle deletion of a record
+        function deleteAction(id) {
+            // Send AJAX request to delete the record
+            fetch(`/api/draft-thesis-performance/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                // If data is successfully deleted, remove the corresponding row from the table
+                if(data.success) {
+                    let row = document.getElementById(`item-${id}`);
+                    row.parentNode.removeChild(row);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@endsection
 
 
-
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -114,17 +114,22 @@ Route::middleware('auth')->group(function() {
 
 //DTA
 Route::middleware('auth')->group(function() {
-    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView']);
-    Route::delete('/deleteAction/{id}', [ManageDraftThesisPerformanceController::class, 'deleteAction'])->name('deleteAction');
-    Route::post('/addAction', [ManageDraftThesisPerformanceController::class, 'addAction'])->name('addAction');
-    Route::post('/editAction/{id}', [ManageDraftThesisPerformanceController::class, 'editAction'])->name('editAction'); // Add this line for editAction
+    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('DTAView.index');
+    Route::delete('/DTAView/{id}/delete', [ManageDraftThesisPerformanceController::class, 'destroy'])->name('DTAView.delete');
+    Route::get('/DTAView/{id}/create', [ManageDraftThesisPerformanceController::class, 'create'])->name('DTAView.create');
+    Route::post('/DTAView/{id}/store', [ManageDraftThesisPerformanceController::class, 'store'])->name('DTAView.store');
+    Route::get('/DTAView/{id}/edit', [ManageDraftThesisPerformanceController::class, 'edit'])->name('DTAView.edit');
+    Route::put('/DTAView/{id}', [ManageDraftThesisPerformanceController::class, 'update'])->name('DTAView.update');
 
     Route::get('/PlatinumReportDTA', [ManageDraftThesisPerformanceController::class, 'PlatinumReportDTA']);
-    Route::get('/AllDTAView', [ManageDraftThesisPerformanceController::class, 'AllDTAView']);
+    Route::get('/AllDTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('AllDTAView.index');
     Route::get('/MentorReportDTA', [ManageDraftThesisPerformanceController::class, 'MentorReportDTA']);
-    Route::get('/PlatinumDTAView', [ManageDraftThesisPerformanceController::class, 'PlatinumDTAView']);
+    Route::get('/PlatinumDTAView', [ManageDraftThesisPerformanceController::class, 'show'])->name('PlatinumDTAView.show');
     Route::get('/CRMPReportDTA', [ManageDraftThesisPerformanceController::class, 'CRMPReportDTA']);
+    Route::resource('draft-thesis-performances', 'App\Http\Controllers\ManageDraftThesisPerformanceController');
 });
+
+
 
 //ManagePublication
 Route::middleware('auth')->group(function(){
