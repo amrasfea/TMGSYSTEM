@@ -17,11 +17,11 @@ class CreatePublicationsTable extends Migration
             $table->string('PB_Title');
             $table->string('PB_Author');
             $table->string('PB_Uni');
-            $table->string('PB_Course');
+            $table->string('PB_Course')->nullable();
             $table->integer('PB_Page');
             $table->text('PB_Detail');
             $table->date('PB_Date');
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
             $table->timestamps();
             
             $table->foreign('P_platinumID')->references('P_platinumID')->on('platinums')->onDelete('cascade');
