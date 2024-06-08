@@ -1,5 +1,4 @@
 <x-platinum-layout> 
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Search Publication') }}
@@ -39,16 +38,16 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-.search-bar input {
+    .search-bar input {
     width: 80%;
     padding: 10px;
     font-size: 16px;
     border: #ccc;
     border-radius: 4px;
     outline: none;
-}
+    }
 
-.search-bar button {
+    .search-bar button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007BFF;
@@ -56,11 +55,11 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
+    }
 
-.search-bar button:hover {
+    .search-bar button:hover {
     background-color: #0056b3;
-}
+    }
 
         .results .result-item {
             padding: 10px 0;

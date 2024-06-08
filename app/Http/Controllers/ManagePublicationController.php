@@ -70,10 +70,16 @@ class ManagePublicationController extends Controller
         } 
     }
 
+    public function viewAll()
+    {
+        $publications = Publication::all();
+        return view('ManagePublicationView.Platinum.ViewPublication', compact('publications'));
+    }
+
     public function show($id)
     {
         $publication = Publication::findOrFail($id);
-        return view('ManagePublicationView.Platinum.ShowPublication', compact('publication'));
+        return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication'));
     }
 
     public function edit($id)

@@ -129,7 +129,7 @@
 
                                 <label for="file">Upload File</label>
                                 <input type="file" id="file" name="file">
-                                <p>Current File: <a href="{{ Storage::url($publication->file_path) }}" target="_blank">View File</a></p>
+                                <p>Current File: <a href="{{ url('storage/' . $publication->file_path }}" target="_blank">View File</a></p>
                             </div>
                         </div>
                     </form>

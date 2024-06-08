@@ -140,6 +140,8 @@ Route::middleware('auth')->group(function(){
     Route::put('publications/{id}', [ManagePublicationController::class, 'update'])->name('publications.update');
     Route::delete('publications/{id}', [ManagePublicationController::class, 'destroy'])->name('publications.destroy');
     Route::get('publications/search', [ManagePublicationController::class, 'search'])->name('publications.search');
+    Route::get('/publications/view', [ManagePublicationController::class, 'viewAll'])->name('publications.viewAll');
+
 });
 
 

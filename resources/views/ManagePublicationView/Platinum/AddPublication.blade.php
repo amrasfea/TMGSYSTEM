@@ -48,13 +48,23 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 30px;
-            float: right;
             font-size: 16px;
             font-weight: bold;
         }
         .form-section button:hover,
         .form-section input[type="submit"]:hover {
             background-color: #0056b3;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .form-section .back-button {
+            background-color: #6c757d;
+        }
+        .form-section .back-button:hover {
+            background-color: #5a6268;
         }
     </style>
 
@@ -108,7 +118,8 @@
                                 <label for="date-of-published">Date of Publish</label>
                                 <input type="date" id="date-of-published" name="date-of-published" required>
 
-                                <div>
+                                <div class="form-actions">
+                                    <button type="button" class="back-button" onclick="confirmBack()">Back</button>
                                     <input type="submit" value="Add Publication">
                                 </div>
                             </div>
@@ -125,4 +136,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmBack() {
+            if (confirm("Do you want to discard the publication?")) {
+                window.location.href = "{{ route('publications.index') }}";
+            }
+        }
+    </script>
 </x-platinum-layout>

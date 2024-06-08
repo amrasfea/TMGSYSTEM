@@ -28,21 +28,6 @@
             text-align: left;
         }
 
-        .edit-btn {
-            background-color: #007bff;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-
-        .view-btn {
-            background-color: #28a745;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
 
         .add-publication-btn {
             background-color: #007bff;
@@ -56,33 +41,48 @@
     </style>
 
     <div class="container">
-
-            <table class="publications-table">
-                <thead>
+        <table class="publications-table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>File</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($publications as $index => $publication)
                     <tr>
-                        <th>No.</th>
-                        <th>Type</th>
-                        <th>Title</th>
-                        <th>File</th>
-                        <th>Actions</th>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $publication->PB_Type }}</td>
+                        <td>{{ $publication->PB_Title }}</td>
+                        <td><a href="{{ url('storage/' . $publication->file_path) }}" target="_blank">View File</a></td>
+                        <td>
+                            <a href="{{ route('publications.edit', $publication->PB_ID) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
+                            <a href="#" class="text-red-600 hover:text-red-900 ml-2" onclick="confirmDelete({{ $publication->PB_ID }})">{{ __('Delete') }}</a>
+                            <a href="{{ route('publications.show', $publication->PB_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($publications as $index => $publication)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $publication->PB_Type }}</td>
-                            <td>{{ $publication->PB_Title }}</td>
-                            <td><a href="{{ Storage::url($publication->file_path) }}" target="_blank">View File</a></td>
-                            <td>
-                                <a href="{{ route('publications.show', $publication->PB_ID) }}" class="view-btn">View</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
+                @endforeach
+            </tbody>
+        </table>
 
         <a href="{{ route('publications.create') }}" class="add-publication-btn">Add New Publication</a>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            if(confirm('Are you sure you want to delete this publication?')) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        }
+    </script>
+    @foreach($publications as $publication)
+        <form id="delete-form-{{ $publication->PB_ID }}" action="{{ route('publications.destroy', $publication->PB_ID) }}" method="POST" style="display: none;">
+            @csrf
+            @method('DELETE')
+        </form>
+    @endforeach
 </x-platinum-layout>
+
