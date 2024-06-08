@@ -148,7 +148,7 @@
                                 <label for="publication-detail">Detail:</label>
                                 <input type="text" id="publication-detail" name="PB_Detail" placeholder="Enter the publication details" aria-label="Publication Details" value="{{ old('PB_Detail') }}">
 
-                                <label for="publication-date">Date:</label>
+                                <label for="publication-date">Date of Publication:</label>
                                 <input type="date" id="publication-date" name="PB_Date" aria-label="Publication Date" value="{{ old('PB_Date') }}">
                             </div>
 
