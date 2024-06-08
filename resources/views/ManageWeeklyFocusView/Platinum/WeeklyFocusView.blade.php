@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeeklyFocus</title>
-</head>
-<body>
-<h1 id="main_title" style="text-align: center;">Weekly Focus</h1>
+<main>
+    <h1 id="main_title" style="text-align: center;">Weekly Focus</h1>
     <div class="view-container">
         <h2>Focus Blocks</h2>
         <table class="table table-hover table-bordered table-striped">
@@ -22,43 +15,37 @@
 
             <style>
                 .btn-group {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-                    .btn-group .btn {
-                        margin-right: 10px; /* Adjust the margin as needed */
-                    }
-                    
+                .btn-group .btn {
+                    margin-right: 10px;
+                }
             </style>
 
             <tbody>
                 @foreach ($weeklyFocuses as $focus)
                     <tr>
                         <td>{{ $focus->id }}</td>
-                        <td>{{ $focus->WF_topic }}</td>
-                        <td>{{ $focus->WF_description }}</td>
-                        <td>{{ $focus->WF_date }}</td>
+                        <td>{{ $focus->FB_BlockType }}</td>
+                        <td>{{ $focus->FB_BlockDesc }}</td>
+                        <td>{{ $focus->FB_StartDate }} to {{ $focus->FB_EndDate }}</td>
                         <td style="text-align: center;">
-                            <!-- Edit button -->
-                            <button type="button" class="btn btn-warning" onclick="openEditModal({{ $focus->id }})">Edit</button>
-
-                            <!-- Delete button -->
-                            <form action="{{ route('weeklyFocus.delete', $focus->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-
-                            <!-- Add button -->
-                            <a href="{{ route('weeklyFocus.add', $focus->id) }}" class="btn btn-primary">Add</a>
-
+                            <div class="btn-group">
+                                <a href="{{ route('weeklyFocus.edit', $focus->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('weeklyFocus.delete', $focus->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="{{ route('weeklyFocus.add') }}" class="btn btn-primary">Add</a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</main>

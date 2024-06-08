@@ -99,11 +99,9 @@ Route::middleware('auth')->group(function(){
 //WeeklyFocus
 
 Route::middleware('auth')->group(function() {
-    // Routes related to weekly focus selection
     Route::get('/weekly-focus-selection', [ManageWeeklyFocusController::class, 'showWeeklyFocusSelectionForm'])->name('weeklyFocusSelectionForm');
     Route::post('/weekly-focus-selection', [ManageWeeklyFocusController::class, 'processWeeklyFocusSelection'])->name('processWeeklyFocusSelection');
 
-    // Other existing routes...
     Route::get('/focus-block-view', [ManageWeeklyFocusController::class, 'focusBlockView'])->name('focusBlockView');
     Route::get('/admin-block-view', [ManageWeeklyFocusController::class, 'adminBlockView'])->name('adminBlockView');
     Route::get('/recovery-block-view', [ManageWeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
@@ -111,10 +109,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/weekly-focus-view', [ManageWeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView');
     Route::get('/weekly-focus-view/{id}/edit', [ManageWeeklyFocusController::class, 'edit'])->name('weeklyFocus.edit');
-    Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'destroy'])->name('weeklyFocus.delete');
-    Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'add'])->name('weeklyFocus.add');
-
-
+    Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'deleteWeeklyFocus'])->name('weeklyFocus.delete');
+    Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'create'])->name('weeklyFocus.add');
 
     Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
     Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView');
@@ -124,9 +120,10 @@ Route::middleware('auth')->group(function() {
 });
 
 
+
 //DTA
 Route::middleware('auth')->group(function() {
-    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('DTAView.index');
+    Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView'])->name('DTAView.index');
     Route::delete('/DTAView/{id}/delete', [ManageDraftThesisPerformanceController::class, 'destroy'])->name('DTAView.delete');
     Route::get('/DTAView/{id}/create', [ManageDraftThesisPerformanceController::class, 'create'])->name('DTAView.create');
     Route::post('/DTAView/{id}/store', [ManageDraftThesisPerformanceController::class, 'store'])->name('DTAView.store');
