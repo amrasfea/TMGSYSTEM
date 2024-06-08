@@ -35,7 +35,7 @@ class ProfileController extends Controller
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
-{
+    {
     $user = $request->user();
     $validated = $request->validated();
 
@@ -189,7 +189,5 @@ public function viewExpert($id)
     $expert = DB::table('expertDomains')->where('p_platinumID', $id)->first();
     return view('profile.view', compact('profileUser', 'expert'));
 }
-
-    
 }
 

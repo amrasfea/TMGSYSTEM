@@ -107,12 +107,6 @@ Route::middleware('auth')->group(function() {
 });
 
 
-
-
-
-    
-
-
 //DTA
 Route::middleware('auth')->group(function() {
     Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView']);

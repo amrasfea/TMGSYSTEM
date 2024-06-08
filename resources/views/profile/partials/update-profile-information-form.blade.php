@@ -175,10 +175,6 @@
         @elseif(Auth::user()->roleType === 'Staff')
 
         <!-- Inside the form -->
-        <div>
-            <x-input-label for="profile_photo_path" :value="__('Profile Photo')" />
-             <input id="profile_photo_path" type="file" name="profile_photo_path" class="mt-1 block w-full">
-        </div>
 
             <div>
                 <x-input-label for="S_position" :value="__('Position')" />
@@ -214,9 +210,6 @@
                 <x-text-input id="S_workExperience" name="S_workExperience" type="text" class="mt-1 block w-full" :value="old('S_workExperience', $user->staff->S_workExperience ?? '')" required autofocus autocomplete="S_workExperience" />
                 <x-input-error class="mt-2" :messages="$errors->get('S_workExperience')" />
             </div>
-
-            
-
             
         @elseif(Auth::user()->roleType === 'Mentor')
             <div>
