@@ -226,19 +226,7 @@
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Weekly Focus</a>
                             <ul class="sidebar-dropdown">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Focus Block </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Social Block</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Admin Block</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Recovery Block</a>
-                                </li>
-                            </ul>
+                         
                         </li>
                     </ul>
                 </li>
