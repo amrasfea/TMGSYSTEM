@@ -85,13 +85,14 @@
                             </ul>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('researchPublications.store') }}">
-                        @csrf
+                    <form method="post" action="{{ route('researchPublications.store', $expertDomain->ED_ID) }}">
+                    @csrf
 
                         <div class="form-container">
                             <div class="form-section">
                                 <h2>Research Information</h2>
-
+                                <!-- Hidden input field to pass ED_ID -->
+                                <input type="hidden" name="ED_ID" value="{{ $expertDomain->ED_ID }}">
                                 <label for="research-title">Research Title:</label>
                                 <input type="text" id="research-title" name="R_title" placeholder="Enter the research title" aria-label="Research Title" value="{{ old('R_title') }}">
                             </div>

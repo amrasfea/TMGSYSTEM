@@ -145,73 +145,71 @@ class ExpertDomainController extends Controller
     
 
 
-    public function AddResearchPublicationView($id)
-    {
-        $expertDomain = ExpertDomain::find($id);
+    public function AddResearchPublicationView($ED_ID)
+{
+    $expertDomain = ExpertDomain::find($ED_ID);
 
-        if (!$expertDomain) {
-            return redirect()->route('expertDomains.list')->with('error', 'User not found.');
-        }
-
-        return view('ExpertDomainView.Platinum.AddResearchPublicationView', compact('expertDomain'));
+    if (!$expertDomain) {
+        return redirect()->route('expertDomains.list')->with('error', 'User not found.');
     }
 
-    public function storeResearchPublication(Request $request){
-        $data = $request->validate([
-            'R_title' => 'required|string',
-            'PB_Type' => 'required|string',
-            'PB_Title' => 'required|string',
-            'PB_Author' => 'required|string',
-            'PB_Uni' => 'required|string',
-            // 'PB_Course' => 'nullable|string',
-            'PB_Page' => 'required|integer',
-            'PB_Detail' => 'required|string',
-            'PB_Date' => 'required|date',
-        ]);
+    return view('ExpertDomainView.Platinum.AddResearchPublicationView', compact('expertDomain'));
+}
 
-        $userId = Auth::id();
+public function storeResearchPublication(Request $request)
+{
+    $data = $request->validate([
+        'ED_ID' => 'required|exists:expertdomains,ED_ID',
+        'R_title' => 'required|string',
+        'PB_Type' => 'required|string',
+        'PB_Title' => 'required|string',
+        'PB_Author' => 'required|string',
+        'PB_Uni' => 'required|string',
+        'PB_Page' => 'required|integer',
+        'PB_Detail' => 'required|string',
+        'PB_Date' => 'required|date',
+    ]);
 
-    // Check if the user has a corresponding platinums record
-    if (!Platinum::where('id', $userId)->exists()) {
+    $userId = Auth::id();
+
+    if (!User::where('id', $userId)->exists()) {
         return redirect()->route('expertDomains.list')->with('error', 'User does not have a corresponding Platinum record.');
     }
-            // Save Research data
-            $research = new Research();
-            $research->id = $userId;
-            $research->R_title = $data['R_title'];
-            $research->save();
 
-            // Save Publication data
-            $publication = new Publication();
-            $publication->ED_ID = Auth::id(); // Adjust this as needed
-            $publication->PB_Type = $data['PB_Type'];
-            $publication->PB_Title = $data['PB_Title'];
-            $publication->PB_Author = $data['PB_Author'];
-            $publication->PB_Uni = $data['PB_Uni'];
-            // $publication->PB_Course = $data['PB_Course'];
-            $publication->PB_Page = $data['PB_Page'];
-            $publication->PB_Detail = $data['PB_Detail'];
-            $publication->PB_Date = $data['PB_Date'];
-            $publication->id = Auth::id();
-            $publication->save();
+    $research = new Research();
+    $research->R_title = $data['R_title'];
+    $research->ED_ID = $data['ED_ID'];
+    $research->save();
 
-        return redirect()->route('researchPublications.display')->with('success', 'Research and Publication added successfully!');
-    } 
+    $publication = new Publication();
+    $publication->P_platinumID = $userId;
+    $publication->ED_ID = $data['ED_ID'];
+    $publication->PB_Type = $data['PB_Type'];
+    $publication->PB_Title = $data['PB_Title'];
+    $publication->PB_Author = $data['PB_Author'];
+    $publication->PB_Uni = $data['PB_Uni'];
+    $publication->PB_Page = $data['PB_Page'];
+    $publication->PB_Detail = $data['PB_Detail'];
+    $publication->PB_Date = $data['PB_Date'];
+    $publication->save();
 
-    public function DisplayResearchPublicationView()
-    {
-        $userId = Auth::id();
-        
-        // Fetch the research and publication details for the logged-in user
-        $research = Research::where('P_platinumID', $userId)->first();
-        $publication = Publication::where('P_platinumID', $userId)->first();
+    return redirect()->route('researchPublications.display', ['ED_ID' => $request->input('ED_ID')])->with('success', 'Research and Publication added successfully!');
+}
 
-        if (!$research || !$publication) {
-            return redirect()->route('expertDomains.list')->with('error', 'No research and publication details found.');
-        }
+public function displayResearchPublication($ED_ID)
+{
+    $expertDomain = ExpertDomain::findOrFail($ED_ID);
 
-        return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('research', 'publication'));
+    // Retrieve research and publication data based on the ED_ID
+    $research = Research::where('ED_ID', $ED_ID)->first();
+    $publication = Publication::where('ED_ID', $ED_ID)->first();
+
+    if (!$research || !$publication) {
+        return redirect()->route('expertDomains.list')->with('error', 'Research or Publication not found.');
     }
+
+    return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('expertDomain', 'research', 'publication'));
+}
 
 
     public function GenerateReport(){

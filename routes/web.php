@@ -81,10 +81,11 @@ Route::middleware('auth')->group(function(){
     Route::delete('/expertDomains/{ED_ID}', [ExpertDomainController::class, 'destroy'])->name('expertDomains.destroy');//delete expert
 
     Route::get('/expertDomains/view/{id}', [ExpertDomainController::class, 'view'])->name('expertDomains.view');//list details
-    Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
-    Route::get('/AddResearchPublication/{id}', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
-    Route::get('/DisplayResearchPublication', [ExpertDomainController::class, 'DisplayResearchPublicationView'])->name('researchPublications.display');
-    Route::post('/expertDomains/store-research-publication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
+    // Route::get('/add-research-publication', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    
+    Route::get('/AddResearchPublication/{ED_ID}', [ExpertDomainController::class, 'AddResearchPublicationView'])->name('researchPublications.add');
+    Route::post('/storeResearchPublication', [ExpertDomainController::class, 'storeResearchPublication'])->name('researchPublications.store');
+    Route::get('/researchPublications/display/{ED_ID}', [ExpertDomainController::class, 'displayResearchPublication'])->name('researchPublications.display');
 
     Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
     Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
