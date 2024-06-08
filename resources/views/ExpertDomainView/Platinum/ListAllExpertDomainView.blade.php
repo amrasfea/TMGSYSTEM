@@ -75,8 +75,6 @@
                         background-color: #c9302c;
                     }
                 </style>
-
-                <h1>List of All Expert Domains</h1>
                     <!-- Search Form -->
                 <form method="GET" action="{{ route('expertDomains.listAll') }}" class="mb-4">
                         <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
