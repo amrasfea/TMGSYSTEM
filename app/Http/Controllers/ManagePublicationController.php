@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publication;
-use App\Models\Platinum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -11,15 +10,9 @@ use Illuminate\Support\Facades\Log;
 
 class ManagePublicationController extends Controller
 {
-    public function __construct()
-    {
-        // Constructor can be used for middleware if needed
-    }
-
     public function index()
     {
-        $platinum = Platinum::where('id', Auth::id())->first();
-        $publications = $platinum ? $platinum->publications : [];
+        $publications = Publication::where('P_platinumID', Auth::id())->get();
         return view('ManagePublicationView.Platinum.MyPublication', compact('publications'));
     }
 
@@ -41,7 +34,7 @@ class ManagePublicationController extends Controller
             'page-number' => 'required|integer',
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:10240',
         ]);
 
         if ($request->hasFile('file')) {
@@ -54,13 +47,6 @@ class ManagePublicationController extends Controller
 
                 Log::info('File stored at: ' . $filePath);
 
-                $platinum = Platinum::where('id', Auth::id())->first();
-
-                if (!$platinum) {
-                    Log::error('Platinum record not found');
-                    return redirect()->back()->with('error', 'Platinum record not found.');
-                }
-
                 Publication::create([
                     'PB_Type' => $request->input('type-of-publication'),
                     'PB_Title' => $request->input('title'),
@@ -71,7 +57,7 @@ class ManagePublicationController extends Controller
                     'PB_Detail' => $request->input('detail'),
                     'PB_Date' => $request->input('date-of-published'),
                     'file_path' => $filePath,
-                    'P_platinumID' => $platinum->P_platinumID,
+                    'P_platinumID' => Auth::id(),
                 ]);
 
                 return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
@@ -151,6 +137,4 @@ class ManagePublicationController extends Controller
 
         return view('ManagePublicationView.Platinum.SearchPublication', compact('publications'));
     }
-
 }
-
