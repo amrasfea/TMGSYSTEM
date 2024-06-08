@@ -74,14 +74,14 @@
                 <td>2024-03-10</td>
                 <td>DDC Group 1</td>
                 <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary" onclick="openEditModal(1)">Edit</button>
-                        <form action="{{ route('deleteAction', 1) }}" method="POST" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" onclick="openEditModal(2)">Edit</button>
+                    <form action="{{ route('DTAView.delete', 2) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
                 </td>
             </tr>
             <tr id="item-2">
@@ -94,14 +94,15 @@
                 <td>2024-04-10</td>
                 <td>DDC Group 2</td>
                 <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary" onclick="openEditModal(2)">Edit</button>
-                        <form action="{{ route('deleteAction', 2) }}" method="POST" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" onclick="openEditModal(2)">Edit</button>
+                    <form action="{{ route('DTAView.delete', 2) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+
                 </td>
             </tr>
             <!-- Add more dummy rows as needed -->
