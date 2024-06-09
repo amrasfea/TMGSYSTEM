@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class ManagePublicationController extends Controller
 {
@@ -150,5 +151,26 @@ class ManagePublicationController extends Controller
                         ->get();
         return view('ManagePublicationView.Platinum.SearchPublication', compact('publications', 'query'));
     }
+
+    public function viewPlatinumList()
+    {
+        $platinums = Platinum::all();
+        return view('ManagePublicationView.Mentor.ViewPlatinum', compact('platinums'));
+    }
+
+    public function viewPlatinumPublications($id)
+    {
+        $publications = Publication::where('P_platinumID', $id)->get();
+        return view('ManagePublicationView.Mentor.PlatinumPublication', compact('publications'));
+    }
+
+    public function viewPublicationDetails($id)
+    {
+
+        $publication = Publication::findOrFail($id);
+        return view('ManagePublicationView.Mentor.ViewPublication', compact('publication'));
+
+    }
+
 }
 

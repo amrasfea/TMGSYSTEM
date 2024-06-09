@@ -23,4 +23,10 @@ class Platinum extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function publications()
+    {
+        return $this->hasMany(Publication::class, 'P_platinumID', 'id');
+    }
+
 }
