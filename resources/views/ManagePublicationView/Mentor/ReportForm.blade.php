@@ -34,54 +34,17 @@
         .report-form button:hover {
             background-color: #0056b3;
         }
-
-        .report-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .report-table th, .report-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        .report-table th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-
-        .report-table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .report-table tbody tr:hover {
-            background-color: #ddd;
-        }
-
-        .report-table a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .report-table a:hover {
-            color: #0056b3;
-        }
     </style>
 
     <div class="container report-form">
         <form method="GET" action="{{ route('mentor.generatePublicationReport') }}">
             <div>
-                <label for="title">{{ __('Title') }}</label>
-                <input type="text" id="title" name="title" value="{{ request('title') }}">
+                <label for="start_date">{{ __('Start Date') }}</label>
+                <input type="date" id="start_date" name="start_date" value="{{ request('start_date') }}">
             </div>
             <div>
-                <label for="author">{{ __('Author') }}</label>
-                <input type="text" id="author" name="author" value="{{ request('author') }}">
-            </div>
-            <div>
-                <label for="university">{{ __('University') }}</label>
-                <input type="text" id="university" name="university" value="{{ request('university') }}">
+                <label for="end_date">{{ __('End Date') }}</label>
+                <input type="date" id="end_date" name="end_date" value="{{ request('end_date') }}">
             </div>
             <div>
                 <button type="submit">{{ __('Generate Report') }}</button>
@@ -89,31 +52,7 @@
         </form>
 
         @if(isset($publications) && $publications->isNotEmpty())
-            <table class="report-table">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>University</th>
-                        <th>Type</th>
-                        <th>Date of Publish</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($publications as $index => $publication)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $publication->PB_Title }}</td>
-                            <td>{{ $publication->PB_Author }}</td>
-                            <td>{{ $publication->PB_Uni }}</td>
-                            <td>{{ $publication->PB_Type }}</td>
-                            <td>{{ $publication->PB_Date }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <!-- Display the report table here -->
         @endif
     </div>
 </x-mentor-layout>
-

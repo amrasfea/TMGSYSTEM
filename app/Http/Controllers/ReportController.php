@@ -71,26 +71,29 @@ class ReportController extends Controller
 
     // Method to generate PDF report for publications
     public function generatePublicationsPdf(Request $request)
-    {
-        $query = Publication::query();
+{
+    // Get the start date and end date from the request
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
 
-        if ($request->has('title')) {
-            $query->where('PB_Title', 'like', '%' . $request->title . '%');
-        }
+    // Initialize the query for publications
+    $query = Publication::query();
 
-        if ($request->has('author')) {
-            $query->where('PB_Author', 'like', '%' . $request->author . '%');
-        }
-
-        if ($request->has('university')) {
-            $query->where('PB_Uni', 'like', '%' . $request->university . '%');
-        }
-
-        $publications = $query->get();
-
-        $pdf = FacadePdf::loadView('pdf.reportPublications', compact('publications'));
-
-        return $pdf->download('publications_report.pdf');
+    // Add conditions to filter publications based on start date and end date
+    if ($startDate && $endDate) {
+        // Assuming PB_Date is the column representing the publication date
+        $query->whereBetween('PB_Date', [$startDate, $endDate]);
     }
+
+    // Retrieve the filtered publications
+    $publications = $query->get();
+
+    // Generate the PDF using DomPDF
+    $pdf = FacadePdf::loadView('pdf.reportPublications', compact('publications'));
+
+    // Download the generated PDF
+    return $pdf->download('publications_report.pdf');
+}
+
 
 }
