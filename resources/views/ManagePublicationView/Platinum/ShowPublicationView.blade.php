@@ -76,6 +76,10 @@
                     <td>{{ $publication->PB_Detail }}</td>
                 </tr>
                 <tr>
+                    <th>Expert Domain</th>
+                    <td>{{ $publication->expertDomain->ED_Name }}</td> 
+                </tr>
+                <tr>
                     <th>File</th>
                     <td><a href="{{ url('storage/' . $publication->file_path) }}" target="_blank" class="text-green-600 hover:text-green-900 ml-2">View File</a></td>
                 </tr>

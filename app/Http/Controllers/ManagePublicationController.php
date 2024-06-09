@@ -76,17 +76,17 @@ public function create()
     
         // Prepare data for publication creation
         $data['file_path'] = $filePath;
-        $data['P_platinumID'] = $platinum->P_platinumID; // Associate the publication with the platinum user ID
+        $data['P_platinumID'] = $loggedInUser->id; // Associate the publication with the platinum user ID
         $data['ED_ID'] = $request->input('expert-domain');  // Save expert domain ID
         $data['PB_Type'] = $request->input('type-of-publication'); 
         $data['PB_Title'] = $request->input('title'); 
         $data['PB_Author'] = $request->input('author'); 
         $data['PB_Uni'] = $request->input('university'); 
+        $data['PB_Course'] = $request->input('field');
         $data['PB_Page'] = $request->input('page-number'); 
         $data['PB_Detail'] = $request->input('detail'); 
         $data['PB_Page'] = $request->input('page-number'); 
         $data['PB_Date'] = $request->input('date-of-published'); 
-        $data['PB_File'] = $request->input('file'); 
     
         // Create a new publication record in the database
         Publication::create($data);
@@ -106,7 +106,7 @@ public function create()
     // Show a single publication details
     public function show($id, Request $request)
     {
-        $publication = Publication::findOrFail($id);
+        $publication = Publication::with('expertDomain')->findOrFail($id);
         $backUrl = $request->input('backUrl', route('publications.viewAll')); // Default to viewAll if not provided
         return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication', 'backUrl'));
     }
