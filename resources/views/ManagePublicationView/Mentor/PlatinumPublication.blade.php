@@ -76,3 +76,4 @@
         <a href="{{ route('mentor.viewPlatinumList', $publication->P_platinumID) }}" class="back-btn">Back</a>
     </div>
 </x-mentor-layout>
+

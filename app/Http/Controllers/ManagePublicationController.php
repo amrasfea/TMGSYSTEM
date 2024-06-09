@@ -170,9 +170,7 @@ class ManagePublicationController extends Controller
     {
 
         $publication = Publication::findOrFail($id);
-        $backUrl = $request->input('backUrl', route('mentor.viewPlatinumList')); // Default to viewPlatinumList if not provided
-        return view('ManagePublicationView.Mentor.ViewPublication', compact('publication', 'backUrl'));
-
+        return view('ManagePublicationView.Mentor.ViewPublication', compact('publication'));
 
     }
 

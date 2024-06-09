@@ -60,7 +60,7 @@
                             <td>{{ $publication->PB_Type }}</td>
                             <td>{{ $publication->PB_Date }}</td>
                             <td>
-                                <a href="{{ route('mentor.viewPublicationDetails', $publication->PB_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
+                            <a href="{{ route('mentor.viewPlatinumPublications', $platinum->id) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View Publications') }}</a>
                             </td>
                         </tr>
                     @endforeach
