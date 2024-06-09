@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,7 +10,7 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id('PB_ID');
             $table->unsignedBigInteger('P_platinumID');
-            $table->unsignedBigInteger('Mentor_ID')->nullable();
+            $table->unsignedBigInteger('M_mentorID')->nullable();
             $table->unsignedBigInteger('ED_ID')->nullable();
             $table->string('PB_Type');
             $table->string('PB_Title');
@@ -26,6 +25,8 @@ class CreatePublicationsTable extends Migration
             
             $table->foreign('P_platinumID')->references('id')->on('users')->onDelete('cascade');
             // Add foreign keys for Mentor_ID and ED_ID as necessary
+            $table->foreign('M_mentorID')->references('M_mentorID')->on('mentors')->onDelete('cascade');
+            $table->foreign('ED_ID')->references('ED_ID')->on('expertDomains')->onDelete('cascade');
         });
     }
 
@@ -34,4 +35,3 @@ class CreatePublicationsTable extends Migration
         Schema::dropIfExists('publications');
     }
 }
-

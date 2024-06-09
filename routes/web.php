@@ -107,15 +107,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/recovery-block-view', [ManageWeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
     Route::get('/social-block-view', [ManageWeeklyFocusController::class, 'socialBlockView'])->name('socialBlockView');
 
-    Route::get('/weekly-focus-view', [ManageWeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView');
+    Route::get('/weekly-focus-view/display', [ManageWeeklyFocusController::class, 'displayWeeklyFocusView'])->name('weeklyFocusView.display');
     Route::get('/weekly-focus-view/{id}/edit', [ManageWeeklyFocusController::class, 'edit'])->name('weeklyFocus.edit');
     Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'deleteWeeklyFocus'])->name('weeklyFocus.delete');
     Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'create'])->name('weeklyFocus.add');
 
     Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
-    Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView');
+    Route::get('/all-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'displayAllWeeklyFocusView'])->name('allWeeklyFocusView.display');
     Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentor.Report');
-    Route::get('/platinum-weekly-focus-view', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView');
+    Route::get('/platinum-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'displayPlatinumWeeklyFocusView'])->name('platinumWeeklyFocusView.display');
     Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmp.Report');
 });
 
@@ -158,6 +158,8 @@ Route::middleware('auth', 'role:Mentor')->group(function () {
     Route::get('/mentor/platinum/{platinumId}/publications', [ManagePublicationController::class, 'viewPlatinumPublications'])->name('mentor.viewPlatinumPublications');
     Route::get('/mentor/publications/{publicationId}/details', [ManagePublicationController::class, 'viewPublicationDetails'])->name('mentor.viewPublicationDetails');
     Route::get('/mentor/search-publication', [ManagePublicationController::class, 'mentorSearch'])->name('mentor.find');
+    Route::get('/mentor/report-form', [ManagePublicationController::class, 'showReportForm'])->name('mentor.reportForm');
+    Route::get('/mentor/generate-report', [ManagePublicationController::class, 'generatePdfReport'])->name('mentor.generatePublicationReport');
 });
 
 

@@ -1,3 +1,4 @@
+
 <x-platinum-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -118,6 +119,14 @@
                                 <label for="date-of-published">Date of Publish</label>
                                 <input type="date" id="date-of-published" name="date-of-published" required>
 
+                                <label for="expert-domain">Expert Domain</label>
+                                <select id="expert-domain" name="expert-domain" required>
+                                    <option value="">Select Expert Domain</option>
+                                    @foreach($expertDomains as $domain)
+                                        <option value="{{ $domain->ED_ID }}">{{ $domain->ED_Name }}</option>
+                                    @endforeach
+                                </select>
+
                                 <div class="form-actions">
                                     <button type="button" class="back-button" onclick="confirmBack()">Back</button>
                                     <input type="submit" value="Add Publication">
@@ -130,6 +139,11 @@
                                 <label for="file">Upload File</label>
                                 <input type="file" id="file" name="file">
                             </div>
+
+                            <div class="form-section">
+                                <h2>Mentor Information</h2>
+                                <label for="mentor-id">Mentor ID</label>
+                                <input type="text" id="mentor-id" name="mentor-id" required>
                         </div>
                     </form>
                 </div>

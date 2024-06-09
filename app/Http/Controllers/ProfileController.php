@@ -44,26 +44,7 @@ class ProfileController extends Controller
         'name' => $validated['name'],
         'email' => $validated['email']
     ]);
-
-    // Handle profile photo upload
-    if ($request->hasFile('profile_photo_path')) {
-        $profilePhoto = $request->file('profile_photo_path');
-        $profilePhotoPath = $profilePhoto->store('profile_photos', 'public');
-
-        // Delete the old profile photo if it exists
-        if ($user->profile_photo_path) {
-            Storage::disk('public')->delete($user->profile_photo_path);
-        }
-
-        // Save the new profile photo path
-        $user->profile_photo_path = $profilePhotoPath;
-    }
-
-    if ($user->isDirty('email')) {
-        $user->email_verified_at = null;
-    }
-
-    $user->save();
+   
 
     // Update role-specific data
     switch ($user->roleType) {
