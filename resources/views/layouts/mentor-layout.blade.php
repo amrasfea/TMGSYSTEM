@@ -219,7 +219,7 @@
                             <a href="#" class="sidebar-link">Publication Report</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Search Platinum Publications</a>
+                            <a href="{{ route('mentor.find') }}" class="sidebar-link">Search Platinum Publications</a>
                         </li>
                     </ul>
                 </li>

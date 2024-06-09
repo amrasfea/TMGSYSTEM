@@ -82,7 +82,8 @@
             </tbody>
         </table>
 
-        <a href="{{ route('publications.viewAll') }}" class="back-btn">Back</a>
+        <a href="{{ $backUrl }}" class="back-btn">Back</a>
     </div>
 </x-platinum-layout>
+
 

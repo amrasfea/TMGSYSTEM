@@ -59,7 +59,7 @@
                         <td>
                             <a href="{{ route('publications.edit', $publication->PB_ID) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
                             <a href="#" class="text-red-600 hover:text-red-900 ml-2" onclick="confirmDelete({{ $publication->PB_ID }})">{{ __('Delete') }}</a>
-                            <a href="{{ route('publications.show', $publication->PB_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
+                            <a href="{{ route('publications.show', ['id' => $publication->PB_ID, 'backUrl' => route('publications.index')]) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
                         </td>
                     </tr>
                 @endforeach

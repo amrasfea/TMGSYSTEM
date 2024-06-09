@@ -120,16 +120,15 @@ Route::middleware('auth')->group(function() {
 });
 
 
+
 //DTA
 Route::middleware('auth')->group(function() {
     Route::get('/DTAView', [ManageDraftThesisPerformanceController::class, 'DTAView'])->name('DTAView.index');
-    Route::delete('/DTAView/{id}', [ManageDraftThesisPerformanceController::class, 'destroyAction'])->name('DTAView.delete');
+    Route::delete('/DTAView/{id}/delete', [ManageDraftThesisPerformanceController::class, 'destroy'])->name('DTAView.delete');
     Route::get('/DTAView/{id}/create', [ManageDraftThesisPerformanceController::class, 'create'])->name('DTAView.create');
     Route::post('/DTAView/{id}/store', [ManageDraftThesisPerformanceController::class, 'store'])->name('DTAView.store');
     Route::get('/DTAView/{id}/edit', [ManageDraftThesisPerformanceController::class, 'edit'])->name('DTAView.edit');
     Route::put('/DTAView/{id}', [ManageDraftThesisPerformanceController::class, 'update'])->name('DTAView.update');
-    Route::post('/addAction', [ManageDraftThesisPerformanceController::class, 'addAction'])->name('addAction');
-
 
     Route::get('/PlatinumReportDTA', [ManageDraftThesisPerformanceController::class, 'PlatinumReportDTA']);
     Route::get('/AllDTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('AllDTAView.index');
@@ -138,7 +137,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/CRMPReportDTA', [ManageDraftThesisPerformanceController::class, 'CRMPReportDTA']);
     Route::resource('draft-thesis-performances', 'App\Http\Controllers\ManageDraftThesisPerformanceController');
 });
-
 
 
 
@@ -159,9 +157,8 @@ Route::middleware('auth', 'role:Mentor')->group(function () {
     Route::get('/viewPlatinumList', [ManagePublicationController::class, 'viewPlatinumList'])->name('mentor.viewPlatinumList');
     Route::get('/mentor/platinum/{platinumId}/publications', [ManagePublicationController::class, 'viewPlatinumPublications'])->name('mentor.viewPlatinumPublications');
     Route::get('/mentor/publications/{publicationId}/details', [ManagePublicationController::class, 'viewPublicationDetails'])->name('mentor.viewPublicationDetails');
+    Route::get('/mentor/search-publication', [ManagePublicationController::class, 'mentorSearch'])->name('mentor.find');
 });
-
-
 
 
 

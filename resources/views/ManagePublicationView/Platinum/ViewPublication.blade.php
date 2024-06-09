@@ -52,7 +52,8 @@
                         <td>{{ $publication->PB_Uni }}</td>
                         <td>{{ $publication->PB_Course }}</td>
                         <td>
-                            <a href="{{ route('publications.show', $publication->PB_ID) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
+                           <a href="{{ route('publications.show', ['id' => $publication->PB_ID, 'backUrl' => route('publications.viewAll')]) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
+
                         </td>
                     </tr>
                 @endforeach

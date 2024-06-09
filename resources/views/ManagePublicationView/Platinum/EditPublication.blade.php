@@ -120,7 +120,7 @@
 
                                 <div>
                                     <input type="submit" value="Save">
-                                    <a href="{{ route('publications.show', $publication->PB_ID) }}" class="cancel-btn">Cancel</a>
+                                    <a href="{{ route('publications.index', $publication->PB_ID) }}" class="cancel-btn">Cancel</a>
                                 </div>
                             </div>
 
@@ -129,7 +129,8 @@
 
                                 <label for="file">Upload File</label>
                                 <input type="file" id="file" name="file">
-                                <p>Current File: <a href="{{ url('storage/' . $publication->file_path }}" target="_blank">View File</a></p>
+                                <p>Current File: <a href="{{ url('storage/' . $publication->file_path) }}" target="_blank">View File</a></p>
+
                             </div>
                         </div>
                     </form>

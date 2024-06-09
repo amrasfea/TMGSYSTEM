@@ -76,11 +76,13 @@ class ManagePublicationController extends Controller
     }
 
     // Show a single publication details
-    public function show($id)
+    public function show($id, Request $request)
     {
         $publication = Publication::findOrFail($id);
-        return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication'));
+        $backUrl = $request->input('backUrl', route('publications.viewAll')); // Default to viewAll if not provided
+        return view('ManagePublicationView.Platinum.ShowPublicationView', compact('publication', 'backUrl'));
     }
+
 
     // Show the form to edit an existing publication
     public function edit($id)
@@ -168,9 +170,23 @@ class ManagePublicationController extends Controller
     {
 
         $publication = Publication::findOrFail($id);
-        return view('ManagePublicationView.Mentor.ViewPublication', compact('publication'));
+        $backUrl = $request->input('backUrl', route('mentor.viewPlatinumList')); // Default to viewPlatinumList if not provided
+        return view('ManagePublicationView.Mentor.ViewPublication', compact('publication', 'backUrl'));
+
 
     }
+
+    public function mentorSearch(Request $request)
+    {
+    $query = $request->input('query');
+    $publications = Publication::where('PB_Title', 'like', "%{$query}%")
+                    ->orWhere('PB_Detail', 'like', "%{$query}%")
+                    ->get();
+    return view('ManagePublicationView.Mentor.SearchPublication', compact('publications', 'query'));
+    }
+
+
+   
 
 }
 

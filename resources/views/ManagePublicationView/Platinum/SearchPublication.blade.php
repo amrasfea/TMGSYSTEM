@@ -113,7 +113,7 @@
                     <p><b>{{ $publication->PB_Author }}</b> - {{ $publication->PB_Uni }}</p>
                     <p>{{ $publication->PB_Detail }}</p>
                     <div class="actions">
-                        <a href="{{ route('publications.show', $publication->PB_ID) }}" class="text-green-600 hover:text-green-900">{{ __('View') }}</a>
+                        <a href="{{ route('publications.show', ['id' => $publication->PB_ID, 'backUrl' => route('publications.search', ['query' => request('query')])]) }}" class="text-green-600 hover:text-green-900">{{ __('View') }}</a>
                     </div>
                 </div>
             @empty
