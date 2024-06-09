@@ -41,6 +41,7 @@ class ManagePublicationController extends Controller
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
             'file' => 'required|file|mimes:pdf,doc,docx|max:10485760',
+            'mentor-id' => 'required|string|max:255',
         ]);
 
         // Handle file upload
@@ -61,6 +62,7 @@ class ManagePublicationController extends Controller
                     'PB_Detail' => $request->input('detail'),
                     'PB_Date' => $request->input('date-of-published'),
                     'file_path' => $filePath,
+                    'M_mentorID' =>$request->input('mentor-id'),
                     'P_platinumID' => Auth::id(), // Associate the publication with the currently authenticated user
                 ]);
 
@@ -105,6 +107,7 @@ class ManagePublicationController extends Controller
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:10485760',
+            
         ]);
 
         $publication = Publication::findOrFail($id);
@@ -183,8 +186,38 @@ class ManagePublicationController extends Controller
     return view('ManagePublicationView.Mentor.SearchPublication', compact('publications', 'query'));
     }
 
+    public function showReportForm()
+    {
+        return view('ManagePublicationView.Mentor.ReportForm');
+    }
+
+    // Generate PDF report based on search criteria
+    public function generatePdfReport(Request $request)
+    {
+        $query = Publication::query();
+
+        if ($request->has('title')) {
+            $query->where('PB_Title', 'like', '%' . $request->title . '%');
+        }
+
+        if ($request->has('author')) {
+            $query->where('PB_Author', 'like', '%' . $request->author . '%');
+        }
+
+        if ($request->has('university')) {
+            $query->where('PB_Uni', 'like', '%' . $request->university . '%');
+        }
+
+        $publications = $query->get();
+
+        $pdf = FacadePdf::loadView('ManagePublicationView.Mentor.PublicationReport', compact('publications'));
+
+        return $pdf->download('publication_report.pdf');
+    }
+}
+
 
    
 
-}
+
 

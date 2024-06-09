@@ -130,6 +130,11 @@
                                 <label for="file">Upload File</label>
                                 <input type="file" id="file" name="file">
                             </div>
+
+                            <div class="form-section">
+                                <h2>Mentor Information</h2>
+                                <label for="mentor-id">Mentor ID</label>
+                                <input type="text" id="mentor-id" name="mentor-id" required>
                         </div>
                     </form>
                 </div>
