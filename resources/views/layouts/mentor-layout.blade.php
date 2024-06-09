@@ -192,16 +192,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">New Expert</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List Own Expert</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">List All Expert</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Report</a>
+                            <a href="{{ route('expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
                         </li>
                     </ul>
                 </li>
