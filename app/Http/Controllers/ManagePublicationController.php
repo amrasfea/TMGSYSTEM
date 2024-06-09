@@ -48,6 +48,7 @@ public function create()
         'expert-domain' => 'required|exists:expertDomains,ED_ID',
     ]);
 
+<<<<<<< HEAD
     // Handle file upload
     $filePath = null;
     if ($request->hasFile('file')) {
@@ -55,6 +56,21 @@ public function create()
         $fileName = time() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs('publications', $fileName, 'public');
     }
+=======
+        // Validate the incoming request data
+        $request->validate([
+            'type-of-publication' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'university' => 'required|string|max:255',
+            'field' => 'required|string|max:255',
+            'page-number' => 'required|integer',
+            'detail' => 'required|string|max:255',
+            'date-of-published' => 'required|date',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:10485760',
+            'mentor-id' => 'required|string|max:255',
+        ]);
+>>>>>>> 14007a90f0f2e81b446d930a22b3a9332cfb87f4
 
     // Fetch the mentor ID for the current user
     $mentor = Mentor::where('id', Auth::id())->first();
@@ -78,8 +94,25 @@ public function create()
         'ED_ID' => $request->input('expert-domain'),  // Save expert domain ID
     ]);
 
+<<<<<<< HEAD
     return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
 }
+=======
+                // Create a new publication record in the database
+                Publication::create([
+                    'PB_Type' => $request->input('type-of-publication'),
+                    'PB_Title' => $request->input('title'),
+                    'PB_Author' => $request->input('author'),
+                    'PB_Uni' => $request->input('university'),
+                    'PB_Course' => $request->input('field'),
+                    'PB_Page' => $request->input('page-number'),
+                    'PB_Detail' => $request->input('detail'),
+                    'PB_Date' => $request->input('date-of-published'),
+                    'file_path' => $filePath,
+                    'M_mentorID' =>$request->input('mentor-id'),
+                    'P_platinumID' => Auth::id(), // Associate the publication with the currently authenticated user
+                ]);
+>>>>>>> 14007a90f0f2e81b446d930a22b3a9332cfb87f4
 
 
     // Display all publications (for admin or general view)
