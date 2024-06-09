@@ -183,8 +183,38 @@ class ManagePublicationController extends Controller
     return view('ManagePublicationView.Mentor.SearchPublication', compact('publications', 'query'));
     }
 
+    public function showReportForm()
+    {
+        return view('ManagePublicationView.Mentor.ReportForm');
+    }
+
+    // Generate PDF report based on search criteria
+    public function generatePdfReport(Request $request)
+    {
+        $query = Publication::query();
+
+        if ($request->has('title')) {
+            $query->where('PB_Title', 'like', '%' . $request->title . '%');
+        }
+
+        if ($request->has('author')) {
+            $query->where('PB_Author', 'like', '%' . $request->author . '%');
+        }
+
+        if ($request->has('university')) {
+            $query->where('PB_Uni', 'like', '%' . $request->university . '%');
+        }
+
+        $publications = $query->get();
+
+        $pdf = FacadePdf::loadView('ManagePublicationView.Mentor.PublicationReport', compact('publications'));
+
+        return $pdf->download('publication_report.pdf');
+    }
+}
+
 
    
 
-}
+
 

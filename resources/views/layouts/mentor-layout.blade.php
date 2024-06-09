@@ -207,7 +207,7 @@
                             <a href="{{ route('mentor.viewPlatinumList') }}" class="sidebar-link">List of Platinum</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Publication Report</a>
+                            <a href="{{ route('mentor.reportForm') }}" class="sidebar-link">Publication Report</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('mentor.find') }}" class="sidebar-link">Search Platinum Publications</a>

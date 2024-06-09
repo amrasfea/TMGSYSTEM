@@ -158,6 +158,8 @@ Route::middleware('auth', 'role:Mentor')->group(function () {
     Route::get('/mentor/platinum/{platinumId}/publications', [ManagePublicationController::class, 'viewPlatinumPublications'])->name('mentor.viewPlatinumPublications');
     Route::get('/mentor/publications/{publicationId}/details', [ManagePublicationController::class, 'viewPublicationDetails'])->name('mentor.viewPublicationDetails');
     Route::get('/mentor/search-publication', [ManagePublicationController::class, 'mentorSearch'])->name('mentor.find');
+    Route::get('/mentor/report-form', [ManagePublicationController::class, 'showReportForm'])->name('mentor.reportForm');
+    Route::get('/mentor/generate-report', [ManagePublicationController::class, 'generatePdfReport'])->name('mentor.generatePublicationReport');
 });
 
 
