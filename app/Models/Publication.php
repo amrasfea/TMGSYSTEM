@@ -27,6 +27,11 @@ class Publication extends Model
 
     protected $table='publications';
 
+    public function mentor()
+    {
+        return $this->belongsTo(Mentor::class, 'M_mentorID');
+    }
+
     public function user()
 {
     return $this->belongsTo(User::class, 'P_platinumID', 'id');
@@ -40,6 +45,10 @@ class Publication extends Model
     public function expertDomain()
     {
         return $this->belongsTo(ExpertDomain::class, 'ED_ID');
+    }
+    public function platinum()
+    {
+        return $this->belongsTo(Platinum::class, 'P_platinumID');
     }
 }
 

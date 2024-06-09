@@ -53,7 +53,7 @@ class ExpertDomain extends Model
 
     public function publications()
     {
-        return $this->belongsTo(Publication::class, 'ED_ID', 'PB_ID');
+        return $this->hasMany(Publication::class, 'ED_ID');
     }
 
 }

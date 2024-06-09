@@ -15,6 +15,11 @@ class Mentor extends Model
     {
         return $this->belongsTo(User::class, 'id', 'id');
     }
+    
+    public function publications()
+    {
+        return $this->hasMany(Publication::class, 'M_mentorID');
+    }
 
     protected $fillable = [
         'M_phoneNum',

@@ -28,7 +28,6 @@
             text-align: left;
         }
 
-
         .add-publication-btn {
             background-color: #007bff;
             color: #ffffff;
@@ -71,7 +70,7 @@
 
     <script>
         function confirmDelete(id) {
-            if(confirm('Are you sure you want to delete this publication?')) {
+            if (confirm('Are you sure you want to delete this publication?')) {
                 document.getElementById('delete-form-' + id).submit();
             }
         }
@@ -83,4 +82,3 @@
         </form>
     @endforeach
 </x-platinum-layout>
-
