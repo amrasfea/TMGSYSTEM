@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Publication;
 use App\Models\Platinum;
 use App\Models\User;
+use App\Models\ExpertDomain;
+use App\Models\Mentor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -20,53 +22,65 @@ class ManagePublicationController extends Controller
     }
 
     // Show the form to create a new publication
-    public function create()
-    {
-        return view('ManagePublicationView.Platinum.AddPublication');
-    }
+    // Add this in your create() method in the controller to pass expert domains to the view
+public function create()
+{
+    $expertDomains = ExpertDomain::all();
+    return view('ManagePublicationView.Platinum.AddPublication', compact('expertDomains'));
+}
+
 
     // Store a new publication in the database
+    
     public function store(Request $request)
-    {
-        
+{
+    // Validate the incoming request data
+    $request->validate([
+        'type-of-publication' => 'required|string|max:255',
+        'title' => 'required|string|max:255',
+        'author' => 'required|string|max:255',
+        'university' => 'required|string|max:255',
+        'field' => 'required|string|max:255',
+        'page-number' => 'required|integer',
+        'detail' => 'required|string|max:255',
+        'date-of-published' => 'required|date',
+        'file' => 'required|file|mimes:pdf,doc,docx|max:10485760',
+        'expert-domain' => 'required|exists:expertDomains,ED_ID',
+    ]);
 
-        // Validate the incoming request data
-        $request->validate([
-            'type-of-publication' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'university' => 'required|string|max:255',
-            'field' => 'required|string|max:255',
-            'page-number' => 'required|integer',
-            'detail' => 'required|string|max:255',
-            'date-of-published' => 'required|date',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:10485760',
-        ]);
+    // Handle file upload
+    $filePath = null;
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('publications', $fileName, 'public');
+    }
 
-        // Handle file upload
-        if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $filePath = $file->storeAs('publications', $fileName, 'public');
+    // Fetch the mentor ID for the current user
+    $mentor = Mentor::where('id', Auth::id())->first();
+    if (!$mentor) {
+        return redirect()->back()->withErrors(['mentor' => 'No mentor found for the current user.']);
+    }
 
+    // Create a new publication record in the database
+    Publication::create([
+        'PB_Type' => $request->input('type-of-publication'),
+        'PB_Title' => $request->input('title'),
+        'PB_Author' => $request->input('author'),
+        'PB_Uni' => $request->input('university'),
+        'PB_Course' => $request->input('field'),
+        'PB_Page' => $request->input('page-number'),
+        'PB_Detail' => $request->input('detail'),
+        'PB_Date' => $request->input('date-of-published'),
+        'file_path' => $filePath,
+        'Mentor_ID' => $mentor->M_mentorID,  // Associate the publication with the mentor ID
+        'P_platinumID' => Auth::id(), // Associate the publication with the currently authenticated user
+        'ED_ID' => $request->input('expert-domain'),  // Save expert domain ID
+    ]);
 
-                // Create a new publication record in the database
-                Publication::create([
-                    'PB_Type' => $request->input('type-of-publication'),
-                    'PB_Title' => $request->input('title'),
-                    'PB_Author' => $request->input('author'),
-                    'PB_Uni' => $request->input('university'),
-                    'PB_Course' => $request->input('field'),
-                    'PB_Page' => $request->input('page-number'),
-                    'PB_Detail' => $request->input('detail'),
-                    'PB_Date' => $request->input('date-of-published'),
-                    'file_path' => $filePath,
-                    'P_platinumID' => Auth::id(), // Associate the publication with the currently authenticated user
-                ]);
+    return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
+}
 
-                return redirect()->route('publications.index')->with('success', 'Publication added successfully.');
-            } 
-        } 
 
     // Display all publications (for admin or general view)
     public function viewPublications()  
@@ -105,6 +119,7 @@ class ManagePublicationController extends Controller
             'detail' => 'required|string|max:255',
             'date-of-published' => 'required|date',
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:10485760',
+            
         ]);
 
         $publication = Publication::findOrFail($id);
@@ -183,8 +198,38 @@ class ManagePublicationController extends Controller
     return view('ManagePublicationView.Mentor.SearchPublication', compact('publications', 'query'));
     }
 
+    public function showReportForm()
+    {
+        return view('ManagePublicationView.Mentor.ReportForm');
+    }
+
+    // Generate PDF report based on search criteria
+    public function generatePdfReport(Request $request)
+    {
+        $query = Publication::query();
+
+        if ($request->has('title')) {
+            $query->where('PB_Title', 'like', '%' . $request->title . '%');
+        }
+
+        if ($request->has('author')) {
+            $query->where('PB_Author', 'like', '%' . $request->author . '%');
+        }
+
+        if ($request->has('university')) {
+            $query->where('PB_Uni', 'like', '%' . $request->university . '%');
+        }
+
+        $publications = $query->get();
+
+        $pdf = FacadePdf::loadView('ManagePublicationView.Mentor.PublicationReport', compact('publications'));
+
+        return $pdf->download('publication_report.pdf');
+    }
+}
+
 
    
 
-}
+
 
