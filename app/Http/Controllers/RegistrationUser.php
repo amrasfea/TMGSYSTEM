@@ -16,11 +16,13 @@ use App\Models\Platinum;
 
 class RegistrationUser extends Controller
 {
+    //display the user create form class
     public function create(): View
     {
         return view('users.create');
     }
 
+    //store a new user in the database
     public function store(Request $request): RedirectResponse
     {
         //validate the request
@@ -96,6 +98,7 @@ class RegistrationUser extends Controller
         return redirect(route('users.index'))->with('success', 'User registered successfully.');
     }
     
+    //display listing of users with optional search functionality
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -110,20 +113,14 @@ class RegistrationUser extends Controller
     }
 
 
-
-    /**
-     * Show the form for editing the specified user.
-     */
+    //retrieve the user data and passes it to edit view
     public function edit(User $user): View
     {
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified user in storage.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+
+    //update the specified user in the database
     public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
@@ -152,6 +149,7 @@ class RegistrationUser extends Controller
             'P_referral_batch' => ['nullable', 'string'],
         ]);
 
+        //update user information
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -181,18 +179,14 @@ class RegistrationUser extends Controller
         return redirect(route('users.index'))->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Remove the specified user from storage.
-     */
+    //delete the specified user from the database
     public function destroy(User $user): RedirectResponse
     {
         $user->delete();
         return redirect(route('users.index'))->with('success', 'User deleted successfully.');
     }
     
-    /**
-     * Show the specified user.
-     */
+    //display the specified user's information
     public function show(User $user): View
     {
         return view('users.show', compact('user'));

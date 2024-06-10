@@ -17,15 +17,15 @@ use App\Models\Publication;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    //display user profile 
     public function showProfile(): View
     {
+        //get the authenticated user's profile and display
         $user = Auth::user();
         return view('profile.show', compact('user'));
     }
 
+    //display the user's profile edit form
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -38,21 +38,24 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-    $user = $request->user();
-    $validated = $request->validated();
+        //get the authenticated user and validated data from the request
+        $user = $request->user();
+        $validated = $request->validated();
 
-    // Update user data
-    $user->fill([
-        'name' => $validated['name'],
-        'email' => $validated['email']
+        // Update user data
+        $user->fill([
+            'name' => $validated['name'],
+            'email' => $validated['email']
     ]);
    
 
-    // Update role-specific data
-    switch ($user->roleType) {
+        // Update role-specific data based on the user's role type
+        switch ($user->roleType) {
         case 'Staff':
+             // Update staff-specific data
             $staff = $user->staff;
             $staff->update([
+                 // Update staff fields if provided, otherwise keep the existing values
                 'S_position' => $validated['S_position'] ?? $staff->S_position,
                 'S_department' => $validated['S_department'] ?? $staff->S_department,
                 'S_phone' => $validated['S_phone'] ?? $staff->S_phone,
@@ -63,8 +66,10 @@ class ProfileController extends Controller
             break;
 
         case 'Mentor':
+             // Update mentor-specific data
             $mentor = $user->mentor;
             $mentor->update([
+                 // Update mentor fields if provided, otherwise keep the existing values
                 'M_phoneNum' => $validated['M_phoneNum'] ?? $mentor->M_phoneNum,
                 'M_position' => $validated['M_position'] ?? $mentor->M_position,
                 'M_title' => $validated['M_title'] ?? $mentor->M_title,
@@ -109,8 +114,8 @@ class ProfileController extends Controller
             ]);
             break;
     }
-
-    return Redirect::route('profile.show')->with('success', 'Profile updated successfully');
+        // Redirect back to the profile with success message
+        return Redirect::route('profile.show')->with('success', 'Profile updated successfully');
 }
 
 
@@ -125,16 +130,17 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        // Logout the user, delete the account, and invalidate session
         Auth::logout();
-
         $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        // Redirect to the homepage
         return Redirect::to('/');
     }
 
+    //list all profiles (or filtered) based on the current user's role
     public function listProfiles(Request $request): View
     {
         $currentUser = Auth::user();
@@ -160,27 +166,27 @@ class ProfileController extends Controller
 
     // ProfileController.php
 
-    public function viewProfile($id)
-{
-    $profileUser = User::findOrFail($id);
-    return view('profile.view', compact('profileUser'));
-}
-public function viewExpert($id)
-{
-    $profileUser = User::findOrFail($id);
-    $experts = DB::table('expertDomains')->where('p_platinumID', $id)->get();
-    return view('profile.view', compact('profileUser', 'experts'));
-}
+        public function viewProfile($id)
+        {
+            $profileUser = User::findOrFail($id);
+             return view('profile.view', compact('profileUser'));
+         }
+         public function viewExpert($id)
+        {
+             $profileUser = User::findOrFail($id);
+             $experts = DB::table('expertDomains')->where('p_platinumID', $id)->get();
+             return view('profile.view', compact('profileUser', 'experts'));
+        }
 
 
-public function showPublications($id)
-{
-    $profileUser = User::findOrFail($id);
-    // Assuming `P_platinumID` in `publications` table should match the user's `id`
-    $publications = Publication::where('P_platinumID', $id)->get();
+    public function showPublications($id)
+    {
+         $profileUser = User::findOrFail($id);
+         // Assuming `P_platinumID` in `publications` table should match the user's `id`
+        $publications = Publication::where('P_platinumID', $id)->get();
 
-    return view('profile.view', compact('profileUser', 'publications'));
-}
+        return view('profile.view', compact('profileUser', 'publications'));
+    }
 
 
 }
