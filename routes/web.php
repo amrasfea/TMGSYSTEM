@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiles/{id}', [ProfileController::class, 'viewProfile'])->name('profile.view');
 
     Route::get('/profile/{id}/expert', [ProfileController::class, 'viewExpert'])->name('expert.show');
+    Route::get('/profile/{user}/publications', [ProfileController::class, 'showPublications'])->name('profile.publications');
+
 });
 
 require __DIR__.'/auth.php';
