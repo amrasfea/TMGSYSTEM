@@ -23,6 +23,7 @@ class ManagePublicationController extends Controller
         return view('ManagePublicationView.Platinum.MyPublication', compact('publications'));
     }
 
+
     // Show the form to create a new publication
     // Add this in your create() method in the controller to pass expert domains to the view
 public function create()
@@ -30,7 +31,6 @@ public function create()
     $expertDomains = ExpertDomain::all();
     return view('ManagePublicationView.Platinum.AddPublication', compact('expertDomains'));
 }
-
 
     // Store a new publication in the database
     public function store(Request $request)
@@ -60,6 +60,7 @@ public function create()
         // Get the currently logged-in user
         $loggedInUser = Auth::user();
         Log::info('Authenticated User ID: ' . $loggedInUser->id);
+
     
         // Ensure the logged-in user is a Platinum user
         if ($loggedInUser->roleType !== 'Platinum') {
@@ -75,7 +76,6 @@ public function create()
         }
     
         // Prepare data for publication creation
-        $data['file_path'] = $filePath;
         $data['P_platinumID'] = $loggedInUser->id; // Associate the publication with the platinum user ID
         $data['ED_ID'] = $request->input('expert-domain');  // Save expert domain ID
         $data['PB_Type'] = $request->input('type-of-publication'); 
@@ -86,7 +86,8 @@ public function create()
         $data['PB_Page'] = $request->input('page-number'); 
         $data['PB_Detail'] = $request->input('detail'); 
         $data['PB_Page'] = $request->input('page-number'); 
-        $data['PB_Date'] = $request->input('date-of-published'); 
+        $data['PB_Date'] = $request->input('date-of-published');
+        $data['file_path'] = $filePath;
     
         // Create a new publication record in the database
         Publication::create($data);
