@@ -6,7 +6,7 @@
     </x-slot>
 
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
         }
         .form-container {
@@ -88,7 +88,7 @@
             <h2>Publication Information</h2>
 
             <label for="type-of-publication">Type of Publication</label>
-            <select id="type-of-publication" name="type-of-publication">
+            <select id="type-of-publication" name="type-of-publication" required>
                 <option value="">Select Type</option>
                 <option value="Journal">Journal</option>
                 <option value="Conference">Conference</option>
@@ -104,7 +104,30 @@
             <input type="text" id="author" name="author" required>
 
             <label for="university">University</label>
-            <input type="text" id="university" name="university" required>
+            <select id="university" name="university" required>
+                <option value="" disabled selected>Select your educational institute</option>
+                <option value="University of Malaya">University of Malaya (UM)</option>
+                <option value="Universiti Kebangsaan Malaysia">Universiti Kebangsaan Malaysia (UKM)</option>
+                <option value="Universiti Sains Malaysia">Universiti Sains Malaysia (USM)</option>
+                <option value="Universiti Putra Malaysia">Universiti Putra Malaysia (UPM)</option>
+                <option value="Universiti Teknologi Malaysia">Universiti Teknologi Malaysia (UTM)</option>
+                <option value="Universiti Teknologi MARA">Universiti Teknologi MARA (UiTM)</option>
+                <option value="Universiti Utara Malaysia">Universiti Utara Malaysia (UUM)</option>
+                <option value="Universiti Malaysia Sabah">Universiti Malaysia Sabah (UMS)</option>
+                <option value="Universiti Malaysia Pahang">Universiti Malaysia Pahang (UMP)</option>
+                <option value="Universiti Pendidikan Sultan Idris">Universiti Pendidikan Sultan Idris (UPSI)</option>
+                <option value="Universiti Islam Antarabangsa Malaysia">Universiti Islam Antarabangsa Malaysia (UIAM)</option>
+                <option value="Universiti Sains Islam Malaysia">Universiti Sains Islam Malaysia (USIM)</option>
+                <option value="Universiti Tun Hussein Onn Malaysia">Universiti Tun Hussein Onn Malaysia (UTHM)</option>
+                <option value="Universiti Teknikal Malaysia Melaka">Universiti Teknikal Malaysia Melaka (UTEM)</option>
+                <option value="Universiti Sultan Zainal Abidin">Universiti Sultan Zainal Abidin (UniSZA)</option>
+                <option value="Universiti Malaysia Perlis">Universiti Malaysia Perlis (UniMAP)</option>
+                <option value="Universiti Malaysia Kelantan">Universiti Malaysia Kelantan (UMK)</option>
+                <option value="Universiti Pertahanan Nasional Malaysia">Universiti Pertahanan Nasional Malaysia (UPNM)</option>
+                <option value="Universiti Malaysia Sarawak">Universiti Malaysia Sarawak (UNIMAS)</option>
+                <option value="Universiti Malaysia Terengganu">Universiti Malaysia Terengganu (UMT)</option>
+                <option value="Other">Other</option>
+            </select>
 
             <label for="field">Field/Course</label>
             <input type="text" id="field" name="field" required>
@@ -113,7 +136,7 @@
             <input type="text" id="detail" name="detail" required>
 
             <label for="page-number">Page Number</label>
-            <input type="text" id="page-number" name="page-number" required>
+            <input type="number" id="page-number" name="page-number" required>
 
             <label for="date-of-published">Date of Publish</label>
             <input type="date" id="date-of-published" name="date-of-published" required>
@@ -136,7 +159,7 @@
             <h2>Upload Document</h2>
 
             <label for="file">Upload File</label>
-            <input type="file" id="file" name="file">
+            <input type="file" id="file" name="file" required>
         </div>
     </div>
 </form>
@@ -163,3 +186,4 @@
         }
     </script>
 </x-platinum-layout>
+
