@@ -16,37 +16,14 @@ use App\Models\Platinum;
 
 class RegistrationUser extends Controller
 {
-    /**
-     * Display a listing of the users.
-     */
-    public function index(Request $request)
-    {
-        $search = $request->input('search');
-
-        $users = User::query()
-            ->when($search, function($query, $search) {
-                return $query->where('name', 'like', "%{$search}%");
-            })
-            ->paginate(10); // Ensure we are paginating the results
-
-        return view('users.index', compact('users'));
-    }
-
-    /**
-     * Display the registration view.
-     */
     public function create(): View
     {
         return view('users.create');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse
     {
+        //validate the request
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -75,7 +52,8 @@ class RegistrationUser extends Controller
         // Set the password to the identity card number
          $password = $request->P_identity_card;
 
-        $user = User::create([
+         // Create a new user with the request data
+         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($password),
@@ -102,6 +80,7 @@ class RegistrationUser extends Controller
             'P_referral_batch' => $request->P_referral_batch,
         ]);
 
+         // Create a new platinum record associated with the user
         $user->platinum()->create([
             'P_supervisorName' => $request->P_supervisorName,
             'P_supervisorContact' => $request->P_supervisorContact,
@@ -113,8 +92,24 @@ class RegistrationUser extends Controller
 
         event(new Registered($user));
 
+         // Redirect to the users index with a success message
         return redirect(route('users.index'))->with('success', 'User registered successfully.');
     }
+    
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, function($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            })
+            ->paginate(10); // Ensure we are paginating the results
+
+        return view('users.index', compact('users'));
+    }
+
+
 
     /**
      * Show the form for editing the specified user.
