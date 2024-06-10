@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="">
-                        <x-application-logo class="block h-20 w-auto fill-current text-gray-800" />
+                    <img src="{{ asset('image/logo.png') }}" alt="Logo" class="block h-20 w-auto">
                     </a>
                 </div>
 
