@@ -68,6 +68,9 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('expert.show') ? 'active' : '' }}" id="expert-tab" href="{{ route('expert.show', $profileUser->id) }}" role="tab" aria-controls="expert" aria-selected="false">Expert</a>
                             </li>
+                            <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('profile.publications') ? 'active' : '' }}" id="publications-tab" href="{{ route('profile.publications', $profileUser->id) }}" role="tab" aria-controls="publications" aria-selected="false">Publications</a>
+                        </li>
                         @endif
                     </ul>
                 </div>
@@ -277,107 +280,203 @@
                             </div>
                         </div>
                     @elseif (request()->is('profile/*/expert'))
-                        <div class="tab-pane fade show active" id="expert" role="tabpanel" aria-labelledby="expert-tab">
-                            <div class="info-section">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Full Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_Name }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Title</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->E_title }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Gender</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_gender }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Education Level</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_edu_level }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Education Field</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_edu_field }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Educational Institute</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_Uni }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Occupation</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_occupation }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Sponsorship</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_sponsorship }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Address</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_address }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone No</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_PhoneNum }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_Email }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Facebook Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $expert->ED_fbname }}</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="tab-pane fade show active" id="expert" role="tabpanel" aria-labelledby="expert-tab">
+        <div class="info-section">
+            @foreach ($experts as $expert)
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Full Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_Name }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Title</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->E_title }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_gender }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Education Level</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_edu_level }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Education Field</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_edu_field }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Educational Institute</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_Uni }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Occupation</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_occupation }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Sponsorship</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_sponsorship }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Address</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_address }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Phone No</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_PhoneNum }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_Email }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Facebook Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{ $expert->ED_fbname }}</p>
+                    </div>
+                </div>
+                <hr>
+            @endforeach
+        </div>
+    </div>
+                        @elseif (request()->routeIs('profile.publications'))
+                        <div class="tab-pane fade show active" id="publications" role="tabpanel" aria-labelledby="publications-tab">
+        <div class="info-section">
+            @if ($publications->isEmpty())
+                <p>No publications found.</p>
+            @else
+                @foreach ($publications as $publication)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Type of Publication</label>
                         </div>
-                    @endif
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Type }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Title</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Title }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Author</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Author }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>University</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Uni }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Field/Course</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Course }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Description</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Detail }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Page Number</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Page }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Date of Publish</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->PB_Date }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Expert Domain</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ $publication->ED_ID }}</p> <!-- Assuming ED_ID is a reference and not a name -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>File</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p><a href="{{ Storage::url($publication->file_path) }}" target="_blank">View File</a></p>
+                        </div>
+                    </div>
+                    <hr>
+                @endforeach
+            @endif
+        </div>
+    </div>
+@endif
+                    
                 </div>
             </div>
         </div>

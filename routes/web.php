@@ -47,18 +47,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiles/{id}', [ProfileController::class, 'viewProfile'])->name('profile.view');
 
     Route::get('/profile/{id}/expert', [ProfileController::class, 'viewExpert'])->name('expert.show');
+    Route::get('/profile/{user}/publications', [ProfileController::class, 'showPublications'])->name('profile.publications');
+
 });
 
 require __DIR__.'/auth.php';
 
 
 Route::middleware('auth', 'role:Staff')->group(function () {
+    Route::get('/register', [RegistrationUser::class, 'create'])->name('register');
+    Route::post('/register', [RegistrationUser::class, 'store']);
     Route::get('/users', [RegistrationUser::class, 'index'])->name('users.index');
     Route::get('/users/{user}/edit', [RegistrationUser::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [RegistrationUser::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [RegistrationUser::class, 'destroy'])->name('users.destroy');
-    Route::get('/register', [RegistrationUser::class, 'create'])->name('register');
-    Route::post('/register', [RegistrationUser::class, 'store']);
     Route::get('/users/{user}', [RegistrationUser::class, 'show'])->name('users.show');
 
     Route::get('/report', [ReportController::class, 'report'])->name('users.report');

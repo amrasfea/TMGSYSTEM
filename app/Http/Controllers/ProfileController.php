@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Models\ExpertDomain;
+use App\Models\Publication;
+
 
 class ProfileController extends Controller
 {
@@ -163,12 +165,23 @@ class ProfileController extends Controller
     $profileUser = User::findOrFail($id);
     return view('profile.view', compact('profileUser'));
 }
-
 public function viewExpert($id)
 {
     $profileUser = User::findOrFail($id);
-    $expert = DB::table('expertDomains')->where('p_platinumID', $id)->first();
-    return view('profile.view', compact('profileUser', 'expert'));
+    $experts = DB::table('expertDomains')->where('p_platinumID', $id)->get();
+    return view('profile.view', compact('profileUser', 'experts'));
 }
+
+
+public function showPublications($id)
+{
+    $profileUser = User::findOrFail($id);
+    // Assuming `P_platinumID` in `publications` table should match the user's `id`
+    $publications = Publication::where('P_platinumID', $id)->get();
+
+    return view('profile.view', compact('profileUser', 'publications'));
+}
+
+
 }
 

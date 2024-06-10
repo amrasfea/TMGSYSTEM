@@ -39,9 +39,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->authenticate();  // This calls the authenticate method in LoginRequest.
 
-        $request->session()->regenerate();
+        $request->session()->regenerate();  // Regenerate the session to protect against session fixation attacks.
 
         $url='';
         if($request->user()->roleType==='Staff'){
@@ -54,7 +54,7 @@ class AuthenticatedSessionController extends Controller
             $url='platinum/dashboard';
         }
 
-        return redirect()->intended($url);
+        return redirect()->intended($url);  // Redirect the user to their respective dashboard.
 
    
     }
