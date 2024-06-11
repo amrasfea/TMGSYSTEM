@@ -221,7 +221,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="{{ route('DTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
+                            <a href="{{ route('PlatinumDTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('platinumWeeklyFocusView.index') }}" class="sidebar-link">Weekly Focus</a>
