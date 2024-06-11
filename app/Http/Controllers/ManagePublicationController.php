@@ -78,6 +78,7 @@ public function create()
         // Prepare data for publication creation
         $data['P_platinumID'] = $loggedInUser->id; // Associate the publication with the platinum user ID
         $data['ED_ID'] = $request->input('expert-domain');  // Save expert domain ID
+        $data['M_mentorID']= '1';
         $data['PB_Type'] = $request->input('type-of-publication'); 
         $data['PB_Title'] = $request->input('title'); 
         $data['PB_Author'] = $request->input('author'); 
