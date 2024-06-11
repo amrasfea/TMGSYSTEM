@@ -1,4 +1,5 @@
 <x-staff-layout>
+<!-- Page header with title "Report" -->
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('Report') }}
@@ -44,11 +45,12 @@
     }
 </style>
 
+<!-- Main content section -->
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-
+             <!-- Display success message if present in session -->
                 <div>
                     @if(session()->has('success'))
                         <div class="success-message">
@@ -73,6 +75,7 @@
                         <label for="eduInstitute" class="form-label">Educational Institute:</label>
                         <select id="eduInstitute" name="university" class="form-select">
                             <option value="" disabled selected>Select your educational institute</option>
+                              <!-- List of universities with selected option logic -->
                             <option value="University of Malaya" {{ request('university') == 'University of Malaya' ? 'selected' : '' }}>University of Malaya (UM)</option>
                             <option value="Universiti Kebangsaan Malaysia" {{ request('university') == 'Universiti Kebangsaan Malaysia' ? 'selected' : '' }}>Universiti Kebangsaan Malaysia (UKM)</option>
                             <option value="Universiti Sains Malaysia" {{ request('university') == 'Universiti Sains Malaysia' ? 'selected' : '' }}>Universiti Sains Malaysia (USM)</option>
@@ -95,16 +98,18 @@
                             <option value="Other" {{ request('university') == 'Other' ? 'selected' : '' }}>Other</option>
                         </select>
                     </div>
-
+                    <!-- Search button -->
                     <button type="submit" class="form-button">Search</button>
                 </form>
 
+                <!-- PDF Generation Form -->
                 <form method="GET" action="{{ route('users.report.pdf') }}" class="flex items-center mb-4">
                     <input type="hidden" name="batch" value="{{ request('batch') }}">
                     <input type="hidden" name="university" value="{{ request('university') }}">
                     <button type="submit" class="form-button">Generate PDF</button>
                 </form>
 
+                <!-- Users table -->
                 <table class="min-w-full bg-white rounded-lg overflow-hidden">
                     <thead class="bg-gray-800 text-white">
                         <tr>

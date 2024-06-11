@@ -1,4 +1,5 @@
 @php
+    // Determine the layout based on the authenticated user's role type
     $layout = 'platinum-layout'; // Default layout
 
     if (Auth::user()->roleType === 'Staff') {
@@ -59,12 +60,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-head">
+                     <!-- Display the profile user's name -->
                     <h5>{{ $profileUser->name }}</h5>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('profile.view') ? 'active' : '' }}" id="home-tab" href="{{ route('profile.view', $profileUser->id) }}" role="tab" aria-controls="home" aria-selected="true">About</a>
                         </li>
                         @if ($profileUser->roleType === 'Platinum')
+                            <!-- Tabs for Expert and Publications, only for Platinum users -->
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('expert.show') ? 'active' : '' }}" id="expert-tab" href="{{ route('expert.show', $profileUser->id) }}" role="tab" aria-controls="expert" aria-selected="false">Expert</a>
                             </li>
@@ -77,10 +80,12 @@
 
                 <div class="tab-content profile-tab" id="myTabContent">
                     @if (request()->routeIs('profile.view'))
+                         <!-- About section, displays based on user role -->
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <!-- User info goes here -->
                             <div class="info-section">
                                 @if ($profileUser->roleType === 'Platinum')
+                                     <!-- Platinum user details -->
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>User Id</label>
@@ -155,6 +160,7 @@
                                         </div>
                                     </div>
                                 @elseif ($profileUser->roleType === 'Staff')
+                                    <!-- Staff user details -->
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Name</label>
@@ -220,6 +226,7 @@
                                         </div>
                                     </div>
                                 @elseif ($profileUser->roleType === 'Mentor')
+                                     <!-- Mentor user details -->
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Name</label>
@@ -280,6 +287,7 @@
                             </div>
                         </div>
                     @elseif (request()->is('profile/*/expert'))
+                     <!-- Expert tab content -->
                     <div class="tab-pane fade show active" id="expert" role="tabpanel" aria-labelledby="expert-tab">
         <div class="info-section">
             @foreach ($experts as $expert)
@@ -384,6 +392,7 @@
         </div>
     </div>
                         @elseif (request()->routeIs('profile.publications'))
+                        <!-- Publications tab content -->
                         <div class="tab-pane fade show active" id="publications" role="tabpanel" aria-labelledby="publications-tab">
         <div class="info-section">
             @if ($publications->isEmpty())

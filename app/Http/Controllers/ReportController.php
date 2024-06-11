@@ -12,39 +12,52 @@ class ReportController extends Controller
 {
     public function report(Request $request)
     {
+        
         $query = User::query();
 
+        //check if batch parameter exists in the request
         if ($request->has('batch')) {
+            //add a condition to filter users by batch
             $query->where('P_batch', 'like', '%' . $request->batch . '%');
         }
 
+        //check if 'university' parameter exists in the request
         if ($request->has('university')) {
+            //add a condition to filter users by university
             $query->where('P_edu_institute', 'like', '%' . $request->university . '%');
         }
 
+        //retrieve paginated user based on the query
         $users = $query->paginate(10);
 
+        //return the view to display the PDF report form with the filteres users
         return view('pdf.reportForm', compact('users'));
     }
 
     public function generatePdf(Request $request)
     {
+        //start buldiing the query to fetch users
         $query = User::query();
 
+        //check if 'batch' parameter exists in the request
         if ($request->has('batch')) {
+            //add a condiiton to filter users by batch
             $query->where('P_batch', 'like', '%' . $request->batch . '%');
         }
 
+        // Check if 'university' parameter exists in the request
         if ($request->has('university')) {
+            // Add a condition to filter users by university
             $query->where('P_edu_institute', 'like', '%' . $request->university . '%');
         }
 
+        //retrieve users based on the query
         $users = $query->get();
 
-     
+        //generate PDF using the report view and filtered user data
         $pdf = FacadePDF::loadView('pdf.report', compact('users'));
 
-
+        //download the generated PDf report
         return $pdf->download('report.pdf');
     }
 
@@ -71,7 +84,7 @@ class ReportController extends Controller
 
     // Method to generate PDF report for publications
     public function generatePublicationsPdf(Request $request)
-{
+    {
     // Get the start date and end date from the request
     $startDate = $request->input('start_date');
     $endDate = $request->input('end_date');
@@ -93,7 +106,7 @@ class ReportController extends Controller
 
     // Download the generated PDF
     return $pdf->download('publications_report.pdf');
-}
+    }
 
 
 }

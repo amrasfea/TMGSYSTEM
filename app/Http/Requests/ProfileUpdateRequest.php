@@ -39,9 +39,7 @@ class ProfileUpdateRequest extends FormRequest
                     'S_address' => ['required', 'string', 'max:255'],
                     'S_skills' => ['required', 'string', 'max:255'],
                     'S_workExperience' => ['required', 'string', 'max:255'],
-
                 ];
-
             case 'Mentor':
                 return [
                     'M_phoneNum' => ['required', 'string', 'max:15'],
@@ -50,10 +48,10 @@ class ProfileUpdateRequest extends FormRequest
                     'M_eduField' => ['required', 'string', 'max:255'],
                     'M_employementHistory' => ['required', 'string', 'max:255'],
                 ];
-
             case 'Platinum':
             default:
                 return [
+                    'P_identity_card' => ['nullable', 'string', 'max:255'],
                     'P_registration_type' => ['nullable', 'string', 'max:255'],
                     'P_title' => ['nullable', 'string', 'max:255'],
                     'P_religion' => ['nullable', 'string', 'max:255'],
@@ -74,9 +72,7 @@ class ProfileUpdateRequest extends FormRequest
                     'P_Institution' => ['nullable', 'string', 'max:255'],
                     'P_Department' => ['nullable', 'string', 'max:255'],
                     'P_Position' => ['nullable', 'string', 'max:255'],
-                   
                 ];
         }
     }
 }
-
