@@ -192,7 +192,7 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="{{ route('expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
+                            <a href="{{ route('mentor.expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
                         </li>
                     </ul>
                 </li>

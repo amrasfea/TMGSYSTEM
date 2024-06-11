@@ -9,6 +9,7 @@ use App\Models\Publication;
 use App\Models\Platinum;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ExpertDomainController extends Controller
 {
@@ -302,6 +303,28 @@ public function destroyResearchPublication($ED_ID, $id)
 
     // Pass the data and expert domains to the view
     return view('ExpertDomainView.Platinum.ReportResult', compact('data', 'expertDomains'));
+}
+
+// Mentor view all expert domains
+public function MentorListAllExpertDomainView(Request $request){
+    $query = $request->input('search');
+    
+    if ($query) {
+        // Search the expert domains by name
+        $expertDomains = ExpertDomain::where('ED_Name', 'LIKE', '%' . $query . '%')->get();
+    } else {
+        // If no search query, get all expert domains
+        $expertDomains = ExpertDomain::all();
+    }
+
+    return view('ExpertDomainView.Mentor.ViewSearchPlatinumExpertDomain', compact('expertDomains'));
+}
+
+// Mentor view specific expert domain details
+public function MentorViewExpertDomainDetails($id)
+{
+    $expertDomain = ExpertDomain::findOrFail($id);
+    return view('ExpertDomainView.Mentor.ViewDetails', compact('expertDomain'));
 }
 
 }

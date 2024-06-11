@@ -95,6 +95,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/list-research-publications', [ExpertDomainController::class, 'ListResearchPublication'])->name('researchPublications.list');
     Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
     Route::post('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
+
+    Route::get('/mentor/expertDomains/listAll', [ExpertDomainController::class, 'MentorListAllExpertDomainView'])->name('mentor.expertDomains.listAll');
+    Route::get('/mentor/expertDomains/view/{id}', [ExpertDomainController::class, 'MentorViewExpertDomainDetails'])->name('mentor.expertDomains.view');
     
 });
 
