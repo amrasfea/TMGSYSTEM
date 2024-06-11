@@ -132,4 +132,15 @@ class ManageWeeklyFocusController extends Controller
     {
         return view('ManageWeeklyFocusView.Platinum.create');
     }
+
+    // Example controller method
+public function index()
+{
+    // Fetch the weekly focuses from the database
+    $weeklyFocuses = WeeklyFocus::all();
+    
+    // Pass the weekly focuses to the view
+    return view('weeklyFocus.index', compact('weeklyFocuses'));
+}
+
 }

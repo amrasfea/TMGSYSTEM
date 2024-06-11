@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WeeklyFocusBlock extends Model
 {
     use HasFactory;
-
+ 
     protected $table = 'weekly_focus_blocks';
 
     protected $fillable = [

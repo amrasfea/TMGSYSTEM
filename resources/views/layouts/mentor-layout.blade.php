@@ -222,23 +222,11 @@
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Draft Thesis Performance</a>
+                            <a href="{{ route('AllDTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Weekly Focus</a>
-                            <ul class="sidebar-dropdown">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Focus Block </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Social Block</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Admin Block</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Recovery Block</a>
-                                </li>
+                            <a href="{{ route('AllWeeklyFocusView.display') }}" class="sidebar-link">Weekly Focus</a>
+                        </li>
                             </ul>
                         </li>
                     </ul>

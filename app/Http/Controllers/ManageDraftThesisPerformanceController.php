@@ -78,19 +78,28 @@ class ManageDraftThesisPerformanceController extends Controller
         return redirect()->back()->with('success', 'Record edited successfully');
     }
 
-    public function show($id)
+    public function show($id = null)
     {
+        if (!$id) {
+            return redirect()->back()->with('error', 'Record ID not provided');
+        }
+    
         $data = DraftThesisPerformance::find($id);
         if (!$data) {
             return redirect()->back()->with('error', 'Record not found');
         }
         return view('ManageDraftThesisPerformanceView.show', compact('data'));
     }
-
+    
     public function PlatinumReportDTA()
     {
         $data = DraftThesisPerformance::all();
         return view('ManageDraftThesisPerformanceView.Platinum.PlatinumReportDTA', compact('data'));
+    }
+    public function MentorReportDTA()
+    {
+        $data = DraftThesisPerformance::all();
+        return view('ManageDraftThesisPerformanceView.Mentor.MentorReportDTA', compact('data'));
     }
 
     public function CRMPReportDTA()
@@ -99,7 +108,7 @@ class ManageDraftThesisPerformanceController extends Controller
         return view('ManageDraftThesisPerformanceView.CRMP.CRMPReportDTA', compact('data'));
     }
 
-    public function AllDTAView()
+    public function index()
     {
         $data = DraftThesisPerformance::all();
         return view('ManageDraftThesisPerformanceView.Mentor.AllDTAView', compact('data'));
@@ -116,6 +125,12 @@ class ManageDraftThesisPerformanceController extends Controller
         $data = DraftThesisPerformance::all();
         return view('ManageDraftThesisPerformanceView.CRMP.PlatinumDTAView', compact('data'));
     }
+
+    public function showDraftThesisPerformances()
+{
+    $data = DraftThesisPerformance::all(); // Adjust your query as needed
+    return view('ManageDraftThesisPerformanceView.Platinum.PlatinumReportDTA', compact('data'));
+}
 
     public function destroyAction($id)
     {

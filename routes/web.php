@@ -109,15 +109,15 @@ Route::middleware('auth')->group(function() {
     Route::get('/recovery-block-view', [ManageWeeklyFocusController::class, 'recoveryBlockView'])->name('recoveryBlockView');
     Route::get('/social-block-view', [ManageWeeklyFocusController::class, 'socialBlockView'])->name('socialBlockView');
 
-    Route::get('/weekly-focus-view/display', [ManageWeeklyFocusController::class, 'displayWeeklyFocusView'])->name('weeklyFocusView.display');
+    Route::get('/weekly-focus-view/display', [ManageWeeklyFocusController::class, 'weeklyFocusView'])->name('weeklyFocusView.index');
     Route::get('/weekly-focus-view/{id}/edit', [ManageWeeklyFocusController::class, 'edit'])->name('weeklyFocus.edit');
     Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'deleteWeeklyFocus'])->name('weeklyFocus.delete');
     Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'create'])->name('weeklyFocus.add');
 
     Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
-    Route::get('/all-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'displayAllWeeklyFocusView'])->name('allWeeklyFocusView.display');
+    Route::get('/all-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'AllWeeklyFocusView'])->name('allWeeklyFocusView.index');
     Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentor.Report');
-    Route::get('/platinum-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'displayPlatinumWeeklyFocusView'])->name('platinumWeeklyFocusView.display');
+    Route::get('/platinum-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView.index');
     Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmp.Report');
 });
 
@@ -131,13 +131,17 @@ Route::middleware('auth')->group(function() {
     Route::post('/DTAView/{id}/store', [ManageDraftThesisPerformanceController::class, 'store'])->name('DTAView.store');
     Route::get('/DTAView/{id}/edit', [ManageDraftThesisPerformanceController::class, 'edit'])->name('DTAView.edit');
     Route::put('/DTAView/{id}', [ManageDraftThesisPerformanceController::class, 'update'])->name('DTAView.update');
+    Route::post('/addAction', [ManageDraftThesisPerformanceController::class, 'addAction'])->name('addAction');
 
-    Route::get('/PlatinumReportDTA', [ManageDraftThesisPerformanceController::class, 'PlatinumReportDTA']);
+
+    Route::get('/PlatinumReportDTA', [ManageDraftThesisPerformanceController::class, 'PlatinumReportDTA'])->name('report.generate');;
     Route::get('/AllDTAView', [ManageDraftThesisPerformanceController::class, 'index'])->name('AllDTAView.index');
-    Route::get('/MentorReportDTA', [ManageDraftThesisPerformanceController::class, 'MentorReportDTA']);
-    Route::get('/PlatinumDTAView', [ManageDraftThesisPerformanceController::class, 'show'])->name('PlatinumDTAView.show');
-    Route::get('/CRMPReportDTA', [ManageDraftThesisPerformanceController::class, 'CRMPReportDTA']);
+    Route::get('/MentorReportDTA', [ManageDraftThesisPerformanceController::class, 'MentorReportDTA'])->name('mentorReport.generate');;
+    Route::get('/PlatinumDTAView', [ManageDraftThesisPerformanceController::class, 'PlatinumDTAView'])->name('PlatinumDTAView.index');
+    Route::get('/CRMPReportDTA', [ManageDraftThesisPerformanceController::class, 'CRMPReportDTA'])->name('crmpReport.generate');;
     Route::resource('draft-thesis-performances', 'App\Http\Controllers\ManageDraftThesisPerformanceController');
+    Route::get('/show-draft-thesis-performances', [ManageDraftThesisPerformanceController::class, 'showDraftThesisPerformances'])->name('draft_thesis_performances.index');
+
 });
 
 
