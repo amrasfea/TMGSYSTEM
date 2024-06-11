@@ -117,10 +117,47 @@
 
             <h2>Education Information</h2>
             <label for="eduLevel">Current Education Level:</label>
-            <input type="text" id="eduLevel" name="ED_edu_level" placeholder="Enter your current education level">
+            <select id="eduLevel" name="ED_edu_level">
+                <option value="" disabled selected>Select your current education level</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="PhD">PhD</option>
+                <option value="Other">Other</option>
+            </select>
 
             <label for="eduField">Education Field:</label>
-            <input type="text" id="eduField" name="ED_edu_field" placeholder="Enter your education field">
+            <select id="eduField" name="ED_edu_field">
+                <option value="" disabled selected>Select your educational institute</option>
+                <option value="Mathematical Sciences">Mathematical Sciences</option>
+                <option value="Physics and Astronomy">Physics and Astronomy</option>
+                <option value="Chemical Science">Chemical Science</option>
+                <option value="Eart Science">Earth Science</option>
+                <option value="Biological Science">Biological Science</option>
+                <option value="Other Natural & Phys. Science">Other Natural & Phys. Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Programming">Programming</option>
+                <option value="Algorithm">Algorithm</option>
+                <option value="Computer Graphic">Computer Graphic</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                <option value="Database Management">Database Management</option>
+                <option value="System Analysis & Design">System Analysis & Design</option>
+                <option value="Cyber Securities">Cyber Securities</option>
+                <option value="Infromation System">Information System</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Automotive">Automotive</option>
+                <option value="Electric and Electronic">Electric and Electronic</option>
+                <option value="Architecture & Building">Architecture & Building</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Management & Commerce">Management & Commerce</option>
+                <option value="Sales & Marketing">Sales & Marketing</option>
+                <option value="Society & Culture">Society & Culture</option>
+                <option value="Justice & Law Enforement">Justice & Law Enforement</option>
+                <option value="Sport & Recreation">Sport & Recreation</option>
+                <option value="Creative Art">Creative Art</option>
+            </select>
 
             <label for="eduInstitute">Educational Institute:</label>
             <select id="eduInstitute" name="ED_Uni">
