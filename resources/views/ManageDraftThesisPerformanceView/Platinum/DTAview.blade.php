@@ -1,4 +1,3 @@
-<x-platinum-layout>
 
    <!DOCTYPE html>
     <html lang="en">
@@ -278,4 +277,3 @@
     </body>
     </html>
     
-    <x-platinum-layout>
