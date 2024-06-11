@@ -30,7 +30,7 @@
                                         <td class="py-2 px-4">{{ $expertDomain->research->R_title ?? 'N/A' }}</td> 
                                         <td class="py-2 px-4">{{ $expertDomain->publications->first()->PB_Title ?? 'N/A' }}</td>
                                         <td class="py-2 px-4">
-                                            <a href="{{ route('expertDomains.edit', ['id' => $expertDomain->ED_ID]) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
+                                            <a href="#" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
                                             <a href="{{ route('researchPublications.display', ['ED_ID' => $expertDomain->ED_ID]) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
                                             <form action="{{ route('researchPublications.destroy', ['ED_ID' => $expertDomain->ED_ID, 'id' => $expertDomain->research->R_ID ?? 0]) }}" method="POST" class="inline delete-form">
                                                 @csrf
