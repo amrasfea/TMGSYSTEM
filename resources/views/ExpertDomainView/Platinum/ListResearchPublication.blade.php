@@ -16,7 +16,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
+                                    <th>Expert Domain Name</th>
                                     <th>Research Field</th>
                                     <th>Publication Title</th>
                                     <th>Action</th>
