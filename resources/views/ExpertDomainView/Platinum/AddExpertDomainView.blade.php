@@ -117,7 +117,13 @@
 
             <h2>Education Information</h2>
             <label for="eduLevel">Current Education Level:</label>
-            <input type="text" id="eduLevel" name="ED_edu_level" placeholder="Enter your current education level">
+            <select id="eduLevel" name="ED_edu_level">
+                <option value="" disabled selected>Select your current education level</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="PhD">PhD</option>
+                <option value="Other">Other</option>
+            </select>
 
             <label for="eduField">Education Field:</label>
             <select id="eduField" name="ED_edu_field">
