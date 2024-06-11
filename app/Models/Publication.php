@@ -11,6 +11,7 @@ class Publication extends Model
     protected $primaryKey = 'PB_ID';
 
     protected $fillable = [
+        'PB_ID',
         'P_platinumID',
         'M_mentorID',
         'ED_ID',
