@@ -8,120 +8,57 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use App\Models\User;
-use App\Models\ExpertDomain;
 use App\Models\Publication;
-
 
 class ProfileController extends Controller
 {
-    //display user profile 
+    // Display user profile
     public function showProfile(): View
     {
-        //get the authenticated user's profile and display
         $user = Auth::user();
         return view('profile.show', compact('user'));
     }
 
-    //display the user's profile edit form
+    // Display the user's profile edit form
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = Auth::user();
+        return view('profile.edit', compact('user'));
     }
 
-    /**
-     * Update the user's profile information.
-     */
+    // Update the user's profile information
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        //get the authenticated user and validated data from the request
         $user = $request->user();
         $validated = $request->validated();
 
-        // Update user data
+        // Update common user data
         $user->fill([
             'name' => $validated['name'],
             'email' => $validated['email']
-    ]);
-   
+        ])->save();
 
-        // Update role-specific data based on the user's role type
+        // Update role-specific data
         switch ($user->roleType) {
-        case 'Staff':
-             // Update staff-specific data
-            $staff = $user->staff;
-            $staff->update([
-                 // Update staff fields if provided, otherwise keep the existing values
-                'S_position' => $validated['S_position'] ?? $staff->S_position,
-                'S_department' => $validated['S_department'] ?? $staff->S_department,
-                'S_phone' => $validated['S_phone'] ?? $staff->S_phone,
-                'S_address' => $validated['S_address'] ?? $staff->S_address,
-                'S_skills' => $validated['S_skills'] ?? $staff->S_skills,
-                'S_workExperience' => $validated['S_workExperience'] ?? $staff->S_workExperience,
-            ]);
-            break;
+            case 'Staff':
+                $user->staff->update($validated);
+                break;
+            case 'Mentor':
+                $user->mentor->update($validated);
+                break;
+            case 'Platinum':
+                $user->update($validated);
+                $platinum = $user->platinum ?? new \App\Models\Platinum(['id' => $user->id]);
+                $platinum->fill($validated)->save();
+                break;
+        }
 
-        case 'Mentor':
-             // Update mentor-specific data
-            $mentor = $user->mentor;
-            $mentor->update([
-                 // Update mentor fields if provided, otherwise keep the existing values
-                'M_phoneNum' => $validated['M_phoneNum'] ?? $mentor->M_phoneNum,
-                'M_position' => $validated['M_position'] ?? $mentor->M_position,
-                'M_title' => $validated['M_title'] ?? $mentor->M_title,
-                'M_eduField' => $validated['M_eduField'] ?? $mentor->M_eduField,
-                'M_employementHistory' => $validated['M_employementHistory'] ?? $mentor->M_employementHistory,
-            ]);
-            break;
-
-        case 'Platinum':
-            // Update main user fields for Platinum role
-            $user->update([
-                'P_identity_card' => $validated['P_identity_card'] ?? $user->P_identity_card,
-                'P_registration_type' => $validated['P_registration_type'] ?? $user->P_registration_type,
-                'P_title' => $validated['P_title'] ?? $user->P_title,
-                'P_religion' => $validated['P_religion'] ?? $user->P_religion,
-                'P_race' => $validated['P_race'] ?? $user->P_race,
-                'P_citizenship' => $validated['P_citizenship'] ?? $user->P_citizenship,
-                'P_edu_level' => $validated['P_edu_level'] ?? $user->P_edu_level,
-                'P_edu_field' => $validated['P_edu_field'] ?? $user->P_edu_field,
-                'P_edu_institute' => $validated['P_edu_institute'] ?? $user->P_edu_institute,
-                'P_occupation' => $validated['P_occupation'] ?? $user->P_occupation,
-                'P_sponsorship' => $validated['P_sponsorship'] ?? $user->P_sponsorship,
-                'P_address' => $validated['P_address'] ?? $user->P_address,
-                'P_phone' => $validated['P_phone'] ?? $user->P_phone,
-                'P_fb_name' => $validated['P_fb_name'] ?? $user->P_fb_name,
-                'P_program' => $validated['P_program'] ?? $user->P_program,
-                'P_batch' => $validated['P_batch'] ?? $user->P_batch,
-            ]);
-
-            // Ensure related Platinum model exists and update fields
-            $platinum = $user->platinum;
-            if (!$platinum) {
-                $platinum = new \App\Models\Platinum(['id' => $user->id]);
-                $platinum->save();
-            }
-            $platinum->update([
-                'P_supervisorName' => $validated['P_supervisorName'] ?? $platinum->P_supervisorName,
-                'P_supervisorContact' => $validated['P_supervisorContact'] ?? $platinum->P_supervisorContact,
-                'P_Institution' => $validated['P_Institution'] ?? $platinum->P_Institution,
-                'P_Department' => $validated['P_Department'] ?? $platinum->P_Department,
-                'P_Position' => $validated['P_Position'] ?? $platinum->P_Position,
-            ]);
-            break;
-    }
-        // Redirect back to the profile with success message
         return Redirect::route('profile.show')->with('success', 'Profile updated successfully');
-}
+    }
 
-
-    /**
-     * Delete the user's account.
-     */
+    // Delete the user's account
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -129,8 +66,8 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
         // Logout the user, delete the account, and invalidate session
+
         Auth::logout();
         $user->delete();
         $request->session()->invalidate();
@@ -140,54 +77,46 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    //list all profiles (or filtered) based on the current user's role
+    // List all profiles (or filtered) based on the current user's role
     public function listProfiles(Request $request): View
     {
         $currentUser = Auth::user();
         $search = $request->input('search');
 
         $query = User::query();
-
         if ($search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('name', 'LIKE', "%{$search}%")
-                      ->orWhere('email', 'LIKE', "%{$search}%");
-            });
+            $query->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('email', 'LIKE', "%{$search}%");
         }
-
         if ($currentUser->roleType === 'Platinum') {
             $query->where('roleType', 'Platinum');
         }
 
         $users = $query->get();
-
         return view('profile.list', compact('users'));
     }
 
-    // ProfileController.php
-
-        public function viewProfile($id)
-        {
-            $profileUser = User::findOrFail($id);
-             return view('profile.view', compact('profileUser'));
-         }
-         public function viewExpert($id)
-        {
-             $profileUser = User::findOrFail($id);
-             $experts = DB::table('expertDomains')->where('p_platinumID', $id)->get();
-             return view('profile.view', compact('profileUser', 'experts'));
-        }
-
-
-    public function showPublications($id)
+    // View a specific profile
+    public function viewProfile($id): View
     {
-         $profileUser = User::findOrFail($id);
-         // Assuming `P_platinumID` in `publications` table should match the user's `id`
-        $publications = Publication::where('P_platinumID', $id)->get();
-
-        return view('profile.view', compact('profileUser', 'publications'));
+        $profileUser = User::findOrFail($id);
+        return view('profile.view', compact('profileUser'));
     }
 
+    // View expert domains
+    public function viewExpert($id): View
+    {
+        $profileUser = User::findOrFail($id);
+        $experts = DB::table('expertDomains')->where('p_platinumID', $id)->get();
+        return view('profile.view', compact('profileUser', 'experts'));
+    }
 
+    // Show publications
+    public function showPublications($id): View
+    {
+        $profileUser = User::findOrFail($id);
+        $publications = Publication::where('P_platinumID', $id)->get();
+        return view('profile.view', compact('profileUser', 'publications'));
+    }
 }
 
