@@ -32,6 +32,12 @@ class DummyUsersSeeder extends Seeder
                 'roleType' => 'Mentor',
                 'password' =>bcrypt('12345678')
             ],
+            [
+                'name' => 'Azam Hanif',
+                'email' => 'azamhanif09@gmail.com',
+                'roleType' => 'CRMP',
+                'password' =>bcrypt('12345678')
+            ],
          ];
 
          foreach($userData as $key => $val){

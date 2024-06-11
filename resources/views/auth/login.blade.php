@@ -100,6 +100,8 @@
               <option value="Platinum">Platinum</option>
               <option value="Staff">Staff</option>
               <option value="Mentor">Mentor</option>
+              <option value="CRMP">CRMP</option>
+
             </select>
           </div>
 

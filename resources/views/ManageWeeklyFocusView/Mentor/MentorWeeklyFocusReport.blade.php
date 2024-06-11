@@ -4,6 +4,7 @@
             <h1>Weekly Focus List</h1>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         </div>
+       
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
@@ -25,7 +26,7 @@
                     }
 
                     .card-header {
-                        background-color: #0E2238;
+                        background-color: #2596be;
                         color: white;
                         border-top-left-radius: 15px;
                         border-top-right-radius: 15px;
@@ -48,7 +49,7 @@
                     }
 
                     .table thead th {
-                        background-color: #0E2238;
+                        background-color: #2596be;
                         color: white;
                     }
 
@@ -81,6 +82,8 @@
                     }
                 </style>
                 <tbody>
+
+               
                     @forelse($data as $performance)
                     <tr>
                         <td>{{ $performance->FB_WeeklyFocusID }}</td>

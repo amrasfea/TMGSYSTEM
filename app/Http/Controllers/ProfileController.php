@@ -48,6 +48,9 @@ class ProfileController extends Controller
             case 'Mentor':
                 $user->mentor->update($validated);
                 break;
+             case 'crmp':
+                $user->crmp->update($validated);
+                break;
             case 'Platinum':
                 $user->update($validated);
                 $platinum = $user->platinum ?? new \App\Models\Platinum(['id' => $user->id]);

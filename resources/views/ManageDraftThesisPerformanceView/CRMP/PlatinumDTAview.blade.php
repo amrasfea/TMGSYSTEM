@@ -42,6 +42,9 @@
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Manage Draft Thesis Performance</h1>
+        <form action="{{ route('crmpReport.generate') }}" method="GET" style="display: inline;">
+                <button type="submit" class="btn btn-primary">Report</button>
+            </form>
         
         <div class="table-responsive">
             <table id="dataTable" class="table table-bordered table-hover">

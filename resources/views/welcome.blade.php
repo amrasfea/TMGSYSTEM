@@ -140,6 +140,10 @@
                                 <a href="{{ route('mentor.dashboard') }}" class="hover:text-gray-300">
                                     Dashboard
                                 </a>
+                            @elseif (auth()->user()->roleType === 'crmp')
+                                <a href="{{ route('crmp.dashboard') }}" class="hover:text-gray-300">
+                                    Dashboard
+                                </a>
                             @endif
                         @else
                             <a href="{{ route('login') }}" class="hover:text-gray-300" style="color: #0e2238;">

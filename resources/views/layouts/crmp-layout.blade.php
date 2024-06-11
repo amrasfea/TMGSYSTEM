@@ -4,10 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>StaffLayout</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -59,7 +66,7 @@
             height: 100vh;
             z-index: 1000;
             transition: all 0.25s ease-in-out;
-            background-color:#259BCB;
+            background-color: #60e474;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
@@ -187,68 +194,59 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link has-dropdown">
-                        <i class="lni lni-agenda"></i>
-                        <span>Expert Domain</span>
+                        <i class="lni lni-clipboard"></i>
+                        <span>Registration</span>
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="{{ route('expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
+                            <a href="{{ route('register') }}" class="sidebar-link">New Registration</a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('users.index') }}" class="sidebar-link">View Registration</a>
+                        </li>
+                        
                     </ul>
+                </li>
+                <li class="sidebar-item">
+                     <a href="{{ route('users.report') }}" class="sidebar-link">
+                          <i class="lni lni-bar-chart"></i>
+                           <span> Registration Reports</span>
+                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link has-dropdown">
-                        <i class="lni lni-layout"></i>
-                        <span>Publication Data</span>
-                    </a>
-                    <ul class="sidebar-dropdown">
-                        <li class="sidebar-item">
-                            <a href="{{ route('mentor.viewPlatinumList') }}" class="sidebar-link">List of Platinum</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{ route('mentor.reportForm') }}" class="sidebar-link">Publication Report</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{ route('mentor.find') }}" class="sidebar-link">Search Platinum Publications</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link has-dropdown">
-                        <i class="lni lni-popup"></i>
+                        <i class="lni lni-stats-up"></i>
                         <span>Progress Monitoring</span>
                     </a>
                     <ul class="sidebar-dropdown">
                         <li class="sidebar-item">
-                            <a href="{{ route('AllDTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
+                            <a href="{{ route('PlatinumDTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('allWeeklyFocusView.index') }}" class="sidebar-link">Weekly Focus</a>
-                        </li>
-                            </ul>
+                            <a href="{{ route('platinumWeeklyFocusView.index') }}" class="sidebar-link">Weekly Focus</a>
+                            <ul class="sidebar-dropdown">
+                         
                         </li>
                     </ul>
                 </li>
+              
+
             </ul>
-            <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
-                    <i class="lni lni-exit"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
+           
         </aside>
 
         <div class="main p-3">
+         
 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+        <script>
+            document.querySelector(".toggle-btn").addEventListener("click", function() {
+                document.querySelector("#sidebar").classList.toggle("expand");
+            });
+        </script>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-            <script>
-                document.querySelector(".toggle-btn").addEventListener("click", function() {
-                    document.querySelector("#sidebar").classList.toggle("expand");
-                });
-            </script>
 </body>
-
 </html>
+
+
