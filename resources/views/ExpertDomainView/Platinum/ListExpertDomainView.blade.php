@@ -10,13 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                 
-                <style>
+                <!-- <style>
                     .yellow-row {
                     background-color: #FFDB58; /* Light yellow color */
                     }
-                </style>
+                </style> -->
 
-                <!-- <style>
+                <style>
                     body {
                         font-family: Arial, sans-serif;
                         margin: 20px;
@@ -54,9 +54,9 @@
                         padding: 8px;
                         text-align: left;
                     }
-                    /* th {
+                    th {
                         background-color: #f2f2f2;
-                    } */
+                    }
                     tr:nth-child(even) {
                         background-color: #f9f9f9;
                     }
@@ -80,12 +80,12 @@
                     .delete-link input[type="submit"]:hover {
                         background-color: #c9302c;
                     }
-                </style> -->
+                </style>
 
-                <!-- <h1 class="text-2xl font-bold">{{ __('Users') }}</h1>
+                <!-- <h1 class="text-2xl font-bold">{{ __('Users') }}</h1> -->
 
-                Search Form
-                <form method="GET" action="{{ route('expertDomains.list') }}" class="mb-4">
+                
+                <!-- <form method="GET" action="{{ route('expertDomains.list') }}" class="mb-4">
                         <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
                     </form>
@@ -158,6 +158,7 @@
                             @endforeach
                         </tbody>
                     </table> -->
+                    <!-- start sini -->
 
                 <div>
                     @if(session()->has('success'))
@@ -175,22 +176,22 @@
                         </a>
                     </div>
 
-                    <!-- Search Form -->
+                    
                     <form method="GET" action="{{ route('expertDomains.list') }}" class="mb-4">
                         <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
                     </form>
 
                     <table class="min-w-full bg-white rounded-lg overflow-hidden">
-                        <thead class="bg-gray-800 text-white">
-                            <tr class="yellow-row">
-                                <th class="py-2 px-4">{{ __('No') }}</th>
-                                <th class="py-2 px-4">{{ __('Name') }}</th>
-                                <th class="py-2 px-4">{{ __('Email') }}</th>
-                                <th class="py-2 px-4">{{ __('Phone Number') }}</th>
-                                <th class="py-2 px-4">{{ __('Actions') }}</th>
-                            </tr>
-                        </thead>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
                         <tbody class="divide-y divide-gray-200">
                             @foreach ($expertDomains as $index => $expertDomain)                             
                                 <tr>
