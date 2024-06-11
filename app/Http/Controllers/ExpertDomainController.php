@@ -289,17 +289,19 @@ public function destroyResearchPublication($ED_ID, $id)
     }
 
     public function GenerateReportSubmit(Request $request)
-{
-    // Validate the request data
-    $data = $request->validate([
-        'report_type' => 'required|string',
-        'report_date' => 'required|date',
-    ]);
-
-    // Process the data and generate the report as needed
-    // For now, we'll just return the data to the view for demonstration
-
-    return view('ExpertDomainView.Platinum.ReportResult', compact('data'));
-}
+    {
+        // Validate the request data
+        $data = $request->validate([
+            'report_type' => 'required|string',
+            'report_date' => 'required|date',
+            'expertise' => 'required|string',
+        ]);
+    
+        // Fetch expert domains based on the selected expertise
+        $expertDomains = ExpertDomain::where('ED_edu_field', $data['expertise'])->get();
+    
+        // Pass the data and expert domains to the view
+        return view('ExpertDomainView.Platinum.ReportResult', compact('data', 'expertDomains'));
+    }
 
 }

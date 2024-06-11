@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function(){
     // Route::get('/researchPublications/view/{id}', [ExpertDomainController::class, 'ListResearchPublication'])->name('researchPublications.view');
     Route::get('/list-research-publications', [ExpertDomainController::class, 'ListResearchPublication'])->name('researchPublications.list');
     Route::get('/GenerateReport',[ExpertDomainController::class, 'GenerateReport'])->name('platinum.report');
-    Route::get('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
+    Route::post('/ReportResult', [ExpertDomainController::class, 'GenerateReportSubmit'])->name('platinum.reportResult');
     
 });
 
