@@ -212,14 +212,28 @@ public function displayResearchPublication($ED_ID)
     return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('expertDomain', 'research', 'publication'));
 }
 
-public function ListResearchPublication()
-    {
-        // Fetching all expert domains along with their research and publications
-        $expertDomains = ExpertDomain::with(['research', 'publications'])->get();
+public function ListResearchPublication(Request $request)
+{
+    // Get the current logged-in user
+    $currentUser = auth()->user();
 
-        // Returning the view with the fetched data
-        return view('ExpertDomainView.Platinum.ListResearchPublication', compact('expertDomains'));
+    // Fetching all expert domains along with their research and publications for the current user
+    $query = ExpertDomain::with(['research', 'publications'])
+        ->where('P_platinumID', $currentUser->id);
+
+    // Apply search filter if search query is present
+    if ($request->has('search') && !empty($request->search)) {
+        $search = $request->search;
+        $query->whereHas('research', function ($q) use ($search) {
+            $q->where('R_title', 'LIKE', '%' . $search . '%');
+        });
     }
+
+    $expertDomains = $query->get();
+
+    // Returning the view with the fetched data
+    return view('ExpertDomainView.Platinum.ListResearchPublication', compact('expertDomains'));
+}
     
 public function editResearchPublication($ED_ID, $id)
 {
