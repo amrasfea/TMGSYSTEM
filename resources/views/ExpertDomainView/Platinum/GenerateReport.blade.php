@@ -61,9 +61,9 @@
                             </select>
                         </div>
 
-                        <div class="mb-4">
-                            <button type="submit" style="background-color: #0062cc; color: white; font-weight: bold; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
-                                Generate
+                        <div class="mb-4 text-right">
+                            <button type="submit" style="background-color: #0062cc; color: white; font-weight: bold; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; ">
+                                GENERATE
                             </button>
                         </div>
                     </form>

@@ -126,7 +126,7 @@
                     @endforeach
                     </tbody>
                 </table> -->
-                <!-- sofea -->
+            
                 <!-- <table class="min-w-full bg-white rounded-lg overflow-hidden">
                         <thead class="bg-gray-800 text-white">
                             <tr>
@@ -176,7 +176,7 @@
                         </a>
                     </div>
 
-                    
+                    <!-- search form -->
                     <form method="GET" action="{{ route('expertDomains.list') }}" class="mb-4">
                         <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
