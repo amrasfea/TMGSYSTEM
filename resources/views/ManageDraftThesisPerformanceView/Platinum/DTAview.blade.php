@@ -45,6 +45,10 @@
         <h1 class="text-center mb-4">Manage Draft Thesis Performance</h1>
         <div class="text-right mb-3">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
+            <form action="{{ route('report.generate') }}" method="GET" style="display: inline;">
+                <button type="submit" class="btn btn-primary">Report</button>
+            </form>
+
         </div>
         <div class="table-responsive">
             <table id="dataTable" class="table table-bordered table-hover">

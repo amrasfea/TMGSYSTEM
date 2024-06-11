@@ -58,6 +58,11 @@
     <h1>Weekly Focus</h1>
     <div class="view-container">
         <h2>Focus Blocks</h2>
+
+        <form action="{{ route('Platinum.report') }}" method="GET" style="display: inline;">
+                <button type="submit" class="btn btn-primary">Report</button>
+            </form>
+
         <table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr class="view-table-header">

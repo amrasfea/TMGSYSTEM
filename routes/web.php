@@ -34,6 +34,10 @@ Route::middleware(['auth', 'role:Platinum'])->group(function () {
     Route::get('/platinum/dashboard', [HomeController::class, 'PlatinumDashboard'])->name('platinum.dashboard');
 });
 
+Route::middleware(['auth', 'role:crmp'])->group(function () {
+    Route::get('/crmp/dashboard', [HomeController::class, 'CRMPDashboard'])->name('crmp.dashboard');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/EditProfile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -117,11 +121,11 @@ Route::middleware('auth')->group(function() {
     Route::delete('/weekly-focus-view/{id}/delete', [ManageWeeklyFocusController::class, 'deleteWeeklyFocus'])->name('weeklyFocus.delete');
     Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'create'])->name('weeklyFocus.add');
 
-    Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
-    Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('AllWeeklyFocusView.index');
-    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentor.Report');
+    Route::get('/platinum-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('Platinum.report');
+    Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('allWeeklyFocusView.index');
+    Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('Mentor.report');
     Route::get('/platinum-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView.index');
-    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmp.Report');
+    Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('CRMP.report');
 });
 
 

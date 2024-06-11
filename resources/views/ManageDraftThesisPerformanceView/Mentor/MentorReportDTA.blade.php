@@ -26,7 +26,7 @@
         }
 
         .card-header {
-            background-color: #0E2238;
+            background-color: #2596be;
             color: white;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
@@ -48,7 +48,7 @@
         }
 
         .table thead th {
-            background-color: #0E2238;
+            background-color: #2596be;
             color: white;
         }
 

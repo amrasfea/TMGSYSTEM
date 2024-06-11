@@ -65,6 +65,10 @@
 <main>
     <h1 id="main_title">All Weekly Focus</h1>
     <div class="view-container">
+
+    <form action="{{ route('Mentor.report') }}" method="GET" style="display: inline;">
+                    <button type="submit" class="btn btn-primary">Report</button>
+                </form>
         <h2>Focus Blocks</h2>
         <form class="form-inline">
             <div class="form-group">
