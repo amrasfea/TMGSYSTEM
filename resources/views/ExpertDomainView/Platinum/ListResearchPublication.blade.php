@@ -8,12 +8,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                
-                <style>
-                    .yellow-row {
-                    background-color: #FFDB58; /* Light yellow color */
-                    }
-                </style>
 
                 <!-- <div>
                     @if(session()->has('success'))
@@ -35,13 +29,13 @@
                     </form> -->
 
                     <table class="min-w-full bg-white rounded-lg overflow-hidden">
-                        <thead class="bg-gray-800 text-white">
-                            <tr class="yellow-row">
-                                <th class="py-2 px-4">{{ __('No') }}</th>
-                                <th class="py-2 px-4">{{ __('Name') }}</th>
-                                <th class="py-2 px-4">{{ __('Email') }}</th>
-                                <th class="py-2 px-4">{{ __('Phone Number') }}</th>
-                                <th class="py-2 px-4">{{ __('Actions') }}</th>
+                        <thead>
+                        <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Research Field</th>
+                                <th>Publication Title</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
@@ -49,8 +43,8 @@
                                 <tr>
                                 <td class="py-2 px-4">{{ $index + 1 }}</td>
                                     <td class="py-2 px-4">{{ $expertDomain->ED_Name }}</td>
-                                    <td class="py-2 px-4">{{ $expertDomain->publications->PB_Title }}</td>
                                     <td class="py-2 px-4">{{ $expertDomain->research->R_title }}</td> 
+                                    <td class="py-2 px-4">{{ $expertDomain->publications->PB_Title }}</td>
                                     <td class="py-2 px-4">
                                         <a href="{{ route('expertDomains.edit', ['id' => $expertDomain->ED_ID]) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
                                         <a href="{{ route('researchPublications.display', ['ED_ID' => $expertDomain->ED_ID]) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
