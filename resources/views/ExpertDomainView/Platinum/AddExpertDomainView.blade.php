@@ -126,7 +126,7 @@
                 <option value="Physics and Astronomy">Physics and Astronomy</option>
                 <option value="Chemical Science">Chemical Science</option>
                 <option value="Eart Science">Earth Science</option>
-                <option value="Bilogical Science">Biological Science</option>
+                <option value="Biological Science">Biological Science</option>
                 <option value="Other Natural & Phys. Science">Other Natural & Phys. Science</option>
                 <option value="Information Technology">Information Technology</option>
                 <option value="Computer Science">Computer Science</option>
