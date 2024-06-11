@@ -152,9 +152,11 @@
                                 <input type="date" id="publication-date" name="PB_Date" aria-label="Publication Date" value="{{ old('PB_Date') }}">
                             </div>
 
-                            <div class="submit-button-container">
-                                <input type="submit" value="ADD">
-                            </div>
+                            <div class="mb-4 text-right">
+                            <button type="submit" style="background-color: #0062cc; color: white; font-weight: bold; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; ">
+                                ADD
+                            </button>
+                        </div>
                         </div>
                     </form>
                 </div>
