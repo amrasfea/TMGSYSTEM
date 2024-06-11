@@ -211,24 +211,15 @@ public function displayResearchPublication($ED_ID)
     return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('expertDomain', 'research', 'publication'));
 }
 
-public function ListResearchPublication(){
-    // Get the currently authenticated user's ID
-    $userId = Auth::id();
+public function ListResearchPublication()
+    {
+        // Fetching all expert domains along with their research and publications
+        $expertDomains = ExpertDomain::with(['research', 'publications'])->get();
 
-    // Check if the user with this ID has a corresponding Platinum record
-    if (!ExpertDomain::where('p_platinumID', $userId)->exists()) {
-        return redirect()->route('expertDomains.list')->with('error', 'User does not have a corresponding Platinum record.');
+        // Returning the view with the fetched data
+        return view('ExpertDomainView.Platinum.ListResearchPublication', compact('expertDomains'));
     }
-
-    // Fetch the expert domains with their related research and publications
-    $expertDomains = ExpertDomain::where('p_platinumID', $userId)
-                                  ->with(['research', 'publications'])
-                                  ->get();
-
-    // Pass the data to the view
-    return view('ExpertDomainView.Platinum.ListResearchPublication', compact('expertDomains'));
-}
-
+    
 public function editResearchPublication($ED_ID, $id)
 {
     $expertDomain = ExpertDomain::findOrFail($ED_ID);

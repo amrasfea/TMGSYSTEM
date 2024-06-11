@@ -44,7 +44,7 @@ class Publication extends Model
 
     public function expertDomain()
     {
-        return $this->belongsTo(ExpertDomain::class, 'ED_ID');
+        return $this->belongsTo(ExpertDomain::class, 'ED_ID', 'ED_ID');
     }
     public function platinum()
     {

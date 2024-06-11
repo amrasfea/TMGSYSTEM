@@ -222,7 +222,7 @@
                             <a href="{{ route('expertDomains.listAll') }}" class="sidebar-link">List All Expert</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="researchPublications.view" class="sidebar-link">Research & Publication</a>
+                            <a href="#" class="sidebar-link">Research & Publication</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('platinum.report') }}" class="sidebar-link">Report</a>

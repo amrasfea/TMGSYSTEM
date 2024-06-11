@@ -46,14 +46,23 @@ class ExpertDomain extends Model
         return $this->belongsTo(Mentor::class, 'M_mentorID');
     }
 
+    // public function research()
+    // {
+    //     return $this->belongsTo(Research::class, 'ED_ID', 'R_researchID');
+    // }
+
+    // public function publications()
+    // {
+    //     return $this->hasMany(Publication::class, 'ED_ID');
+    // }
     public function research()
     {
-        return $this->belongsTo(Research::class, 'ED_ID', 'R_researchID');
+        return $this->hasOne(Research::class, 'ED_ID', 'ED_ID');
     }
 
     public function publications()
     {
-        return $this->hasMany(Publication::class, 'ED_ID');
+        return $this->hasMany(Publication::class, 'ED_ID', 'ED_ID');
     }
 
 }
