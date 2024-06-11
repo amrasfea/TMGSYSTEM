@@ -77,6 +77,11 @@
                         <div class="flex justify-between items-center mb-4">
                             <h1 class="text-2xl font-bold">{{ __('Research & Publications') }}</h1>
                         </div>
+                        <!-- search form -->
+                    <form method="GET" action="{{ route('researchPublications.list') }}" class="mb-4">
+                        <input type="text" name="search" placeholder="Search by name" class="border rounded py-2 px-4" value="{{ request('search') }}">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+                    </form>
                         <table class="min-w-full bg-white rounded-lg overflow-hidden">
                             <thead>
                                 <tr>
@@ -95,7 +100,7 @@
                                         <td class="py-2 px-4">{{ $expertDomain->research->R_title ?? 'N/A' }}</td> 
                                         <td class="py-2 px-4">{{ $expertDomain->publications->first()->PB_Title ?? 'N/A' }}</td>
                                         <td class="py-2 px-4">
-                                            <a href="#" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
+                                            <a href="{{ route('researchPublications.edit', ['ED_ID' => $expertDomain->ED_ID]) }}" class="text-blue-600 hover:text-blue-900">{{ __('Edit') }}</a>
                                             <a href="{{ route('researchPublications.display', ['ED_ID' => $expertDomain->ED_ID]) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View') }}</a>
                                             <form action="{{ route('researchPublications.destroy', ['ED_ID' => $expertDomain->ED_ID, 'id' => $expertDomain->research->R_ID ?? 0]) }}" method="POST" class="inline delete-form">
                                                 @csrf
