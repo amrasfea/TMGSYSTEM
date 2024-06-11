@@ -225,7 +225,7 @@
                             <a href="{{ route('AllDTAView.index') }}" class="sidebar-link">Draft Thesis Performance</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('AllWeeklyFocusView.display') }}" class="sidebar-link">Weekly Focus</a>
+                            <a href="{{ route('AllWeeklyFocusView.index') }}" class="sidebar-link">Weekly Focus</a>
                         </li>
                             </ul>
                         </li>
