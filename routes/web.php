@@ -115,7 +115,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/weekly-focus-view/{id}/add', [ManageWeeklyFocusController::class, 'create'])->name('weeklyFocus.add');
 
     Route::get('/platinum-weekly-focus-report', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusReport'])->name('platinum.Report');
-    Route::get('/all-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'AllWeeklyFocusView'])->name('allWeeklyFocusView.index');
+    Route::get('/all-weekly-focus-view', [ManageWeeklyFocusController::class, 'allWeeklyFocusView'])->name('AllWeeklyFocusView.index');
     Route::get('/mentor-weekly-focus-report', [ManageWeeklyFocusController::class, 'mentorWeeklyFocusReport'])->name('mentor.Report');
     Route::get('/platinum-weekly-focus-view/display', [ManageWeeklyFocusController::class, 'platinumWeeklyFocusView'])->name('platinumWeeklyFocusView.index');
     Route::get('/crmp-weekly-focus-report', [ManageWeeklyFocusController::class, 'crmpWeeklyFocusReport'])->name('crmp.Report');

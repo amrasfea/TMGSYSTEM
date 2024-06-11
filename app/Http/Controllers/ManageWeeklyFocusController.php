@@ -43,11 +43,7 @@ class ManageWeeklyFocusController extends Controller
         return view('ManageWeeklyFocusView.Platinum.platinumWeeklyFocusReport', compact('data'));
     }
 
-    public function allWeeklyFocusView()
-    {
-        $data = WeeklyFocusBlock::all();
-        return view('ManageWeeklyFocusView.Mentor.allWeeklyFocusView', compact('data'));
-    }
+
 
     public function mentorWeeklyFocusReport()
     {
@@ -65,6 +61,12 @@ class ManageWeeklyFocusController extends Controller
     {
         $data = WeeklyFocusBlock::all();
         return view('ManageWeeklyFocusView.CRMP.crmpWeeklyFocusReport', compact('data'));
+    }
+
+    public function allWeeklyFocusView()
+    {
+        $data = WeeklyFocusBlock::all();
+        return view('ManageWeeklyFocusView.Mentor.allWeeklyFocusView', compact('data'));
     }
 
     public function storeWeeklyFocus(Request $request)
