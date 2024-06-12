@@ -111,11 +111,7 @@
               <input class="form-check-input" type="checkbox" value="" id="remember_me" name="remember">
               <label class="form-check-label" for="remember_me"> Remember me </label>
             </div>
-            <div>
-              @if (Route::has('password.request'))
-                <a class="text-decoration-none" href="{{ route('password.request') }}">Forgot password?</a>
-              @endif
-            </div>
+            
           </div>
 
           <!-- Submit button -->
