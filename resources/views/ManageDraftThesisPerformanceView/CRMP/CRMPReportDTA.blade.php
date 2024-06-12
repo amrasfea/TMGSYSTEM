@@ -87,7 +87,7 @@
                             <td>{{ $performance->title }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('DTAView.index', ['DTP_DraftNum' => $performance->DTP_DraftNum]) }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('DTAView.index', ['DTP_DraftNum' => $performance->DTP_DraftNum]) }}" class="text-green-600 hover:text-green-900 ml-2">View</a>
                                 </div>
                             </td>
                         </tr>
@@ -102,7 +102,7 @@
                             <td>Thesis Title 1</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('PlatinumDTAView.index') }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('PlatinumDTAView.index') }}" class="text-green-600 hover:text-green-900 ml-2">View</a>
                                 </div>
                             </td>
                         </tr>
@@ -111,7 +111,7 @@
                             <td>Thesis Title 2</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('PlatinumDTAView.index') }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('PlatinumDTAView.index') }}" class="text-green-600 hover:text-green-900 ml-2">View</a>
                                 </div>
                             </td>
                         </tr>
