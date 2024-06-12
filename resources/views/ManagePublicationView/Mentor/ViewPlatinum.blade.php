@@ -6,6 +6,11 @@
     </x-slot>
 
     <style>
+        html, body {
+            height: 100%;
+            overflow: auto;
+        }
+
         .platinum-table {
             width: 100%;
             border-collapse: collapse;
@@ -38,6 +43,11 @@
         .platinum-table a:hover {
             color: #0056b3;
         }
+
+        .container {
+            overflow: auto;
+            max-height: 100vh; /* Ensure the container can scroll */
+        }
     </style>
 
     <div class="container">
@@ -60,7 +70,7 @@
                             <td>{{ $publication->PB_Type }}</td>
                             <td>{{ $publication->PB_Date }}</td>
                             <td>
-                            <a href="{{ route('mentor.viewPlatinumPublications', $platinum->id) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View Publications') }}</a>
+                                <a href="{{ route('mentor.viewPlatinumPublications', $platinum->id) }}" class="text-green-600 hover:text-green-900 ml-2">{{ __('View Publications') }}</a>
                             </td>
                         </tr>
                     @endforeach
@@ -69,5 +79,4 @@
         </table>
     </div>
 </x-mentor-layout>
-
 
