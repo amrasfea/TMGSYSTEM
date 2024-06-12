@@ -20,7 +20,7 @@
                 margin-bottom: 20px;
             }
             .table th {
-                background-color: #5be076;
+                background-color: #10243c;
                 color: white;
             }
             .modal-header {

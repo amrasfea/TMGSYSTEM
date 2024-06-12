@@ -87,7 +87,7 @@
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -102,7 +102,7 @@
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -131,11 +131,11 @@
                         <td>2024-06-10 to 2024-06-17</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-warning">Edit</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -146,11 +146,11 @@
                         <td>2024-06-18 to 2024-06-25</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-warning">Edit</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -179,11 +179,11 @@
                         <td>2024-06-10 to 2024-06-17</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-warning">Edit</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -194,11 +194,11 @@
                         <td>2024-06-18 to 2024-06-25</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-warning">Edit</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -227,11 +227,11 @@
                         <td>2024-06-10 to 2024-06-17</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-warning">Edit</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
@@ -242,11 +242,11 @@
                         <td>2024-06-18 to 2024-06-25</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-warning">Edit</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Edit</a>
                                 <form action="#" method="POST" style="display:inline;">
                                     <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                 </form>
-                                <a href="#" class="btn btn-primary">Add</a>
+                                <a href="#" class="text-blue-600 hover:text-blue-900">Add</a>
                             </div>
                         </td>
                     </tr>
