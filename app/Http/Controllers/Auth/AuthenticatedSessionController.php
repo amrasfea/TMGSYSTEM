@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
     }
 
-
+    //redirect to page login 
     public function create(): View
     {
         return view('auth.login');
@@ -36,6 +36,7 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Handle an incoming authentication request.
+     * bila user click login, the store method is called
      */
     public function store(LoginRequest $request): RedirectResponse
     {

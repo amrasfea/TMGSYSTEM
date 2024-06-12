@@ -12,7 +12,7 @@
                     <form method="POST" action="{{ route('platinum.reportResult') }}">
                         @csrf
                         <div class="mb-4">
-                            <label for="report_type" class="block text-gray-700 text-sm font-bold mb-2">Select Report Type:</label>
+                            <label for="report_type" class="block text-gray-700 text-sm font-bold mb-2">Enter Report Details:</label>
                             <input type="text" id="repot_type" name="report_type" placeholder="Enter report details">
                         </div>
 
