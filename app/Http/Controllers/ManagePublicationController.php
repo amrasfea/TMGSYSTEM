@@ -185,19 +185,22 @@ public function create()
                         ->get();
         return view('ManagePublicationView.Platinum.SearchPublication', compact('publications', 'query'));
     }
-
+    
+    //Display the list of Platinum users
     public function viewPlatinumList()
     {
         $platinums = Platinum::all();
         return view('ManagePublicationView.Mentor.ViewPlatinum', compact('platinums'));
     }
 
+    //Display the publications of a specific Platinum user
     public function viewPlatinumPublications($id)
     {
         $publications = Publication::where('P_platinumID', $id)->get();
         return view('ManagePublicationView.Mentor.PlatinumPublication', compact('publications'));
     }
 
+    //Display the details of a specific publication
     public function viewPublicationDetails($id)
     {
 
@@ -206,6 +209,7 @@ public function create()
 
     }
 
+    //Search for publicationsbasedon a query(for mentor)
     public function mentorSearch(Request $request)
     {
     $query = $request->input('query');
@@ -215,6 +219,7 @@ public function create()
     return view('ManagePublicationView.Mentor.SearchPublication', compact('publications', 'query'));
     }
 
+    //Show the form to generate PDF report
     public function showReportForm()
     {
         return view('ManagePublicationView.Mentor.ReportForm');
