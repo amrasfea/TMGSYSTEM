@@ -208,7 +208,7 @@ public function displayResearchPublication($ED_ID)
     $publication = Publication::where('ED_ID', $ED_ID)->first();
 
     if (!$research || !$publication) {
-        return redirect()->route('expertDomains.list')->with('error', 'Research or Publication not found.');
+        return redirect()->route('researchPublications.list')->with('error', 'Research or Publication not found.');
     }
 
     return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('expertDomain', 'research', 'publication'));
@@ -236,69 +236,55 @@ public function ListResearchPublication(Request $request)
     // Returning the view with the fetched data
     return view('ExpertDomainView.Platinum.ListResearchPublication', compact('expertDomains'));
 }
-//function to edit research and publication
-public function editResearchPublication($ED_ID, $id)
-{
-    $expertDomain = ExpertDomain::findOrFail($ED_ID);
-    $research = Research::where('ED_ID', $ED_ID)->where('id', $id)->first();
-    $publication = Publication::where('ED_ID', $ED_ID)->where('id', $id)->first();
+public function editResearchPublication($ED_ID)
+    {
+        $expertDomain = ExpertDomain::findOrFail($ED_ID);
+        $research = Research::where('ED_ID', $ED_ID)->firstOrFail();
+        $publication = Publication::where('ED_ID', $ED_ID)->firstOrFail();
 
-    if (!$research || !$publication) {
-        return redirect()->route('researchPublications.view', ['id' => $ED_ID])->with('error', 'Research or Publication not found.');
+        return view('ExpertDomainView.Platinum.UpdateResearchPublicationView', compact('expertDomain', 'research', 'publication'));
     }
 
-    return view('ExpertDomainView.Platinum.EditResearchPublicationView', compact('expertDomain', 'research', 'publication'));
-}
-//function to update research and publication
-public function updateResearchPublication(Request $request, $ED_ID, $id)
-{
-    $data = $request->validate([
-        'R_title' => 'required|string',
-        'PB_Type' => 'required|string',
-        'PB_Title' => 'required|string',
-        'PB_Author' => 'required|string',
-        'PB_Uni' => 'required|string',
-        'PB_Page' => 'required|integer',
-        'PB_Detail' => 'required|string',
-        'PB_Date' => 'required|date',
-    ]);
+    public function updateResearchPublication(Request $request, $ED_ID)
+    {
+        $data = $request->validate([
+            'R_title' => 'required|string',
+            'PB_Type' => 'required|string',
+            'PB_Title' => 'required|string',
+            'PB_Author' => 'required|string',
+            'PB_Uni' => 'required|string',
+            'PB_Page' => 'required|integer',
+            'PB_Detail' => 'required|string',
+            'PB_Date' => 'required|date',
+        ]);
 
-    $research = Research::where('ED_ID', $ED_ID)->where('id', $id)->first();
-    $publication = Publication::where('ED_ID', $ED_ID)->where('id', $id)->first();
+        $research = Research::where('ED_ID', $ED_ID)->firstOrFail();
+        $publication = Publication::where('ED_ID', $ED_ID)->firstOrFail();
 
-    if (!$research || !$publication) {
-        return redirect()->route('researchPublications.view', ['id' => $ED_ID])->with('error', 'Research or Publication not found.');
+        $research->update(['R_title' => $data['R_title']]);
+        $publication->update([
+            'PB_Type' => $data['PB_Type'],
+            'PB_Title' => $data['PB_Title'],
+            'PB_Author' => $data['PB_Author'],
+            'PB_Uni' => $data['PB_Uni'],
+            'PB_Page' => $data['PB_Page'],
+            'PB_Detail' => $data['PB_Detail'],
+            'PB_Date' => $data['PB_Date'],
+        ]);
+
+        return redirect()->route('researchPublications.list')->with('success', 'Research and Publication updated successfully!');
     }
 
-    $research->update(['R_title' => $data['R_title']]);
-    $publication->update([
-        'PB_Type' => $data['PB_Type'],
-        'PB_Title' => $data['PB_Title'],
-        'PB_Author' => $data['PB_Author'],
-        'PB_Uni' => $data['PB_Uni'],
-        'PB_Page' => $data['PB_Page'],
-        'PB_Detail' => $data['PB_Detail'],
-        'PB_Date' => $data['PB_Date'],
-    ]);
+    public function destroyResearchPublication($ED_ID)
+    {
+        $research = Research::where('ED_ID', $ED_ID)->firstOrFail();
+        $publication = Publication::where('ED_ID', $ED_ID)->firstOrFail();
 
-    return redirect()->route('researchPublications.view', ['id' => $ED_ID])->with('success', 'Research and Publication updated successfully!');
-}
-//function to delete research and publication
-public function destroyResearchPublication($ED_ID, $id)
-{
-    $research = Research::where('ED_ID', $ED_ID)->where('id', $id)->first();
-    $publication = Publication::where('ED_ID', $ED_ID)->where('id', $id)->first();
-
-    if ($research) {
         $research->delete();
-    }
-
-    if ($publication) {
         $publication->delete();
-    }
 
-    return redirect()->route('researchPublications.view', ['id' => $ED_ID])->with('success', 'Research and Publication deleted successfully!');
-}
+        return redirect()->route('researchPublications.list')->with('success', 'Research and Publication deleted successfully!');
+    }
 
     //function to generate report
     public function GenerateReport(){

@@ -39,7 +39,7 @@ class Publication extends Model
 
     public function research()
     {
-        return $this->belongsTo(Research::class, 'R_researchID', 'R_researchID');
+        return $this->belongsTo(Research::class, 'ED_ID', 'ED_ID');
     }
 
     public function expertDomain()
