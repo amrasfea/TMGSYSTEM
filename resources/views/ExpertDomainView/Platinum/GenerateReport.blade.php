@@ -13,11 +13,7 @@
                         @csrf
                         <div class="mb-4">
                             <label for="report_type" class="block text-gray-700 text-sm font-bold mb-2">Select Report Type:</label>
-                            <select name="report_type" id="report_type" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="summary">Summary Report</option>
-                                <option value="detailed">Detailed Report</option>
-                                <option value="custom">Custom Report</option>
-                            </select>
+                            <input type="text" id="repot_type" name="report_type" placeholder="Enter report details">
                         </div>
 
                         <div class="mb-4">
