@@ -1,132 +1,134 @@
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <h1>Weekly Focus List</h1>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        </div>
-       
-        <div class="card-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Block type</th>
-                        <th scope="col">Thesis Title</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <style>
-                    /* Custom CSS for the card */
-                    .card {
-                        border-radius: 15px;
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                        margin: auto;
-                        margin-top: 50px; /* Adjust as needed */
-                        max-width: 800px; /* Adjust as needed */
-                    }
+<x-mentor-layout>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1>Weekly Focus List</h1>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            </div>
 
-                    .card-header {
-                        background-color: #2596be;
-                        color: white;
-                        border-top-left-radius: 15px;
-                        border-top-right-radius: 15px;
-                    }
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Block type</th>
+                            <th scope="col">Thesis Title</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <style>
+                        /* Custom CSS for the card */
+                        .card {
+                            border-radius: 15px;
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                            margin: auto;
+                            margin-top: 50px; /* Adjust as needed */
+                            max-width: 800px; /* Adjust as needed */
+                        }
 
-                    .card-title {
-                        font-size: 24px;
-                        margin-bottom: 0;
-                        text-align: center;
-                    }
+                        .card-header {
+                            background-color: #2596be;
+                            color: white;
+                            border-top-left-radius: 15px;
+                            border-top-right-radius: 15px;
+                        }
 
-                    .card-body {
-                        padding: 20px;
-                    }
+                        .card-title {
+                            font-size: 24px;
+                            margin-bottom: 0;
+                            text-align: center;
+                        }
 
-                    /* Custom CSS for the table */
-                    .table {
-                        border-radius: 15px;
-                        overflow: hidden;
-                    }
+                        .card-body {
+                            padding: 20px;
+                        }
 
-                    .table thead th {
-                        background-color: #2596be;
-                        color: white;
-                    }
+                        /* Custom CSS for the table */
+                        .table {
+                            border-radius: 15px;
+                            overflow: hidden;
+                        }
 
-                    .table tbody tr:nth-child(even) {
-                        background-color: #f2f2f2;
-                    }
+                        .table thead th {
+                            background-color: #2596be;
+                            color: white;
+                        }
 
-                    .btn-success {
-                        background-color: #28a745;
-                        border-color: #28a745;
-                    }
+                        .table tbody tr:nth-child(even) {
+                            background-color: #f2f2f2;
+                        }
 
-                    .btn-success:hover {
-                        background-color: #218838;
-                        border-color: #1e7e34;
-                    }
+                        .btn-success {
+                            background-color: #28a745;
+                            border-color: #28a745;
+                        }
 
-                    .btn-primary {
-                        background-color: #333;
-                        border-color: #333;
-                    }
+                        .btn-success:hover {
+                            background-color: #218838;
+                            border-color: #1e7e34;
+                        }
 
-                    .btn-primary:hover {
-                        background-color: #2f4f4f;
-                        border-color: #2f4f4f;
-                    }
+                        .btn-primary {
+                            background-color: #333;
+                            border-color: #333;
+                        }
 
-                    .d-grid {
-                        text-align: center;
-                    }
-                </style>
-                <tbody>
+                        .btn-primary:hover {
+                            background-color: #2f4f4f;
+                            border-color: #2f4f4f;
+                        }
 
-               
-                    @forelse($data as $performance)
-                    <tr>
-                        <td>{{ $performance->FB_WeeklyFocusID }}</td>
-                        <td>{{ $performance->FB_BlockType }}</td>
-                        <td>{{ $performance->title }}</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('allWeeklyFocusView.index', ['FB_WeeklyFocusID' => $performance->FB_WeeklyFocusID]) }}" class="btn btn-success">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="4">No results found</td>
-                    </tr>
-                    @endforelse
+                        .d-grid {
+                            text-align: center;
+                        }
+                    </style>
+                    <tbody>
 
-                    <!-- Dummy Data -->
-                    <tr>
-                        <td>1</td>
-                        <td>Focus Block</td>
-                        <td>Weekly Focus Title 1</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('allWeeklyFocusView.index') }}" class="btn btn-success">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Social Block</td>
-                        <td>Weekly Focus Title 2</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('allWeeklyFocusView.index') }}" class="btn btn-success">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="/crmpreport" class="btn btn-primary">Generate Report Weekly Focus</a>
+
+                        @forelse($data as $performance)
+                        <tr>
+                            <td>{{ $performance->FB_WeeklyFocusID }}</td>
+                            <td>{{ $performance->FB_BlockType }}</td>
+                            <td>{{ $performance->title }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('allWeeklyFocusView.index', ['FB_WeeklyFocusID' => $performance->FB_WeeklyFocusID]) }}" class="btn btn-success">View</a>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4">No results found</td>
+                        </tr>
+                        @endforelse
+
+                        <!-- Dummy Data -->
+                        <tr>
+                            <td>1</td>
+                            <td>Focus Block</td>
+                            <td>Weekly Focus Title 1</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('allWeeklyFocusView.index') }}" class="btn btn-success">View</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Social Block</td>
+                            <td>Weekly Focus Title 2</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('allWeeklyFocusView.index') }}" class="btn btn-success">View</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="/crmpreport" class="btn btn-primary">Generate Report Weekly Focus</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</x-mentor-layout>

@@ -54,205 +54,207 @@
 </head>
 <body>
 
-<main>
-    <h1>Weekly Focus</h1>
-    <div class="view-container">
-        <h2>Focus Blocks</h2>
+<x-platinum-layout>
+    <main>
+        <h1>Weekly Focus</h1>
+        <div class="view-container">
+            <h2>Focus Blocks</h2>
 
-        <form action="{{ route('Platinum.report') }}" method="GET" style="display: inline;">
+            <form action="{{ route('Platinum.report') }}" method="GET" style="display: inline;">
                 <button type="submit" class="btn btn-primary">Report</button>
             </form>
 
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-                <tr class="view-table-header">
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dummy data for Focus Blocks -->
-                <tr>
-                    <td>1</td>
-                    <td>Focus Block 1</td>
-                    <td>Description for Focus Block 1</td>
-                    <td>2024-06-10 to 2024-06-17</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Focus Block 2</td>
-                    <td>Description for Focus Block 2</td>
-                    <td>2024-06-18 to 2024-06-25</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr class="view-table-header">
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy data for Focus Blocks -->
+                    <tr>
+                        <td>1</td>
+                        <td>Focus Block 1</td>
+                        <td>Description for Focus Block 1</td>
+                        <td>2024-06-10 to 2024-06-17</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Focus Block 2</td>
+                        <td>Description for Focus Block 2</td>
+                        <td>2024-06-18 to 2024-06-25</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="view-container">
-        <h2>Admin Block Blocks</h2>
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-                <tr class="view-table-header">
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dummy data for Admin Block Blocks -->
-                <tr>
-                    <td>1</td>
-                    <td>Admin Block 1</td>
-                    <td>Description for Admin Block 1</td>
-                    <td>2024-06-10 to 2024-06-17</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Admin Block 2</td>
-                    <td>Description for Admin Block 2</td>
-                    <td>2024-06-18 to 2024-06-25</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="view-container">
+            <h2>Admin Block Blocks</h2>
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr class="view-table-header">
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy data for Admin Block Blocks -->
+                    <tr>
+                        <td>1</td>
+                        <td>Admin Block 1</td>
+                        <td>Description for Admin Block 1</td>
+                        <td>2024-06-10 to 2024-06-17</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Admin Block 2</td>
+                        <td>Description for Admin Block 2</td>
+                        <td>2024-06-18 to 2024-06-25</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="view-container">
-        <h2>Social Blocks</h2>
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-                <tr class="view-table-header">
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dummy data for Social Blocks -->
-                <tr>
-                    <td>1</td>
-                    <td>Social Block 1</td>
-                    <td>Description for Social Block 1</td>
-                    <td>2024-06-10 to 2024-06-17</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Social Block 2</td>
-                    <td>Description for Social Block 2</td>
-                    <td>2024-06-18 to 2024-06-25</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="view-container">
+            <h2>Social Blocks</h2>
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr class="view-table-header">
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy data for Social Blocks -->
+                    <tr>
+                        <td>1</td>
+                        <td>Social Block 1</td>
+                        <td>Description for Social Block 1</td>
+                        <td>2024-06-10 to 2024-06-17</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Social Block 2</td>
+                        <td>Description for Social Block 2</td>
+                        <td>2024-06-18 to 2024-06-25</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="view-container">
-        <h2>Recovery Blocks</h2>
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-                <tr class="view-table-header">
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dummy data for Recovery Blocks -->
-                <tr>
-                    <td>1</td>
-                    <td>Recovery Block 1</td>
-                    <td>Description for Recovery Block 1</td>
-                    <td>2024-06-10 to 2024-06-17</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Recovery Block 2</td>
-                    <td>Description for Recovery Block 2</td>
-                    <td>2024-06-18 to 2024-06-25</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <form action="#" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a href="#" class="btn btn-primary">Add</a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</main>
+        <div class="view-container">
+            <h2>Recovery Blocks</h2>
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr class="view-table-header">
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy data for Recovery Blocks -->
+                    <tr>
+                        <td>1</td>
+                        <td>Recovery Block 1</td>
+                        <td>Description for Recovery Block 1</td>
+                        <td>2024-06-10 to 2024-06-17</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Recovery Block 2</td>
+                        <td>Description for Recovery Block 2</td>
+                        <td>2024-06-18 to 2024-06-25</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <form action="#" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <a href="#" class="btn btn-primary">Add</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</x-platinum-layout>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-ugnirx3F+4U+bssJ0K1Zom+6jhb+kg6CCZTf46ri4IY0KtF25Mz+dflsRP26Y5AY" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-CYOzCJfAcMNNJT5hcu5l40U/fskCjc3fJ4j1XA8YGH5yybveHjUsPynjNu8Oa8y4" crossorigin="anonymous"></script>

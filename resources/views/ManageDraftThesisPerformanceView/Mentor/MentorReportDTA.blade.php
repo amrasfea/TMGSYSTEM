@@ -1,21 +1,11 @@
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <h1>Draft Thesis Performance List</h1>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-        </div>
-        <div class="card-body">
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">DTP_draftNum</th>
-                        <th scope="col">Thesis Title</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Draft Thesis Performance List</title>
+    <style>
         /* Custom CSS for the card */
         .card {
             border-radius: 15px;
@@ -80,50 +70,70 @@
             text-align: center;
         }
     </style>
+</head>
+<body>
 
-                
-                <tbody>
-                    @forelse($data as $performance)
+<x-mentor-layout>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1>Draft Thesis Performance List</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ $performance->DTP_DraftNum }}</td>
-                            <td>{{ $performance->title }}</td> <!-- Assuming `title` is a property of the performance object -->
+                            <th scope="col">DTP_draftNum</th>
+                            <th scope="col">Thesis Title</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($data as $performance)
+                            <tr>
+                                <td>{{ $performance->DTP_DraftNum }}</td>
+                                <td>{{ $performance->title }}</td> <!-- Assuming `title` is a property of the performance object -->
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('AllDTAView.index', ['DTP_DraftNum' => $performance->DTP_DraftNum]) }}" class="btn btn-success">View</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3">No results found</td>
+                            </tr>
+                        @endforelse
+
+                        <!-- Dummy Data -->
+                        <tr>
+                            <td>1</td>
+                            <td>Thesis Title 1</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('AllDTAView.index') }}, ['DTP_DraftNum' => $performance->DTP_DraftNum]) }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('AllDTAView.index') }}" class="btn btn-success">View</a>
                                 </div>
                             </td>
                         </tr>
-                    @empty
                         <tr>
-                            <td colspan="3">No results found</td>
+                            <td>2</td>
+                            <td>Thesis Title 2</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('AllDTAView.index') }}" class="btn btn-success">View</a>
+                                </div>
+                            </td>
                         </tr>
-                    @endforelse
+                    </tbody>
+                </table>
 
-                    <tr>
-                        <td>1</td>
-                        <td>Thesis Title 1</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('AllDTAView.index') }}" class="btn btn-success">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Thesis Title 2</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{{ route('AllDTAView.index') }}" class="btn btn-success">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="/crmpreport" class="btn btn-primary">Generate Report Draft Thesis Performance</a>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="/crmpreport" class="btn btn-primary">Generate Report Draft Thesis Performance</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</x-mentor-layout>
 
+</body>
+</html>

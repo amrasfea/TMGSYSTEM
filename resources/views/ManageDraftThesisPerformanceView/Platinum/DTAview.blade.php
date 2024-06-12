@@ -1,46 +1,6 @@
+<!-- Assuming this is your Blade view file, e.g., resources/views/draft-thesis.blade.php -->
 
-   <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Manage Draft Thesis Performance</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <!-- Custom CSS -->
-        <style>
-            body {
-                background-color: #e5e5e5;
-            }
-            .container {
-                max-width: 1200px;
-                margin-top: 20px;
-            }
-            .btn-group {
-                margin-bottom: 20px;
-            }
-            .table th {
-                background-color: #ffdc5c;
-                color: white;
-            }
-            .modal-header {
-                background-color: #007bff;
-                color: white;
-            }
-            .modal-body {
-                max-height: 60vh;
-                overflow-y: auto;
-            }
-            .form-group label {
-                font-weight: bold;
-            }
-            .form-group input {
-                margin-bottom: 15px;
-            }
-        </style>
-    </head>
-    <body>
-
+<x-platinum-layout>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Manage Draft Thesis Performance</h1>
         <div class="text-right mb-3">
@@ -48,66 +8,65 @@
             <form action="{{ route('report.generate') }}" method="GET" style="display: inline;">
                 <button type="submit" class="btn btn-primary">Report</button>
             </form>
-
         </div>
         <div class="table-responsive">
             <table id="dataTable" class="table table-bordered table-hover">
                 <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Title</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Days to Prepare</th>
-                    <th>Total Page</th>
-                    <th>Completion Date</th>
-                    <th>DDC Group</th>
-                    <th>Action</th>
-                </tr>
+                    <tr>
+                        <th>Number</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Days to Prepare</th>
+                        <th>Total Page</th>
+                        <th>Completion Date</th>
+                        <th>DDC Group</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <!-- Dummy data rows -->
-                <tr id="item-1">
-                    <td>1</td>
-                    <td>Thesis Title 1</td>
-                    <td>2024-01-01</td>
-                    <td>2024-03-01</td>
-                    <td>60</td>
-                    <td>120</td>
-                    <td>2024-03-10</td>
-                    <td>DDC Group 1</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" onclick="openEditModal(1)">Edit</button>
-                            <form action="{{ route('DTAView.delete', 1) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="item-2">
-                    <td>2</td>
-                    <td>Thesis Title 2</td>
-                    <td>2024-02-01</td>
-                    <td>2024-04-01</td>
-                    <td>60</td>
-                    <td>130</td>
-                    <td>2024-04-10</td>
-                    <td>DDC Group 2</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" onclick="openEditModal(2)">Edit</button>
-                            <form action="{{ route('DTAView.delete', 2) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Add more dummy rows as needed -->
+                    <!-- Dummy data rows -->
+                    <tr id="item-1">
+                        <td>1</td>
+                        <td>Thesis Title 1</td>
+                        <td>2024-01-01</td>
+                        <td>2024-03-01</td>
+                        <td>60</td>
+                        <td>120</td>
+                        <td>2024-03-10</td>
+                        <td>DDC Group 1</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" onclick="openEditModal(1)">Edit</button>
+                                <form action="{{ route('DTAView.delete', 1) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="item-2">
+                        <td>2</td>
+                        <td>Thesis Title 2</td>
+                        <td>2024-02-01</td>
+                        <td>2024-04-01</td>
+                        <td>60</td>
+                        <td>130</td>
+                        <td>2024-04-10</td>
+                        <td>DDC Group 2</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" onclick="openEditModal(2)">Edit</button>
+                                <form action="{{ route('DTAView.delete', 2) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Add more dummy rows as needed -->
                 </tbody>
             </table>
         </div>
@@ -278,6 +237,4 @@
             }
         }
     </script>
-    </body>
-    </html>
-    
+</x-platinum-layout>
