@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Gate;
 
 class ExpertDomainController extends Controller
 {
+    //function to Add ExpertDomain
     public function AddExpertDomainView() {
-        
+        //to display Add interface
         return view('ExpertDomainView.Platinum.AddExpertDomainView');
     }
     
+    //function to store data expert domain
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -59,7 +61,7 @@ class ExpertDomainController extends Controller
         // Redirect to the list route with a success message
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information added successfully!');
     }
-
+    //function to delete expert domain
     public function destroy($ED_ID)
     {
         // Find the ExpertDomain record by ED_ID
@@ -71,13 +73,13 @@ class ExpertDomainController extends Controller
         // Redirect back with a success message
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information deleted successfully!');
     }
-
+    //function to edit expert domain details
     public function UpdateExpertDomainView($ED_ID)
     {
         $expertDomain = ExpertDomain::findOrFail($ED_ID);
         return view('ExpertDomainView.Platinum.UpdateExpertDomainView', compact('expertDomain'));
     }
-
+    //function to update the edited expert domains details
     public function update(Request $request, $ED_ID)
     {
         // Validate the incoming request data
@@ -105,14 +107,14 @@ class ExpertDomainController extends Controller
         // Redirect to the list route with a success message
         return redirect()->route('expertDomains.list')->with('success', 'Expert Domain Information updated successfully!');
     }
-
+    //function to view the expert domain details
     public function view($id)
     {
         $expertDomain = ExpertDomain::findOrFail($id);
         return view('ExpertDomainView.Platinum.DisplayExpertDomainDetailsView', compact('expertDomain'));
     }
 
-
+    //function to list own expert domain for the current platinum user
     public function ListExpertDomainView(Request $request){
         $userId = Auth::id(); // Get the currently authenticated user's ID
         $query = $request->input('search');
@@ -129,7 +131,7 @@ class ExpertDomainController extends Controller
     
         return view('ExpertDomainView.Platinum.ListExpertDomainView', compact('expertDomains'));
     }
-    
+    //function to liss all expert domain that have been added by all platinum
     public function ListAllExpertDomainView(Request $request){
         $query = $request->input('search');
         
@@ -156,7 +158,7 @@ class ExpertDomainController extends Controller
 
     return view('ExpertDomainView.Platinum.AddResearchPublicationView', compact('expertDomain'));
 }
-
+//function to store research and publication data
 public function storeResearchPublication(Request $request)
 {
     $data = $request->validate([
@@ -196,7 +198,7 @@ public function storeResearchPublication(Request $request)
 
     return redirect()->route('researchPublications.display', ['ED_ID' => $request->input('ED_ID')])->with('success', 'Research and Publication added successfully!');
 }
-
+//function to display research and publication details
 public function displayResearchPublication($ED_ID)
 {
     $expertDomain = ExpertDomain::findOrFail($ED_ID);
@@ -211,7 +213,7 @@ public function displayResearchPublication($ED_ID)
 
     return view('ExpertDomainView.Platinum.DisplayResearchPublicationView', compact('expertDomain', 'research', 'publication'));
 }
-
+//function to list research and publication that have been added
 public function ListResearchPublication(Request $request)
 {
     // Get the current logged-in user
@@ -234,7 +236,7 @@ public function ListResearchPublication(Request $request)
     // Returning the view with the fetched data
     return view('ExpertDomainView.Platinum.ListResearchPublication', compact('expertDomains'));
 }
-    
+//function to edit research and publication
 public function editResearchPublication($ED_ID, $id)
 {
     $expertDomain = ExpertDomain::findOrFail($ED_ID);
@@ -247,7 +249,7 @@ public function editResearchPublication($ED_ID, $id)
 
     return view('ExpertDomainView.Platinum.EditResearchPublicationView', compact('expertDomain', 'research', 'publication'));
 }
-
+//function to update research and publication
 public function updateResearchPublication(Request $request, $ED_ID, $id)
 {
     $data = $request->validate([
@@ -281,7 +283,7 @@ public function updateResearchPublication(Request $request, $ED_ID, $id)
 
     return redirect()->route('researchPublications.view', ['id' => $ED_ID])->with('success', 'Research and Publication updated successfully!');
 }
-
+//function to delete research and publication
 public function destroyResearchPublication($ED_ID, $id)
 {
     $research = Research::where('ED_ID', $ED_ID)->where('id', $id)->first();
@@ -298,11 +300,11 @@ public function destroyResearchPublication($ED_ID, $id)
     return redirect()->route('researchPublications.view', ['id' => $ED_ID])->with('success', 'Research and Publication deleted successfully!');
 }
 
-
+    //function to generate report
     public function GenerateReport(){
         return view('ExpertDomainView.Platinum.GenerateReport');
     }
-
+    //function to display the generate report
     public function GenerateReportSubmit(Request $request)
 {
     // Validate the request data
