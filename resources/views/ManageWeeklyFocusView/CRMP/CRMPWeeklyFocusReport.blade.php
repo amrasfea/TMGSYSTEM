@@ -89,7 +89,7 @@
                             <td>{{ $performance->title }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('platinumWeeklyFocusView.index', ['FB_WeeklyFocusID' => $performance->FB_WeeklyFocusID]) }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('platinumWeeklyFocusView.index', ['FB_WeeklyFocusID' => $performance->FB_WeeklyFocusID]) }}" class="text-green-600 hover:text-green-900 ml-2">View</a>
                                 </div>
                             </td>
                         </tr>
@@ -106,7 +106,7 @@
                             <td>Weekly Focus Title 1</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('platinumWeeklyFocusView.index') }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('platinumWeeklyFocusView.index') }}" class="text-green-600 hover:text-green-900 ml-2">View</a>
                                 </div>
                             </td>
                         </tr>
@@ -116,7 +116,7 @@
                             <td>Weekly Focus Title 2</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('platinumWeeklyFocusView.index') }}" class="btn btn-success">View</a>
+                                    <a href="{{ route('platinumWeeklyFocusView.index') }}" class="text-green-600 hover:text-green-900 ml-2">View</a>
                                 </div>
                             </td>
                         </tr>

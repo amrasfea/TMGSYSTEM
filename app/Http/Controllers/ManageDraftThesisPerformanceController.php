@@ -132,17 +132,19 @@ class ManageDraftThesisPerformanceController extends Controller
     return view('ManageDraftThesisPerformanceView.Platinum.PlatinumReportDTA', compact('data'));
 }
 
-    public function destroyAction($id)
-    {
-        try {
-            $record = DraftThesisPerformance::find($id);
-            if (!$record) {
-                return redirect()->back()->with('error', 'Record not found');
-            }
-            $record->delete();
-            return redirect()->back()->with('success', 'Record deleted successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred while deleting the record');
+public function destroy($id)
+{
+    try {
+        $record = DraftThesisPerformance::find($id);
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found');
         }
+        $record->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'An error occurred while deleting the record');
     }
+}
+
+
 }

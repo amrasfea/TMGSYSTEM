@@ -28,7 +28,7 @@
                     <!-- Dummy data rows -->
                     <tr id="item-1">
                         <td>1</td>
-                        <td>Thesis Title 1</td>
+                        <td>Security Vulnerability</td>
                         <td>2024-01-01</td>
                         <td>2024-03-01</td>
                         <td>60</td>
@@ -37,18 +37,18 @@
                         <td>DDC Group 1</td>
                         <td>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-primary" onclick="openEditModal(1)">Edit</button>
+                                <button type="button" class="text-blue-600 hover:text-blue-900" onclick="openEditModal(1)">Edit</button>
                                 <form action="{{ route('DTAView.delete', 1) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                    <button type="submit" class="text-red-600 hover:text-red-900 ml-2" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
                                 </form>
                             </div>
                         </td>
                     </tr>
                     <tr id="item-2">
                         <td>2</td>
-                        <td>Thesis Title 2</td>
+                        <td>Art and FrameWork</td>
                         <td>2024-02-01</td>
                         <td>2024-04-01</td>
                         <td>60</td>
@@ -57,11 +57,11 @@
                         <td>DDC Group 2</td>
                         <td>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-primary" onclick="openEditModal(2)">Edit</button>
+                                <button type="button" class="text-blue-600 hover:text-blue-900" onclick="openEditModal(2)">Edit</button>
                                 <form action="{{ route('DTAView.delete', 2) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                    <button type="submit" class="text-red-600 hover:text-red-900 ml-2" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
                                 </form>
                             </div>
                         </td>

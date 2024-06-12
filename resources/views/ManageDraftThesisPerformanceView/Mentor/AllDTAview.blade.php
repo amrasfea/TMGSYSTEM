@@ -155,7 +155,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="editModalLabel">Edit Record</h4>
+                    <h4 class="text-blue-600 hover:text-blue-900" id="editModalLabel">Edit Record</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
