@@ -139,7 +139,7 @@ class ManageWeeklyFocusController extends Controller
 public function index()
 {
     // Fetch the weekly focuses from the database
-    $weeklyFocuses = WeeklyFocus::all();
+    $weeklyFocuses = WeeklyFocusBlock::all();
     
     // Pass the weekly focuses to the view
     return view('weeklyFocus.index', compact('weeklyFocuses'));
